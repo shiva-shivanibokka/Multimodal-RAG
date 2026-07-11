@@ -14,13 +14,13 @@ RRF fusion score (tiny, not 0-1 scaled) and, when reranking is on, a bge
 cross-encoder logit (unbounded) -- neither is comparable to the threshold.
 Refuse (no LLM call) if the mode's top result is empty or below threshold.
 
-Figure images to the VLM (Task 3.4): any retrieved chunk with
-``kind == "figure"`` has no passage text (see store.py), so its whole page
-image is looked up from the session's stored pages (same
-``pages_by_index`` keying used in store.py), base64-encoded, and passed via
-``generate(..., images=[...])`` so the VLM actually sees it. Text/table
-chunks are concatenated into the context string as before. A single result
-set can contain both kinds.
+Figure/page images to the VLM (Task 3.4, extended to whole pages by Task
+5.2b): any retrieved chunk with ``kind == "figure"`` or ``kind == "page"``
+has no passage text (see store.py), so its whole page image is looked up
+from the session's stored pages (same ``pages_by_index`` keying used in
+store.py), base64-encoded, and passed via ``generate(..., images=[...])``
+so the VLM actually sees it. Text/table chunks are concatenated into the
+context string as before. A single result set can contain any mix of kinds.
 
 Deterministic table answers (Task 4.3): right after ``results`` is computed
 (and the grounding gate above has already passed), ``try_table_answer`` gets
@@ -119,11 +119,11 @@ def answer_question(req: AnswerRequest) -> AnswerResponse:
     citations = []
     for r in results:
         chunk = r["chunk"]
-        if chunk.get("kind") == "figure":
+        if chunk.get("kind") in ("figure", "page"):
             page = pages_by_index.get(chunk["page"])
             if page is not None:
                 images.append(base64.b64encode(page["image_png"]).decode("ascii"))
-            snippet = chunk.get("caption_text") or "[figure]"
+            snippet = chunk.get("caption_text") or f"[{chunk.get('kind')}]"
             citations.append(
                 Citation(page=chunk["page"], bbox=chunk["bbox"], snippet=snippet[:_SNIPPET_LEN])
             )

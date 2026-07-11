@@ -117,6 +117,8 @@ def test_empty_index_after_adding_only_figure_chunks():
 
 
 def _cross_modal_fixture():
+    """No figure chunks at all -- Task 5.2b indexes every PAGE image
+    directly, so a page needs no figure chunk to be cross-modal retrievable."""
     pages = [
         {"index": 0, "image_png": make_solid_image("red"), "width": 224, "height": 224},
         {"index": 1, "image_png": make_solid_image("blue"), "width": 224, "height": 224},
@@ -130,38 +132,26 @@ def _cross_modal_fixture():
             "bbox": [0, 0, 10, 10],
             "table_df_json": None,
         },
-        {
-            "id": 1,
-            "kind": "figure",
-            "text": "",
-            "page": 0,
-            "bbox": [0, 0, 224, 224],
-            "table_df_json": None,
-        },
-        {
-            "id": 2,
-            "kind": "figure",
-            "text": "",
-            "page": 1,
-            "bbox": [0, 0, 224, 224],
-            "table_df_json": None,
-        },
     ]
     return chunks, pages
 
 
-def test_cross_modal_retrieves_matching_figure_by_color():
+def test_cross_modal_retrieves_matching_page_by_color_with_zero_figure_chunks():
+    """The key new behavior: pages are indexed as pages, not via figure
+    chunks -- this fixture has ZERO figure chunks and cross_modal still
+    finds the right page by color."""
     chunks, pages = _cross_modal_fixture()
     idx = Index()
     idx.add(chunks, pages=pages)
 
     red_results = idx.cross_modal("a red image", 2)
-    assert red_results[0]["chunk"]["id"] == 1
+    assert red_results[0]["chunk"]["kind"] == "page"
     assert red_results[0]["chunk"]["page"] == 0
+    assert red_results[0]["chunk"]["id"] == "page-0"
 
     blue_results = idx.cross_modal("a blue image", 2)
-    assert blue_results[0]["chunk"]["id"] == 2
     assert blue_results[0]["chunk"]["page"] == 1
+    assert blue_results[0]["chunk"]["id"] == "page-1"
 
     scores = [r["score"] for r in red_results]
     assert scores == sorted(scores, reverse=True)
@@ -174,7 +164,7 @@ def test_cross_modal_excludes_text_chunks():
 
     ids = {r["chunk"]["id"] for r in idx.cross_modal("a red image", 10)}
     assert 0 not in ids
-    assert ids == {1, 2}
+    assert ids == {"page-0", "page-1"}
 
 
 def test_cross_modal_empty_without_pages():
@@ -188,10 +178,9 @@ def test_cross_modal_empty_without_pages():
     assert idx.bm25("photosynthesis", 1)[0]["chunk"]["id"] == 0
 
 
-def test_cross_modal_empty_with_no_figure_chunks():
+def test_cross_modal_empty_with_no_pages():
     idx = Index()
-    text_only = [c for c in CHUNKS if c["kind"] != "figure"]
-    idx.add(text_only, pages=[{"index": 1, "image_png": b"", "width": 1, "height": 1}])
+    idx.add(CHUNKS, pages=[])
 
     assert idx.cross_modal("anything", 3) == []
 
@@ -201,10 +190,11 @@ def test_cross_modal_empty_with_no_figure_chunks():
 
 def _caption_baseline_fixture():
     """Page 0: a scanned page image containing readable text ("INVOICE
-    TOTAL") -> OCR yields a non-empty caption, so its figure IS retrievable
+    TOTAL") -> OCR yields a non-empty caption, so this page IS retrievable
     via caption_baseline. Page 1: a solid-red image, pure visual, no text ->
-    OCR yields an empty caption, so its figure is NOT in the caption index,
-    but IS retrievable via cross_modal (CLIP), which reasons over pixels."""
+    OCR yields an empty caption, so this page is NOT in the caption index,
+    but IS retrievable via cross_modal (CLIP), which reasons over pixels.
+    No figure chunks needed -- pages are indexed directly (Task 5.2b)."""
     scanned_page = load_document(make_scanned_pdf("INVOICE TOTAL"))[0]
     pages = [
         {
@@ -215,50 +205,32 @@ def _caption_baseline_fixture():
         },
         {"index": 1, "image_png": make_solid_image("red"), "width": 224, "height": 224},
     ]
-    chunks = [
-        {
-            "id": 0,
-            "kind": "figure",
-            "text": "",
-            "page": 0,
-            "bbox": [0, 0, scanned_page["width"], scanned_page["height"]],
-            "table_df_json": None,
-        },
-        {
-            "id": 1,
-            "kind": "figure",
-            "text": "",
-            "page": 1,
-            "bbox": [0, 0, 224, 224],
-            "table_df_json": None,
-        },
-    ]
-    return chunks, pages
+    return pages
 
 
-def test_caption_baseline_retrieves_text_bearing_figure_via_ocr():
-    chunks, pages = _caption_baseline_fixture()
+def test_caption_baseline_retrieves_text_bearing_page_via_ocr():
+    pages = _caption_baseline_fixture()
     idx = Index()
-    idx.add(chunks, pages=pages)
+    idx.add([], pages=pages)
 
     results = idx.caption_baseline("invoice total", 5)
     assert results
-    assert results[0]["chunk"]["id"] == 0
-    # caption_text is stored back onto the figure chunk dict
-    assert "invoice" in chunks[0]["caption_text"].lower()
+    assert results[0]["chunk"]["kind"] == "page"
+    assert results[0]["chunk"]["page"] == 0
+    # caption_text is stored on the synthetic page-result dict
+    assert "invoice" in results[0]["chunk"]["caption_text"].lower()
 
 
-def test_caption_baseline_misses_pure_visual_figure_that_cross_modal_finds():
-    """The key A/B assertion: a purely-visual figure (no text) is a miss for
+def test_caption_baseline_misses_pure_visual_page_that_cross_modal_finds():
+    """The key A/B assertion: a purely-visual page (no text) is a miss for
     caption_baseline (empty OCR caption -> not indexed) but a hit for
     cross_modal (CLIP reasons over pixels directly)."""
-    chunks, pages = _caption_baseline_fixture()
+    pages = _caption_baseline_fixture()
     idx = Index()
-    idx.add(chunks, pages=pages)
+    idx.add([], pages=pages)
 
-    assert chunks[1]["caption_text"] == ""
-    caption_ids = {r["chunk"]["id"] for r in idx.caption_baseline("red", 5)}
-    assert 1 not in caption_ids
+    caption_pages = {r["chunk"]["page"] for r in idx.caption_baseline("red", 5)}
+    assert 1 not in caption_pages
 
     cross_modal_results = idx.cross_modal("a red image", 5)
-    assert cross_modal_results[0]["chunk"]["id"] == 1
+    assert cross_modal_results[0]["chunk"]["page"] == 1
