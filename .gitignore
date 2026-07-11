@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Models / data / indexes (large, regenerated)
+backend/.model_cache/
+backend/**/*.faiss
+backend/sessions/
+*.npz
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# Env / secrets
+.env
+.env.local
+*.local
+
+# SDD scratch (git-ignored progress ledger)
+.superpowers/
+
+# OS
+.DS_Store
+Thumbs.db
