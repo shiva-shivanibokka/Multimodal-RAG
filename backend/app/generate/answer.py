@@ -21,6 +21,21 @@ image is looked up from the session's stored pages (same
 ``generate(..., images=[...])`` so the VLM actually sees it. Text/table
 chunks are concatenated into the context string as before. A single result
 set can contain both kinds.
+
+Faithfulness firewall (Task 4.2): when ``req.verified`` (default True),
+every generated answer is split into claims and each is checked against the
+retrieved evidence via ``verify_claims`` (Task 4.1's NLI gate). If NOT A
+SINGLE claim is supported, the answer is a hallucination end-to-end and we
+override ``refused=True`` -- this is the calibrated-refusal firewall. We
+deliberately KEEP ``answer=text`` (the model's raw draft) instead of
+blanking it: the frontend needs the actual text to red-flag it ("the model
+produced this, but none of it is grounded"), and discarding it would just
+push the user to distrust an empty response instead of an informative one.
+Top-level ``citations`` become the union of citations from only the
+SUPPORTED claims (deduped by (page, bbox)) -- unsupported claims must not
+lend their (bogus) provenance to the response. When ``req.verified`` is
+False, NLI never runs (it's slow on CPU) and behavior is unchanged from
+Task 3.4: claims=[], citations come from the retrieved chunks.
 """
 import base64
 
@@ -29,6 +44,7 @@ from app.generate.providers import generate
 from app.retrieve.hybrid import retrieve
 from app.schemas import AnswerRequest, AnswerResponse, Citation
 from app.session import get_index, get_session
+from app.verify.nli import verify_claims
 
 _SNIPPET_LEN = 150
 _SUPPORTED_MODES = {"hybrid", "dense", "cross_modal", "caption_baseline"}
@@ -41,6 +57,17 @@ _SYSTEM_PROMPT = (
 
 def _refuse() -> AnswerResponse:
     return AnswerResponse(answer="", refused=True)
+
+
+def _dedup_citations(citations) -> list[Citation]:
+    seen = set()
+    deduped = []
+    for c in citations:
+        key = (c.page, tuple(c.bbox))
+        if key not in seen:
+            seen.add(key)
+            deduped.append(c)
+    return deduped
 
 
 def _grounding_top(index, mode: str, question: str) -> list[dict]:
@@ -102,4 +129,12 @@ def answer_question(req: AnswerRequest) -> AnswerResponse:
     if text.strip() == _NOT_IN_DOCUMENTS:
         return _refuse()
 
-    return AnswerResponse(answer=text, refused=False, citations=citations)
+    if not req.verified:
+        return AnswerResponse(answer=text, refused=False, citations=citations)
+
+    claims = verify_claims(text, results)
+    refused = not any(c.supported for c in claims)
+    supported_citations = _dedup_citations(
+        c for claim in claims if claim.supported for c in claim.citations
+    )
+    return AnswerResponse(answer=text, refused=refused, claims=claims, citations=supported_citations)

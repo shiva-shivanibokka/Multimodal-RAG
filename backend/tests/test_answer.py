@@ -52,7 +52,7 @@ SAFETY_CHUNK = {
 }
 
 
-def _req(session_id, question, retrieval_mode="hybrid"):
+def _req(session_id, question, retrieval_mode="hybrid", verified=True):
     return AnswerRequest(
         question=question,
         provider="groq",
@@ -60,6 +60,7 @@ def _req(session_id, question, retrieval_mode="hybrid"):
         api_key="fake-key",
         session_id=session_id,
         retrieval_mode=retrieval_mode,
+        verified=verified,
     )
 
 
@@ -75,12 +76,17 @@ def _figure_chunk(chunk_id, page, bbox):
 
 
 def test_grounded_answer_has_citations_and_uses_retrieved_context(monkeypatch):
+    # Pre-4.2 citation/context-routing test -- unrelated to the NLI
+    # firewall, so verified=False keeps it testing the retrieval path only
+    # (the canned "The answer is X." isn't literally NLI-entailed by the
+    # evidence text; faithfulness itself is covered by the Task 4.2 tests
+    # below).
     session_id = create_session(pages=[], chunks=[REVENUE_CHUNK, HR_CHUNK])
 
     mock_generate = MagicMock(return_value="The answer is X.")
     monkeypatch.setattr("app.generate.answer.generate", mock_generate)
 
-    resp = answer_question(_req(session_id, "What was the total revenue in Q3?"))
+    resp = answer_question(_req(session_id, "What was the total revenue in Q3?", verified=False))
 
     assert resp.refused is False
     assert resp.answer == "The answer is X."
@@ -152,7 +158,9 @@ def test_cross_modal_mode_passes_figure_image_and_returns_figure_citation(monkey
     mock_generate = MagicMock(return_value="It is red.")
     monkeypatch.setattr("app.generate.answer.generate", mock_generate)
 
-    resp = answer_question(_req(session_id, "a red image", retrieval_mode="cross_modal"))
+    # verified=False: this test is about mode routing/citations, not the
+    # NLI firewall (see Task 4.2 tests below for that).
+    resp = answer_question(_req(session_id, "a red image", retrieval_mode="cross_modal", verified=False))
 
     assert resp.refused is False
     assert resp.answer == "It is red."
@@ -186,7 +194,11 @@ def test_caption_baseline_mode_routes_to_ocr_captioned_figure(monkeypatch):
     mock_generate = MagicMock(return_value="The invoice total is $100.")
     monkeypatch.setattr("app.generate.answer.generate", mock_generate)
 
-    resp = answer_question(_req(session_id, "invoice total", retrieval_mode="caption_baseline"))
+    # verified=False: this test is about mode routing/citations, not the
+    # NLI firewall (see Task 4.2 tests below for that).
+    resp = answer_question(
+        _req(session_id, "invoice total", retrieval_mode="caption_baseline", verified=False)
+    )
 
     assert resp.refused is False
     mock_generate.assert_called_once()
@@ -196,6 +208,71 @@ def test_caption_baseline_mode_routes_to_ocr_captioned_figure(monkeypatch):
 
     assert len(resp.citations) >= 1
     assert any(c.page == 0 for c in resp.citations)
+
+
+# --- Task 4.2: NLI verification + calibrated refusal ---
+
+# Evidence chunk text is the exact string proven in test_nli.py to entail
+# "Revenue was 4 million dollars." (score >= 0.5) and to NOT entail
+# "The CEO resigned in March." (score < 0.5) -- reusing that already-proven
+# pair keeps these tests deterministic without re-discovering NLI scores.
+NLI_EVIDENCE_CHUNK = {
+    "id": 20,
+    "kind": "text",
+    "text": "The company reported revenue of 4 million dollars in 2023.",
+    "page": 4,
+    "bbox": [0, 0, 10, 10],
+    "table_df_json": None,
+}
+
+
+def test_verified_grounded_answer_has_supported_claims_and_citations(monkeypatch):
+    session_id = create_session(pages=[], chunks=[NLI_EVIDENCE_CHUNK, HR_CHUNK])
+
+    mock_generate = MagicMock(return_value="Revenue was 4 million dollars.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "What was the revenue?"))
+
+    assert resp.refused is False
+    assert resp.answer == "Revenue was 4 million dollars."
+    assert len(resp.claims) == 1
+    assert resp.claims[0].supported is True
+    assert resp.claims[0].score >= 0.5
+    assert len(resp.citations) >= 1
+    assert any(c.page == NLI_EVIDENCE_CHUNK["page"] for c in resp.citations)
+
+
+def test_verified_hallucinated_answer_is_refused(monkeypatch):
+    # Same grounded session, but the model invents a fact the evidence never
+    # states -- this is the faithfulness firewall catching a hallucination.
+    session_id = create_session(pages=[], chunks=[NLI_EVIDENCE_CHUNK, HR_CHUNK])
+
+    mock_generate = MagicMock(return_value="The CEO resigned in March.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "What was the revenue?"))
+
+    assert resp.refused is True
+    # the raw draft is kept (not blanked) so the frontend can red-flag it
+    assert resp.answer == "The CEO resigned in March."
+    assert len(resp.claims) == 1
+    assert resp.claims[0].supported is False
+    assert resp.claims[0].score < 0.5
+    assert resp.citations == []
+
+
+def test_verified_false_skips_nli_even_for_hallucinated_answer(monkeypatch):
+    session_id = create_session(pages=[], chunks=[NLI_EVIDENCE_CHUNK, HR_CHUNK])
+
+    mock_generate = MagicMock(return_value="The CEO resigned in March.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "What was the revenue?", verified=False))
+
+    assert resp.refused is False
+    assert resp.answer == "The CEO resigned in March."
+    assert resp.claims == []
 
 
 def test_cross_modal_refuses_when_gate_score_too_low(monkeypatch):
