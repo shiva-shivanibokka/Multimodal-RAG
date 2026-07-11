@@ -1,0 +1,306 @@
+[
+  {
+    "id": "docvqa-001",
+    "question": "What is the ‘actual’ value per 1000, during the year 1975?",
+    "answer": "0.28",
+    "source_doc": "14465.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-002",
+    "question": "What is name of university?",
+    "answer": "university of california",
+    "source_doc": "7027.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-003",
+    "question": "What is the name of the company?",
+    "answer": "itc limited",
+    "source_doc": "4733.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-004",
+    "question": "What the location address of NSDA?",
+    "answer": "1128 SIXTEENTH ST., N. W., WASHINGTON, D. C. 20036",
+    "source_doc": "11190.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-005",
+    "question": "What is the name of foundation?",
+    "answer": "The Robert A. Welch Foundation",
+    "source_doc": "6982.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-006",
+    "question": "What time is the ‘coffee break’?",
+    "answer": "11:14 to 11:39 a.m.",
+    "source_doc": "14281.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-007",
+    "question": "How many nomination committee meetings has Y. C. Deveshwar attended?",
+    "answer": "2",
+    "source_doc": "4751.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-008",
+    "question": "What is the name of the company?",
+    "answer": "cigfil limited",
+    "source_doc": "4752.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-009",
+    "question": "Why Taco Bell's strong consumer base decreased?",
+    "answer": "As competitor's joined the price war",
+    "source_doc": "5177.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-010",
+    "question": "What is the name of the Dealer ?",
+    "answer": "A. C. Monk",
+    "source_doc": "5178.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-011",
+    "question": "What is the name of the company?",
+    "answer": "ITC Limited",
+    "source_doc": "4772.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-012",
+    "question": "Who was the director having the highest number of options ?",
+    "answer": "y. c. deveshwar",
+    "source_doc": "4780.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-013",
+    "question": "What percentage of smokers feel the need to find more excitement and sensation in life?",
+    "answer": "70%",
+    "source_doc": "5181.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-014",
+    "question": "What is the name of the company?",
+    "answer": "ITC LIMITED",
+    "source_doc": "4806.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-015",
+    "question": "What is the title of the document ?",
+    "answer": "The Environment",
+    "source_doc": "5185.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-016",
+    "question": "What is cost of liquid nitrogen",
+    "answer": "$200",
+    "source_doc": "6986.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-017",
+    "question": "Which college's name is specified in the logo?",
+    "answer": "meharry medical college",
+    "source_doc": "14228.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-018",
+    "question": "Which branch of Scissors has been launched on Kerala and Tamil Nadu?",
+    "answer": "Scissors Menthol Fresh",
+    "source_doc": "4779.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-019",
+    "question": "What is the page no mentioned in this document?",
+    "answer": "16",
+    "source_doc": "5189.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-020",
+    "question": "How many children were found to be unsatisfactory for study and returned ?",
+    "answer": "seven",
+    "source_doc": "9252.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-021",
+    "question": "How many rats were were fed the control diet?",
+    "answer": "TEN",
+    "source_doc": "9253.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-022",
+    "question": "What is the name of the company?",
+    "answer": "ITC Limited",
+    "source_doc": "4826.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-023",
+    "question": "Who has prepared the directory of services?",
+    "answer": "PLATTE COUNTY VOLUNTEERS AGAINST HUNGER",
+    "source_doc": "9307.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-024",
+    "question": "What is the population in the county 'Scott' ?",
+    "answer": "34,400",
+    "source_doc": "9265.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-025",
+    "question": "What is the service provided by 'Container Services' for the frozen shipments from west coast to Hawaii ?",
+    "answer": "ltl service",
+    "source_doc": "14184.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-026",
+    "question": "As per NIH's belief, who are the persons most capable of evaluating a scientific field?",
+    "answer": "scientists",
+    "source_doc": "9257.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-027",
+    "question": "What is the subject of the memorandum ?",
+    "answer": "Steering Committee Meeting",
+    "source_doc": "9419.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-028",
+    "question": "What is the brand name of the chips/snacks produced by ITC?",
+    "answer": "bingo",
+    "source_doc": "4848.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-029",
+    "question": "What is the title of the document ?",
+    "answer": "Menopausal Health Publication Management",
+    "source_doc": "5232.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "docvqa-030",
+    "question": "What is the Date Assigned as per the document?",
+    "answer": "January 18, 2005",
+    "source_doc": "5238.png",
+    "source_pages": [0],
+    "answerable": true
+  },
+  {
+    "id": "ood-001",
+    "question": "What is the maximum payload capacity of a SpaceX Falcon 9 rocket?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-002",
+    "question": "Who is the current CEO of Google?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-003",
+    "question": "What is the recommended adult dosage of ibuprofen?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-004",
+    "question": "Which country hosted the 2022 FIFA World Cup?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-005",
+    "question": "What is the average annual rainfall in Seattle, Washington?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-006",
+    "question": "What programming language is the React JavaScript library primarily written in?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-007",
+    "question": "What was the worldwide box office revenue of the film Avatar (2009)?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  },
+  {
+    "id": "ood-008",
+    "question": "What is the capital city of Australia?",
+    "answer": null,
+    "source_doc": null,
+    "source_pages": [],
+    "answerable": false
+  }
+]

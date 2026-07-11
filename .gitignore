@@ -14,6 +14,10 @@ backend/**/*.faiss
 backend/sessions/
 *.npz
 
+# DocVQA eval corpus images (research-use license, regenerate via
+# backend/scripts/fetch_sample_docs.py -- see backend/eval/corpus/README.md)
+backend/eval/corpus/*.png
+
 # Node / Next.js
 node_modules/
 frontend/.next/
