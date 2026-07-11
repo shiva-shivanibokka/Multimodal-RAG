@@ -22,3 +22,6 @@ def test_ocr_page_finds_known_phrase_with_bbox_in_page_bounds():
         x0, y0, x1, y1 = w["bbox"]
         assert 0 <= x0 < x1 <= page["width"]
         assert 0 <= y0 < y1 <= page["height"]
+        # ponytail: magnitude check proves relative->absolute conversion happened
+        # (the bounds check above holds even for un-converted [0,1] coords).
+        assert (x1 - x0) > 1 and (y1 - y0) > 1, "bbox looks un-converted (still relative 0-1 coords)"

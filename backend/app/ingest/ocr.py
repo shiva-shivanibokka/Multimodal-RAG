@@ -15,9 +15,7 @@ multiplying by the page's pixel width/height.
 This conversion is exact only because ``loader.py`` renders pages with
 PyMuPDF's default pixmap zoom (scale 1), under which rendered pixel
 dimensions equal the PDF page's point dimensions (72 DPI) — verified: a
-612x792pt page renders to a 612x792px PNG. If ``image_png`` ever comes from
-a differently-scaled render, pass the true page point size explicitly via
-``page_width``/``page_height``.
+612x792pt page renders to a 612x792px PNG.
 """
 import io
 
@@ -36,23 +34,20 @@ def _get_predictor():
     return _predictor
 
 
-def ocr_page(
-    image_png: bytes, page_width: float | None = None, page_height: float | None = None
-) -> list[dict]:
+def ocr_page(image_png: bytes) -> list[dict]:
     """Run OCR on a rendered page image and return word-level results.
 
     Args:
         image_png: PNG bytes of the page image (e.g. ``Page["image_png"]``).
-        page_width, page_height: page size in PDF points. Defaults to the
-            image's own pixel dimensions, which equals the point size for
-            pages rendered by ``loader.py`` (see module docstring).
+            Page size in PDF points is derived from the image's own pixel
+            dimensions, which equals the point size for pages rendered by
+            ``loader.py`` (see module docstring).
 
     Returns: ``[{"text": str, "bbox": [x0, y0, x1, y1]}, ...]`` one entry per
     recognized word, bbox in page-point space.
     """
     img = np.array(Image.open(io.BytesIO(image_png)).convert("RGB"))
-    if page_width is None:
-        page_height, page_width = img.shape[0], img.shape[1]
+    page_height, page_width = img.shape[0], img.shape[1]
 
     model = _get_predictor()
     result = model([img])
