@@ -31,9 +31,10 @@ from app.schemas import AnswerResponse, Citation, Claim
 
 _SNIPPET_LEN = 150
 
-# Ordered (keyword, pandas-agg) pairs. Multi-word phrases are matched as
-# plain substrings; single words are matched on a word boundary so e.g.
-# "count" doesn't fire inside "discount".
+# (keyword, pandas-agg) pairs. List order is irrelevant -- _detect_aggregate
+# picks whichever matching keyword starts earliest in the question, not the
+# first one declared here. All keywords match on \b word boundaries so e.g.
+# "count" doesn't fire inside "discount" or "account".
 _AGG_KEYWORDS: list[tuple[str, str]] = [
     ("how many", "count"),
     ("number of", "count"),
@@ -59,22 +60,42 @@ _WORD_RE = re.compile(r"[a-z0-9]+")
 
 
 def _detect_aggregate(question: str) -> str | None:
+    """Pick the aggregate keyword that starts EARLIEST in the question.
+
+    All keywords (single- and multi-word) are matched with \\b word
+    boundaries so e.g. "account" doesn't fire "count". Declaration order in
+    _AGG_KEYWORDS no longer matters for which one wins -- "maximum count"
+    must pick `max` (pos of "maximum" < pos of "count"), not whichever
+    keyword happens to be listed first.
+    """
     q = question.lower()
+    best_agg, best_pos = None, None
     for kw, agg in _AGG_KEYWORDS:
-        pattern = kw if " " in kw else rf"\b{re.escape(kw)}\b"
-        if re.search(pattern, q):
-            return agg
-    return None
+        m = re.search(rf"\b{re.escape(kw)}\b", q)
+        if m and (best_pos is None or m.start() < best_pos):
+            best_pos, best_agg = m.start(), agg
+    return best_agg
 
 
 def _detect_column(question: str, columns) -> str | None:
+    """Return the uniquely-best-overlap column, or None if ambiguous.
+
+    If two or more columns tie for the highest (non-zero) token overlap
+    (e.g. "Price" and "Unit Price" both overlap "price" for "total price"),
+    picking either one silently is a confident wrong answer -- return None
+    so the caller falls through to the LLM instead of guessing.
+    """
     q_tokens = set(_WORD_RE.findall(question.lower()))
-    best_col, best_overlap = None, 0
+    best_col, best_overlap, tie_count = None, 0, 0
     for col in columns:
         col_tokens = set(_WORD_RE.findall(str(col).lower()))
         overlap = len(q_tokens & col_tokens)
         if overlap > best_overlap:
-            best_col, best_overlap = col, overlap
+            best_col, best_overlap, tie_count = col, overlap, 1
+        elif overlap == best_overlap and overlap > 0:
+            tie_count += 1
+    if best_overlap == 0 or tie_count > 1:
+        return None
     return best_col
 
 
@@ -82,7 +103,11 @@ def _format_value(value) -> str:
     value = float(value)
     if value.is_integer():
         return str(int(value))
-    return f"{value:g}"
+    # ponytail: display-only rounding to 4dp -- the claim's underlying value
+    # is exact (computed by pandas), this only trims the rendered string so
+    # e.g. 33.333333... shows "33.3333" instead of an unbounded repeating
+    # decimal. Not a precision loss in the computed answer, just the text.
+    return f"{round(value, 4):g}"
 
 
 def try_table_answer(question: str, results: list[dict]) -> AnswerResponse | None:
