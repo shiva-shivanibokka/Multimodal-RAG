@@ -22,6 +22,16 @@ image is looked up from the session's stored pages (same
 chunks are concatenated into the context string as before. A single result
 set can contain both kinds.
 
+Deterministic table answers (Task 4.3): right after ``results`` is computed
+(and the grounding gate above has already passed), ``try_table_answer`` gets
+first look. If the top retrieved chunk is a table and the question is a
+numeric aggregate over one of its columns, it returns a computed, exact
+``AnswerResponse`` immediately -- ``generate()`` and NLI are both skipped,
+because a value read straight out of the source DataFrame needs no LLM
+drafting and no faithfulness check. Otherwise (no aggregate keyword, no
+confident column match, or nothing numeric survives coercion) it returns
+None and the normal LLM path below runs unchanged.
+
 Faithfulness firewall (Task 4.2): when ``req.verified`` (default True),
 every generated answer is split into claims and each is checked against the
 retrieved evidence via ``verify_claims`` (Task 4.1's NLI gate). If NOT A
@@ -41,6 +51,7 @@ import base64
 
 from app.config import settings
 from app.generate.providers import generate
+from app.generate.table_answer import try_table_answer
 from app.retrieve.hybrid import retrieve
 from app.schemas import AnswerRequest, AnswerResponse, Citation
 from app.session import get_index, get_session
@@ -95,6 +106,10 @@ def answer_question(req: AnswerRequest) -> AnswerResponse:
         return _refuse()
 
     results = retrieve(index, req.question, mode=mode, k=5, use_rerank=True)
+
+    table_answer = try_table_answer(req.question, results)
+    if table_answer is not None:
+        return table_answer
 
     session = get_session(req.session_id)
     pages_by_index = {p["index"]: p for p in (session["pages"] if session else [])}

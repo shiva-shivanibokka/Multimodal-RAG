@@ -7,6 +7,8 @@ API is never hit.
 """
 from unittest.mock import MagicMock
 
+import pandas as pd
+
 from app.generate.answer import answer_question
 from app.ingest.loader import load_document
 from app.schemas import AnswerRequest
@@ -291,4 +293,49 @@ def test_cross_modal_refuses_when_gate_score_too_low(monkeypatch):
 
     assert resp.refused is True
     assert resp.answer == ""
+    mock_generate.assert_not_called()
+
+
+# --- Task 4.3: deterministic table answers (LLM + NLI bypass) ---
+
+_TABLE_DF = pd.DataFrame({"Item": ["Widget", "Gadget"], "Amount": [10, 20]})
+TABLE_CHUNK = {
+    "id": 30,
+    "kind": "table",
+    "text": _TABLE_DF.to_markdown(index=False),
+    "page": 2,
+    "bbox": [0, 0, 10, 10],
+    "table_df_json": _TABLE_DF.to_json(),
+}
+
+
+def test_table_aggregate_question_bypasses_llm(monkeypatch):
+    # Ranking a table chunk to the top via the real dense/BM25/rerank stack
+    # is brittle to embedding-score drift, so per the task's fallback
+    # guidance we force the retrieval path deterministically here and assert
+    # the actual behavior that matters: the top-ranked chunk being a table
+    # short-circuits straight to the computed answer, with `generate()`
+    # (and therefore NLI) never invoked.
+    session_id = create_session(pages=[], chunks=[TABLE_CHUNK])
+
+    mock_generate = MagicMock(return_value="should not be called")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    class _FakeIndex:
+        def dense(self, query, k):
+            return [{"chunk": TABLE_CHUNK, "score": 1.0}]
+
+    monkeypatch.setattr("app.generate.answer.get_index", lambda session_id: _FakeIndex())
+    monkeypatch.setattr(
+        "app.generate.answer.retrieve",
+        lambda index, query, mode, k, use_rerank: [{"chunk": TABLE_CHUNK, "score": 1.0}],
+    )
+
+    resp = answer_question(_req(session_id, "what is the total amount?"))
+
+    assert resp.refused is False
+    assert "30" in resp.answer
+    assert len(resp.claims) == 1
+    assert resp.claims[0].supported is True
+    assert any(c.page == TABLE_CHUNK["page"] for c in resp.citations)
     mock_generate.assert_not_called()
