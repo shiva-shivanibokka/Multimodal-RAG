@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { CheckCircle2, Flag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -121,7 +122,12 @@ export default function Home() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-8">
-      <h1 className="text-2xl font-semibold">Multimodal RAG — Trust Layer</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Multimodal RAG — Trust Layer</h1>
+        <Link href="/eval" className="text-sm text-primary underline underline-offset-2">
+          eval dashboard
+        </Link>
+      </div>
 
       <Card>
         <CardHeader>

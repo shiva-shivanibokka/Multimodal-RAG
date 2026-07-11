@@ -1,0 +1,40 @@
+{
+  "sample": true,
+  "dataset": "DocVQA (lmms-lab) -- illustrative sample, not a real run",
+  "n_docs": 40,
+  "n_answerable": 32,
+  "n_ood": 8,
+  "generated_at": null,
+  "modes": {
+    "dense": {
+      "recall_at_1": 0.531,
+      "recall_at_5": 0.781,
+      "mrr": 0.633,
+      "citation_accuracy": 0.531,
+      "refusal_accuracy": 0.775
+    },
+    "hybrid": {
+      "recall_at_1": 0.625,
+      "recall_at_5": 0.844,
+      "mrr": 0.712,
+      "citation_accuracy": 0.625,
+      "refusal_accuracy": 0.8
+    },
+    "cross_modal": {
+      "recall_at_1": 0.469,
+      "recall_at_5": 0.719,
+      "mrr": 0.564,
+      "citation_accuracy": 0.469,
+      "refusal_accuracy": 0.7
+    },
+    "caption_baseline": {
+      "recall_at_1": 0.281,
+      "recall_at_5": 0.469,
+      "mrr": 0.349,
+      "citation_accuracy": 0.281,
+      "refusal_accuracy": 0.55
+    }
+  },
+  "faithfulness": null,
+  "note": "faithfulness requires a key -- run with --api-key to populate"
+}

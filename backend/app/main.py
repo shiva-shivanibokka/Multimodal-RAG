@@ -1,8 +1,15 @@
 # backend/app/main.py
+import json
+from pathlib import Path
+
 from fastapi import Depends, FastAPI, File, Header, HTTPException, Response, UploadFile
 from app.config import settings
 from app.schemas import AnswerRequest, AnswerResponse
 app = FastAPI(title="Multimodal RAG Trust Layer")
+
+# Task 5.4: report written by backend/eval/run_eval.py's --out default.
+# Module-level so tests can monkeypatch it (see test_eval_report_endpoint.py).
+REPORT_PATH = Path(__file__).resolve().parent.parent / "eval" / "report.json"
 
 def require_token(authorization: str = Header(default="")):
     if settings.backend_token and authorization != f"Bearer {settings.backend_token}":
@@ -46,6 +53,16 @@ async def ingest(file: UploadFile = File(...)):
     chunks = chunk_pages(pages, tables_by_page)
     session_id = create_session(pages, chunks)
     return {"session_id": session_id, "n_pages": len(pages), "n_chunks": len(chunks)}
+
+
+@app.get("/eval/report", dependencies=[Depends(require_token)])
+def eval_report():
+    """Serve the benchmark report written by backend/eval/run_eval.py
+    (Task 5.4). 404 when no report has been run yet -- the frontend
+    dashboard falls back to its own bundled sample data in that case."""
+    if not REPORT_PATH.exists():
+        raise HTTPException(status_code=404, detail="no report")
+    return json.loads(REPORT_PATH.read_text(encoding="utf-8"))
 
 
 @app.get("/page/{session_id}/{page_index}", dependencies=[Depends(require_token)])
