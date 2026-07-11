@@ -54,3 +54,11 @@ def make_table_image(rows: list[list[str]], cell_w: int = 200, cell_h: int = 80,
     buf = io.BytesIO()
     img.save(buf, format="PNG")
     return buf.getvalue()
+
+
+def make_solid_image(color: str, size: tuple[int, int] = (224, 224)) -> bytes:
+    """A solid-color PNG (e.g. "red", "blue") for CLIP directional tests."""
+    img = Image.new("RGB", size, color)
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return buf.getvalue()
