@@ -31,6 +31,6 @@ def get_index(session_id: str):
         from app.index.store import Index
 
         idx = Index()
-        idx.add(session["chunks"])
+        idx.add(session["chunks"], pages=session["pages"])
         session["index"] = idx
     return session["index"]
