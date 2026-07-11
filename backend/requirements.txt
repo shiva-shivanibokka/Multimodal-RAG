@@ -6,7 +6,13 @@ httpx
 pytest
 pymupdf
 pillow
-torch          # install CPU build: pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch==2.13.0  # CPU build ONLY: Dockerfile installs this exact pin via
+               # `pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu`
+               # BEFORE this file, so this line is already satisfied at
+               # image-build time and never re-resolves a CUDA wheel from
+               # PyPI's default index. Local dev: install the same way (the
+               # CPU index) to avoid pulling PyPI's much larger CUDA-enabled
+               # wheel. Bump both this pin and the Dockerfile's together.
 python-doctr   # NOTE: the [torch] extra was removed in 1.0.1; install plain, with torch already present
 img2table      # table structure detection; uses its DocTR OCR backend (no system Tesseract)
 pandas

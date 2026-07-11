@@ -1,0 +1,29 @@
+# backend/.dockerignore
+# Dockerfile only COPYs app/, requirements.txt, eval/ explicitly -- this file
+# is defense-in-depth (smaller build context, safe if COPY ever widens) and
+# mirrors the repo-root .gitignore's backend/ entries.
+
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+tests/
+
+# large / regenerated at runtime, never needed in the image
+.model_cache/
+**/*.faiss
+sessions/
+*.npz
+
+# DocVQA corpus images: research-use licensed, gitignored, not present in a
+# normal checkout anyway. Keep the small manifest/README/gold set (metrics +
+# run_eval.py consume them) and any committed report.json / report.sample.json.
+eval/corpus/*.png
+eval/report.smoke.json
+
+.git/
+.gitignore
