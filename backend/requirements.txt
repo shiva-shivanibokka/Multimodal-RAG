@@ -13,3 +13,7 @@ pandas
 tabulate       # powers pandas' df.to_markdown() used by app/ingest/tables.py
 python-multipart  # required by FastAPI for multipart/form-data file uploads (POST /ingest)
 datasets       # HF `datasets` lib; used by scripts/fetch_sample_docs.py (eval corpus), not a test dep
+sentence-transformers  # bge text/CLIP image embeddings, bge-reranker, NLI (Phase 2+)
+faiss-cpu      # in-process vector index (Task 2.2)
+rank-bm25      # sparse retrieval for hybrid fusion (Task 2.2+)
+numpy
