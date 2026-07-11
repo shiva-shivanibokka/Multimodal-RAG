@@ -1,5 +1,5 @@
 # backend/app/main.py
-from fastapi import Depends, FastAPI, File, Header, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, Header, HTTPException, Response, UploadFile
 from app.config import settings
 from app.schemas import AnswerRequest, AnswerResponse
 app = FastAPI(title="Multimodal RAG Trust Layer")
@@ -46,3 +46,18 @@ async def ingest(file: UploadFile = File(...)):
     chunks = chunk_pages(pages, tables_by_page)
     session_id = create_session(pages, chunks)
     return {"session_id": session_id, "n_pages": len(pages), "n_chunks": len(chunks)}
+
+
+@app.get("/page/{session_id}/{page_index}", dependencies=[Depends(require_token)])
+def get_page(session_id: str, page_index: int):
+    """Serve a session's rendered page image (PNG) — powers the frontend
+    citation viewer's bbox overlay (Task 4.4)."""
+    from app.session import get_session
+
+    session = get_session(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="unknown session")
+    pages = session["pages"]
+    if page_index < 0 or page_index >= len(pages):
+        raise HTTPException(status_code=404, detail="unknown page")
+    return Response(content=pages[page_index]["image_png"], media_type="image/png")
