@@ -2,8 +2,9 @@
 import json
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, File, Header, HTTPException, Response, UploadFile
+from fastapi import Depends, FastAPI, File, Header, HTTPException, Request, Response, UploadFile
 from app.config import settings
+from app.generate.providers import ProviderError
 from app.schemas import AnswerRequest, AnswerResponse
 app = FastAPI(title="Multimodal RAG Trust Layer")
 
@@ -22,10 +23,13 @@ def health():
 @app.post("/answer", response_model=AnswerResponse, dependencies=[Depends(require_token)])
 def answer(req: AnswerRequest):
     from app.generate.answer import answer_question
-    return answer_question(req)
+    try:
+        return answer_question(req)
+    except ProviderError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail) from None
 
 @app.post("/ingest", dependencies=[Depends(require_token)])
-async def ingest(file: UploadFile = File(...)):
+async def ingest(request: Request, file: UploadFile = File(...)):
     """Orchestrate the ingestion pipeline (1.1-1.4) into a stored session:
     load pages -> OCR-fill scanned pages -> extract tables -> chunk -> store."""
     from app.ingest.chunk import chunk_pages
@@ -34,7 +38,16 @@ async def ingest(file: UploadFile = File(...)):
     from app.ingest.tables import extract_tables
     from app.session import create_session
 
-    data = await file.read()
+    cap = settings.max_upload_bytes
+    content_length = request.headers.get("content-length")
+    if content_length is not None and int(content_length) > cap:
+        raise HTTPException(status_code=413, detail="file too large (max 25 MB)")
+
+    # ponytail: don't trust Content-Length alone (missing/lying header) -- read
+    # one byte past the cap and reject on the actual size, before any parsing.
+    data = await file.read(cap + 1)
+    if len(data) > cap:
+        raise HTTPException(status_code=413, detail="file too large (max 25 MB)")
     try:
         pages = load_document(data)
     except Exception as exc:

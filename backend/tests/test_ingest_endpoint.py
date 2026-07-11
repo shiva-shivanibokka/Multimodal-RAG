@@ -1,6 +1,7 @@
 # backend/tests/test_ingest_endpoint.py
 from fastapi.testclient import TestClient
 
+from app import config, session
 from app.main import app
 from app.session import get_session
 from tests.fixtures import make_scanned_pdf, make_text_pdf
@@ -48,3 +49,22 @@ def test_ingest_corrupt_file_returns_400_not_500():
     r = client.post("/ingest", files={"file": ("bad.pdf", b"not a pdf", "application/pdf")})
     assert r.status_code == 400
     assert "detail" in r.json()
+
+
+def test_ingest_oversized_upload_rejected_before_ingestion(monkeypatch):
+    # Tiny cap so the test payload can stay small and fast.
+    monkeypatch.setattr(config.settings, "max_upload_bytes", 10)
+
+    called = {"v": False}
+
+    def fake_create_session(*args, **kwargs):
+        called["v"] = True
+        return "should-not-be-reached"
+
+    monkeypatch.setattr(session, "create_session", fake_create_session)
+
+    r = client.post("/ingest", files={"file": ("big.pdf", b"x" * 1000, "application/pdf")})
+
+    assert r.status_code == 413
+    assert "too large" in r.json()["detail"]
+    assert called["v"] is False

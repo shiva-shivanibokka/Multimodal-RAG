@@ -12,4 +12,6 @@ class Settings:
     nli_model = "cross-encoder/nli-deberta-v3-base"
     faithfulness_threshold = 0.5   # ponytail: tunable knob, not magic
     retrieval_min_score = 0.25     # below this → refuse
+    max_upload_bytes = 25 * 1024 * 1024   # /ingest cap, protects free CPU Space from OOM
+    max_sessions = 32                     # in-memory session LRU cap, see app/session.py
 settings = Settings()
