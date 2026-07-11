@@ -352,6 +352,11 @@ git add frontend/ && git commit -m "feat(frontend): Next.js shell with BYOK sett
 
 **Outcome:** Upload a scanned/mixed PDF; get back structured chunks — text, tables, and figure regions — each tagged with `(page, bbox)`.
 
+**Data strategy (decided):**
+- **Unit tests (TDD):** fast, hermetic **synthetic fixtures** — render known text/tables to an image-only PDF in code (via PyMuPDF/Pillow). No network, no dataset download in pytest. Add a `backend/tests/fixtures.py` helper `make_scanned_pdf(text|table) -> bytes`.
+- **Integration / demo / eval corpus:** the real **DocVQA** dataset (real scanned docs + human Q/A → doubles as the Phase 5 eval gold set). Add `backend/scripts/fetch_sample_docs.py` that pulls N DocVQA pages via HuggingFace `datasets` into `backend/eval/corpus/` (image + the dataset's question/answer/source). Fallbacks: FUNSD, SROIE. This script is a Phase 1 deliverable (folded into Task 1.5) but the dataset is NOT a test dependency.
+- **User's own docs:** uploaded through the app (Task 1.5 `/ingest`) or dropped into `backend/eval/corpus/`.
+
 ### Task 1.1: Page loader (PyMuPDF) → page images + native text layer + bbox
 - **Files:** `backend/app/ingest/loader.py`, `backend/tests/test_loader.py`
 - **Produces:** `load_document(bytes) -> list[Page]` where `Page = {index:int, image_png:bytes, width, height, text_blocks: list[{text, bbox}]}`. Born-digital pages yield text blocks directly; empty text layer marks the page for OCR.
