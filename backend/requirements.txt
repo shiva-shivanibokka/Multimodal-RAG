@@ -6,3 +6,5 @@ httpx
 pytest
 pymupdf
 pillow
+torch          # install CPU build: pip install torch --index-url https://download.pytorch.org/whl/cpu
+python-doctr   # NOTE: the [torch] extra was removed in 1.0.1; install plain, with torch already present
