@@ -11,3 +11,5 @@ python-doctr   # NOTE: the [torch] extra was removed in 1.0.1; install plain, wi
 img2table      # table structure detection; uses its DocTR OCR backend (no system Tesseract)
 pandas
 tabulate       # powers pandas' df.to_markdown() used by app/ingest/tables.py
+python-multipart  # required by FastAPI for multipart/form-data file uploads (POST /ingest)
+datasets       # HF `datasets` lib; used by scripts/fetch_sample_docs.py (eval corpus), not a test dep
