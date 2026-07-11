@@ -8,8 +8,10 @@ API is never hit.
 from unittest.mock import MagicMock
 
 from app.generate.answer import answer_question
+from app.ingest.loader import load_document
 from app.schemas import AnswerRequest
 from app.session import create_session
+from tests.fixtures import make_scanned_pdf, make_solid_image
 
 # Well-grounded fixture: a finance chunk whose text directly answers the
 # revenue question (dense cosine ~0.69, far above retrieval_min_score=0.25),
@@ -59,6 +61,17 @@ def _req(session_id, question, retrieval_mode="hybrid"):
         session_id=session_id,
         retrieval_mode=retrieval_mode,
     )
+
+
+def _figure_chunk(chunk_id, page, bbox):
+    return {
+        "id": chunk_id,
+        "kind": "figure",
+        "text": "",
+        "page": page,
+        "bbox": bbox,
+        "table_df_json": None,
+    }
 
 
 def test_grounded_answer_has_citations_and_uses_retrieved_context(monkeypatch):
@@ -122,3 +135,83 @@ def test_refusal_when_model_says_not_in_documents(monkeypatch):
     assert resp.refused is True
     assert resp.answer == ""
     mock_generate.assert_called_once()
+
+
+# --- Task 3.4: mode routing + figure images to the VLM ---
+
+
+def test_cross_modal_mode_passes_figure_image_and_returns_figure_citation(monkeypatch):
+    # Solid-red page image + one figure chunk over it. Query "a red image"
+    # observed CLIP cosine against this fixture: 0.3139 -- comfortably above
+    # retrieval_min_score=0.25 (see task-3.4-report.md for how this was
+    # measured; not flaky, no dropout at inference).
+    pages = [{"index": 0, "image_png": make_solid_image("red"), "width": 224, "height": 224}]
+    chunks = [_figure_chunk(0, 0, [0, 0, 224, 224])]
+    session_id = create_session(pages=pages, chunks=chunks)
+
+    mock_generate = MagicMock(return_value="It is red.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "a red image", retrieval_mode="cross_modal"))
+
+    assert resp.refused is False
+    assert resp.answer == "It is red."
+    mock_generate.assert_called_once()
+
+    images = mock_generate.call_args.kwargs["images"]
+    assert len(images) == 1
+    assert isinstance(images[0], str) and images[0]
+
+    assert len(resp.citations) >= 1
+    assert any(c.page == 0 for c in resp.citations)
+
+
+def test_caption_baseline_mode_routes_to_ocr_captioned_figure(monkeypatch):
+    # Reuse the proven OCR fixture (INVOICE TOTAL) from test_store.py: page
+    # image with legible text -> non-empty caption -> indexed for
+    # caption_baseline. Observed bge cosine for "invoice total" against this
+    # fixture: 0.9498, far above retrieval_min_score=0.25.
+    scanned_page = load_document(make_scanned_pdf("INVOICE TOTAL"))[0]
+    pages = [
+        {
+            "index": 0,
+            "image_png": scanned_page["image_png"],
+            "width": scanned_page["width"],
+            "height": scanned_page["height"],
+        }
+    ]
+    chunks = [_figure_chunk(0, 0, [0, 0, scanned_page["width"], scanned_page["height"]])]
+    session_id = create_session(pages=pages, chunks=chunks)
+
+    mock_generate = MagicMock(return_value="The invoice total is $100.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "invoice total", retrieval_mode="caption_baseline"))
+
+    assert resp.refused is False
+    mock_generate.assert_called_once()
+
+    images = mock_generate.call_args.kwargs["images"]
+    assert len(images) == 1
+
+    assert len(resp.citations) >= 1
+    assert any(c.page == 0 for c in resp.citations)
+
+
+def test_cross_modal_refuses_when_gate_score_too_low(monkeypatch):
+    # A red image against an unrelated query should score below threshold
+    # under the CLIP gate, and refuse before any generate() call.
+    pages = [{"index": 0, "image_png": make_solid_image("red"), "width": 224, "height": 224}]
+    chunks = [_figure_chunk(0, 0, [0, 0, 224, 224])]
+    session_id = create_session(pages=pages, chunks=chunks)
+
+    mock_generate = MagicMock(return_value="should not be called")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(
+        _req(session_id, "quantum entanglement in superconducting circuits", retrieval_mode="cross_modal")
+    )
+
+    assert resp.refused is True
+    assert resp.answer == ""
+    mock_generate.assert_not_called()

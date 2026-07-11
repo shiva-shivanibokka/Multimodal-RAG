@@ -1,10 +1,12 @@
 # backend/app/retrieve/hybrid.py
 """Hybrid retrieval: RRF fusion of dense + BM25, optional cross-encoder rerank.
+Plus the two image/figure modes (Task 3.4): cross_modal and caption_baseline.
 
-Result shape (both modes, rerank on or off):
+Result shape (all modes):
     [{"chunk": <chunk dict>, "score": float, ...}, ...]   descending, len <= k
-"When rerank is applied, each dict also carries ``fusion_score`` (see
-``rerank.rerank``); without rerank, ``score`` is the fusion (or dense) score.
+When rerank is applied (text modes only), each dict also carries
+``fusion_score`` (see ``rerank.rerank``); without rerank, ``score`` is the
+fusion (or dense) score.
 """
 from app.index.rerank import rerank as _rerank
 
@@ -16,6 +18,14 @@ RRF_C = 60
 # Pull a wider candidate pool from each retriever before fusing/reranking,
 # so a chunk that's e.g. rank 8 in dense but rank 1 in bm25 still surfaces.
 _MIN_CANDIDATE_POOL = 20
+
+# Image/figure modes: the bge cross-encoder reranker scores (query, passage
+# TEXT) pairs. cross_modal figure chunks carry no text at all (``text==""``,
+# see store.py); caption_baseline figure chunks carry OCR caption text, not
+# prose the cross-encoder was trained to judge against a question. Neither
+# is a text passage, so these two modes skip reranking entirely and return
+# the index's own top-k directly, regardless of ``use_rerank``.
+_FIGURE_MODES = {"cross_modal", "caption_baseline"}
 
 
 def _rrf_fuse(dense_results: list[dict], bm25_results: list[dict]) -> list[dict]:
@@ -41,10 +51,21 @@ def retrieve(
 
     mode="dense": dense-only search.
     mode="hybrid": RRF-fuse dense + BM25 candidate pools.
-    If use_rerank, the candidate pool is re-scored/re-sorted by the
-    bge cross-encoder (see app.index.rerank) and truncated to k; otherwise
-    the fusion (or dense) top-k is returned directly.
+    mode="cross_modal": CLIP text->image search over figure chunks
+        (``Index.cross_modal``) — no rerank, see ``_FIGURE_MODES``.
+    mode="caption_baseline": bge search over OCR'd figure captions
+        (``Index.caption_baseline``) — no rerank, see ``_FIGURE_MODES``.
+    Any other/unknown mode falls back to "hybrid".
+
+    For text modes (dense/hybrid), if use_rerank, the candidate pool is
+    re-scored/re-sorted by the bge cross-encoder (see app.index.rerank) and
+    truncated to k; otherwise the fusion (or dense) top-k is returned
+    directly.
     """
+    if mode in _FIGURE_MODES:
+        method = index.cross_modal if mode == "cross_modal" else index.caption_baseline
+        return method(query, k)
+
     pool = max(k * 4, _MIN_CANDIDATE_POOL)
 
     if mode == "dense":
