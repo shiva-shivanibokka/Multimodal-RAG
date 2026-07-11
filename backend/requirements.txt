@@ -4,3 +4,5 @@ uvicorn[standard]
 pydantic>=2
 httpx
 pytest
+pymupdf
+pillow
