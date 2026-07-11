@@ -35,6 +35,9 @@ def _window_text_blocks(blocks: list[dict], window_tokens: int = WINDOW_TOKENS):
         if current and current_tokens + block_tokens > window_tokens:
             yield current
             current, current_tokens = [], 0
+        # ponytail: a single block > WINDOW_TOKENS stays one oversized chunk
+        # (never split mid-block); sentence-level splitting only if it hurts
+        # retrieval.
         current.append(block)
         current_tokens += block_tokens
     if current:

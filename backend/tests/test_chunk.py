@@ -105,3 +105,41 @@ def test_scanned_page_with_no_text_produces_figure_chunk():
     assert fig["page"] == 0
     assert fig["bbox"] == [0.0, 0.0, 612.0, 792.0]
     assert fig["text"] == ""
+
+
+def test_text_chunk_bbox_is_exact_union_not_just_ordered():
+    # min x0=10, min y0=10, max x1=100, max y1=60 -- swapped min/max in
+    # _union_bbox (e.g. max(x0) or min(x1)) would fail this exact assertion.
+    pages = [_page(0, [
+        _block("Block A", [10, 10, 60, 30]),
+        _block("Block B", [20, 40, 100, 60]),
+    ])]
+
+    chunks = chunk_pages(pages, {})
+    text_chunks = [c for c in chunks if c["kind"] == "text"]
+
+    assert len(text_chunks) == 1
+    assert text_chunks[0]["bbox"] == [10, 10, 100, 60]
+
+
+def test_page_with_only_table_emits_table_and_figure_chunks():
+    # empty text_blocks (no native text) but a table present -> both a table
+    # chunk and a figure chunk (the page isn't silently dropped just because
+    # a table was found).
+    pages = [_page(0, [], needs_ocr=True)]
+    table = {
+        "bbox": [1, 2, 3, 4],
+        "cells": [],
+        "markdown": "| A |\n|---|\n| 1 |",
+        "df_json": '{"A":{"0":1}}',
+    }
+    chunks = chunk_pages(pages, {0: [table]})
+
+    kinds = {c["kind"] for c in chunks}
+    assert "table" in kinds
+    assert "figure" in kinds
+
+    for c in chunks:
+        assert c["page"] == 0
+        x0, y0, x1, y1 = c["bbox"]
+        assert x0 <= x1 and y0 <= y1
