@@ -28,12 +28,30 @@ def _get_ocr() -> DocTR:
     return _ocr
 
 
+def _dedupe_columns(names: list[str]) -> list[str]:
+    """Real scanned tables sometimes have two blank/identical header cells
+    (e.g. two empty strings). Duplicate column labels break every
+    label-based DataFrame op downstream (df[col], to_json(orient="columns"))
+    -- suffix repeats (".1", ".2", ...) the same way pandas' own CSV reader
+    does, so every column stays uniquely addressable by name."""
+    seen: dict[str, int] = {}
+    deduped = []
+    for name in names:
+        if name not in seen:
+            seen[name] = 0
+            deduped.append(name)
+        else:
+            seen[name] += 1
+            deduped.append(f"{name}.{seen[name]}")
+    return deduped
+
+
 def _rows_to_dataframe(rows_values: list[list[str]]) -> pd.DataFrame:
     """First row is treated as the header (column names) when there's more
     than one row -- this is what lets Phase 4's numeric-aggregate lookups
     address a table by column name (e.g. "Amount")."""
     if len(rows_values) > 1:
-        df = pd.DataFrame(rows_values[1:], columns=rows_values[0])
+        df = pd.DataFrame(rows_values[1:], columns=_dedupe_columns(rows_values[0]))
     else:
         df = pd.DataFrame(rows_values)
 

@@ -3,8 +3,23 @@ import io
 
 import pandas as pd
 
-from app.ingest.tables import extract_tables
+from app.ingest.tables import _dedupe_columns, extract_tables
 from tests.fixtures import make_table_image
+
+
+def test_dedupe_columns_suffixes_duplicates_and_blanks():
+    # Real scanned tables can have repeated/blank header cells; duplicate
+    # labels break label-based DataFrame ops downstream. Repeats get
+    # pandas-style ".1"/".2" suffixes so every column stays addressable.
+    assert _dedupe_columns(["Amount", "Amount"]) == ["Amount", "Amount.1"]
+    assert _dedupe_columns(["", "", ""]) == ["", ".1", ".2"]
+    assert _dedupe_columns(["A", "B", "A", "A"]) == ["A", "B", "A.1", "A.2"]
+    # a DataFrame built with the result has unique, addressable columns
+    import pandas as pd
+
+    df = pd.DataFrame([[1, 2]], columns=_dedupe_columns(["x", "x"]))
+    assert list(df.columns) == ["x", "x.1"]
+    assert df["x"].iloc[0] == 1 and df["x.1"].iloc[0] == 2
 
 
 def test_extract_tables_recovers_values_and_supports_deterministic_math():
