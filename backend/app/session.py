@@ -18,3 +18,19 @@ def create_session(pages: list[dict], chunks: list[dict]) -> str:
 def get_session(session_id: str) -> dict | None:
     """Return ``{"pages": [...], "chunks": [...]}`` or ``None`` if unknown."""
     return _sessions.get(session_id)
+
+
+def get_index(session_id: str):
+    """Return the session's ``Index`` (Task 2.2), building + caching it on first
+    call so later calls reuse it instead of re-embedding every request.
+    Returns ``None`` if the session is unknown."""
+    session = _sessions.get(session_id)
+    if session is None:
+        return None
+    if "index" not in session:
+        from app.index.store import Index
+
+        idx = Index()
+        idx.add(session["chunks"])
+        session["index"] = idx
+    return session["index"]

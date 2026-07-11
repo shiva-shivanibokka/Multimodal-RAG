@@ -15,7 +15,7 @@ def health():
 @app.post("/answer", response_model=AnswerResponse, dependencies=[Depends(require_token)])
 def answer(req: AnswerRequest):
     from app.generate.answer import answer_question
-    return answer_question(req, context="")   # context wired in later phases
+    return answer_question(req)
 
 @app.post("/ingest", dependencies=[Depends(require_token)])
 async def ingest(file: UploadFile = File(...)):
