@@ -8,3 +8,6 @@ pymupdf
 pillow
 torch          # install CPU build: pip install torch --index-url https://download.pytorch.org/whl/cpu
 python-doctr   # NOTE: the [torch] extra was removed in 1.0.1; install plain, with torch already present
+img2table      # table structure detection; uses its DocTR OCR backend (no system Tesseract)
+pandas
+tabulate       # powers pandas' df.to_markdown() used by app/ingest/tables.py
