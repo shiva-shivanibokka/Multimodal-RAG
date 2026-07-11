@@ -32,6 +32,17 @@ def test_ingest_scanned_pdf_runs_ocr_fill_path():
     body = r.json()
     assert body["n_chunks"] > 0
 
+    # Prove OCR text actually landed in a chunk, not just that chunk_pages'
+    # fallback figure-chunk-for-empty-page kicked in (which would pass even
+    # if the OCR-fill wiring in main.py were deleted).
+    session = get_session(body["session_id"])
+    assert session is not None
+    expected = ("invoice", "total")
+    text_chunks = [c for c in session["chunks"] if c["kind"] == "text"]
+    assert any(
+        word in c["text"].lower() for c in text_chunks for word in expected
+    ), f"no OCR'd text chunk found: {[c['text'] for c in text_chunks]}"
+
 
 def test_ingest_corrupt_file_returns_400_not_500():
     r = client.post("/ingest", files={"file": ("bad.pdf", b"not a pdf", "application/pdf")})
