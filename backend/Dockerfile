@@ -29,7 +29,7 @@ WORKDIR /app
 # were installed first, pip could resolve a CUDA build from PyPI's default
 # index (multi-GB) and blow the free Space's disk/build budget. Keep this
 # version in sync with the `torch==` pin in requirements.txt.
-RUN pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
+RUN pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cpu
 
 # requirements.txt pins the same torch version already installed above, so
 # pip sees it satisfied and does not re-resolve/re-download it from PyPI.

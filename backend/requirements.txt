@@ -7,7 +7,9 @@ pytest
 pymupdf
 pillow
 torch==2.13.0  # CPU build ONLY: Dockerfile installs this exact pin via
-               # `pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu`
+               # `pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cpu`
+torchvision==0.28.0  # MUST match torch (docTR needs it). CPU wheel only, same
+                     # index as torch, else `torchvision::nms does not exist` at runtime.
                # BEFORE this file, so this line is already satisfied at
                # image-build time and never re-resolves a CUDA wheel from
                # PyPI's default index. Local dev: install the same way (the
