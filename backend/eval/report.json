@@ -1,0 +1,39 @@
+{
+  "dataset": "DocVQA (lmms-lab)",
+  "n_docs": 40,
+  "n_answerable": 30,
+  "n_ood": 8,
+  "generated_at": "2026-07-12",
+  "modes": {
+    "dense": {
+      "recall_at_1": 0.43333333333333335,
+      "recall_at_5": 0.6666666666666666,
+      "mrr": 0.515,
+      "citation_accuracy": 0.43333333333333335,
+      "refusal_accuracy": 0.7894736842105263
+    },
+    "hybrid": {
+      "recall_at_1": 0.4666666666666667,
+      "recall_at_5": 0.6666666666666666,
+      "mrr": 0.5399999999999999,
+      "citation_accuracy": 0.4666666666666667,
+      "refusal_accuracy": 0.7894736842105263
+    },
+    "cross_modal": {
+      "recall_at_1": 0.26666666666666666,
+      "recall_at_5": 0.43333333333333335,
+      "mrr": 0.3194444444444445,
+      "citation_accuracy": 0.26666666666666666,
+      "refusal_accuracy": 0.7105263157894737
+    },
+    "caption_baseline": {
+      "recall_at_1": 0.5333333333333333,
+      "recall_at_5": 0.8,
+      "mrr": 0.6188888888888889,
+      "citation_accuracy": 0.5333333333333333,
+      "refusal_accuracy": 0.7894736842105263
+    }
+  },
+  "faithfulness": null,
+  "note": "faithfulness requires a key -- run with --api-key to populate"
+}
