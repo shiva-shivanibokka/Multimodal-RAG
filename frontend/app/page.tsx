@@ -26,7 +26,6 @@ const MODELS: Record<string, Opt[]> = {
     { value: "gemini-2.0-flash", label: "Gemini 2.0 Flash", note: "vision · fast" },
     { value: "gemini-2.5-flash", label: "Gemini 2.5 Flash", note: "vision" },
     { value: "gemini-2.5-pro", label: "Gemini 2.5 Pro", note: "vision · strong" },
-    { value: "gemini-1.5-flash", label: "Gemini 1.5 Flash", note: "vision" },
   ],
   openai: [
     { value: "gpt-4o", label: "GPT-4o", note: "vision" },

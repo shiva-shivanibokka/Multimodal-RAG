@@ -1,4 +1,5 @@
 # backend/app/main.py
+import hmac
 import json
 from pathlib import Path
 
@@ -13,7 +14,7 @@ app = FastAPI(title="Multimodal RAG Trust Layer")
 REPORT_PATH = Path(__file__).resolve().parent.parent / "eval" / "report.json"
 
 def require_token(authorization: str = Header(default="")):
-    if settings.backend_token and authorization != f"Bearer {settings.backend_token}":
+    if settings.backend_token and not hmac.compare_digest(authorization, f"Bearer {settings.backend_token}"):
         raise HTTPException(status_code=401, detail="unauthorized")
 
 @app.get("/health")

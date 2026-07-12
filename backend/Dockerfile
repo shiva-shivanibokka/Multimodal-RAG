@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV HF_HOME=/app/.cache \
     SENTENCE_TRANSFORMERS_HOME=/app/.cache \
     TORCH_HOME=/app/.cache \
+    HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
     PIP_NO_CACHE_DIR=1 \
     PYTHONUNBUFFERED=1
 

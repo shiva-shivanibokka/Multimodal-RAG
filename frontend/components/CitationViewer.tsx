@@ -15,12 +15,14 @@ export function CitationViewer({ sessionId, citation }: { sessionId: string; cit
   const imgRef = useRef<HTMLImageElement>(null);
   const [natural, setNatural] = useState<Size | null>(null);
   const [rendered, setRendered] = useState<Size | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Reset when the citation points at a different page, so the overlay never
   // renders against the previous page's dimensions while the new image loads.
   useEffect(() => {
     setNatural(null);
     setRendered(null);
+    setError(null);
   }, [citation.page]);
 
   useEffect(() => {
@@ -50,9 +52,14 @@ export function CitationViewer({ sessionId, citation }: { sessionId: string; cit
           src={pageUrl(sessionId, citation.page)}
           alt={`Source page ${citation.page + 1}`}
           onLoad={handleLoad}
+          onError={() => setError("Couldn't load the source page.")}
           style={{ display: "block", maxWidth: "100%" }}
         />
-        {!natural && <div className="viewer-loading">Loading page image…</div>}
+        {error ? (
+          <div className="viewer-loading">{error}</div>
+        ) : (
+          !natural && <div className="viewer-loading">Loading page image…</div>
+        )}
         {rect && (
           <div
             className="cite-box"

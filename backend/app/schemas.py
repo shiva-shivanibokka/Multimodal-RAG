@@ -1,8 +1,10 @@
 # backend/app/schemas.py
+from typing import Literal
+
 from pydantic import BaseModel
 class AnswerRequest(BaseModel):
     question: str
-    provider: str            # openai | groq | gemini | anthropic
+    provider: Literal["openai", "groq", "gemini", "anthropic"]
     model: str
     api_key: str
     session_id: str | None = None
