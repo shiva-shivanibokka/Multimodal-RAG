@@ -9,8 +9,8 @@ exact pixel region on the source page.
 
 ### Recruiter TL;DR
 
-- Full-stack multimodal RAG system (Next.js/Vercel + FastAPI/ML on a free
-  Hugging Face CPU Space) that ingests scanned PDFs/images — OCR, table
+- Full-stack multimodal RAG system (Next.js/Vercel + FastAPI/ML on Google
+  Cloud Run's free tier) that ingests scanned PDFs/images — OCR, table
   extraction, layout-aware chunking — and answers questions with pixel-level
   citations.
 - The hard problem solved: making an LLM's answer *trustworthy* rather than
@@ -23,8 +23,8 @@ exact pixel region on the source page.
   populate real recall/MRR/faithfulness/refusal metrics on the `/eval`
   dashboard.
 
-**Live demo:** backend — `<fill in your HF Space URL after Part A of DEPLOY.md>` ·
-frontend — `<fill in your Vercel URL after Part B of DEPLOY.md>`
+**Live demo:** frontend — [multimodal-rag-plum.vercel.app](https://multimodal-rag-plum.vercel.app) ·
+backend — [multimodal-rag-backend-1061434430143.us-central1.run.app](https://multimodal-rag-backend-1061434430143.us-central1.run.app)
 
 ---
 
@@ -105,7 +105,7 @@ flowchart LR
     subgraph Vercel["Vercel (Next.js, frontend/)"]
         Proxy["API routes\n/api/ingest /api/answer /api/page /api/eval-report\n(attaches BACKEND_TOKEN server-side)"]
     end
-    subgraph Space["Hugging Face Docker Space, free CPU (backend/)"]
+    subgraph Space["Google Cloud Run, free tier CPU (backend/)"]
         API["FastAPI\n/ingest /answer /page /eval/report"]
         Ingest["Ingest\nPyMuPDF -> docTR OCR -> img2table -> chunker"]
         Index["Index\nFAISS text + FAISS image (CLIP) + BM25"]
@@ -142,11 +142,12 @@ flowchart LR
 
 ### Why this split
 
-- **No GPU anywhere, no paid infra** was a hard constraint — a free CPU HF
-  Docker Space runs every model (embeddings, CLIP, reranker, NLI) via
-  `sentence-transformers` on CPU, and the frontend's own hosting (Vercel)
-  is free-tier for a project this size. There's no hosted vector DB either
-  — FAISS runs in-process on the Space's local disk, scoped per session.
+- **No GPU anywhere, no paid infra** was a hard constraint — a free-tier
+  Google Cloud Run instance runs every model (embeddings, CLIP, reranker,
+  NLI) via `sentence-transformers` on CPU, and the frontend's own hosting
+  (Vercel) is free-tier for a project this size. There's no hosted vector DB
+  either — FAISS runs in-process in the Cloud Run instance's memory
+  (in-process, per session).
 - **BYOK, not a hosted API key**, keeps the whole project operable at zero
   ongoing cost to whoever runs it — ingestion/retrieval/verification are
   100% local and free; only the final generation call needs a provider key,
@@ -177,8 +178,8 @@ endpoint), Anthropic — routed through one adapter
 (`backend/app/generate/providers.py`) that also handles attaching page
 images to the last user turn for vision-capable models.
 
-**Deploy** — Docker (Hugging Face Space) for the backend, Vercel for the
-frontend. See [`DEPLOY.md`](DEPLOY.md).
+**Deploy** — Docker on Google Cloud Run (free tier) for the backend, Vercel
+for the frontend. See [`DEPLOY.md`](DEPLOY.md).
 
 ## Local dev quickstart
 
@@ -214,7 +215,7 @@ per-request, never written to disk on either tier), and ask a question.
 
 ### Deploying for real
 
-See [`DEPLOY.md`](DEPLOY.md) for the full Hugging Face Space + Vercel
+See [`DEPLOY.md`](DEPLOY.md) for the full Google Cloud Run + Vercel
 runbook (with your own accounts, no shared infra).
 
 ## Evaluation
@@ -272,7 +273,7 @@ result.
 ```
 Multimodal-RAG/
 ├── docs/PLAN.md              # the full implementation plan (thesis, phases, constraints)
-├── DEPLOY.md                 # Hugging Face Space + Vercel deploy runbook
+├── DEPLOY.md                 # Google Cloud Run + Vercel deploy runbook
 ├── BENCHMARK.md              # how to generate real eval numbers
 ├── backend/
 │   ├── app/
@@ -287,7 +288,7 @@ Multimodal-RAG/
 │   ├── scripts/               # fetch_sample_docs.py (DocVQA corpus fetch)
 │   ├── tests/                 # pytest, mirrors app/
 │   ├── Dockerfile
-│   └── README.md              # Hugging Face Space card
+│   └── README.md              # Hugging Face Space card (optional alt. deploy)
 └── frontend/
     ├── app/
     │   ├── page.tsx           # upload + chat + visual citation viewer
@@ -309,9 +310,9 @@ test runner over `lib/**/*.test.mts`.
 ## Roadmap / known limitations
 
 - Sessions are in-process and in-memory (`backend/app/session.py`) — a
-  Space restart drops ingested documents; there's no persistent store by
-  design (documented tradeoff, not an oversight — see the file's
-  `ponytail:` comment).
+  Cloud Run instance restart (redeploy, or scale-to-zero cold start) drops
+  ingested documents; there's no persistent store by design (documented
+  tradeoff, not an oversight — see the file's `ponytail:` comment).
 - `img2table` runs its own OCR pass independent of the page-level docTR
   OCR, so a scanned page containing a table gets OCR'd twice — a real,
   known inefficiency (see `BENCHMARK.md`), not yet addressed since it
@@ -320,8 +321,8 @@ test runner over `lib/**/*.test.mts`.
   NL-to-pandas translator — sufficient for "what's the total of the Amount
   column"-style questions, not arbitrary table reasoning.
 - No persistent vector DB or multi-replica scaling — intentionally out of
-  scope for a free-tier, single-Space deployment (see Global Constraints in
-  `docs/PLAN.md`).
+  scope for a free-tier, scale-to-zero Cloud Run deployment (see Global
+  Constraints in `docs/PLAN.md`).
 
 ## License
 

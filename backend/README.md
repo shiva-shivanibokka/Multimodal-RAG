@@ -10,11 +10,17 @@ pinned: false
 
 # Multimodal RAG — Trust Layer Backend
 
+> **Primary deployment is Google Cloud Run** — see [`../DEPLOY.md`](../DEPLOY.md)
+> for the actual runbook. The Hugging Face Space card below is retained only
+> as an optional alternative deploy target for anyone with an HF Pro
+> subscription (HF's free tier is now static-only and can't run a Docker
+> Space); it is not what's live today.
+
 Headless FastAPI + local-ML backend for the Multimodal RAG "Trust Layer"
 project: OCR/layout/table ingestion, hybrid + cross-modal retrieval, an NLI
-faithfulness gate, and BYOK generation. Runs entirely on the free CPU tier of
-a Hugging Face Docker Space — no GPU, no paid infra. See the top-level repo
-README for the full project writeup and architecture.
+faithfulness gate, and BYOK generation. Designed to run on a free CPU tier —
+no GPU, no paid infra required. See the top-level repo README for the full
+project writeup and architecture.
 
 Returns JSON only (no UI here). The companion Next.js frontend is deployed
 separately on Vercel.
