@@ -204,23 +204,23 @@ export default function Home() {
         </div>
 
         <div className="rowbar">
-          <div className="field grow" data-tip="Upload a scanned PDF or image. It's OCR'd, tables are extracted, and everything is indexed so you can ask about it.">
-            <label>Document <i className="ti">i</i></label>
+          <div className="field grow">
+            <label>Document <i className="ti" data-tip="Upload a scanned PDF or image. It's OCR'd, tables are extracted, and everything is indexed so you can ask about it.">i</i></label>
             <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFileChange} disabled={ingesting} />
           </div>
 
-          <div className="field" data-tip="Which LLM provider to use with your own API key. Groq and Gemini have free tiers. Your key is never stored.">
-            <label>Provider <i className="ti">i</i></label>
+          <div className="field">
+            <label>Provider <i className="ti" data-tip="Which LLM provider to use with your own API key. Groq and Gemini have free tiers. Your key is never stored.">i</i></label>
             <Dropdown value={provider} options={PROVIDERS} onChange={handleProviderChange} ariaLabel="Provider" />
           </div>
 
-          <div className="field" data-tip="The specific model. Vision-capable models (marked 'vision') are needed for image and cross-modal questions.">
-            <label>Model <i className="ti">i</i></label>
+          <div className="field">
+            <label>Model <i className="ti" data-tip="The specific model. Vision-capable models (marked 'vision') are needed for image and cross-modal questions.">i</i></label>
             <Dropdown value={model} options={MODELS[provider]} onChange={setModel} ariaLabel="Model" />
           </div>
 
-          <div className="field" data-tip="Your provider API key. It stays in this browser tab only — never sent to our servers, never stored.">
-            <label>API key <i className="ti">i</i></label>
+          <div className="field">
+            <label>API key <i className="ti" data-tip="Your provider API key. It stays in this browser tab only — never sent to our servers, never stored.">i</i></label>
             <input
               type="password"
               placeholder="paste — stays in this tab"
@@ -233,7 +233,7 @@ export default function Home() {
 
         <div className="rowbar" style={{ marginTop: "1.05rem" }}>
           <div className="field grow">
-            <label>Retrieval <i className="ti">i</i></label>
+            <label>Retrieval</label>
             <div className="seg" role="group" aria-label="Retrieval mode">
               {RETRIEVAL_MODES.map((m) => (
                 <button
@@ -249,11 +249,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="field"
-            data-tip="The NLI faithfulness firewall. Each claim is checked against the retrieved source; if nothing is grounded, the answer is refused. Slower, but trustworthy."
-          >
-            <label>Verify <i className="ti">i</i></label>
+          <div className="field">
+            <label>Verify <i className="ti" data-tip="The NLI faithfulness firewall. Each claim is checked against the retrieved source; if nothing is grounded, the answer is refused. Slower, but trustworthy.">i</i></label>
             <label className="toggle">
               <input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />
               <span className="track" />
@@ -266,8 +263,8 @@ export default function Home() {
         </div>
 
         <form className="ask-row" onSubmit={handleSubmit} style={{ marginTop: "1.3rem" }}>
-          <div className="field grow" data-tip="Ask in plain language, e.g. 'What was the total on the invoice?'">
-            <label>Question <i className="ti">i</i></label>
+          <div className="field grow">
+            <label>Question <i className="ti" data-tip="Ask in plain language, e.g. 'What was the total on the invoice?'">i</i></label>
             <textarea
               placeholder="What was the total on the invoice?"
               value={question}
