@@ -1,5 +1,9 @@
 # Multimodal RAG — Trust Layer for Scanned Enterprise Documents
 
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB)
+![Next.js App Router](https://img.shields.io/badge/Next.js-App_Router-000000)
+
 **Don't trust the LLM — verify it.** A document-QA system that answers
 only what your documents actually support: every claim is checked against
 retrieved evidence with an NLI model before it reaches you, answers refuse
@@ -18,10 +22,13 @@ exact pixel region on the source page.
   claim against retrieved evidence and forces a refusal when nothing is
   actually grounded, and numeric table questions bypass the LLM entirely in
   favor of exact pandas arithmetic.
-- Impact: see [`BENCHMARK.md`](BENCHMARK.md) — this repo ships the exact
-  reproducible benchmark script instead of a claimed number; run it to
-  populate real recall/MRR/faithfulness/refusal metrics on the `/eval`
-  dashboard.
+- Impact: on a 40-document DocVQA-derived corpus (30 answerable + 8
+  deliberately out-of-corpus), the committed benchmark measures **recall@5 up
+  to 0.80**, **MRR 0.62**, and **~0.79 refusal accuracy** across retrieval
+  modes — and shows true CLIP cross-modal retrieval *losing* to an OCR-caption
+  baseline on text-dense scans (recall@5 0.43 vs 0.80), a tradeoff this repo
+  measures rather than assumes. Numbers are reproducible via
+  [`BENCHMARK.md`](BENCHMARK.md) and live on the `/eval` dashboard.
 
 **Live demo:** frontend — [multimodal-rag-plum.vercel.app](https://multimodal-rag-plum.vercel.app) ·
 backend — [multimodal-rag-backend-1061434430143.us-central1.run.app](https://multimodal-rag-backend-1061434430143.us-central1.run.app)
@@ -103,10 +110,10 @@ flowchart LR
         UI["Next.js UI\nupload · chat · citation viewer · /eval dashboard"]
     end
     subgraph Vercel["Vercel (Next.js, frontend/)"]
-        Proxy["API routes\n/api/ingest /api/answer /api/page /api/eval-report\n(attaches BACKEND_TOKEN server-side)"]
+        Proxy["API routes\n/api/ingest /api/documents /api/answer /api/page /api/eval-report\n(attaches BACKEND_TOKEN server-side)"]
     end
     subgraph Space["Google Cloud Run, free tier CPU (backend/)"]
-        API["FastAPI\n/ingest /answer /page /eval/report"]
+        API["FastAPI\n/ingest /documents /answer /page /eval/report"]
         Ingest["Ingest\nPyMuPDF -> docTR OCR -> img2table -> chunker"]
         Index["Index\nFAISS text + FAISS image (CLIP) + BM25"]
         Retrieve["Retrieve\nhybrid RRF fusion, cross-modal, caption-baseline, reranker"]
@@ -130,7 +137,9 @@ flowchart LR
 - **Ingest** (Phase 1): PyMuPDF renders pages + extracts native text where
   present; docTR OCR fills in scanned pages; img2table extracts table
   structure (with cell-level bbox); a chunker turns all of it into
-  `text`/`table`/`figure` units, each carrying `(page, bbox)`.
+  `text`/`table`/`figure` units, each carrying `(page, bbox)`. Multiple files
+  can be ingested into **one combined, searchable session** and removed
+  individually — removal rebuilds the index re-embed-only, never re-OCRing.
 - **Retrieve** (Phases 2–3): bge-small text embeddings + BM25, fused by
   reciprocal-rank fusion, optionally reranked by a bge cross-encoder;
   figures retrieve either via CLIP cross-modal search or an OCR-caption
@@ -236,11 +245,25 @@ the NLI-verified generation path. It measures, head-to-head:
   actually catches an unsupported claim, and how accurately the system
   refuses on genuinely unanswerable questions.
 
-This repo does not ship invented benchmark numbers. **Run
-[`BENCHMARK.md`](BENCHMARK.md)** to generate and commit a real
-`backend/eval/report.json` — until that's done, the `/eval` dashboard shows
-clearly-labeled illustrative sample data instead of pretending to be a real
-result.
+### Latest committed run
+
+Real numbers from `backend/eval/report.json` — a 40-document corpus, 30
+answerable + 8 out-of-corpus questions, no BYOK key (retrieval + refusal
+only):
+
+| retrieval mode | recall@1 | recall@5 | MRR | refusal acc |
+|---|---|---|---|---|
+| **caption_baseline** (OCR text) | 0.53 | **0.80** | **0.62** | 0.79 |
+| hybrid (dense + BM25) | 0.47 | 0.67 | 0.54 | 0.79 |
+| dense | 0.43 | 0.67 | 0.52 | 0.79 |
+| cross_modal (CLIP) | 0.27 | 0.43 | 0.32 | 0.71 |
+
+The headline finding is honest and slightly counter-intuitive: on
+**text-dense scanned pages**, embedding a page's OCR'd text beats embedding
+the page image with CLIP — worth knowing before reaching for a heavier
+vision model. The faithfulness columns (generation faithfulness rate, NLI
+catch rate) require a BYOK key and are `null` in this retrieval-only run;
+**run [`BENCHMARK.md`](BENCHMARK.md) with `--api-key`** to populate them.
 
 ## Skills demonstrated
 
@@ -255,12 +278,14 @@ result.
   a stateless UI/proxy tier and a stateful ML tier, with explicit tradeoffs
   recorded inline (`# ponytail:` comments throughout the backend) for
   scope decisions like in-memory session storage.
-- **RESTful API design** — a small, typed FastAPI surface
-  (`/health`, `/ingest`, `/answer`, `/page/{session}/{page}`, `/eval/report`)
-  with a shared bearer-token auth dependency.
+- **RESTful API design** — a small, typed FastAPI surface (`/health`,
+  `/ingest`, `POST`/`DELETE /documents` for multi-file sessions, `/answer`,
+  `/page/{session}/{page}`, `/eval/report`) with a shared bearer-token auth
+  dependency.
 - **Test-driven development** — the backend was built test-first per module
-  (`backend/tests/`, 22 test files mirroring `app/`'s structure); see
-  `docs/PLAN.md` for the TDD task breakdown this was built from.
+  (`backend/tests/`, 26 test files / 120 passing tests mirroring `app/`'s
+  structure); see `docs/PLAN.md` for the TDD task breakdown this was built
+  from.
 - **Containerization & Docker** — a from-scratch `backend/Dockerfile` tuned
   for a memory/disk-constrained free host (CPU-only torch pinned before
   `requirements.txt`, models baked at build time, non-root user).
@@ -300,19 +325,24 @@ Multimodal-RAG/
 
 ## Testing
 
-Backend: `pytest` from `backend/` — 22 test files under `backend/tests/`
-covering ingestion, indexing, retrieval, verification, table math, provider
-routing, and the eval runner itself, TDD'd module-by-module per
-`docs/PLAN.md`. Some tests download small models on first run (see
-`BENCHMARK.md`'s cache-path note). Frontend: `npm test` runs the Node-native
-test runner over `lib/**/*.test.mts`.
+Backend: `pytest` from `backend/` — **120 passing tests** across 26 files
+under `backend/tests/` covering ingestion, multi-file sessions, indexing,
+retrieval, verification, table math, provider routing, and the eval runner
+itself, TDD'd module-by-module per `docs/PLAN.md`. Some tests download small
+models on first run (see `BENCHMARK.md`'s cache-path note). Frontend:
+`npm test` runs the Node-native test runner over `lib/**/*.test.mts`
+(bbox-scaling math for the citation overlay).
 
 ## Roadmap / known limitations
 
-- Sessions are in-process and in-memory (`backend/app/session.py`) — a
-  Cloud Run instance restart (redeploy, or scale-to-zero cold start) drops
-  ingested documents; there's no persistent store by design (documented
-  tradeoff, not an oversight — see the file's `ponytail:` comment).
+- Sessions are in-process and in-memory (`backend/app/session.py`). Because
+  the store is in-process, the backend is pinned to a **single Cloud Run
+  instance** (`--max-instances=1`) so an ingest and its follow-up answer
+  always hit the same process — the correct fix for a demo, but it means no
+  horizontal scaling. A redeploy or scale-to-zero cold start still drops
+  ingested documents (no persistent store, by design — see the file's
+  `ponytail:` comment). Moving the store to shared/persistent storage is the
+  prerequisite for lifting the single-instance cap.
 - `img2table` runs its own OCR pass independent of the page-level docTR
   OCR, so a scanned page containing a table gets OCR'd twice — a real,
   known inefficiency (see `BENCHMARK.md`), not yet addressed since it
@@ -326,5 +356,5 @@ test runner over `lib/**/*.test.mts`.
 
 ## License
 
-No license file is currently included — treat this as "all rights
-reserved" by default until one is added.
+[MIT](LICENSE) © Shivani Bokka. Free to use, modify, and distribute with
+attribution — see the [`LICENSE`](LICENSE) file for the full text.
