@@ -60,10 +60,8 @@ function EvalBarChart({ modes }: { modes: Record<string, EvalReport["modes"][str
   return (
     <div className="eval-viz flex flex-col gap-3">
       <style>{`
-        .eval-viz { --tick: #e1e0d9; --axis: #c3c2b7; --ink-secondary: #52514e; --ink-muted: #898781; }
-        @media (prefers-color-scheme: dark) {
-          .eval-viz { --tick: #2c2c2a; --axis: #383835; --ink-secondary: #c3c2b7; --ink-muted: #898781; }
-        }
+        /* app is always dark: keep grid/axis subtle light-on-dark, not OS-dependent */
+        .eval-viz { --tick: rgba(234,240,255,.08); --axis: rgba(234,240,255,.22); --ink-secondary: #93a0c4; --ink-muted: #93a0c4; }
       `}</style>
       <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
         {MODES.map((m) => (
@@ -207,7 +205,7 @@ function Headline({ report }: { report: EvalReport }) {
             <span className="text-sm text-muted-foreground">{it.title} · Recall@1</span>
             <span
               className="text-2xl font-semibold"
-              style={{ color: it.delta >= 0 ? "#0ca30c" : "#d03b3b" }}
+              style={{ color: it.delta >= 0 ? "var(--grounded)" : "var(--refused)" }}
             >
               {it.delta >= 0 ? "+" : ""}
               {(it.delta * 100).toFixed(1)} pts
@@ -255,27 +253,33 @@ export default function EvalDashboard() {
   }, []);
 
   return (
-    <div className="eval-viz mx-auto flex w-full max-w-3xl flex-col gap-6 p-8">
+    <main className="eval-viz shell">
       <style>{`
+        /* on-brand categorical hues, fixed slot order, always-dark */
         .eval-viz {
-          --series-dense: #2a78d6; --series-hybrid: #1baf7a;
-          --series-cross-modal: #eda100; --series-caption-baseline: #008300;
-        }
-        @media (prefers-color-scheme: dark) {
-          .eval-viz {
-            --series-dense: #3987e5; --series-hybrid: #199e70;
-            --series-cross-modal: #c98500; --series-caption-baseline: #008300;
-          }
+          --series-dense: #6d7cff; --series-hybrid: #34e0ea;
+          --series-cross-modal: #f45ff0; --series-caption-baseline: #34d399;
         }
       `}</style>
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Evaluation dashboard</h1>
-        <Link href="/" className="text-sm text-primary underline underline-offset-2">
-          back to app
+      <div className="topbar">
+        <span className="eyebrow">Multimodal RAG · Benchmark</span>
+        <Link className="navlink" href="/">
+          ← back to app
         </Link>
       </div>
+      <header className="hero" style={{ marginBottom: "2rem" }}>
+        <div>
+          <h1>
+            How well does it <span className="grad">retrieve & refuse?</span>
+          </h1>
+          <p className="lede">
+            Measured on the DocVQA scanned-document benchmark: retrieval quality per mode, citation accuracy,
+            and how reliably it refuses questions your documents can&apos;t answer.
+          </p>
+        </div>
+      </header>
 
-      {loading && <p className="text-sm text-muted-foreground">Loading benchmark report...</p>}
+      {loading && <p className="status">Loading benchmark report…</p>}
 
       {!loading && isSample && (
         <div className="flex items-center gap-2 rounded-md border border-yellow-600/30 bg-yellow-500/10 px-3 py-2 text-sm">
@@ -289,10 +293,12 @@ export default function EvalDashboard() {
       )}
 
       {!loading && report && (
-        <>
-          <Headline report={report} />
+        <div className="grid items-start gap-6 lg:grid-cols-2">
+          <div className="lg:col-span-2">
+            <Headline report={report} />
+          </div>
 
-          <Card>
+          <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle>Dataset</CardTitle>
             </CardHeader>
@@ -316,7 +322,7 @@ export default function EvalDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle>Retrieval quality by mode</CardTitle>
             </CardHeader>
@@ -362,7 +368,7 @@ export default function EvalDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle>How these numbers are generated</CardTitle>
             </CardHeader>
@@ -378,8 +384,8 @@ export default function EvalDashboard() {
               </p>
             </CardContent>
           </Card>
-        </>
+        </div>
       )}
-    </div>
+    </main>
   );
 }

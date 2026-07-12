@@ -16,6 +16,13 @@ export function CitationViewer({ sessionId, citation }: { sessionId: string; cit
   const [natural, setNatural] = useState<Size | null>(null);
   const [rendered, setRendered] = useState<Size | null>(null);
 
+  // Reset when the citation points at a different page, so the overlay never
+  // renders against the previous page's dimensions while the new image loads.
+  useEffect(() => {
+    setNatural(null);
+    setRendered(null);
+  }, [citation.page]);
+
   useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
@@ -36,23 +43,19 @@ export function CitationViewer({ sessionId, citation }: { sessionId: string; cit
   const rect = natural && rendered ? bboxToOverlayRect(citation.bbox, natural, rendered) : null;
 
   return (
-    <div className="max-h-[70vh] w-full overflow-auto rounded-md border">
-      <div className="relative inline-block">
+    <div className="source-frame" style={{ maxHeight: "70vh", overflow: "auto" }}>
+      <div style={{ position: "relative", display: "inline-block" }}>
         <img
           ref={imgRef}
           src={pageUrl(sessionId, citation.page)}
           alt={`Source page ${citation.page + 1}`}
           onLoad={handleLoad}
-          className="block max-w-full"
+          style={{ display: "block", maxWidth: "100%" }}
         />
-        {!natural && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/70 text-sm text-muted-foreground">
-            Loading page image...
-          </div>
-        )}
+        {!natural && <div className="viewer-loading">Loading page image…</div>}
         {rect && (
           <div
-            className="pointer-events-none absolute border-2 border-destructive bg-destructive/25"
+            className="cite-box"
             style={{ left: rect.left, top: rect.top, width: rect.width, height: rect.height }}
           />
         )}

@@ -2,50 +2,30 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, Flag } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
 import { askBackend, ingestDoc, type AnswerResponse, type Citation, type Claim } from "@/lib/backend";
 import { CitationViewer } from "@/components/CitationViewer";
 
-const PROVIDERS = ["openai", "groq", "gemini", "anthropic"] as const;
+const PROVIDERS = ["groq", "gemini", "openai", "anthropic"] as const;
 const RETRIEVAL_MODES = ["hybrid", "dense", "cross_modal", "caption_baseline"] as const;
 
-function ClaimsList({ claims, onSelectCitation }: { claims: Claim[]; onSelectCitation: (c: Citation) => void }) {
+function Claims({ claims, onSelect }: { claims: Claim[]; onSelect: (c: Citation) => void }) {
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="claims">
       {claims.map((claim, i) => (
-        <li key={i} className="flex items-start gap-2 text-sm">
-          {claim.supported ? (
-            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-green-600" />
-          ) : (
-            <Flag className="mt-0.5 size-4 shrink-0 text-destructive" />
-          )}
-          <div className="flex flex-col gap-1">
-            <span>{claim.text}</span>
-            <span className="text-xs text-muted-foreground">
-              {claim.supported ? "supported" : "unsupported"} · {claim.score.toFixed(2)}
-            </span>
-            {claim.citations.length > 0 && (
-              <button
-                type="button"
-                onClick={() => onSelectCitation(claim.citations[0])}
-                className="w-fit text-xs text-primary underline underline-offset-2"
-              >
-                view source (page {claim.citations[0].page + 1})
-              </button>
-            )}
+        <li key={i} className={`claim ${claim.supported ? "sup" : "uns"}`}>
+          <span className="mark" aria-hidden="true">{claim.supported ? "✓" : "!"}</span>
+          <div>
+            <div className="txt">{claim.text}</div>
+            <div className="meta">
+              <span className="verdict">
+                {claim.supported ? "grounded" : "unsupported"} · {claim.score.toFixed(2)}
+              </span>
+              {claim.citations.length > 0 && (
+                <button type="button" className="src" onClick={() => onSelect(claim.citations[0])}>
+                  show source · p{claim.citations[0].page + 1}
+                </button>
+              )}
+            </div>
           </div>
         </li>
       ))}
@@ -70,6 +50,7 @@ export default function Home() {
   const [ingesting, setIngesting] = useState(false);
   const [ingestError, setIngestError] = useState<string | null>(null);
 
+  const [fileName, setFileName] = useState<string | null>(null);
   const [selectedCitation, setSelectedCitation] = useState<Citation | null>(null);
 
   function handleApiKeyChange(value: string) {
@@ -84,12 +65,15 @@ export default function Home() {
     setIngesting(true);
     setIngestError(null);
     setSelectedCitation(null);
+    setResult(null);
+    setFileName(file.name);
     try {
       const res = await ingestDoc(file);
       setSessionId(res.session_id);
       setNChunks(res.n_chunks);
     } catch (err) {
-      setIngestError(err instanceof Error ? err.message : "upload failed");
+      setIngestError(err instanceof Error ? err.message : "Upload failed. Try a smaller PDF or image.");
+      setSessionId(null);
     } finally {
       setIngesting(false);
       e.target.value = "";
@@ -114,180 +98,205 @@ export default function Home() {
       });
       setResult(res);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "request failed");
+      setError(err instanceof Error ? err.message : "Request failed. Check your API key and model name.");
     } finally {
       setLoading(false);
     }
   }
 
+  const canAsk = !loading && !!question && !!apiKey && !!model && !!sessionId;
+
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Multimodal RAG — Trust Layer</h1>
-        <Link href="/eval" className="text-sm text-primary underline underline-offset-2">
-          eval dashboard
+    <main className="shell">
+      <div className="topbar">
+        <span className="eyebrow">Multimodal RAG · Trust Layer</span>
+        <Link className="navlink" href="/eval">
+          benchmark →
         </Link>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Document</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          <input
-            type="file"
-            accept=".pdf,.png,.jpg,.jpeg"
-            onChange={handleFileChange}
-            disabled={ingesting}
-            className="text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-1.5 file:text-sm file:font-medium"
-          />
-          {ingesting && <p className="text-sm text-muted-foreground">Indexing document...</p>}
-          {ingestError && <p className="text-sm text-destructive">{ingestError}</p>}
-          {sessionId && !ingesting && (
-            <p className="text-sm text-muted-foreground">
-              {nChunks} chunks indexed · session {sessionId.slice(0, 8)}
-            </p>
-          )}
-        </CardContent>
-      </Card>
+      <header className="hero">
+        <div>
+          <h1>
+            Don&apos;t trust the model.<br />
+            <span className="grad">Verify it.</span>
+          </h1>
+          <p className="lede">
+            Ask questions across scanned PDFs, images, and tables. Every claim is checked against the source —{" "}
+            <b>grounded ones turn green, unsupported ones get flagged</b>, and when the answer isn&apos;t in your
+            documents, it says so instead of guessing.
+          </p>
+        </div>
+        <span className="live">
+          <span className="dot" /> live · <Link href="/eval">benchmark</Link>
+        </span>
+      </header>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Settings</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium">Provider</label>
-            <Select value={provider} onValueChange={setProvider}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select a provider" />
-              </SelectTrigger>
-              <SelectContent>
-                {PROVIDERS.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {p}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+      {/* ---- workspace: one row of controls ---- */}
+      <section className="panel">
+        <div className="ph">
+          <span className="n">01</span>
+          <h2>Workspace</h2>
+          <span className="chip">BYOK · key never stored</span>
+        </div>
+
+        <div className="rowbar">
+          <div className="field grow">
+            <label>Document</label>
+            <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFileChange} disabled={ingesting} />
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium">Model</label>
-            <Input
-              placeholder="e.g. llama-3.1-8b-instant"
+          <div className="field">
+            <label htmlFor="provider">Provider</label>
+            <select id="provider" value={provider} onChange={(e) => setProvider(e.target.value)}>
+              {PROVIDERS.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="field">
+            <label htmlFor="model">Model</label>
+            <input
+              id="model"
+              placeholder="llama-3.1-8b-instant"
               value={model}
               onChange={(e) => setModel(e.target.value)}
             />
           </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium">API key (BYOK)</label>
-            <Input
+          <div className="field">
+            <label htmlFor="apikey">API key</label>
+            <input
+              id="apikey"
               type="password"
-              placeholder="never stored on disk"
+              placeholder="paste — stays in this tab"
               value={apiKey}
               onChange={(e) => handleApiKeyChange(e.target.value)}
               autoComplete="off"
             />
           </div>
+        </div>
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-medium">Retrieval mode</label>
-            <Select value={retrievalMode} onValueChange={setRetrievalMode}>
-              <SelectTrigger className="w-full">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {RETRIEVAL_MODES.map((m) => (
-                  <SelectItem key={m} value={m}>
-                    {m}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+        <div className="rowbar" style={{ marginTop: "1.05rem" }}>
+          <div className="field grow">
+            <label>Retrieval</label>
+            <div className="seg" role="group" aria-label="Retrieval mode">
+              {RETRIEVAL_MODES.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  aria-pressed={retrievalMode === m}
+                  onClick={() => setRetrievalMode(m)}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <label className="text-sm font-medium">Verified mode</label>
-            <Switch checked={verified} onCheckedChange={setVerified} />
+          <div className="field">
+            <label>Verify</label>
+            <label className="toggle">
+              <input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />
+              <span className="track" />
+              <span className="lbl">
+                {verified ? "on" : "off"}
+                <small>NLI firewall</small>
+              </span>
+            </label>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Ask a question</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <Textarea
-              placeholder="What do the documents say about..."
+        <form className="ask-row" onSubmit={handleSubmit} style={{ marginTop: "1.3rem" }}>
+          <div className="field grow">
+            <label htmlFor="q">Question</label>
+            <textarea
+              id="q"
+              placeholder="What was the total on the invoice?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              rows={4}
+              rows={1}
             />
-            <Button type="submit" disabled={loading || !question || !apiKey || !model || !sessionId}>
-              {loading ? "Asking..." : "Ask"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+          </div>
+          <button className="btn" type="submit" disabled={!canAsk}>
+            {loading ? "Verifying…" : "Ask"}
+          </button>
+        </form>
 
-      {error && (
-        <Card>
-          <CardContent className="text-sm text-destructive">{error}</CardContent>
-        </Card>
+        <div style={{ marginTop: ".9rem" }}>
+          {ingesting && <p className="status">Reading and indexing {fileName}…</p>}
+          {ingestError && <p className="status err">{ingestError}</p>}
+          {sessionId && !ingesting && (
+            <p className="status ok">
+              <b>{nChunks}</b> passages indexed from {fileName} · session {sessionId.slice(0, 8)}
+            </p>
+          )}
+          {!sessionId && !ingesting && !ingestError && (
+            <p className="status">Upload a document to begin. Then paste a free Groq or Gemini key and ask.</p>
+          )}
+          {error && <p className="status err" style={{ marginTop: ".4rem" }}>{error}</p>}
+        </div>
+      </section>
+
+      {/* ---- evidence bench: answer | source, row-wise ---- */}
+      {result && (
+        <section className="panel">
+          <div className="ph">
+            <span className="n">02</span>
+            <h2>Evidence bench</h2>
+            {verified && !result.refused && <span className="chip">claims NLI-verified</span>}
+          </div>
+
+          <div className={`bench ${selectedCitation ? "" : "single"}`}>
+            <div>
+              {result.refused ? (
+                <>
+                  <div className="refused-head">
+                    <span className="stamp">not in the record</span>
+                    <h2>{result.answer ? "Drafted, but ungrounded" : "No supporting evidence"}</h2>
+                  </div>
+                  <p className="empty">
+                    {result.answer
+                      ? "The model produced an answer, but none of its claims are supported by your documents — so it's withheld as untrusted."
+                      : "The retrieved passages were too weak to answer this. Try rephrasing, or upload a document that covers it."}
+                  </p>
+                  {result.answer && <p className="draft">{result.answer}</p>}
+                  {result.claims.length > 0 && <Claims claims={result.claims} onSelect={setSelectedCitation} />}
+                </>
+              ) : (
+                <>
+                  <div className="answer-body">{result.answer}</div>
+                  {result.claims.length > 0 && <Claims claims={result.claims} onSelect={setSelectedCitation} />}
+                  {result.claims.length === 0 && result.citations.length > 0 && (
+                    <button className="src" style={{ marginTop: "1rem" }} onClick={() => setSelectedCitation(result.citations[0])}>
+                      show source · p{result.citations[0].page + 1}
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+
+            {selectedCitation && sessionId && (
+              <div>
+                <div className="ph" style={{ marginBottom: ".7rem" }}>
+                  <span className="n">source</span>
+                  <h2>Page {selectedCitation.page + 1}</h2>
+                </div>
+                <CitationViewer sessionId={sessionId} citation={selectedCitation} />
+                {selectedCitation.snippet && <p className="source-cap">{selectedCitation.snippet}</p>}
+              </div>
+            )}
+          </div>
+        </section>
       )}
 
-      {result &&
-        (result.refused ? (
-          <Card className="border-destructive">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-destructive">
-                Not supported by your documents
-                <Badge variant="destructive">refused</Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-3">
-              <p className="text-sm text-muted-foreground">
-                {result.answer
-                  ? "The model drafted an answer, but none of its claims were grounded in your documents:"
-                  : "The retrieved evidence was too weak to answer this question."}
-              </p>
-              {result.answer && (
-                <p className="whitespace-pre-wrap text-sm italic text-muted-foreground">{result.answer}</p>
-              )}
-              {result.claims.length > 0 && (
-                <ClaimsList claims={result.claims} onSelectCitation={setSelectedCitation} />
-              )}
-            </CardContent>
-          </Card>
-        ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle>Answer</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <p className="whitespace-pre-wrap text-sm">{result.answer}</p>
-              {result.claims.length > 0 && (
-                <ClaimsList claims={result.claims} onSelectCitation={setSelectedCitation} />
-              )}
-            </CardContent>
-          </Card>
-        ))}
-
-      {selectedCitation && sessionId && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Source — page {selectedCitation.page + 1}</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-2">
-            <CitationViewer sessionId={sessionId} citation={selectedCitation} />
-            <p className="text-xs text-muted-foreground">{selectedCitation.snippet}</p>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+      <footer className="footer">
+        Multimodal RAG Trust Layer · Next.js on Vercel + FastAPI/CPU-ML on Google Cloud Run ·{" "}
+        <Link href="/eval">see the benchmark</Link>
+      </footer>
+    </main>
   );
 }
