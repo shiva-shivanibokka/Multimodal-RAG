@@ -8,6 +8,7 @@ export async function askBackend(body: {
   session_id?: string; retrieval_mode?: string; verified?: boolean;
 }): Promise<AnswerResponse> {
   const r = await fetch("/api/answer", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+  if (r.status === 404) throw new Error("Your session expired — please re-upload the document, then ask again.");
   if (!r.ok) throw new Error(`backend ${r.status}`);
   return r.json();
 }

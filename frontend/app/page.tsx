@@ -139,6 +139,8 @@ export default function Home() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Validate on submit (button stays clickable) so the reason is always clear.
+    if (ingesting) return setError("Still indexing your document — hang on a second, then ask.");
+    if (ingestError) return setError(`That upload didn't finish: ${ingestError}`);
     if (!sessionId) return setError("Upload a document first, then ask.");
     if (!apiKey) return setError("Paste your provider API key to run the model.");
     if (!question.trim()) return setError("Type a question.");
@@ -159,7 +161,9 @@ export default function Home() {
       });
       setResult(res);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Request failed. Check your API key and model.");
+      const msg = err instanceof Error ? err.message : "Request failed. Check your API key and model.";
+      if (msg.includes("session expired")) setSessionId(null); // reset UI so they re-upload
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -181,7 +185,8 @@ export default function Home() {
 
       <header className="hero">
         <h1>
-          Don&apos;t trust the model. <span className="grad">Verify it.</span>
+          <span className="line">Don&apos;t trust the model.</span>{" "}
+          <span className="grad line">Verify it.</span>
         </h1>
         <p className="lede">
           Ask questions across scanned PDFs, images, and tables. Every claim is checked against the source —{" "}

@@ -116,7 +116,13 @@ def answer_question(req: AnswerRequest) -> AnswerResponse:
 
     index = get_index(req.session_id)
     if index is None:
-        return _refuse()
+        # Session id was given but the store has no such session -- it expired
+        # (LRU eviction) or was lost on a container recycle. Signal this
+        # distinctly instead of _refuse()'ing, which would misleadingly tell
+        # the user their document doesn't cover the question.
+        from fastapi import HTTPException
+
+        raise HTTPException(status_code=404, detail="session expired -- re-upload the document")
 
     mode = req.retrieval_mode if req.retrieval_mode in _SUPPORTED_MODES else "hybrid"
 

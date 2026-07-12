@@ -157,9 +157,11 @@ body {
 .hero { margin-bottom: 2.6rem; }
 .hero h1 {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.4rem, 6.2vw, 5.2rem); line-height: 1.0; letter-spacing: -0.035em; margin: 0;
-  width: 100%; text-wrap: balance;
+  font-size: clamp(2.4rem, 6.2vw, 5.2rem); line-height: 1.05; letter-spacing: -0.035em; margin: 0;
+  width: 100%;
 }
+/* each sentence is its own row — never let "the model." wrap up on its own */
+.hero h1 .line { display: block; }
 .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero .lede { color: var(--dim); font-size: clamp(1.02rem, 1.5vw, 1.32rem); line-height: 1.6; width: 100%; margin: 1.3rem 0 0; }
 .hero .lede b { color: var(--ink); font-weight: 600; }
