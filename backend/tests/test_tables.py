@@ -3,7 +3,7 @@ import io
 
 import pandas as pd
 
-from app.ingest.tables import _dedupe_columns, extract_tables
+from app.ingest.tables import _dedupe_columns, _rows_to_dataframe, extract_tables
 from tests.fixtures import make_table_image
 
 
@@ -20,6 +20,20 @@ def test_dedupe_columns_suffixes_duplicates_and_blanks():
     df = pd.DataFrame([[1, 2]], columns=_dedupe_columns(["x", "x"]))
     assert list(df.columns) == ["x", "x.1"]
     assert df["x"].iloc[0] == 1 and df["x.1"].iloc[0] == 2
+
+
+def test_dedupe_columns_does_not_recollide_when_a_generated_suffix_already_exists():
+    # Task 8: a real header cell literally reading "A.1" (not itself a
+    # dedupe artifact) can collide with a suffix _dedupe_columns would
+    # otherwise generate for an earlier "A" duplicate -- the fix must keep
+    # incrementing within that same family instead of stopping at the first
+    # (still-colliding) candidate.
+    assert _dedupe_columns(["A", "A", "A.1"]) == ["A", "A.1", "A.2"]
+
+
+def test_dedupe_columns_recollision_survives_rows_to_dataframe():
+    df = _rows_to_dataframe([["A", "A", "A.1"], ["1", "2", "3"]])
+    assert list(df.columns) == ["A", "A.1", "A.2"]
 
 
 def test_extract_tables_recovers_values_and_supports_deterministic_math():

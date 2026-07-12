@@ -14,9 +14,13 @@ input image, and (per ``ocr.py``'s docstring) pages rendered by
 additional scaling is applied here -- the image passed in must be a page
 image from that same pipeline (or anything else at a 1px == 1pt scale).
 """
+import re
+
 import pandas as pd
 from img2table.document import Image as I2TImage
 from img2table.ocr import DocTR
+
+_TRAILING_SUFFIX_RE = re.compile(r"\.\d+$")
 
 _ocr = None  # ponytail: module-level lazy singleton, loaded once on first use
 
@@ -33,16 +37,32 @@ def _dedupe_columns(names: list[str]) -> list[str]:
     (e.g. two empty strings). Duplicate column labels break every
     label-based DataFrame op downstream (df[col], to_json(orient="columns"))
     -- suffix repeats (".1", ".2", ...) the same way pandas' own CSV reader
-    does, so every column stays uniquely addressable by name."""
+    does, so every column stays uniquely addressable by name.
+
+    Task 8: tracks the accumulated OUTPUT set (``used``), not just how many
+    times each original name was seen -- a naive "seen count" scheme can
+    generate a suffixed candidate (e.g. "A.1") that collides with an
+    ALREADY-PRESENT original column of that exact name (e.g. input
+    ``["A", "A", "A.1"]`` naively dedupes to ``["A", "A.1", "A.1"]``, still
+    a collision -- and even keying the retry counter by the literal
+    colliding name, e.g. "A.1", would produce "A.1.1" instead of the next
+    free slot in the SAME family). Suffix counters are keyed by the name's
+    ROOT (itself, with any existing trailing ".<digits>" stripped) so a
+    duplicate that happens to already look like a suffixed name (e.g. a
+    literal header cell reading "A.1") still lands in the "A" family and
+    keeps incrementing from wherever that family left off, e.g.
+    ``["A", "A", "A.1"] -> ["A", "A.1", "A.2"]``."""
     seen: dict[str, int] = {}
+    used: set[str] = set()
     deduped = []
     for name in names:
-        if name not in seen:
-            seen[name] = 0
-            deduped.append(name)
-        else:
-            seen[name] += 1
-            deduped.append(f"{name}.{seen[name]}")
+        root = _TRAILING_SUFFIX_RE.sub("", name)
+        candidate = name
+        while candidate in used:
+            seen[root] = seen.get(root, 0) + 1
+            candidate = f"{root}.{seen[root]}"
+        used.add(candidate)
+        deduped.append(candidate)
     return deduped
 
 

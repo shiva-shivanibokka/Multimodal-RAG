@@ -6,6 +6,7 @@
 # session holds page PNGs + FAISS/CLIP indexes, so an unbounded dict would OOM
 # a long-lived Space. Oldest/least-recently-used session is evicted on overflow.
 """
+import threading
 from collections import OrderedDict
 from uuid import uuid4
 
@@ -13,12 +14,20 @@ from app.config import settings
 
 _sessions: "OrderedDict[str, dict]" = OrderedDict()
 
+# Task 2: per-session lock so two concurrent get_index() calls for the SAME
+# session can't both see "index" missing and both build (and embed) it --
+# wasted CPU at best, a race on session["index"] at worst. `_locks_guard`
+# only protects the lock-creation step itself (fast), not index building.
+_locks: dict[str, threading.Lock] = {}
+_locks_guard = threading.Lock()
+
 
 def create_session(pages: list[dict], chunks: list[dict]) -> str:
     """Store a document's pages + chunks and return a new session id.
     Evicts the oldest session first if already at the cap."""
     if len(_sessions) >= settings.max_sessions:
-        _sessions.popitem(last=False)
+        evicted_id, _ = _sessions.popitem(last=False)
+        _locks.pop(evicted_id, None)
     session_id = uuid4().hex
     _sessions[session_id] = {"pages": pages, "chunks": chunks}
     return session_id
@@ -40,10 +49,13 @@ def get_index(session_id: str):
     if session is None:
         return None
     _sessions.move_to_end(session_id)
-    if "index" not in session:
-        from app.index.store import Index
+    with _locks_guard:
+        lock = _locks.setdefault(session_id, threading.Lock())
+    with lock:
+        if "index" not in session:
+            from app.index.store import Index
 
-        idx = Index()
-        idx.add(session["chunks"], pages=session["pages"])
-        session["index"] = idx
+            idx = Index()
+            idx.add(session["chunks"], pages=session["pages"])
+            session["index"] = idx
     return session["index"]

@@ -48,6 +48,16 @@ def _post(url, headers, payload, timeout):
         raise ProviderError(502, "upstream provider error") from None
 
 
+def _parse_json(r):
+    """Task 6: guard the JSON parse itself -- a 200 with a non-JSON body
+    (e.g. an HTML error page from a misconfigured proxy) would otherwise
+    raise an uncaught exception instead of a clean ProviderError."""
+    try:
+        return r.json()
+    except ValueError:
+        raise ProviderError(502, "provider returned an unexpected response") from None
+
+
 def generate(provider, model, api_key, messages, images=None, timeout=120) -> str:
     cfg = route_provider(provider)
     if cfg["kind"] == "openai_compat":
@@ -55,14 +65,22 @@ def generate(provider, model, api_key, messages, images=None, timeout=120) -> st
         r = _post(f"{cfg['base_url']}/chat/completions",
                   headers={"Authorization": f"Bearer {api_key}"},
                   payload=payload, timeout=timeout)
-        return r.json()["choices"][0]["message"]["content"]
+        body = _parse_json(r)
+        try:
+            return body["choices"][0]["message"]["content"]
+        except (KeyError, IndexError, TypeError):
+            raise ProviderError(502, "provider returned an unexpected response") from None
     # anthropic
     payload = {"model": model, "max_tokens": 1024,
                "messages": _attach_images_anthropic(messages, images)}
     r = _post(f"{cfg['base_url']}/messages",
               headers={"x-api-key": api_key, "anthropic-version": "2023-06-01"},
               payload=payload, timeout=timeout)
-    return "".join(b.get("text", "") for b in r.json()["content"])
+    body = _parse_json(r)
+    try:
+        return "".join(b.get("text", "") for b in body["content"])
+    except (KeyError, IndexError, TypeError, AttributeError):
+        raise ProviderError(502, "provider returned an unexpected response") from None
 
 def _attach_images_openai(messages, images):
     if not images: return messages

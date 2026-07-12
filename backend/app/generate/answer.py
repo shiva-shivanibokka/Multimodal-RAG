@@ -4,15 +4,20 @@
 Mode-aware grounding gate (Task 3.4): each retrieval mode has its own
 primary index with its own cosine-similarity scale, so the gate reads the
 top-1 score from THAT mode's index, not always ``Index.dense``:
-  - hybrid/dense -> ``Index.dense(question, 1)``       (bge cosine, bounded 0-1)
+  - dense        -> ``Index.dense(question, 1)``        (bge cosine, bounded 0-1)
   - cross_modal  -> ``Index.cross_modal(question, 1)``  (CLIP cosine, bounded 0-1)
   - caption_baseline -> ``Index.caption_baseline(question, 1)`` (bge cosine, bounded 0-1)
-All three are FAISS inner-product over L2-normalized vectors, so all are
-directly comparable to ``settings.retrieval_min_score``. We deliberately do
-NOT threshold on the ``retrieve()`` result score: in "hybrid" mode that's an
-RRF fusion score (tiny, not 0-1 scaled) and, when reranking is on, a bge
-cross-encoder logit (unbounded) -- neither is comparable to the threshold.
-Refuse (no LLM call) if the mode's top result is empty or below threshold.
+  - hybrid       -> ``max(Index.dense(question, 1), Index.bm25_normalized_top1(question))``
+    (Task 7: a short exact-keyword query can score low on dense cosine while
+    still being a strong lexical hit -- BM25's raw score is normalized to
+    roughly [0, 1] by the corpus's own max self-score, see store.py, so it's
+    comparable to the same threshold.)
+All are directly comparable to ``settings.retrieval_min_score``. We
+deliberately do NOT threshold on the ``retrieve()`` result score: in
+"hybrid" mode that's an RRF fusion score (tiny, not 0-1 scaled) and, when
+reranking is on, a bge cross-encoder logit (unbounded) -- neither is
+comparable to the threshold. Refuse (no LLM call) if the mode's gate score
+is below threshold.
 
 Figure/page images to the VLM (Task 3.4, extended to whole pages by Task
 5.2b): any retrieved chunk with ``kind == "figure"`` or ``kind == "page"``
@@ -81,14 +86,28 @@ def _dedup_citations(citations) -> list[Citation]:
     return deduped
 
 
-def _grounding_top(index, mode: str, question: str) -> list[dict]:
-    """Top-1 result from the mode's own primary index -- used only for the
-    grounding gate, not the full ``retrieve()`` (see module docstring)."""
+def _grounding_score(index, mode: str, question: str) -> float:
+    """Top-1 score used only for the grounding gate, not the full
+    ``retrieve()`` (see module docstring).
+
+    Task 7: "hybrid" mode gates on ``max(dense_top1, normalized_bm25_top1)``
+    instead of dense cosine alone -- a short exact-keyword query (a SKU, a
+    proper noun) can sit below ``retrieval_min_score`` on dense cosine while
+    still being a strong, unambiguous lexical hit. ``bm25_normalized_top1``
+    (see store.py) scales raw BM25 to roughly [0, 1] by the corpus's own max
+    self-score so it's comparable to the same threshold. "dense" mode is
+    left untouched (dense-only by design)."""
     if mode == "cross_modal":
-        return index.cross_modal(question, 1)
+        top = index.cross_modal(question, 1)
+        return top[0]["score"] if top else 0.0
     if mode == "caption_baseline":
-        return index.caption_baseline(question, 1)
-    return index.dense(question, 1)
+        top = index.caption_baseline(question, 1)
+        return top[0]["score"] if top else 0.0
+    dense_top = index.dense(question, 1)
+    dense_score = dense_top[0]["score"] if dense_top else 0.0
+    if mode == "hybrid":
+        return max(dense_score, index.bm25_normalized_top1(question))
+    return dense_score
 
 
 def answer_question(req: AnswerRequest) -> AnswerResponse:
@@ -101,8 +120,7 @@ def answer_question(req: AnswerRequest) -> AnswerResponse:
 
     mode = req.retrieval_mode if req.retrieval_mode in _SUPPORTED_MODES else "hybrid"
 
-    top = _grounding_top(index, mode, req.question)
-    if not top or top[0]["score"] < settings.retrieval_min_score:
+    if _grounding_score(index, mode, req.question) < settings.retrieval_min_score:
         return _refuse()
 
     results = retrieve(index, req.question, mode=mode, k=5, use_rerank=True)

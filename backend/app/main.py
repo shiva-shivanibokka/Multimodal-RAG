@@ -1,13 +1,46 @@
 # backend/app/main.py
 import hmac
 import json
+import logging
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, File, Header, HTTPException, Request, Response, UploadFile
 from app.config import settings
 from app.generate.providers import ProviderError
 from app.schemas import AnswerRequest, AnswerResponse
-app = FastAPI(title="Multimodal RAG Trust Layer")
+
+logger = logging.getLogger(__name__)
+
+
+def _warm_models():
+    """Task 1: load every lazy model singleton once, serially, before the
+    app starts serving -- otherwise the first N concurrent requests each
+    race to double-init the same model (wasted memory/CPU, see
+    app/index/embedders.py etc.'s lazy-singleton comments). Leaves the
+    singletons themselves unchanged; this just forces the first call to
+    happen here instead of on first request."""
+    from app.index.embedders import _get_model, _get_clip_model
+    from app.index.rerank import _get_model as _get_reranker
+    from app.verify.nli import _get_model as _get_nli
+    from app.ingest.ocr import _get_predictor
+    from app.ingest.tables import _get_ocr
+
+    _get_model()
+    _get_clip_model()
+    _get_reranker()
+    _get_nli()
+    _get_predictor()
+    _get_ocr()
+
+
+@asynccontextmanager
+async def _lifespan(app: FastAPI):
+    _warm_models()
+    yield
+
+
+app = FastAPI(title="Multimodal RAG Trust Layer", lifespan=_lifespan)
 
 # Task 5.4: report written by backend/eval/run_eval.py's --out default.
 # Module-level so tests can monkeypatch it (see test_eval_report_endpoint.py).
@@ -52,7 +85,20 @@ async def ingest(request: Request, file: UploadFile = File(...)):
     try:
         pages = load_document(data)
     except Exception as exc:
-        raise HTTPException(status_code=400, detail=f"could not parse document: {exc}") from exc
+        # Task 13: never echo the raw parser exception to the client (could
+        # leak internal paths/library internals) -- log it server-side and
+        # return a generic message instead.
+        logger.exception("failed to parse uploaded document")
+        raise HTTPException(status_code=400, detail="could not parse document") from exc
+
+    # Task 3: cap page count right after loading, before any OCR/table work
+    # runs -- an attacker-controlled huge page count is a cheap DoS lever
+    # (each page gets OCR'd/table-extracted below) even under the byte cap.
+    if len(pages) > settings.max_pages:
+        raise HTTPException(
+            status_code=413,
+            detail=f"document has too many pages (max {settings.max_pages})",
+        )
     if not pages:
         raise HTTPException(status_code=400, detail="document has no pages")
 
@@ -60,6 +106,18 @@ async def ingest(request: Request, file: UploadFile = File(...)):
     for page in pages:
         if page["needs_ocr"]:
             page["text_blocks"] = ocr_page(page["image_png"])
+        # Task 4: extract_tables still runs its own internal DocTR pass
+        # (img2table's OCR backend, a separate model instance from
+        # app.ingest.ocr's predictor) on every page -- table cell text can't
+        # be reliably recovered from ocr_page's whole-page word list without
+        # re-deriving per-cell boundaries, and img2table's public API takes
+        # an OCR *engine*, not pre-computed text/words. Wiring precomputed
+        # OCR into it would mean forking table detection's OCR path, which
+        # needs its own accuracy validation (out of scope here). What IS
+        # fixed: store.py's Index.add no longer re-OCRs a page a third time
+        # when text_blocks is already populated (see store.py), so a
+        # scanned page is now OCR'd at most twice (fill + table detection)
+        # instead of three times.
         tables = extract_tables(page["image_png"])
         if tables:
             tables_by_page[page["index"]] = tables

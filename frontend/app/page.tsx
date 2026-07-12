@@ -34,6 +34,11 @@ const MODELS: Record<string, Opt[]> = {
     { value: "gpt-4.1-mini", label: "GPT-4.1 mini", note: "vision · cheap" },
   ],
   anthropic: [
+    // Current-generation models first (so a current model is the default);
+    // -latest aliases kept below as stable fallbacks. Exact IDs available to
+    // a given key/plan can vary — if one 404s, just pick another.
+    { value: "claude-sonnet-4-5", label: "Claude Sonnet 4.5", note: "vision" },
+    { value: "claude-opus-4-1", label: "Claude Opus 4.1", note: "vision · strong" },
     { value: "claude-3-5-sonnet-latest", label: "Claude 3.5 Sonnet", note: "vision" },
     { value: "claude-3-5-haiku-latest", label: "Claude 3.5 Haiku", note: "text · fast" },
     { value: "claude-3-opus-latest", label: "Claude 3 Opus", note: "vision" },
@@ -78,7 +83,11 @@ function Claims({ claims, onSelect }: { claims: Claim[]; onSelect: (c: Citation)
 export default function Home() {
   const [provider, setProvider] = useState<string>("groq");
   const [model, setModel] = useState(MODELS.groq[0].value);
-  const [apiKey, setApiKey] = useState("");
+  // ponytail: lazy initializer only runs client-side (typeof window guard), so
+  // this is SSR-safe and matches the UI's "stays in this tab" sessionStorage claim.
+  const [apiKey, setApiKey] = useState(() =>
+    typeof window !== "undefined" ? (sessionStorage.getItem("byok_api_key") ?? "") : ""
+  );
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState<AnswerResponse | null>(null);
   const [loading, setLoading] = useState(false);

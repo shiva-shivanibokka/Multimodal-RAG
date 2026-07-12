@@ -43,3 +43,44 @@ def test_generate_5xx_maps_to_upstream_provider_error(monkeypatch):
 
     assert exc_info.value.status_code == 502
     assert _SECRET_KEY not in exc_info.value.detail
+
+
+# --- Task 6: malformed 200 response body -> ProviderError(502), not an uncaught exception ---
+
+
+def test_generate_openai_compat_malformed_shape_maps_to_provider_error(monkeypatch):
+    def fake_post(url, headers=None, json=None, timeout=None):
+        return httpx.Response(200, json={"unexpected": "shape"}, request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(httpx, "post", fake_post)
+
+    with pytest.raises(ProviderError) as exc_info:
+        generate("openai", "gpt-4o", _SECRET_KEY, [{"role": "user", "content": "hi"}])
+
+    assert exc_info.value.status_code == 502
+
+
+def test_generate_anthropic_malformed_shape_maps_to_provider_error(monkeypatch):
+    def fake_post(url, headers=None, json=None, timeout=None):
+        return httpx.Response(200, json={"unexpected": "shape"}, request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(httpx, "post", fake_post)
+
+    with pytest.raises(ProviderError) as exc_info:
+        generate("anthropic", "claude-x", _SECRET_KEY, [{"role": "user", "content": "hi"}])
+
+    assert exc_info.value.status_code == 502
+
+
+def test_generate_non_json_body_maps_to_provider_error(monkeypatch):
+    def fake_post(url, headers=None, json=None, timeout=None):
+        return httpx.Response(
+            200, content=b"<html>not json</html>", request=httpx.Request("POST", url)
+        )
+
+    monkeypatch.setattr(httpx, "post", fake_post)
+
+    with pytest.raises(ProviderError) as exc_info:
+        generate("groq", "llama-3.1-8b-instant", _SECRET_KEY, [{"role": "user", "content": "hi"}])
+
+    assert exc_info.value.status_code == 502

@@ -317,6 +317,9 @@ def test_table_aggregate_question_bypasses_llm(monkeypatch):
         def dense(self, query, k):
             return [{"chunk": TABLE_CHUNK, "score": 1.0}]
 
+        def bm25_normalized_top1(self, query):
+            return 0.0
+
     monkeypatch.setattr("app.generate.answer.get_index", lambda session_id: _FakeIndex())
     monkeypatch.setattr(
         "app.generate.answer.retrieve",
@@ -330,4 +333,72 @@ def test_table_aggregate_question_bypasses_llm(monkeypatch):
     assert len(resp.claims) == 1
     assert resp.claims[0].supported is True
     assert any(c.page == TABLE_CHUNK["page"] for c in resp.citations)
+    mock_generate.assert_not_called()
+
+
+# --- Task 7: hybrid grounding gate falls back to normalized BM25 ---
+
+
+def test_hybrid_grounding_gate_falls_back_to_normalized_bm25_when_dense_is_weak(monkeypatch):
+    """A short exact-keyword query (e.g. a SKU/part number) can score low on
+    dense cosine while still being a strong, unambiguous lexical hit. The
+    hybrid gate must not refuse when normalized BM25 top-1 clears
+    retrieval_min_score even though dense alone doesn't -- uses a fake index
+    so the test is deterministic and needs no real embedding model."""
+    keyword_chunk = {
+        "id": 40,
+        "kind": "text",
+        "text": "Part number XJ-4471Z is in stock.",
+        "page": 9,
+        "bbox": [0, 0, 10, 10],
+        "table_df_json": None,
+    }
+
+    class _FakeIndex:
+        def dense(self, query, k):
+            return [{"chunk": keyword_chunk, "score": 0.1}]  # below retrieval_min_score=0.25
+
+        def bm25_normalized_top1(self, query):
+            return 0.9  # strong lexical hit, above threshold
+
+    session_id = create_session(pages=[], chunks=[keyword_chunk])
+    monkeypatch.setattr("app.generate.answer.get_index", lambda session_id: _FakeIndex())
+    monkeypatch.setattr(
+        "app.generate.answer.retrieve",
+        lambda index, query, mode, k, use_rerank: [{"chunk": keyword_chunk, "score": 1.0}],
+    )
+    mock_generate = MagicMock(return_value="Part number XJ-4471Z is in stock.")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "XJ-4471Z", verified=False))
+
+    assert resp.refused is False
+    mock_generate.assert_called_once()
+
+
+def test_hybrid_grounding_gate_still_refuses_when_both_signals_are_weak(monkeypatch):
+    keyword_chunk = {
+        "id": 41,
+        "kind": "text",
+        "text": "Completely unrelated sentence.",
+        "page": 9,
+        "bbox": [0, 0, 10, 10],
+        "table_df_json": None,
+    }
+
+    class _FakeIndex:
+        def dense(self, query, k):
+            return [{"chunk": keyword_chunk, "score": 0.1}]
+
+        def bm25_normalized_top1(self, query):
+            return 0.05
+
+    session_id = create_session(pages=[], chunks=[keyword_chunk])
+    monkeypatch.setattr("app.generate.answer.get_index", lambda session_id: _FakeIndex())
+    mock_generate = MagicMock(return_value="should not be called")
+    monkeypatch.setattr("app.generate.answer.generate", mock_generate)
+
+    resp = answer_question(_req(session_id, "irrelevant query"))
+
+    assert resp.refused is True
     mock_generate.assert_not_called()

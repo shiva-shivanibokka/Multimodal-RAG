@@ -91,15 +91,12 @@ def _dedup_pages(results: list[dict]) -> list[int]:
 
 
 def _grounding_score(index, mode: str, question: str) -> float:
-    """Top-1 score from the mode's own primary index -- same rule as
-    app.generate.answer._grounding_top, used only to decide ``refused``."""
-    if mode == "cross_modal":
-        top = index.cross_modal(question, 1)
-    elif mode == "caption_baseline":
-        top = index.caption_baseline(question, 1)
-    else:  # dense, hybrid -> Index.dense
-        top = index.dense(question, 1)
-    return top[0]["score"] if top else 0.0
+    """Delegate to the exact runtime gate so the eval's refusal metric always
+    matches /answer behavior (incl. Task 7's hybrid max(dense, normalized_bm25)
+    rule). Do NOT re-implement the gate here -- that caused eval/runtime drift."""
+    from app.generate.answer import _grounding_score as _runtime_grounding_score
+
+    return _runtime_grounding_score(index, mode, question)
 
 
 def evaluate_mode(index, gold_items: list[dict], doc_to_page: dict[str, int], mode: str) -> list[dict]:

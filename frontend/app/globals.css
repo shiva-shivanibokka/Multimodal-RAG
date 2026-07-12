@@ -313,11 +313,11 @@ input[type="file"]::file-selector-button:hover { border-color: var(--cyan); }
 .dd-list { position: absolute; z-index: 50; top: calc(100% + 6px); left: 0; right: 0; margin: 0; padding: .35rem; list-style: none;
   background: #0d1330; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 22px 54px -16px #000; max-height: 300px; overflow: auto; }
 .dd-opt { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; padding: .5rem .6rem; border-radius: 8px; cursor: pointer; }
-.dd-opt:hover { background: var(--panel-2); }
+.dd-opt:hover, .dd-opt.hl { background: var(--panel-2); }
 .dd-opt.sel { background: color-mix(in srgb, var(--indigo) 24%, transparent); }
 .dd-opt-label { font-size: .88rem; color: var(--ink); }
 .dd-opt-note { font-family: var(--font-mono); font-size: .68rem; color: var(--dim); white-space: nowrap; }
-.dd-opt.sel .dd-opt-note, .dd-opt:hover .dd-opt-note { color: var(--cyan); }
+.dd-opt.sel .dd-opt-note, .dd-opt:hover .dd-opt-note, .dd-opt.hl .dd-opt-note { color: var(--cyan); }
 
 @media (max-width: 900px) {
   .bench { grid-template-columns: minmax(0, 1fr); }

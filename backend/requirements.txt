@@ -1,11 +1,16 @@
 # backend/requirements.txt  (Phase 0 subset — grows per phase)
-fastapi
-uvicorn[standard]
-pydantic>=2
-httpx
-pytest
-pymupdf
-pillow
+# Task 11: direct deps pinned to the versions installed/verified in the
+# working dev venv (C:\mrag\.venv, via `pip show <pkg>`) -- keeps a fresh
+# `pip install -r requirements.txt` reproducible instead of drifting to
+# whatever the newest release happens to be on install day. Bump
+# deliberately (re-verify + re-test), not implicitly.
+fastapi==0.139.0
+uvicorn[standard]==0.51.0
+pydantic==2.13.4
+httpx==0.28.1
+pytest==9.1.1
+pymupdf==1.28.0
+pillow==12.3.0
 torch==2.13.0  # CPU build ONLY: Dockerfile installs this exact pin via
                # `pip install torch==2.13.0 torchvision==0.28.0 --index-url https://download.pytorch.org/whl/cpu`
 torchvision==0.28.0  # MUST match torch (docTR needs it). CPU wheel only, same
@@ -15,13 +20,13 @@ torchvision==0.28.0  # MUST match torch (docTR needs it). CPU wheel only, same
                # PyPI's default index. Local dev: install the same way (the
                # CPU index) to avoid pulling PyPI's much larger CUDA-enabled
                # wheel. Bump both this pin and the Dockerfile's together.
-python-doctr   # NOTE: the [torch] extra was removed in 1.0.1; install plain, with torch already present
-img2table      # table structure detection; uses its DocTR OCR backend (no system Tesseract)
-pandas
-tabulate       # powers pandas' df.to_markdown() used by app/ingest/tables.py
-python-multipart  # required by FastAPI for multipart/form-data file uploads (POST /ingest)
-datasets       # HF `datasets` lib; used by scripts/fetch_sample_docs.py (eval corpus), not a test dep
-sentence-transformers  # bge text/CLIP image embeddings, bge-reranker, NLI (Phase 2+)
-faiss-cpu      # in-process vector index (Task 2.2)
-rank-bm25      # sparse retrieval for hybrid fusion (Task 2.2+)
-numpy
+python-doctr==1.0.1   # NOTE: the [torch] extra was removed in 1.0.1; install plain, with torch already present
+img2table==2.0.0      # table structure detection; uses its DocTR OCR backend (no system Tesseract)
+pandas==3.0.3
+tabulate==0.10.0       # powers pandas' df.to_markdown() used by app/ingest/tables.py
+python-multipart==0.0.32  # required by FastAPI for multipart/form-data file uploads (POST /ingest)
+datasets==5.0.0       # HF `datasets` lib; used by scripts/fetch_sample_docs.py (eval corpus), not a test dep
+sentence-transformers==5.6.0  # bge text/CLIP image embeddings, bge-reranker, NLI (Phase 2+)
+faiss-cpu==1.14.3      # in-process vector index (Task 2.2)
+rank-bm25==0.2.2      # sparse retrieval for hybrid fusion (Task 2.2+)
+numpy==2.5.1

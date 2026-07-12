@@ -60,6 +60,7 @@ class Index:
         self._chunks: list[dict] = []
         self._faiss_index: faiss.IndexFlatIP | None = None
         self._bm25: BM25Okapi | None = None
+        self._bm25_max_score: float = 0.0  # Task 7: see add()
         self._image_chunks: list[dict] = []
         self._image_index: faiss.IndexFlatIP | None = None
         self._caption_chunks: list[dict] = []
@@ -74,7 +75,19 @@ class Index:
             self._faiss_index = faiss.IndexFlatIP(vecs.shape[1])
             self._faiss_index.add(vecs)
 
-            self._bm25 = BM25Okapi([_tokenize(c["text"]) for c in indexable])
+            tokenized = [_tokenize(c["text"]) for c in indexable]
+            self._bm25 = BM25Okapi(tokenized)
+            # Task 7: raw BM25 scores aren't 0-1 scaled like cosine, so the
+            # hybrid grounding gate (answer.py) can't compare them to
+            # settings.retrieval_min_score directly. Estimate a corpus-scale
+            # upper bound by self-scoring each document against its own
+            # tokens (a query that matches a document exactly) and take the
+            # max -- then bm25_normalized_top1() divides by this at query
+            # time. O(n^2) in chunk count; fine for a single session's chunks.
+            self._bm25_max_score = max(
+                (self._bm25.get_scores(toks)[i] for i, toks in enumerate(tokenized)),
+                default=0.0,
+            )
 
         if pages:
             # One synthetic page-result dict per PAGE (not per figure chunk)
@@ -85,8 +98,21 @@ class Index:
             page_results = []
             images = []
             for p in pages:
-                words = ocr_page(p["image_png"])
-                caption_text = " ".join(w["text"] for w in words)
+                # Task 4: pages already OCR'd upstream (/ingest fills
+                # needs_ocr pages' text_blocks; born-digital pages already
+                # have their native text_blocks) carry the text we need
+                # right here -- both OCR word dicts and native text-block
+                # dicts expose {"text", "bbox"}, so joining "text" works
+                # either way. Only fall back to a fresh ocr_page call when
+                # text_blocks is missing/empty (direct Index.add callers/
+                # tests that build page dicts without going through
+                # /ingest), so a page isn't OCR'd a 3rd time here.
+                text_blocks = p.get("text_blocks")
+                if text_blocks:
+                    caption_text = " ".join(b["text"] for b in text_blocks if b.get("text"))
+                else:
+                    words = ocr_page(p["image_png"])
+                    caption_text = " ".join(w["text"] for w in words)
                 page_results.append(
                     {
                         "id": f"page-{p['index']}",
@@ -132,6 +158,19 @@ class Index:
         scores = self._bm25.get_scores(_tokenize(query))
         ranked = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)[:k]
         return [{"chunk": self._chunks[i], "score": float(scores[i])} for i in ranked]
+
+    def bm25_normalized_top1(self, query: str) -> float:
+        """Top-1 BM25 score normalized (roughly) to [0, 1] by the corpus's
+        own max self-score (see ``add``) -- lets the hybrid grounding gate
+        (Task 7, app/generate/answer.py) compare a lexical signal against
+        the same 0-1 threshold used for dense cosine. Returns 0.0 if there's
+        no BM25 index or no usable normalizer (avoids ZeroDivisionError)."""
+        if self._bm25 is None or not self._bm25_max_score:
+            return 0.0
+        top = self.bm25(query, 1)
+        if not top:
+            return 0.0
+        return top[0]["score"] / self._bm25_max_score
 
     def cross_modal(self, query: str, k: int) -> list[dict]:
         """Text -> image retrieval: embed ``query`` with CLIP and search the
