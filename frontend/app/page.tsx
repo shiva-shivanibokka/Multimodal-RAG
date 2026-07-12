@@ -4,9 +4,52 @@ import { useState } from "react";
 import Link from "next/link";
 import { askBackend, ingestDoc, type AnswerResponse, type Citation, type Claim } from "@/lib/backend";
 import { CitationViewer } from "@/components/CitationViewer";
+import { Dropdown, type Opt } from "@/components/Dropdown";
 
-const PROVIDERS = ["groq", "gemini", "openai", "anthropic"] as const;
-const RETRIEVAL_MODES = ["hybrid", "dense", "cross_modal", "caption_baseline"] as const;
+const PROVIDERS: Opt[] = [
+  { value: "groq", label: "Groq", note: "free tier" },
+  { value: "gemini", label: "Google Gemini", note: "free tier" },
+  { value: "openai", label: "OpenAI" },
+  { value: "anthropic", label: "Anthropic" },
+];
+
+// Curated per-provider models. Vision-capable models are needed for image /
+// cross-modal questions. Availability depends on your key + the provider.
+const MODELS: Record<string, Opt[]> = {
+  groq: [
+    { value: "llama-3.3-70b-versatile", label: "Llama 3.3 70B", note: "text · versatile" },
+    { value: "llama-3.1-8b-instant", label: "Llama 3.1 8B", note: "text · fast" },
+    { value: "meta-llama/llama-4-scout-17b-16e-instruct", label: "Llama 4 Scout", note: "vision" },
+    { value: "meta-llama/llama-4-maverick-17b-128e-instruct", label: "Llama 4 Maverick", note: "vision" },
+  ],
+  gemini: [
+    { value: "gemini-2.0-flash", label: "Gemini 2.0 Flash", note: "vision · fast" },
+    { value: "gemini-2.5-flash", label: "Gemini 2.5 Flash", note: "vision" },
+    { value: "gemini-2.5-pro", label: "Gemini 2.5 Pro", note: "vision · strong" },
+    { value: "gemini-1.5-flash", label: "Gemini 1.5 Flash", note: "vision" },
+  ],
+  openai: [
+    { value: "gpt-4o", label: "GPT-4o", note: "vision" },
+    { value: "gpt-4o-mini", label: "GPT-4o mini", note: "vision · cheap" },
+    { value: "gpt-4.1", label: "GPT-4.1", note: "vision" },
+    { value: "gpt-4.1-mini", label: "GPT-4.1 mini", note: "vision · cheap" },
+  ],
+  anthropic: [
+    { value: "claude-3-5-sonnet-latest", label: "Claude 3.5 Sonnet", note: "vision" },
+    { value: "claude-3-5-haiku-latest", label: "Claude 3.5 Haiku", note: "text · fast" },
+    { value: "claude-3-opus-latest", label: "Claude 3 Opus", note: "vision" },
+  ],
+};
+
+const MODE_TIPS: Record<string, string> = {
+  hybrid: "Dense semantic search + keyword (BM25), fused and reranked. Best default for most questions.",
+  dense: "Pure semantic vector search over the text. Good for paraphrased or conceptual questions.",
+  cross_modal:
+    "Retrieves whole page images with CLIP — finds visually-relevant pages even when they have little text.",
+  caption_baseline:
+    "Retrieves pages via their OCR'd text embedded like a caption. The baseline that true cross-modal is measured against.",
+};
+const RETRIEVAL_MODES = Object.keys(MODE_TIPS);
 
 function Claims({ claims, onSelect }: { claims: Claim[]; onSelect: (c: Citation) => void }) {
   return (
@@ -35,7 +78,7 @@ function Claims({ claims, onSelect }: { claims: Claim[]; onSelect: (c: Citation)
 
 export default function Home() {
   const [provider, setProvider] = useState<string>("groq");
-  const [model, setModel] = useState("");
+  const [model, setModel] = useState(MODELS.groq[0].value);
   const [apiKey, setApiKey] = useState("");
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState<AnswerResponse | null>(null);
@@ -52,6 +95,11 @@ export default function Home() {
 
   const [fileName, setFileName] = useState<string | null>(null);
   const [selectedCitation, setSelectedCitation] = useState<Citation | null>(null);
+
+  function handleProviderChange(p: string) {
+    setProvider(p);
+    setModel(MODELS[p][0].value); // keep the model valid for the chosen provider
+  }
 
   function handleApiKeyChange(value: string) {
     setApiKey(value);
@@ -82,6 +130,11 @@ export default function Home() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Validate on submit (button stays clickable) so the reason is always clear.
+    if (!sessionId) return setError("Upload a document first, then ask.");
+    if (!apiKey) return setError("Paste your provider API key to run the model.");
+    if (!question.trim()) return setError("Type a question.");
+
     setLoading(true);
     setError(null);
     setResult(null);
@@ -92,47 +145,44 @@ export default function Home() {
         provider,
         model,
         api_key: apiKey,
-        session_id: sessionId ?? undefined,
+        session_id: sessionId,
         retrieval_mode: retrievalMode,
         verified,
       });
       setResult(res);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Request failed. Check your API key and model name.");
+      setError(err instanceof Error ? err.message : "Request failed. Check your API key and model.");
     } finally {
       setLoading(false);
     }
   }
 
-  const canAsk = !loading && !!question && !!apiKey && !!model && !!sessionId;
-
   return (
     <main className="shell">
       <div className="topbar">
         <span className="eyebrow">Multimodal RAG · Trust Layer</span>
-        <Link className="navlink" href="/eval">
-          benchmark →
-        </Link>
+        <span className="topbar-right">
+          <span className="live">
+            <span className="dot" /> live
+          </span>
+          <Link className="navlink" href="/eval">
+            benchmark →
+          </Link>
+        </span>
       </div>
 
       <header className="hero">
-        <div>
-          <h1>
-            Don&apos;t trust the model.<br />
-            <span className="grad">Verify it.</span>
-          </h1>
-          <p className="lede">
-            Ask questions across scanned PDFs, images, and tables. Every claim is checked against the source —{" "}
-            <b>grounded ones turn green, unsupported ones get flagged</b>, and when the answer isn&apos;t in your
-            documents, it says so instead of guessing.
-          </p>
-        </div>
-        <span className="live">
-          <span className="dot" /> live · <Link href="/eval">benchmark</Link>
-        </span>
+        <h1>
+          Don&apos;t trust the model. <span className="grad">Verify it.</span>
+        </h1>
+        <p className="lede">
+          Ask questions across scanned PDFs, images, and tables. Every claim is checked against the source —{" "}
+          <b>grounded ones turn green, unsupported ones get flagged</b> — and when the answer isn&apos;t in your
+          documents, it says so instead of guessing.
+        </p>
       </header>
 
-      {/* ---- workspace: one row of controls ---- */}
+      {/* ---- workspace ---- */}
       <section className="panel">
         <div className="ph">
           <span className="n">01</span>
@@ -141,36 +191,24 @@ export default function Home() {
         </div>
 
         <div className="rowbar">
-          <div className="field grow">
-            <label>Document</label>
+          <div className="field grow" data-tip="Upload a scanned PDF or image. It's OCR'd, tables are extracted, and everything is indexed so you can ask about it.">
+            <label>Document <i className="ti">i</i></label>
             <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFileChange} disabled={ingesting} />
           </div>
 
-          <div className="field">
-            <label htmlFor="provider">Provider</label>
-            <select id="provider" value={provider} onChange={(e) => setProvider(e.target.value)}>
-              {PROVIDERS.map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-            </select>
+          <div className="field" data-tip="Which LLM provider to use with your own API key. Groq and Gemini have free tiers. Your key is never stored.">
+            <label>Provider <i className="ti">i</i></label>
+            <Dropdown value={provider} options={PROVIDERS} onChange={handleProviderChange} ariaLabel="Provider" />
           </div>
 
-          <div className="field">
-            <label htmlFor="model">Model</label>
-            <input
-              id="model"
-              placeholder="llama-3.1-8b-instant"
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-            />
+          <div className="field" data-tip="The specific model. Vision-capable models (marked 'vision') are needed for image and cross-modal questions.">
+            <label>Model <i className="ti">i</i></label>
+            <Dropdown value={model} options={MODELS[provider]} onChange={setModel} ariaLabel="Model" />
           </div>
 
-          <div className="field">
-            <label htmlFor="apikey">API key</label>
+          <div className="field" data-tip="Your provider API key. It stays in this browser tab only — never sent to our servers, never stored.">
+            <label>API key <i className="ti">i</i></label>
             <input
-              id="apikey"
               type="password"
               placeholder="paste — stays in this tab"
               value={apiKey}
@@ -182,12 +220,13 @@ export default function Home() {
 
         <div className="rowbar" style={{ marginTop: "1.05rem" }}>
           <div className="field grow">
-            <label>Retrieval</label>
+            <label>Retrieval <i className="ti">i</i></label>
             <div className="seg" role="group" aria-label="Retrieval mode">
               {RETRIEVAL_MODES.map((m) => (
                 <button
                   key={m}
                   type="button"
+                  data-tip={MODE_TIPS[m]}
                   aria-pressed={retrievalMode === m}
                   onClick={() => setRetrievalMode(m)}
                 >
@@ -197,8 +236,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="field">
-            <label>Verify</label>
+          <div
+            className="field"
+            data-tip="The NLI faithfulness firewall. Each claim is checked against the retrieved source; if nothing is grounded, the answer is refused. Slower, but trustworthy."
+          >
+            <label>Verify <i className="ti">i</i></label>
             <label className="toggle">
               <input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />
               <span className="track" />
@@ -211,17 +253,16 @@ export default function Home() {
         </div>
 
         <form className="ask-row" onSubmit={handleSubmit} style={{ marginTop: "1.3rem" }}>
-          <div className="field grow">
-            <label htmlFor="q">Question</label>
+          <div className="field grow" data-tip="Ask in plain language, e.g. 'What was the total on the invoice?'">
+            <label>Question <i className="ti">i</i></label>
             <textarea
-              id="q"
               placeholder="What was the total on the invoice?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               rows={1}
             />
           </div>
-          <button className="btn" type="submit" disabled={!canAsk}>
+          <button className="btn" type="submit" disabled={loading}>
             {loading ? "Verifying…" : "Ask"}
           </button>
         </form>
@@ -235,13 +276,13 @@ export default function Home() {
             </p>
           )}
           {!sessionId && !ingesting && !ingestError && (
-            <p className="status">Upload a document to begin. Then paste a free Groq or Gemini key and ask.</p>
+            <p className="status">Upload a document to begin. Then pick a model, paste a free Groq or Gemini key, and ask.</p>
           )}
           {error && <p className="status err" style={{ marginTop: ".4rem" }}>{error}</p>}
         </div>
       </section>
 
-      {/* ---- evidence bench: answer | source, row-wise ---- */}
+      {/* ---- evidence bench ---- */}
       {result && (
         <section className="panel">
           <div className="ph">
