@@ -20,8 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV HF_HOME=/app/.cache \
     SENTENCE_TRANSFORMERS_HOME=/app/.cache \
     TORCH_HOME=/app/.cache \
-    HF_HUB_OFFLINE=1 \
-    TRANSFORMERS_OFFLINE=1 \
     PIP_NO_CACHE_DIR=1 \
     PYTHONUNBUFFERED=1
 
@@ -59,6 +57,12 @@ SentenceTransformer(settings.clip_model, device='cpu'); \
 CrossEncoder(settings.reranker_model, device='cpu'); \
 CrossEncoder(settings.nli_model, device='cpu'); \
 ocr_predictor(pretrained=True)"
+
+# Offline at RUNTIME only (weights are now baked above). Prevents cold-start
+# network metadata checks. Must come AFTER the bake step, which needs the
+# network to download the weights.
+ENV HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1
 
 # Non-root, per HF Spaces Docker convention (containers run as uid 1000).
 # Own the whole app dir (including .cache) so runtime cache lookups/writes
