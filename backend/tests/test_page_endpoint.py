@@ -9,7 +9,7 @@ client = TestClient(app)
 
 def test_get_page_returns_png_bytes():
     pdf = make_text_pdf("Hello page endpoint")
-    r = client.post("/ingest", files={"file": ("doc.pdf", pdf, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("doc.pdf", pdf, "application/pdf")})
     assert r.status_code == 200
     session_id = r.json()["session_id"]
 
@@ -26,7 +26,7 @@ def test_get_page_unknown_session_404():
 
 def test_get_page_unknown_page_index_404():
     pdf = make_text_pdf("Hello page endpoint")
-    r = client.post("/ingest", files={"file": ("doc.pdf", pdf, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("doc.pdf", pdf, "application/pdf")})
     session_id = r.json()["session_id"]
 
     r = client.get(f"/page/{session_id}/99")

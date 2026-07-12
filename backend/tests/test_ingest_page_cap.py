@@ -37,7 +37,7 @@ def test_ingest_rejects_document_over_page_cap(monkeypatch):
         lambda image_png: (tables_calls.__setitem__("n", tables_calls["n"] + 1), [])[1],
     )
 
-    r = client.post("/ingest", files={"file": ("doc.pdf", b"x" * 10, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("doc.pdf", b"x" * 10, "application/pdf")})
 
     assert r.status_code == 413
     assert "too many pages" in r.json()["detail"]
@@ -50,7 +50,7 @@ def test_ingest_accepts_document_at_page_cap(monkeypatch):
     monkeypatch.setattr(loader_module, "load_document", lambda data: fake_pages)
     monkeypatch.setattr("app.ingest.tables.extract_tables", lambda image_png: [])
 
-    r = client.post("/ingest", files={"file": ("doc.pdf", b"x" * 10, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("doc.pdf", b"x" * 10, "application/pdf")})
 
     assert r.status_code == 200
     assert r.json()["n_pages"] == config.settings.max_pages

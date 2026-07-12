@@ -11,7 +11,7 @@ client = TestClient(app)
 
 def test_ingest_text_pdf_returns_session_and_chunks():
     pdf = make_text_pdf("Hello ingest world")
-    r = client.post("/ingest", files={"file": ("doc.pdf", pdf, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("doc.pdf", pdf, "application/pdf")})
     assert r.status_code == 200
 
     body = r.json()
@@ -27,7 +27,7 @@ def test_ingest_text_pdf_returns_session_and_chunks():
 
 def test_ingest_scanned_pdf_runs_ocr_fill_path():
     pdf = make_scanned_pdf("INVOICE TOTAL")
-    r = client.post("/ingest", files={"file": ("scan.pdf", pdf, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("scan.pdf", pdf, "application/pdf")})
     assert r.status_code == 200
 
     body = r.json()
@@ -46,7 +46,7 @@ def test_ingest_scanned_pdf_runs_ocr_fill_path():
 
 
 def test_ingest_corrupt_file_returns_400_not_500():
-    r = client.post("/ingest", files={"file": ("bad.pdf", b"not a pdf", "application/pdf")})
+    r = client.post("/ingest", files={"files": ("bad.pdf", b"not a pdf", "application/pdf")})
     assert r.status_code == 400
     assert "detail" in r.json()
 
@@ -63,7 +63,7 @@ def test_ingest_oversized_upload_rejected_before_ingestion(monkeypatch):
 
     monkeypatch.setattr(session, "create_session", fake_create_session)
 
-    r = client.post("/ingest", files={"file": ("big.pdf", b"x" * 1000, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("big.pdf", b"x" * 1000, "application/pdf")})
 
     assert r.status_code == 413
     assert "too large" in r.json()["detail"]

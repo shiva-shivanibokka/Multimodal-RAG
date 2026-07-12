@@ -34,7 +34,7 @@ def test_ocr_page_called_at_most_once_per_page_across_ingest_flow(monkeypatch):
     monkeypatch.setattr("app.ingest.tables.extract_tables", lambda image_png: [])
 
     pdf = make_scanned_pdf("INVOICE TOTAL")
-    r = client.post("/ingest", files={"file": ("scan.pdf", pdf, "application/pdf")})
+    r = client.post("/ingest", files={"files": ("scan.pdf", pdf, "application/pdf")})
     assert r.status_code == 200
     session_id = r.json()["session_id"]
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { askBackend, ingestDoc, type AnswerResponse, type Citation, type Claim } from "@/lib/backend";
+import { askBackend, ingestDocs, addDocs, removeDoc, type AnswerResponse, type Citation, type Claim, type Doc } from "@/lib/backend";
 import { CitationViewer } from "@/components/CitationViewer";
 import { Dropdown, type Opt } from "@/components/Dropdown";
 
@@ -98,10 +98,10 @@ export default function Home() {
 
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [nChunks, setNChunks] = useState<number | null>(null);
+  const [docs, setDocs] = useState<Doc[]>([]);
   const [ingesting, setIngesting] = useState(false);
   const [ingestError, setIngestError] = useState<string | null>(null);
 
-  const [fileName, setFileName] = useState<string | null>(null);
   const [selectedCitation, setSelectedCitation] = useState<Citation | null>(null);
 
   function handleProviderChange(p: string) {
@@ -115,24 +115,52 @@ export default function Home() {
     sessionStorage.setItem("byok_api_key", value);
   }
 
-  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  async function handleFilesChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const picked = e.target.files;
+    if (!picked || picked.length === 0) return;
+    const files = Array.from(picked);
+    e.target.value = ""; // let the user re-pick the same file later
     setIngesting(true);
     setIngestError(null);
     setSelectedCitation(null);
     setResult(null);
-    setFileName(file.name);
     try {
-      const res = await ingestDoc(file);
+      // First upload creates the session; later uploads append to it.
+      const res = sessionId ? await addDocs(sessionId, files) : await ingestDocs(files);
       setSessionId(res.session_id);
+      setDocs(res.docs);
       setNChunks(res.n_chunks);
     } catch (err) {
-      setIngestError(err instanceof Error ? err.message : "Upload failed. Try a smaller PDF or image.");
-      setSessionId(null);
+      const msg = err instanceof Error ? err.message : "Upload failed. Try a smaller PDF or image.";
+      if (msg.includes("session expired")) { setSessionId(null); setDocs([]); setNChunks(null); }
+      setIngestError(msg);
     } finally {
       setIngesting(false);
-      e.target.value = "";
+    }
+  }
+
+  async function handleRemove(docId: number) {
+    if (!sessionId) return;
+    setIngesting(true);
+    setIngestError(null);
+    setSelectedCitation(null);
+    try {
+      const res = await removeDoc(sessionId, docId);
+      setDocs(res.docs);
+      if (res.docs.length === 0) {
+        // Nothing left — reset to the empty state.
+        setSessionId(null);
+        setNChunks(null);
+        setResult(null);
+      } else {
+        setNChunks(res.n_chunks);
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Couldn't remove that file.";
+      if (msg.includes("session expired")) { setSessionId(null); setDocs([]); setNChunks(null); }
+      setIngestError(msg);
+    } finally {
+      setIngesting(false);
     }
   }
 
@@ -205,8 +233,8 @@ export default function Home() {
 
         <div className="rowbar">
           <div className="field grow">
-            <label>Document <i className="ti" data-tip="Upload a scanned PDF or image. It's OCR'd, tables are extracted, and everything is indexed so you can ask about it.">i</i></label>
-            <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFileChange} disabled={ingesting} />
+            <label>Documents <i className="ti" data-tip="Upload one or more scanned PDFs or images. Each is OCR'd, tables are extracted, and everything is indexed into one session you can ask across. Add more anytime, or remove any file below.">i</i></label>
+            <input type="file" accept=".pdf,.png,.jpg,.jpeg" multiple onChange={handleFilesChange} disabled={ingesting} />
           </div>
 
           <div className="field">
@@ -278,15 +306,35 @@ export default function Home() {
         </form>
 
         <div style={{ marginTop: ".9rem" }}>
-          {ingesting && <p className="status">Reading and indexing {fileName}…</p>}
+          {docs.length > 0 && (
+            <ul className="filelist">
+              {docs.map((d) => (
+                <li key={d.doc_id} className="filechip">
+                  <span className="fn">{d.filename}</span>
+                  <span className="pg">{d.n_pages}p</span>
+                  <button
+                    type="button"
+                    className="rm"
+                    aria-label={`Remove ${d.filename}`}
+                    title="Remove"
+                    onClick={() => handleRemove(d.doc_id)}
+                    disabled={ingesting}
+                  >
+                    ×
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+          {ingesting && <p className="status">Reading and indexing…</p>}
           {ingestError && <p className="status err">{ingestError}</p>}
-          {sessionId && !ingesting && (
+          {sessionId && !ingesting && nChunks !== null && (
             <p className="status ok">
-              <b>{nChunks}</b> passages indexed from {fileName} · session {sessionId.slice(0, 8)}
+              <b>{nChunks}</b> passages indexed from {docs.length} file{docs.length === 1 ? "" : "s"} · session {sessionId.slice(0, 8)}
             </p>
           )}
           {!sessionId && !ingesting && !ingestError && (
-            <p className="status">Upload a document to begin. Then pick a model, paste a free Groq or Gemini key, and ask.</p>
+            <p className="status">Upload one or more documents to begin. Then pick a model, paste a free Groq or Gemini key, and ask.</p>
           )}
           {error && <p className="status err" style={{ marginTop: ".4rem" }}>{error}</p>}
         </div>

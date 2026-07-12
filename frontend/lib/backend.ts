@@ -1,7 +1,8 @@
 export type Citation = { page: number; bbox: number[]; snippet: string };
 export type Claim = { text: string; supported: boolean; score: number; citations: Citation[] };
 export type AnswerResponse = { answer: string; refused: boolean; claims: Claim[]; citations: Citation[] };
-export type IngestResponse = { session_id: string; n_pages: number; n_chunks: number };
+export type Doc = { doc_id: number; filename: string; n_pages: number };
+export type IngestResponse = { session_id: string; docs: Doc[]; n_pages: number; n_chunks: number };
 
 export async function askBackend(body: {
   question: string; provider: string; model: string; api_key: string;
@@ -13,11 +14,46 @@ export async function askBackend(body: {
   return r.json();
 }
 
-export async function ingestDoc(file: File): Promise<IngestResponse> {
-  const formData = new FormData();
-  formData.append("file", file);
-  const r = await fetch("/api/ingest", { method: "POST", body: formData });
-  if (!r.ok) throw new Error(`backend ${r.status}`);
+/** Surface the backend's own error detail (e.g. "upload too large",
+ * "too many pages") instead of a bare status code when present. */
+async function backendErr(r: Response): Promise<string> {
+  try {
+    const j = await r.json();
+    if (j?.detail) return String(j.detail);
+  } catch {
+    /* non-JSON body */
+  }
+  return `backend ${r.status}`;
+}
+
+/** Ingest one or more files into a NEW combined session. */
+export async function ingestDocs(files: File[]): Promise<IngestResponse> {
+  const fd = new FormData();
+  for (const f of files) fd.append("files", f);
+  const r = await fetch("/api/ingest", { method: "POST", body: fd });
+  if (!r.ok) throw new Error(await backendErr(r));
+  return r.json();
+}
+
+/** Append files to an existing session (OCRs only the new files). */
+export async function addDocs(sessionId: string, files: File[]): Promise<IngestResponse> {
+  const fd = new FormData();
+  fd.append("session_id", sessionId);
+  for (const f of files) fd.append("files", f);
+  const r = await fetch("/api/documents", { method: "POST", body: fd });
+  if (r.status === 404) throw new Error("Your session expired — please re-upload the documents.");
+  if (!r.ok) throw new Error(await backendErr(r));
+  return r.json();
+}
+
+/** Remove one file from a session by its doc_id (rebuilds index, no re-OCR). */
+export async function removeDoc(sessionId: string, docId: number): Promise<IngestResponse> {
+  const r = await fetch(
+    `/api/documents?session_id=${encodeURIComponent(sessionId)}&doc_id=${docId}`,
+    { method: "DELETE" }
+  );
+  if (r.status === 404) throw new Error("Your session expired — please re-upload the documents.");
+  if (!r.ok) throw new Error(await backendErr(r));
   return r.json();
 }
 

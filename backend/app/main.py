@@ -5,7 +5,7 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import Depends, FastAPI, File, Header, HTTPException, Request, Response, UploadFile
+from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, Response, UploadFile
 from app.config import settings
 from app.generate.providers import ProviderError
 from app.schemas import AnswerRequest, AnswerResponse
@@ -62,69 +62,121 @@ def answer(req: AnswerRequest):
     except ProviderError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.detail) from None
 
-@app.post("/ingest", dependencies=[Depends(require_token)])
-async def ingest(request: Request, file: UploadFile = File(...)):
-    """Orchestrate the ingestion pipeline (1.1-1.4) into a stored session:
-    load pages -> OCR-fill scanned pages -> extract tables -> chunk -> store."""
+async def _process_files(files, doc_id_start, page_index_start, chunk_id_start):
+    """Shared ingestion pipeline (1.1-1.4) over one or more uploaded files,
+    accumulating into ONE combined session's page/chunk space. Each file
+    becomes a ``doc`` with its own ``doc_id`` (so it can be removed later);
+    page indices and chunk ids continue from the given starts so they stay
+    globally unique across an existing session's contents.
+
+    Returns ``(pages, chunks, docs)`` -- pages/chunks tagged with ``doc_id``,
+    docs = ``[{"doc_id", "filename", "n_pages"}]``. Raises on parse failure,
+    empty docs, oversized upload, or a page count over the session cap.
+    """
     from app.ingest.chunk import chunk_pages
     from app.ingest.loader import load_document
     from app.ingest.ocr import ocr_page
     from app.ingest.tables import extract_tables
-    from app.session import create_session
 
     cap = settings.max_upload_bytes
-    content_length = request.headers.get("content-length")
-    if content_length is not None and int(content_length) > cap:
-        raise HTTPException(status_code=413, detail="file too large (max 25 MB)")
-
-    # ponytail: don't trust Content-Length alone (missing/lying header) -- read
-    # one byte past the cap and reject on the actual size, before any parsing.
-    data = await file.read(cap + 1)
-    if len(data) > cap:
-        raise HTTPException(status_code=413, detail="file too large (max 25 MB)")
-    try:
-        pages = load_document(data)
-    except Exception as exc:
-        # Task 13: never echo the raw parser exception to the client (could
-        # leak internal paths/library internals) -- log it server-side and
-        # return a generic message instead.
-        logger.exception("failed to parse uploaded document")
-        raise HTTPException(status_code=400, detail="could not parse document") from exc
-
-    # Task 3: cap page count right after loading, before any OCR/table work
-    # runs -- an attacker-controlled huge page count is a cheap DoS lever
-    # (each page gets OCR'd/table-extracted below) even under the byte cap.
-    if len(pages) > settings.max_pages:
-        raise HTTPException(
-            status_code=413,
-            detail=f"document has too many pages (max {settings.max_pages})",
-        )
-    if not pages:
-        raise HTTPException(status_code=400, detail="document has no pages")
-
+    all_pages: list[dict] = []
     tables_by_page: dict[int, list[dict]] = {}
-    for page in pages:
-        if page["needs_ocr"]:
-            page["text_blocks"] = ocr_page(page["image_png"])
-        # Task 4: extract_tables still runs its own internal DocTR pass
-        # (img2table's OCR backend, a separate model instance from
-        # app.ingest.ocr's predictor) on every page -- table cell text can't
-        # be reliably recovered from ocr_page's whole-page word list without
-        # re-deriving per-cell boundaries, and img2table's public API takes
-        # an OCR *engine*, not pre-computed text/words. Wiring precomputed
-        # OCR into it would mean forking table detection's OCR path, which
-        # needs its own accuracy validation (out of scope here). What IS
-        # fixed: store.py's Index.add no longer re-OCRs a page a third time
-        # when text_blocks is already populated (see store.py), so a
-        # scanned page is now OCR'd at most twice (fill + table detection)
-        # instead of three times.
-        tables = extract_tables(page["image_png"])
-        if tables:
-            tables_by_page[page["index"]] = tables
+    docs: list[dict] = []
+    page_i = page_index_start
+    doc_id = doc_id_start
+    total_bytes = 0
 
-    chunks = chunk_pages(pages, tables_by_page)
-    session_id = create_session(pages, chunks)
-    return {"session_id": session_id, "n_pages": len(pages), "n_chunks": len(chunks)}
+    for file in files:
+        # ponytail: read one byte past the cap and reject on actual size (a
+        # missing/lying Content-Length can't sneak a huge upload past this);
+        # total_bytes bounds the whole multi-file request, not just each file.
+        data = await file.read(cap + 1)
+        total_bytes += len(data)
+        if len(data) > cap or total_bytes > cap:
+            raise HTTPException(status_code=413, detail="upload too large (max 25 MB total)")
+        try:
+            pages = load_document(data)
+        except Exception as exc:
+            # Task 13: never echo the raw parser exception (could leak internal
+            # paths/library internals) -- log server-side, return generic.
+            logger.exception("failed to parse uploaded document")
+            raise HTTPException(status_code=400, detail="could not parse document") from exc
+        if not pages:
+            raise HTTPException(status_code=400, detail="document has no pages")
+        # Cap TOTAL session pages before any OCR/table work -- an
+        # attacker-controlled huge page count is a cheap DoS lever.
+        if page_i + len(pages) > settings.max_pages:
+            raise HTTPException(status_code=413, detail=f"too many pages in session (max {settings.max_pages})")
+
+        for page in pages:
+            page["index"] = page_i
+            page["doc_id"] = doc_id
+            if page["needs_ocr"]:
+                page["text_blocks"] = ocr_page(page["image_png"])
+            # Task 4: extract_tables runs its own internal DocTR pass on every
+            # page (see store.py note); a scanned page is OCR'd at most twice.
+            tables = extract_tables(page["image_png"])
+            if tables:
+                tables_by_page[page_i] = tables
+            all_pages.append(page)
+            page_i += 1
+        docs.append({"doc_id": doc_id, "filename": file.filename or f"document-{doc_id}", "n_pages": len(pages)})
+        doc_id += 1
+
+    chunks = chunk_pages(all_pages, tables_by_page)
+    page_to_doc = {p["index"]: p["doc_id"] for p in all_pages}
+    for c in chunks:
+        c["id"] += chunk_id_start  # keep chunk ids unique across the session (hybrid.py dedups on id)
+        c["doc_id"] = page_to_doc[c["page"]]
+    return all_pages, chunks, docs
+
+
+def _session_summary(session_id: str, session: dict) -> dict:
+    return {
+        "session_id": session_id,
+        "docs": session["docs"],
+        "n_pages": len(session["pages"]),
+        "n_chunks": len(session["chunks"]),
+    }
+
+
+@app.post("/ingest", dependencies=[Depends(require_token)])
+async def ingest(files: list[UploadFile] = File(...)):
+    """Ingest one OR MORE files into a new combined session. Each file is a
+    removable ``doc``; all are searchable together."""
+    from app.session import create_session
+
+    pages, chunks, docs = await _process_files(files, doc_id_start=0, page_index_start=0, chunk_id_start=0)
+    session_id = create_session(pages, chunks, docs)
+    return {"session_id": session_id, "docs": docs, "n_pages": len(pages), "n_chunks": len(chunks)}
+
+
+@app.post("/documents", dependencies=[Depends(require_token)])
+async def add_documents_endpoint(session_id: str = Form(...), files: list[UploadFile] = File(...)):
+    """Append more files to an existing session (OCRs only the new files;
+    existing pages keep their cached OCR/text)."""
+    from app.session import add_documents, get_session
+
+    session = get_session(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="session expired -- re-upload the document")
+    page_start = max((p["index"] for p in session["pages"]), default=-1) + 1
+    chunk_start = max((c["id"] for c in session["chunks"]), default=-1) + 1
+    pages, chunks, docs = await _process_files(files, session["next_doc_id"], page_start, chunk_start)
+    add_documents(session_id, pages, chunks, docs)
+    return _session_summary(session_id, get_session(session_id))
+
+
+@app.delete("/documents", dependencies=[Depends(require_token)])
+def remove_document_endpoint(session_id: str, doc_id: int):
+    """Remove one file from a session by its doc_id. The index is rebuilt
+    lazily (re-embed only, no re-OCR)."""
+    from app.session import remove_document
+
+    session = remove_document(session_id, doc_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="session expired -- re-upload the document")
+    return _session_summary(session_id, session)
 
 
 @app.get("/eval/report", dependencies=[Depends(require_token)])
