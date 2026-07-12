@@ -1,0 +1,11 @@
+# Keep the Cloud Build source upload lean (mirrors .dockerignore intent).
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.model_cache/
+sessions/
+tests/
+**/*.faiss
+eval/corpus/*.png
+.git/

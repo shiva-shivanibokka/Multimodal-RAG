@@ -1,6 +1,7 @@
 # backend/Dockerfile
-# Hugging Face Docker Space (free CPU tier: 2 vCPU / 16GB RAM, no GPU).
-# See backend/README.md for the Space card + required secrets.
+# Container for the FastAPI + CPU-ML backend. Runs on Google Cloud Run
+# (honors the injected $PORT, default 8080) and also on an HF Docker Space
+# (port 7860) or locally. See backend/README.md + DEPLOY.md.
 FROM python:3.12-slim
 
 # System deps: docTR's OpenCV backend and PyMuPDF's rendering need libGL /
@@ -64,6 +65,8 @@ ocr_predictor(pretrained=True)"
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
-EXPOSE 7860
+EXPOSE 8080
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
+# Shell form so ${PORT} expands: Cloud Run injects PORT (8080); falls back to
+# 7860 for local/HF Space use.
+CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860}
