@@ -27,16 +27,15 @@ import app.generate.answer as answer_mod
 import app.generate.providers as providers
 from app.schemas import AnswerRequest
 
-# Private `ollama serve` on :11435 (OLLAMA_CONTEXT_LENGTH=8192) -- the shared :11434
-# server was saturated by other jobs on this machine; see RESULTS.md.
-OLLAMA = "http://localhost:11435/v1"
+# Ollama OpenAI-compatible endpoint; overridable with --ollama-url (must be localhost).
+OLLAMA = "http://localhost:11434/v1"
 _STATE = {"temperature": 0.0, "seed": 0, "usage": [], "gen_calls": 0, "table_path": False, "raw": None}
 
 _orig_post = providers._post
 
 
 def _local_post(url, headers, payload, timeout):
-    if not url.startswith("http://localhost:11435/"):
+    if not (url.startswith("http://localhost:") or url.startswith("http://127.0.0.1:")):
         raise RuntimeError(f"refusing non-local LLM call to {url}")
     payload = dict(payload, temperature=_STATE["temperature"], seed=_STATE["seed"])
     r = _orig_post(url, headers, payload, 1800)  # local model under load can be slow; product default 120s
@@ -80,7 +79,11 @@ def main():
     ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-closed-book", action="store_true")
+    ap.add_argument("--ollama-url", default=OLLAMA)
+    ap.add_argument("--num-ctx-check", type=int, default=8192,
+                    help="warn if a prompt's prompt_tokens reaches this (server-side truncation)")
     args = ap.parse_args()
+    providers._OPENAI_COMPAT["openai"] = args.ollama_url
 
     sid, index, d2p = load_or_ingest()
     gold = [g for g in json.loads((DATA / "gold_all151.json").read_text(encoding="utf-8")) if not g["ambiguous"]]

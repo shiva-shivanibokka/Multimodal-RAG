@@ -49,12 +49,27 @@ def f2():
             "n_correct_contains": sum(r.get("contains", 0) for r in fired), "fired": fired}
 
 
+def f2_synthetic():
+    """F2b: synthetic table modelled on DocVQA doc 4751 (attendance table). A per-row
+    'how many' question gets a COLUMN COUNT, marked supported=True / score=1.0."""
+    import pandas as pd
+    from app.generate.table_answer import try_table_answer
+    df = pd.DataFrame({"Director": ["Y.C. Deveshwar", "A. Baijal", "S. Banerjee"],
+                       "No. of meetings attended": [2, 2, 3]})
+    chunk = {"kind": "table", "table_df_json": df.to_json(), "text": df.to_markdown(), "page": 0, "bbox": [0, 0, 1, 1]}
+    q = "How many meetings has Y.C. Deveshwar attended?"
+    out = try_table_answer(q, [{"chunk": chunk, "score": 1.0}])
+    return {"question": q, "true_answer": "2", "shortcut_answer": out.answer if out else None,
+            "claim_supported": out.claims[0].supported if out else None, "claim_score": out.claims[0].score if out else None}
+
+
 def main():
-    out = {"F1_sentinel_exact_match": f1(), "F2_table_shortcut": f2()}
+    out = {"F1_sentinel_exact_match": f1(), "F2_table_shortcut": f2(), "F2b_table_shortcut_synthetic": f2_synthetic()}
     (RESULTS / "repro_findings.json").write_text(json.dumps(out, indent=2, ensure_ascii=False))
     print(json.dumps(out["F1_sentinel_exact_match"], indent=1))
     t = out["F2_table_shortcut"]
     print({k: v for k, v in t.items() if k != "fired"})
+    print(out["F2b_table_shortcut_synthetic"])
     for r in t["fired"]:
         print(r["id"], "|", r["question"], "|", r["shortcut_answer"], "| gold:", r["gold"])
 

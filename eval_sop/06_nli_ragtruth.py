@@ -106,14 +106,28 @@ def main():
     df = df[df["task_type"] == "QA"].reset_index(drop=True)
     df = df.sample(n=min(args.n, len(df)), random_state=args.seed).reset_index(drop=True)
 
-    claim_rows, resp_rows = [], []
+    # checkpoint: one JSON line per processed response, so a killed run resumes
+    ck = CACHE / f"ragtruth_partial_n{args.n}_seed{args.seed}.jsonl"
+    claim_rows, resp_rows, done = [], [], set()
+    if ck.exists():
+        for line in ck.read_text(encoding="utf-8").splitlines():
+            d = json.loads(line)
+            done.add(d["rid"])
+            if d["resp"] is not None:
+                resp_rows.append(d["resp"])
+                claim_rows.extend(d["claims"])
     for k, r in df.iterrows():
+        if str(r["id"]) in done:
+            continue
+        n_c0, n_r0 = len(claim_rows), len(resp_rows)
         out = r["output"]
         labels = json.loads(r["hallucination_labels"]) if isinstance(r["hallucination_labels"], str) else list(r["hallucination_labels"])
         hspans = [(int(l["start"]), int(l["end"])) for l in labels]
         ev = [{"chunk": {"text": w, "page": 0, "bbox": [0, 0, 0, 0]}} for w in windows(r["context"])]
         claims = verify_claims(out, ev)
         if not claims:
+            with open(ck, "a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"rid": str(r["id"]), "resp": None, "claims": []}) + chr(10))
             continue
         spans = claim_spans(out, [c.text for c in claims])
         for c, sp in zip(claims, spans):
@@ -125,7 +139,10 @@ def main():
         resp_rows.append({"rid": str(r["id"]), "model": r["model"], "human_hallucinated": bool(hspans),
                           "min_entail": min(c.score for c in claims), "any_flagged": any(not c.supported for c in claims),
                           "all_flagged": all(not c.supported for c in claims), "n_claims": len(claims)})
-        if k % 50 == 0:
+        with open(ck, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"rid": str(r["id"]), "resp": resp_rows[-1] if len(resp_rows) > n_r0 else None,
+                                 "claims": claim_rows[n_c0:]}, default=bool) + chr(10))
+        if k % 25 == 0:
             print(k, flush=True)
 
     C = pd.DataFrame(claim_rows)

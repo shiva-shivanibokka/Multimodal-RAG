@@ -27,11 +27,35 @@ os.environ.setdefault("TORCH_HOME", "C:/mrag/.cache")
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
-# Speed only (this machine was shared with other heavy jobs): cap torch threads to
-# limit CPU oversubscription. Does not change any model output.
+# Footprint limits (the laptop is shared with the user's own work): 2 threads,
+# small batches. Affects speed only, not model outputs (up to float rounding).
+os.environ.setdefault("OMP_NUM_THREADS", "2")
+os.environ.setdefault("MKL_NUM_THREADS", "2")
 import torch  # noqa: E402
 
-torch.set_num_threads(int(os.environ.get("EVAL_THREADS", "6")))
+torch.set_num_threads(int(os.environ.get("EVAL_THREADS", "2")))
+BATCH = 8  # CrossEncoder batch size used by eval-side wrappers (sentence-transformers default is 32)
+
+
+def small_batches():
+    """Make every sentence_transformers CrossEncoder.predict call (reranker + NLI)
+    default to batch_size=BATCH. Batch size changes memory/speed, not the scores
+    (up to padding-related float noise ~1e-6)."""
+    from sentence_transformers import CrossEncoder
+
+    if getattr(CrossEncoder.predict, "_eval_small", False):
+        return
+    orig = CrossEncoder.predict
+
+    def predict(self, *a, **kw):
+        kw.setdefault("batch_size", BATCH)
+        return orig(self, *a, **kw)
+
+    predict._eval_small = True
+    CrossEncoder.predict = predict
+
+
+small_batches()
 
 
 def install_rerank_cache():

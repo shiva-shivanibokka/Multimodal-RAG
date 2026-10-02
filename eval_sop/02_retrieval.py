@@ -65,8 +65,14 @@ def main():
     gold = json.loads((DATA / "gold_all151.json").read_text(encoding="utf-8"))
     ood = json.loads((DATA / "ood_questions.json").read_text(encoding="utf-8"))
 
-    per_query = []
+    # checkpointed (one JSON line per question) so a killed run resumes where it stopped
+    from common import CACHE
+    ck_q = CACHE / "retrieval_per_query.partial.jsonl"
+    per_query = [json.loads(l) for l in ck_q.read_text().splitlines()] if ck_q.exists() else []
+    done_q = {r["id"] for r in per_query}
     for it in gold:
+        if it["id"] in done_q:
+            continue
         src = d2p[it["source_doc"]]
         answers = [norm_text(a) for a in it["answers"]]
         long_answers = [a for a in answers if len(a) >= 4]
@@ -82,7 +88,11 @@ def main():
                 len_rank = rank
             rec[name] = {"pages": pages, "rank": rank, "lenient_rank": len_rank, "top_score": top}
         per_query.append(rec)
+        with open(ck_q, "a") as fh:
+            fh.write(json.dumps(rec) + chr(10))
         print("retrieval", len(per_query), flush=True)
+    order = {it["id"]: i for i, it in enumerate(gold)}
+    per_query.sort(key=lambda r: order[r["id"]])
 
     def summarize(rows, rank_key):
         out = {}
@@ -133,10 +143,14 @@ def main():
         print(k, "dR@1=%.3f [%.3f,%.3f] p=%.3f" % tuple(v["recall@1"]))
 
     # ---------- (c) gate scores for refusal analysis ----------
-    gate_rows = []
+    ck_g = CACHE / "gate_scores.partial.jsonl"
+    gate_rows = [json.loads(l) for l in ck_g.read_text().splitlines()] if ck_g.exists() else []
+    done_g = {r["id"] for r in gate_rows}
     qs = [(q["id"], q["question"], "answerable", q["ambiguous"], d2p[q["source_doc"]]) for q in gold]
     qs += [(o["id"], o["question"], o["ood_type"], False, None) for o in ood]
     for qid, qtext, kind, amb, src in qs:
+        if qid in done_g:
+            continue
         row = {"id": qid, "kind": kind, "ambiguous": amb}
         for mode in ("dense", "hybrid", "cross_modal", "caption_baseline"):
             row[f"gate_{mode}"] = _grounding_score(index, mode, qtext)
@@ -151,6 +165,8 @@ def main():
             p2 = _dedup_pages(retrieve(index, qtext, mode=mode, k=K, use_rerank=(mode == "dense")))
             row[f"{mode}_hit1"] = bool(src is not None and p2[:1] == [src])
         gate_rows.append(row)
+        with open(ck_g, "a") as fh:
+            fh.write(json.dumps(row) + chr(10))
         print("gate", len(gate_rows), flush=True)
     (RESULTS / "gate_scores.json").write_text(json.dumps(gate_rows, indent=1))
     print("wrote gate scores for", len(gate_rows), "questions")

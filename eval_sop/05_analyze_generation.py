@@ -24,7 +24,9 @@ def main(path):
     recs = [json.loads(l) for l in Path(path).read_text(encoding="utf-8").splitlines()]
     rag = [r for r in recs if r["setting"] == "rag"]
     cb = [r for r in recs if r["setting"] == "closed_book"]
-    seeds = sorted({r["seed"] for r in rag})
+    # only analyze seeds whose run is complete (a killed run leaves a partial seed)
+    n_items = max(sum(1 for r in rag if r["seed"] == s) for s in {r["seed"] for r in rag})
+    seeds = sorted(s for s in {r["seed"] for r in rag} if sum(1 for r in rag if r["seed"] == s) == n_items)
     out = {"source_file": Path(path).name, "model": rag[0]["model"], "temperature": rag[0]["temperature"],
            "seeds": seeds, "per_seed": {}, "errors": sum(1 for r in recs if r.get("error"))}
 

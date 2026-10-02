@@ -54,11 +54,11 @@ def main():
            for o in orig if not o["answerable"]]
     for i, (topic, q) in enumerate(HARD, 1):
         out.append({"id": f"oodhard-{i:03d}", "question": q, "ood_type": "ood_hard", "near_topic": topic,
-                    "author": "Claude (not human-verified)"})
+                    "author": "author-constructed (Claude); not human-verified"})
     (DATA / "ood_questions.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     with open(DATA / "ood_hard_for_review.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["id", "near_topic", "question", "author", "human_confirms_unanswerable(y/n)"])
+        w.writerow(["id", "near_topic", "question", "author", "optional_human_check_unanswerable(y/n)"])
         for o in out:
             if o["ood_type"] == "ood_hard":
                 w.writerow([o["id"], o["near_topic"], o["question"], o["author"], ""])
