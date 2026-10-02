@@ -1,0 +1,487 @@
+{
+  "n_answerable_unambiguous": 107,
+  "n_ood_trivial": 8,
+  "n_ood_hard": 30,
+  "signals": {
+    "gate_dense (bge cosine)": {
+      "score_range_answerable": [
+        0.4652014970779419,
+        0.6393921375274658,
+        0.8254285454750061
+      ],
+      "trivial": {
+        "auroc": [
+          0.9112149532710281,
+          0.8107476635514018,
+          0.9813376168224297
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.5067188888788223,
+          0.6090404987335205
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.7808695652173914,
+          "acc_std": 0.012779946484086157,
+          "balanced_acc_mean": 0.7665887850467289,
+          "balanced_acc_std": 0.006867728250793955
+        },
+        "fixed_0.25": {
+          "acc": 0.9304347826086956,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.3018691588785047,
+          0.19781931464174454,
+          0.4040498442367601
+        ],
+        "score_range_ood": [
+          0.5629985332489014,
+          0.7057181298732758,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6744525547445256,
+          "acc_std": 0.05006256408607958,
+          "balanced_acc_mean": 0.47495327102803736,
+          "balanced_acc_std": 0.013958819881284376
+        },
+        "fixed_0.25": {
+          "acc": 0.781021897810219,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.43015248401377276,
+          0.32094810624692577,
+          0.5462370880472208
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.6786736845970154,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.7172413793103448,
+          "acc_std": 0.004361762289887428,
+          "balanced_acc_mean": 0.5182242990654207,
+          "balanced_acc_std": 0.010467539356982348
+        },
+        "fixed_0.25": {
+          "acc": 0.7379310344827587,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.4120119099813641,
+        "random_order_aurc(=full-coverage risk)": 0.4,
+        "oracle_aurc": 0.09487970839002076,
+        "risk_at_full_coverage": 0.4
+      }
+    },
+    "gate_hybrid (max(bge, bm25_norm))": {
+      "score_range_answerable": [
+        0.4652014970779419,
+        0.6393921375274658,
+        0.8254285454750061
+      ],
+      "trivial": {
+        "auroc": [
+          0.9112149532710281,
+          0.8107476635514018,
+          0.9813376168224297
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.5067188888788223,
+          0.6090404987335205
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.7808695652173914,
+          "acc_std": 0.012779946484086157,
+          "balanced_acc_mean": 0.7665887850467289,
+          "balanced_acc_std": 0.006867728250793955
+        },
+        "fixed_0.25": {
+          "acc": 0.9304347826086956,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.3018691588785047,
+          0.19781931464174454,
+          0.4040498442367601
+        ],
+        "score_range_ood": [
+          0.5629985332489014,
+          0.7057181298732758,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6744525547445256,
+          "acc_std": 0.05006256408607958,
+          "balanced_acc_mean": 0.47495327102803736,
+          "balanced_acc_std": 0.013958819881284376
+        },
+        "fixed_0.25": {
+          "acc": 0.781021897810219,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.43015248401377276,
+          0.32094810624692577,
+          0.5462370880472208
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.6786736845970154,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.7172413793103448,
+          "acc_std": 0.004361762289887428,
+          "balanced_acc_mean": 0.5182242990654207,
+          "balanced_acc_std": 0.010467539356982348
+        },
+        "fixed_0.25": {
+          "acc": 0.7379310344827587,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.41132859686581075,
+        "random_order_aurc(=full-coverage risk)": 0.38620689655172413,
+        "oracle_aurc": 0.08794381871873598,
+        "risk_at_full_coverage": 0.38620689655172413
+      }
+    },
+    "gate_cross_modal (CLIP cosine)": {
+      "score_range_answerable": [
+        0.22192448377609253,
+        0.26144951581954956,
+        0.35666269063949585
+      ],
+      "trivial": {
+        "auroc": [
+          0.830607476635514,
+          0.7184579439252337,
+          0.9264018691588785
+        ],
+        "score_range_ood": [
+          0.22103309631347656,
+          0.24549605697393417,
+          0.25698959827423096
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6504347826086956,
+          "acc_std": 0.026603580070918863,
+          "balanced_acc_mean": 0.7427570093457944,
+          "balanced_acc_std": 0.016895286158683104
+        },
+        "fixed_0.25": {
+          "acc": 0.7478260869565218,
+          "false_refusal_rate_on_answerable": 0.2616822429906542,
+          "refusal_rate_on_ood": 0.875
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.29439252336448596,
+          0.18504672897196262,
+          0.41528816199376933
+        ],
+        "score_range_ood": [
+          0.23789715766906738,
+          0.2865225672721863,
+          0.37673401832580566
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6934306569343065,
+          "acc_std": 0.03392394171860511,
+          "balanced_acc_mean": 0.4607165109034268,
+          "balanced_acc_std": 0.009601587747959271
+        },
+        "fixed_0.25": {
+          "acc": 0.6058394160583942,
+          "false_refusal_rate_on_answerable": 0.2616822429906542,
+          "refusal_rate_on_ood": 0.13333333333333333
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.4072798819478603,
+          0.2951242006886375,
+          0.526082144613871
+        ],
+        "score_range_ood": [
+          0.22103309631347656,
+          0.2827286869287491,
+          0.37673401832580566
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6813793103448276,
+          "acc_std": 0.008042692268752155,
+          "balanced_acc_mean": 0.5142892277422528,
+          "balanced_acc_std": 0.013464148574163271
+        },
+        "fixed_0.25": {
+          "acc": 0.6206896551724138,
+          "false_refusal_rate_on_answerable": 0.2616822429906542,
+          "refusal_rate_on_ood": 0.2894736842105263
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.688171573951226,
+        "random_order_aurc(=full-coverage risk)": 0.7862068965517242,
+        "oracle_aurc": 0.4590716948195721,
+        "risk_at_full_coverage": 0.7862068965517242
+      }
+    },
+    "gate_caption_baseline (bge cosine)": {
+      "score_range_answerable": [
+        0.4594288766384125,
+        0.630889356136322,
+        0.8254285454750061
+      ],
+      "trivial": {
+        "auroc": [
+          0.9158878504672897,
+          0.8037091121495327,
+          0.9836740654205606
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.5067188888788223,
+          0.6054502725601196
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.9043478260869564,
+          "acc_std": 1.1102230246251565e-16,
+          "balanced_acc_mean": 0.8907710280373833,
+          "balanced_acc_std": 1.1102230246251565e-16
+        },
+        "fixed_0.25": {
+          "acc": 0.9304347826086956,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.2806853582554517,
+          0.1841043613707165,
+          0.37789719626168217
+        ],
+        "score_range_ood": [
+          0.5629985332489014,
+          0.7057181298732758,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.6773722627737226,
+          "acc_std": 0.04872501976139751,
+          "balanced_acc_mean": 0.47682242990654206,
+          "balanced_acc_std": 0.013455419747128782
+        },
+        "fixed_0.25": {
+          "acc": 0.781021897810219,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.4144121987211018,
+          0.3064252336448598,
+          0.5292732415150024
+        ],
+        "score_range_ood": [
+          0.4203861355781555,
+          0.6786736845970154,
+          0.8597121238708496
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.710344827586207,
+          "acc_std": 0.004361762289887428,
+          "balanced_acc_mean": 0.5186424003935072,
+          "balanced_acc_std": 0.009302199822923842
+        },
+        "fixed_0.25": {
+          "acc": 0.7379310344827587,
+          "false_refusal_rate_on_answerable": 0.0,
+          "refusal_rate_on_ood": 0.0
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.4466755117546813,
+        "random_order_aurc(=full-coverage risk)": 0.4896551724137931,
+        "oracle_aurc": 0.14804492923351634,
+        "risk_at_full_coverage": 0.4896551724137931
+      }
+    },
+    "bm25_norm only": {
+      "score_range_answerable": [
+        0.005217431497215244,
+        0.015245382520569112,
+        0.046284803422815345
+      ],
+      "trivial": {
+        "auroc": [
+          0.9158878504672897,
+          0.8598130841121495,
+          0.9603095794392521
+        ],
+        "score_range_ood": [
+          0.006409424664145702,
+          0.007566440259219139,
+          0.009035154782912351
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.8504347826086956,
+          "acc_std": 0.010140785904078806,
+          "balanced_acc_mean": 0.8617990654205607,
+          "balanced_acc_std": 0.0054494877521919
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.4447040498442368,
+          0.32772585669781934,
+          0.5626246105919003
+        ],
+        "score_range_ood": [
+          0.0054190536724666545,
+          0.01573770225615262,
+          0.03754594680679921
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.34014598540145985,
+          "acc_std": 0.0549339787510271,
+          "balanced_acc_mean": 0.455233644859813,
+          "balanced_acc_std": 0.008978018032670424
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.5439006394490901,
+          0.4318556320708313,
+          0.6542609444171172
+        ],
+        "score_range_ood": [
+          0.0054190536724666545,
+          0.014047519403476094,
+          0.03754594680679921
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.5820689655172414,
+          "acc_std": 0.033103448275862084,
+          "balanced_acc_mean": 0.5233644859813085,
+          "balanced_acc_std": 0.021424918539555204
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.28552630979372434,
+        "random_order_aurc(=full-coverage risk)": 0.38620689655172413,
+        "oracle_aurc": 0.08794381871873598,
+        "risk_at_full_coverage": 0.38620689655172413
+      }
+    },
+    "reranker top-1 logit (not shipped)": {
+      "score_range_answerable": [
+        6.103742634877563e-05,
+        0.7104310393333435,
+        0.999882698059082
+      ],
+      "trivial": {
+        "auroc": [
+          0.8948598130841121,
+          0.822429906542056,
+          0.9532710280373832
+        ],
+        "score_range_ood": [
+          0.000540795037522912,
+          0.00419721391517669,
+          0.08902155607938766
+        ],
+        "always_answer_baseline_acc": 0.9304347826086956,
+        "cv_learned_threshold": {
+          "acc_mean": 0.7582608695652173,
+          "acc_std": 0.00851996432272409,
+          "balanced_acc_mean": 0.8007009345794392,
+          "balanced_acc_std": 0.02403364202511093
+        }
+      },
+      "hard": {
+        "auroc": [
+          0.6317757009345795,
+          0.5383177570093458,
+          0.7242990654205608
+        ],
+        "score_range_ood": [
+          0.011086276732385159,
+          0.3047569617629051,
+          0.9866646528244019
+        ],
+        "always_answer_baseline_acc": 0.781021897810219,
+        "cv_learned_threshold": {
+          "acc_mean": 0.5255474452554745,
+          "acc_std": 0.004616463737472081,
+          "balanced_acc_mean": 0.6602803738317757,
+          "balanced_acc_std": 0.002955399682400355
+        }
+      },
+      "all_ood": {
+        "auroc": [
+          0.6871618298081653,
+          0.6008300541072307,
+          0.7717720118052139
+        ],
+        "score_range_ood": [
+          0.000540795037522912,
+          0.12351210787892342,
+          0.9866646528244019
+        ],
+        "always_answer_baseline_acc": 0.7379310344827587,
+        "cv_learned_threshold": {
+          "acc_mean": 0.5544827586206896,
+          "acc_std": 0.0033786065417699077,
+          "balanced_acc_mean": 0.6743728480078701,
+          "balanced_acc_std": 0.005125987396011046
+        }
+      },
+      "risk_coverage": {
+        "aurc": 0.18431898000804292,
+        "random_order_aurc(=full-coverage risk)": 0.38620689655172413,
+        "oracle_aurc": 0.08794381871873598,
+        "risk_at_full_coverage": 0.38620689655172413
+      }
+    }
+  }
+}
