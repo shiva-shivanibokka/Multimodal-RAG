@@ -139,7 +139,7 @@ Plausible causes have not been tested:
 - NLI-style entailment being stricter than RAGTruth's "unsupported" definition.
 
 ### 2.4 Code-level findings (reproduced, not fixed): `results/repro_findings.json`
-- **F1 (sentinel).** `answer.py` treats the reply as a refusal only if `text.strip() == "NOT_IN_DOCUMENTS"`. With a trailing period (`"NOT_IN_DOCUMENTS."`), lower case, or the sentinel inside a sentence, the reply is not treated as a refusal. It flows on to NLI as if it were an answer. An earlier, discarded partial generation run (see §4) produced one such reply from llama3.2.
+- **F1 (sentinel).** `answer.py` treats the reply as a refusal only if `text.strip() == "NOT_IN_DOCUMENTS"`. With a trailing period (`"NOT_IN_DOCUMENTS."`), lower case, or the sentinel inside a sentence, the reply is not treated as a refusal. It flows on to NLI as if it were an answer. This occurred once in 42 replies of an earlier, discarded partial llama3.2 run (see §4).
 - **F2 (table shortcut).** On a synthetic attendance table modelled on DocVQA doc 4751, `try_table_answer` answers "How many meetings has Y.C. Deveshwar attended?" with "The count of the No. of meetings attended column is 3." The true value is 2, yet the shortcut sets `supported=True, score=1.0` and skips NLI.
   - On the real corpus the shortcut fired for **0 of 189** questions, so it does not affect any number above.
 
@@ -182,7 +182,7 @@ Plausible causes have not been tested:
 - If a paid model is wanted later for more representative answer quality, the same run is about 145 × 3 calls × ~1.75k prompt tokens ≈ **0.76M input + ~25k output tokens**. That cost is on the order of $1 for a small-tier model and a few dollars for a frontier-tier model at typical list prices. Check the provider's current price sheet. Nothing was called.
 
 ## 6. SOP-ready sentences (strictly true given these numbers)
-1. "I built a multimodal document-QA system. On 107 unambiguous DocVQA questions over a 40-page corpus, its hybrid BM25+dense retrieval with cross-encoder reranking places the source page first 83% of the time (95% CI 76–90%). That beats CLIP page-image retrieval by 52 points but is statistically indistinguishable from a plain BM25 baseline."
+1. "I built a multimodal document-QA system. On 107 unambiguous DocVQA questions over a 40-page corpus, its hybrid BM25+dense retrieval with cross-encoder reranking places the source page first 83% of the time (95% CI 76–90%). That is 54 points above CLIP page-image retrieval but not statistically distinguishable from a plain BM25 baseline (n=107)."
 2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline. On 30 near-domain unanswerable questions, its similarity-based abstention gate scored below chance (AUROC 0.30). A reranker-score signal did better (AUROC 0.63)."
 3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold. That result redirected my work toward calibrating verification rather than adding it."
 
