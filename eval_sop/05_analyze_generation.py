@@ -1,7 +1,7 @@
 """Step 5: analyze 04_generation.py output (answer quality, end-to-end refusal,
 NLI-gate flag rate) and export ~100 claims for HUMAN labeling.
 
-Usage: python 05_analyze_generation.py results/generation_qwen2.5_7b_T0.7.jsonl
+Usage: python 05_analyze_generation.py results/generation_llama3.2_latest_T0.7.jsonl [--export-claims]
 """
 import csv
 import json
@@ -59,6 +59,20 @@ def main(path):
         n = len(ans) + len(ood)
         correct = sum(1 for r in ans if not r["refused"]) + sum(1 for r in ood if r["refused"])
         m["e2e_refusal_accuracy"] = correct / n
+        for r in ans:
+            per_q_metrics["e2e_correct"][r["id"]].append(float(not r["refused"]))
+        for r in ood:
+            per_q_metrics["e2e_correct"][r["id"]].append(float(bool(r["refused"])))
+        # post-hoc (analysis only, product unchanged): replies that contain the sentinel but
+        # were not refused because answer.py uses exact equality (finding F1)
+        def _sent(r):
+            return bool(r.get("raw_llm_output")) and "not_in_documents" in r["raw_llm_output"].lower() and not r["refused"]
+        m["sentinel_variant_not_refused"] = {"answerable": sum(_sent(r) for r in ans), "ood": sum(_sent(r) for r in ood)}
+        ref2 = lambda r: bool(r["refused"]) or _sent(r)
+        m["e2e_refusal_accuracy_if_sentinel_normalized"] = (sum(1 for r in ans if not ref2(r)) + sum(1 for r in ood if ref2(r))) / n
+        for t in ("ood_trivial", "ood_hard"):
+            sub = [r for r in ood if r["kind"] == t]
+            m[f"refusal_rate_{t}_if_sentinel_normalized"] = float(np.mean([ref2(r) for r in sub])) if sub else None
         m["always_answer_baseline_acc"] = len(ans) / n
         # NLI gate flag rate on LLM-generated claims (table shortcut claims are hard-coded supported=True)
         llm = [r for r in rs if r["path"] in ("answered", "nli_firewall_refusal")]
@@ -93,13 +107,32 @@ def main(path):
 
     # across seeds: mean +- std of per-seed means, and bootstrap CI over questions of per-question seed-mean
     keys = ["anls", "em", "contains", "answered", "cited_gold_page", "refusal_rate_ood_trivial", "refusal_rate_ood_hard",
-            "e2e_refusal_accuracy", "claim_flag_rate(unsupported)", "answers_with_>=1_flagged_claim",
+            "e2e_refusal_accuracy", "e2e_refusal_accuracy_if_sentinel_normalized",
+            "refusal_rate_ood_trivial_if_sentinel_normalized", "refusal_rate_ood_hard_if_sentinel_normalized",
+            "claim_flag_rate(unsupported)", "answers_with_>=1_flagged_claim",
             "answers_fully_refused_by_firewall", "claim_flag_rate_answerable", "claim_flag_rate_ood"]
     out["across_seeds_mean_std"] = {k: mean_std([out["per_seed"][s][k] for s in seeds if out["per_seed"][s][k] is not None]) for k in keys}
     if all("closed_book" in out["per_seed"][s] for s in seeds):
         out["across_seeds_mean_std"].update({f"closed_book_{k}": mean_std([out["per_seed"][s]["closed_book"][k] for s in seeds]) for k in ("anls", "em", "contains")})
     out["bootstrap_ci_over_questions(seed-averaged)"] = {
         k: bootstrap_ci([np.mean(v) for v in d.values()]) for k, d in per_q_metrics.items()}
+    # pooled claim flag rate over all complete seeds, cluster bootstrap over questions
+    llm_all = [r for r in rag if r["seed"] in seeds and r["path"] in ("answered", "nli_firewall_refusal")]
+    by_q = defaultdict(lambda: [0, 0])
+    for r in llm_all:
+        by_q[r["id"]][0] += sum(1 for c in r["claims"] if not c["supported"])
+        by_q[r["id"]][1] += len(r["claims"])
+    qs = [q for q in by_q if by_q[q][1]]
+    flags = np.array([by_q[q][0] for q in qs], float)
+    tots = np.array([by_q[q][1] for q in qs], float)
+    rng = np.random.default_rng(0)
+    boots = []
+    for _ in range(10000):
+        ii = rng.integers(0, len(qs), len(qs))
+        boots.append(flags[ii].sum() / tots[ii].sum())
+    out["claim_flag_rate_pooled_cluster_ci"] = [float(flags.sum() / tots.sum()), float(np.percentile(boots, 2.5)),
+                                                float(np.percentile(boots, 97.5)), int(tots.sum()), len(qs)]
+    print("pooled claim flag rate", out["claim_flag_rate_pooled_cluster_ci"])
     stem = Path(path).stem
     (RESULTS / f"{stem}_summary.json").write_text(json.dumps(out, indent=2, default=str))
     print(json.dumps(out["across_seeds_mean_std"], indent=1))
@@ -108,7 +141,8 @@ def main(path):
         print(s, out["per_seed"][s]["paths_answerable"], out["per_seed"][s]["paths_ood"], "table:", out["per_seed"][s]["table_shortcut"]["n"],
               "maxprompt", out["per_seed"][s]["max_prompt_tokens"])
 
-    export_claims_for_labeling(rag, seeds[0])
+    if "--export-claims" in sys.argv:  # optional; no headline depends on it
+        export_claims_for_labeling(rag, seeds[0])
 
 
 def export_claims_for_labeling(rag, seed, n_target=100):
