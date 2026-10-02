@@ -1,0 +1,260 @@
+[
+  {
+    "id": "ood-001",
+    "question": "What is the maximum payload capacity of a SpaceX Falcon 9 rocket?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-002",
+    "question": "Who is the current CEO of Google?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-003",
+    "question": "What is the recommended adult dosage of ibuprofen?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-004",
+    "question": "Which country hosted the 2022 FIFA World Cup?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-005",
+    "question": "What is the average annual rainfall in Seattle, Washington?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-006",
+    "question": "What programming language is the React JavaScript library primarily written in?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-007",
+    "question": "What was the worldwide box office revenue of the film Avatar (2009)?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "ood-008",
+    "question": "What is the capital city of Australia?",
+    "ood_type": "ood_trivial",
+    "author": "original repo gold set"
+  },
+  {
+    "id": "oodhard-001",
+    "question": "What was ITC Limited's net profit for the financial year 2012-13?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-002",
+    "question": "How many hotels did ITC Hotels operate in 2013?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-003",
+    "question": "What was the market capitalisation of ITC Limited in 2013?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-004",
+    "question": "How many employees does ITC Limited have?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-005",
+    "question": "In which year was the Sunfeast biscuit brand first launched?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-006",
+    "question": "What is the retail price of a pack of Bingo! potato chips?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-007",
+    "question": "Which ITC cigarette brand was launched in Maharashtra in 2011-12?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-008",
+    "question": "What is the price per kilogram of Aashirvaad atta?",
+    "ood_type": "ood_hard",
+    "near_topic": "ITC Limited",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-009",
+    "question": "Who is the Chairman of the board of CIGFIL Limited?",
+    "ood_type": "ood_hard",
+    "near_topic": "CIGFIL",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-010",
+    "question": "What was CIGFIL Limited's total revenue for the year ended 31.03.2004?",
+    "ood_type": "ood_hard",
+    "near_topic": "CIGFIL",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-011",
+    "question": "What was Taco Bell's total revenue in 1993?",
+    "ood_type": "ood_hard",
+    "near_topic": "Taco Bell",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-012",
+    "question": "Who was the CEO of Taco Bell in 1993?",
+    "ood_type": "ood_hard",
+    "near_topic": "Taco Bell",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-013",
+    "question": "What was Procter & Gamble's market share in disposable diapers in 1993?",
+    "ood_type": "ood_hard",
+    "near_topic": "Procter & Gamble",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-014",
+    "question": "What was the advertising budget for the Procter & Gamble diaper TV campaign?",
+    "ood_type": "ood_hard",
+    "near_topic": "Procter & Gamble",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-015",
+    "question": "How many respondents were surveyed in the 1990 Yankelovich MONITOR?",
+    "ood_type": "ood_hard",
+    "near_topic": "Yankelovich",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-016",
+    "question": "What was the population of Jackson County in the Missouri Food Donation Program report?",
+    "ood_type": "ood_hard",
+    "near_topic": "Missouri Food Donation Program",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-017",
+    "question": "What was the total federal funding of the Missouri Food Donation Program in 1970?",
+    "ood_type": "ood_hard",
+    "near_topic": "Missouri Food Donation Program",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-018",
+    "question": "What was the average daily calorie intake of the children in the M.I.T. milk protein dilution study?",
+    "ood_type": "ood_hard",
+    "near_topic": "MIT milk study",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-019",
+    "question": "What was the body weight of the rats at the end of the glycan study?",
+    "ood_type": "ood_hard",
+    "near_topic": "rat cholesterol study",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-020",
+    "question": "How many sea birds died in the Irish Sea wreck of autumn 1969?",
+    "ood_type": "ood_hard",
+    "near_topic": "sea bird wreck",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-021",
+    "question": "What was the age-adjusted motor vehicle accident mortality rate in the United States in 1975?",
+    "ood_type": "ood_hard",
+    "near_topic": "motor vehicle mortality",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-022",
+    "question": "What was the registration fee for the TRRF general session?",
+    "ood_type": "ood_hard",
+    "near_topic": "TRRF",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-023",
+    "question": "Who delivered the keynote address at the Meharry Medical College nutrition workshop?",
+    "ood_type": "ood_hard",
+    "near_topic": "Meharry workshop",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-024",
+    "question": "What is the telephone number of the Robert A. Welch Foundation?",
+    "ood_type": "ood_hard",
+    "near_topic": "Welch Foundation",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-025",
+    "question": "Who was the Director of NIH in 1968?",
+    "ood_type": "ood_hard",
+    "near_topic": "NIH",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-026",
+    "question": "What is the fax number of the Missouri Association for Social Welfare?",
+    "ood_type": "ood_hard",
+    "near_topic": "MASW",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-027",
+    "question": "What was the annual revenue of United States Cold Storage of California?",
+    "ood_type": "ood_hard",
+    "near_topic": "US Cold Storage",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-028",
+    "question": "How many staff members work at the Swanson Center for Nutrition?",
+    "ood_type": "ood_hard",
+    "near_topic": "Swanson Center",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-029",
+    "question": "In which newspaper was the 'Unsettled Science' article first published?",
+    "ood_type": "ood_hard",
+    "near_topic": "climate article",
+    "author": "Claude (not human-verified)"
+  },
+  {
+    "id": "oodhard-030",
+    "question": "How many manuscripts did DesignWrite publish in 2001?",
+    "ood_type": "ood_hard",
+    "near_topic": "DesignWrite",
+    "author": "Claude (not human-verified)"
+  }
+]
