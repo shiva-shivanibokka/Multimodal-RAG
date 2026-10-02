@@ -264,8 +264,8 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | f94c9a1 | Retrieval/refusal/repro raw results | §2.0–2.2, 2.4 | `eval_sop/results/*` | — |
 | 0f813b3 | RAGTruth NLI-gate validation raw results | §2.3 | `results/nli_ragtruth_*` | — |
 | 3edd16c, 23f63bb | RESULTS.md, plus a wording fix (CLIP gap is 54 pts, not 52) | deliverable | this file | — |
-| next commit | `05_analyze_generation.py`: e2e decision CIs, pooled claim flag rate with cluster bootstrap, post-hoc sentinel-normalised analysis, claims export made opt-in | needed for the CIs requested for §2.5 | `eval_sop/05_analyze_generation.py` | product unchanged; the original metrics are kept |
-| following commit | generation raw results + §2.5 | coordinator granted the Ollama slot | `results/generation_*`, `04_generation.log` | — |
+| 78a18e3 | `05_analyze_generation.py`: e2e decision CIs, pooled claim flag rate with cluster bootstrap, post-hoc sentinel-normalised analysis, claims export made opt-in | needed for the CIs requested for §2.5 | `eval_sop/05_analyze_generation.py` | product unchanged; the original metrics are kept |
+| b92bc09 | generation raw results + §2.5 | coordinator granted the Ollama slot | `results/generation_*`, `04_generation.log` | — |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
