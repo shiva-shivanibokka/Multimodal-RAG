@@ -5,12 +5,14 @@ claims made in `README.md` and `backend/eval/report.json`. Everything below was
 measured on this machine. Nothing is estimated. Raw outputs are in
 `eval_sop/results/` and inputs are in `eval_sop/data/`.
 
-**Status.** The non-LLM parts are done: reproduction, retrieval ablations,
-refusal as selective prediction, and validation of the NLI gate on RAGTruth.
-**Generation has NOT been run.** End-to-end answer ANLS/EM, end-to-end refusal
-and the NLI flag rate on this system's own answers all need a local LLM slot.
-The scripts are ready (see "Prepared, not run"). No headline here depends on
-future human labels.
+**Status.** All parts have been run:
+- reproduction of the committed report;
+- retrieval ablations;
+- refusal as selective prediction;
+- validation of the NLI gate on RAGTruth;
+- end-to-end generation with a **local** llama3.2 3B through Ollama, using 3 seeds (§2.5).
+
+No paid API was called. No headline depends on future human labels.
 
 ## 1. Setup
 
@@ -143,6 +145,66 @@ Plausible causes have not been tested:
 - **F2 (table shortcut).** On a synthetic attendance table modelled on DocVQA doc 4751, `try_table_answer` answers "How many meetings has Y.C. Deveshwar attended?" with "The count of the No. of meetings attended column is 3." The true value is 2, yet the shortcut sets `supported=True, score=1.0` and skips NLI.
   - On the real corpus the shortcut fired for **0 of 189** questions, so it does not affect any number above.
 
+### 2.5 End-to-end generation (production `answer_question`, local llama3.2 3B)
+
+**Setup**
+- Model: Ollama `llama3.2:latest`, a 3.2B Q4_K_M build, digest `a80c4f17acd5`.
+- Server: the shared server on :11434, with server context 4096. The largest prompt was 3,336 tokens, so nothing was truncated.
+- Sampling: temperature 0.7, seeds 0, 1 and 2, one request at a time. The model was unloaded afterwards (`keep_alive: 0`, `/api/ps` empty).
+- Pipeline: the full production path (gate, then hybrid+rerank, table shortcut, LLM, NLI firewall). It is wired to Ollama by an in-process monkeypatch only.
+- Data: 107 unambiguous answerable + 8 trivial OOD + 30 hard OOD questions per seed, plus a closed-book baseline on the 107. That is 756 calls, with 0 errors.
+- Statistics: mean ± std across the 3 seeds; [95% CI] is a bootstrap over questions of each question's seed-averaged value.
+- Raw output: `results/generation_llama3.2_latest_T0.7.jsonl`. Summary: `..._summary.json`.
+
+**Answer quality vs the DocVQA gold answers** (n = 107; a refused answer scores 0)
+
+| metric | RAG (production) | closed-book baseline (same model, no context) |
+|---|---|---|
+| ANLS | 0.093 ± 0.019 [0.059, 0.130] | 0.005 ± 0.007 [0.000, 0.012] |
+| exact match | 0.059 ± 0.022 [0.031, 0.093] | 0.000 ± 0.000 |
+| gold answer contained in reply (lenient) | 0.377 ± 0.035 [0.302, 0.452] | 0.006 ± 0.004 [0.000, 0.019] |
+| answered (not refused) | 0.573 ± 0.012 [0.498, 0.648] | - |
+| top-level citations include the gold page | 0.333 ± 0.032 [0.262, 0.408] | - |
+
+How to read these numbers:
+- ANLS and EM are low partly because the model answers in full sentences while DocVQA gold answers are short spans. The prompt does not ask for a short answer, and we did not change it.
+- The "contains" metric is the fairer read of the same answers.
+- Over answered items only (pooled over seeds, n = 184): contains = 0.658, ANLS = 0.162, citation includes the gold page = 0.582.
+
+**Refusal outcomes**
+
+| question set | refusal rate | correct-decision accuracy | always-answer baseline |
+|---|---|---|---|
+| trivial OOD (n=8) | 0.750 ± 0.000 [0.375, 1.0] | | |
+| hard OOD (n=30) | 0.711 ± 0.096 [0.589, 0.833] | | |
+| answerable (n=107) | 0.427 ± 0.012 (wrongly refused) | | |
+| all 145 | | **0.611 ± 0.018 [0.547, 0.676]** | **0.738** |
+
+- **No** question was refused by the retrieval gate.
+- The LLM's exact `NOT_IN_DOCUMENTS` reply caused 6 OOD refusals in total.
+- Every other refusal came from the NLI firewall.
+- End-to-end, the system's answer/refuse decision is **less accurate than always answering**.
+
+**The NLI firewall on this system's own answers**
+- Claim flag rate (unsupported): **0.507 [0.431, 0.582]**, pooled over 613 claims from 145 questions with a cluster CI. Per seed it is 0.482 ± 0.018 on answerable questions and 0.609 ± 0.075 on OOD.
+- The firewall fully refused 49.6% ± 2.8% of the LLM-drafted answers.
+- A label-free check against the DocVQA gold answers, pooled over 321 answerable drafts, shows that the firewall refused:
+  - **35.6%** of drafts that *contain the gold answer* (n = 188);
+  - 52.6% of drafts that do not (n = 133).
+- So it is only weakly selective, consistent with §2.3.
+
+**F1 has real impact.** The model replied `"NOT_IN_DOCUMENTS."` (with a period) in 31 of the 435 RAG replies: 3 on answerable questions and 28 on OOD questions.
+- `answer.py` does not treat that reply as a refusal.
+- The NLI gate then scores the single claim `"NOT_IN_DOCUMENTS."` as *entailed* (P = 0.748 every time).
+- So the reply is returned as a supported, cited answer.
+
+If the sentinel were matched leniently (post-hoc analysis only; the product is unchanged):
+- hard-OOD refusal would be 0.956 ± 0.063;
+- trivial-OOD refusal would be 1.0;
+- overall decision accuracy would be 0.669 ± 0.020, still below the 0.738 always-answer baseline.
+
+The table shortcut fired 0 times.
+
 ## 3. What the numbers support, and what they don't
 
 **Supported**
@@ -151,12 +213,15 @@ Plausible causes have not been tested:
 - Text-based retrieval beats CLIP page-image retrieval by a wide margin on these text-dense scans.
 - The committed refusal accuracy is the class prior. The retrieval gate cannot separate in-corpus questions from near-domain unanswerable ones.
 - The production NLI gate, checked against human labels on 450 RAGTruth QA responses, has low precision (0.08 per claim).
+- With a local 3B model, retrieval-augmented answering beats the closed-book baseline by a wide margin: gold answer contained 0.377 vs 0.006.
+- End-to-end, the answer/refuse decision (0.611) is worse than always answering (0.738). The NLI firewall refuses 36% of drafts that contain the correct answer.
 
 **Not supported**
 - Any claim that the system "refuses calibratedly" or "prevents hallucinations". The gate refuses nothing at 0.25, and the NLI firewall flags most faithful claims.
 - "Hybrid beats BM25" or "reranking helps hybrid": the CIs include 0.
 - The README's ranking "caption_baseline is best (recall@5 0.80)": on 107 or 151 questions, hybrid+rerank is higher (e.g. R@1 +0.14 [0.05, 0.23] on the filtered set).
-- Any answer-quality (ANLS/EM) or end-to-end faithfulness number: generation was not run.
+- Any answer-quality claim about a frontier model. Only a 3B local model was run, at temperature 0.7.
+- "Faithfulness rate" in the README's sense. The NLI "supported" rate (about 0.49) is a property of the gate, which §2.3 shows is poorly calibrated, not a human-validated faithfulness rate.
 - Generalisation beyond 40 pages. The corpus is tiny (50 chunks), so these are easy-retrieval numbers.
 
 ## 4. Threats to validity
@@ -167,9 +232,11 @@ Plausible causes have not been tested:
 - **Reranker score cache.** The eval-side sqlite cache can change a reranker float by ~1e-6 versus scoring in a different batch (padding), which could flip an exact tie only. The reproduction (§2.0) was run before the cache existed and matched exactly.
 - **RAGTruth vs this system.** RAGTruth responses come from other LLMs over web passages, not from this system's prompts over OCR text. It validates the gate component, not this system's end-to-end faithfulness. The span-to-sentence mapping is ours.
 - **Bootstrap p-values** are approximate, with no multiple-comparison correction across the 8 paired tests.
+- **Generation model.** A 3B Q4 local model at temperature 0.7 with the product's unmodified prompt. Answer quality, sentinel formatting and firewall rates are model-dependent. Server context was 4096 tokens; the largest prompt was 3,336.
+- **"Contains" metric** is lenient. A short gold answer such as "2" can match a long reply by accident, so it is an upper bound, not EM. ANLS and EM are reported alongside.
 - **Discarded partial runs.** A first run of 02/04/06 was killed (machine overload). Its partial outputs were moved to `eval_sop/cache/stale_partial_runs/` (gitignored) and **not used**. That includes 42 generation records from llama3.2 3B on a private Ollama instance.
 
-## 5. Prepared, not run (needs an Ollama slot; no paid API is needed)
+## 5. Generation run (done; kept here for reproducibility)
 - `python eval_sop/04_generation.py --model llama3.2:latest --seeds 0 1 2 --temperature 0.7 --ollama-url http://localhost:11434/v1`
   - Runs the production `answer_question` path (gate, hybrid+rerank, table shortcut, LLM, NLI firewall) on the 107 unambiguous + 38 OOD questions, plus a closed-book baseline on the 107.
   - That is 252 local calls per seed, 756 in total.
@@ -178,13 +245,14 @@ Plausible causes have not been tested:
 - Then `python eval_sop/05_analyze_generation.py results/generation_llama3.2_latest_T0.7.jsonl`.
   - It reports ANLS/EM/contains vs DocVQA gold (refused = 0), mean ± std over seeds and bootstrap CIs.
   - It also reports end-to-end refusal on trivial and hard OOD vs the always-answer baseline, the claim flag rate, the share of answers refused by the firewall, the table-shortcut count and the closed-book baseline.
-  - The claims CSV it writes is optional, and no headline depends on it.
+  - It can also write a claims CSV with `--export-claims`. This is optional, was not run, and no headline depends on it.
 - If a paid model is wanted later for more representative answer quality, the same run is about 145 × 3 calls × ~1.75k prompt tokens ≈ **0.76M input + ~25k output tokens**. That cost is on the order of $1 for a small-tier model and a few dollars for a frontier-tier model at typical list prices. Check the provider's current price sheet. Nothing was called.
 
 ## 6. SOP-ready sentences (strictly true given these numbers)
 1. "I built a multimodal document-QA system. On 107 unambiguous DocVQA questions over a 40-page corpus, its hybrid BM25+dense retrieval with cross-encoder reranking places the source page first 83% of the time (95% CI 76–90%). That is 54 points above CLIP page-image retrieval but not statistically distinguishable from a plain BM25 baseline (n=107)."
 2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline. On 30 near-domain unanswerable questions, its similarity-based abstention gate scored below chance (AUROC 0.30). A reranker-score signal did better (AUROC 0.63)."
 3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold. That result redirected my work toward calibrating verification rather than adding it."
+4. "In an end-to-end test with a local 3B model, retrieval raised the rate at which replies contained the gold answer from 0.6% (closed-book) to 38%. However, the verification layer refused 36% of correct drafts, and the system's overall answer/refuse decisions were less accurate than never refusing (0.61 vs 0.74)."
 
 ## 7. Change log (this branch)
 Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged.
@@ -194,8 +262,10 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | 98399fd | Added `eval_sop/` scripts, `data/gold_all151.json`, `ambiguity_labels.csv`, `ood_questions.json` | the eval plan | §1 | — |
 | e18b486 | Eval-side only: 2-thread/batch-8 limits, sqlite reranker cache, checkpoint/resume, `--ollama-url` with a localhost guard, partial-seed filtering in 05, OOD relabelled "author-constructed" (question text verified identical), synthetic table repro | shared laptop and a killed first run; coordinator rules | `eval_sop/common.py`, `02_retrieval.py`, `06_nli_ragtruth.py` | all product rationale comments untouched |
 | f94c9a1 | Retrieval/refusal/repro raw results | §2.0–2.2, 2.4 | `eval_sop/results/*` | — |
-| next commit | RAGTruth NLI-gate validation raw results | §2.3 | `results/nli_ragtruth_*` | — |
-| following commit | RESULTS.md | deliverable | this file | — |
+| 0f813b3 | RAGTruth NLI-gate validation raw results | §2.3 | `results/nli_ragtruth_*` | — |
+| 3edd16c, 23f63bb | RESULTS.md, plus a wording fix (CLIP gap is 54 pts, not 52) | deliverable | this file | — |
+| next commit | `05_analyze_generation.py`: e2e decision CIs, pooled claim flag rate with cluster bootstrap, post-hoc sentinel-normalised analysis, claims export made opt-in | needed for the CIs requested for §2.5 | `eval_sop/05_analyze_generation.py` | product unchanged; the original metrics are kept |
+| following commit | generation raw results + §2.5 | coordinator granted the Ollama slot | `results/generation_*`, `04_generation.log` | — |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
