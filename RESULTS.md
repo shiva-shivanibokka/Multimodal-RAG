@@ -303,7 +303,7 @@ The table shortcut fired 0 times.
 
 ## 6. SOP-ready sentences (strictly true given these numbers)
 1. "I built a multimodal document-QA system. Over a 40-page DocVQA corpus, its hybrid BM25+dense retrieval with cross-encoder reranking ranks the source page first for 62% of all 151 questions (95% CI 54–70%), and 83% (76–90%) of the 107 questions an LLM annotator judged unambiguous. That is 37–54 points above CLIP page-image retrieval, but not statistically distinguishable from a plain BM25 baseline in any subset."
-2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline: the shipped similarity threshold refused 0 of 145 questions. The underlying score separated obviously off-topic questions well (AUROC 0.91), but not 30 near-domain unanswerable questions that I constructed to name entities in the corpus (AUROC 0.30)."
+2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline: the shipped similarity threshold refused none of its 38 test questions (and 0 of 145 in my extended set). The score separated 8 obviously off-topic questions well (AUROC 0.91), but not 30 near-domain questions written (with an LLM) to name corpus entities and checked as unanswerable only by OCR keyword search (AUROC 0.30)."
 3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold."
 4. "In an end-to-end test with a local 3B model, retrieval raised the share of replies containing the gold answer from 0.6% (closed-book) to 38%. The NLI firewall refused 36% (95% CI 26–45%) of drafts containing the gold answer versus 53% of drafts lacking it. The system's answer/refuse decisions reached a balanced accuracy of 0.65, against 0.50 for never refusing."
 
@@ -325,6 +325,7 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | 86a936d | `08_sensitivity.py` + `results/retrieval_sensitivity.json` | review item 3 | §2.1 table | — |
 | b0cee09 | `eval_sop/data/LICENSES.md` | review item 7 | DocVQA / RAGTruth notes | nothing deleted |
 | this commit | RESULTS.md review fixes: all-151 R@1 next to 83%, sensitivity, refusal core finding + trivial AUROC, hard-OOD label, decision table, firewall CIs, sentinel count 30+1 and scores 0.748/0.743, SOP sentences 1–4 rewritten (sentence 3's untrue "redirected my work" clause removed), §8.7 housekeeping removed | review items 1–7 | sections above | numbers unchanged except where marked |
+| r2-1 | SOP sentence 2 reworded: 0/38 on the original test set vs 0/145 on the extended set; hard OOD described as LLM-written and checked only by OCR keyword search (not "I constructed") | round-2 review item 1 | §2.0 (0/38), §2.2 (0/145), `make_ood.py` | numbers unchanged |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
