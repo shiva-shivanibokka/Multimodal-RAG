@@ -80,8 +80,12 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-closed-book", action="store_true")
     ap.add_argument("--ollama-url", default=OLLAMA)
-    ap.add_argument("--num-ctx-check", type=int, default=8192,
-                    help="warn if a prompt's prompt_tokens reaches this (server-side truncation)")
+    # The recorded run used the shared server, whose context was 4096 (/api/ps
+    # context_length); max prompt+completion was 3,633 tokens. This flag previously
+    # defaulted to 8192 and was never read; it now defaults to the context actually
+    # used and is checked after every RAG call.
+    ap.add_argument("--num-ctx-check", type=int, default=4096,
+                    help="warn if prompt+completion tokens reach this (server-side truncation risk)")
     args = ap.parse_args()
     providers._OPENAI_COMPAT["openai"] = args.ollama_url
 
@@ -143,6 +147,9 @@ def main():
             }
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
             f.flush()
+            for u in rec["usage"]:
+                if u.get("prompt_tokens", 0) + u.get("completion_tokens", 0) >= args.num_ctx_check:
+                    print(f"WARNING: {qid} used {u} >= --num-ctx-check {args.num_ctx_check}; possible truncation", flush=True)
             print(seed, qid, path, f"{rec['secs']}s", (rec["answer"] or "")[:60].replace("\n", " "), flush=True)
 
         if args.no_closed_book:
