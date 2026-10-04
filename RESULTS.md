@@ -98,7 +98,12 @@ The **unfiltered 151** questions score much lower. Hybrid+rerank gets R@1 **0.62
 | filtered + 22 items restored by an explicit rule\* | 129 | 0.721 [0.643, 0.798] | +0.039 [−0.023, 0.109] | +0.457 [0.349, 0.558] |
 | reviewer's 12-item restoration (*quoted, not reproduced*: the 12 ids were not provided) | 119 | 0.790 [0.714, 0.857] | +0.050 [−0.017, 0.126] | – |
 
-\*The rule restores a dropped item if a gold answer of 4+ normalised characters occurs in the OCR of exactly one corpus page and that page is the source page. Short generic answers ("bird", "1971") can pass it trivially, so it is an over-restoration bound. Two of the reviewer's items fail it: mq-007 and mq-109 have answers that appear on two pages.
+\*The rule restores a dropped item if a gold answer of 4+ normalised characters occurs in the OCR of exactly one corpus page and that page is the source page. **It checks only that the *answer* is unique, not that the *question* identifies a page**, so it over-restores. Examples:
+- mq-020, "What is the name of the company?", is asked of 8 documents.
+- mq-041 and mq-099 are the same question ("What is the title of the document ?") with different gold pages.
+- The deictic items mq-053, 057, 097, 101, 103 and 143 name no page.
+
+A retriever cannot be expected to resolve such questions, so **0.721 is a pessimistic, over-restored figure**. Two of the reviewer's items fail the rule: mq-007 and mq-109 have answers that appear on two pages.
 
 **Across every subset, hybrid+rerank vs BM25 is not significant (CI includes 0), and the gap to CLIP is 37–54 points.**
 
@@ -279,7 +284,7 @@ The table shortcut fired 0 times.
 
 ## 4. Threats to validity
 - **Tiny corpus**, one page per document and 50 chunks. Retrieval at this scale is easy, so R@1 will drop with realistic corpus sizes.
-- **Ambiguity filter.** A single LLM annotator (Claude) assigned it before retrieval was run, and the review found it over-aggressive. Removing the 44 flagged questions raises R@1 from 0.62 to 0.83, and plausible restorations give 0.72–0.83 (§2.1). Always quote the all-151 number alongside. The criterion is inspectable in `data/ambiguity_labels.csv`.
+- **Ambiguity filter.** A single LLM annotator (Claude) assigned it before retrieval was run, and the review found it over-aggressive. Removing the 44 flagged questions raises R@1 from 0.62 to 0.83, and restorations give 0.72 (rule-based, over-restores) to 0.83 (§2.1). Always quote the all-151 number alongside. The criterion is inspectable in `data/ambiguity_labels.csv`.
 - **Single gold page.** DocVQA gives one source page, but the same answer can appear on another page (e.g. ITC brands across annual-report pages). The lenient metric bounds this effect.
 - **Hard OOD questions** were written by the same party that evaluated them. They deliberately name corpus entities, so AUROC vs hard OOD depends on how the set was constructed. A keyword-over-OCR check suggests they are unanswerable, but this is not human-verified. Thirty items give wide CIs.
 - **Reranker score cache.** The eval-side sqlite cache can change a reranker float by ~1e-6 versus scoring in a different batch (padding), which could flip an exact tie only. The reproduction (§2.0) was run before the cache existed and matched exactly.
@@ -326,6 +331,7 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | b0cee09 | `eval_sop/data/LICENSES.md` | review item 7 | DocVQA / RAGTruth notes | nothing deleted |
 | this commit | RESULTS.md review fixes: all-151 R@1 next to 83%, sensitivity, refusal core finding + trivial AUROC, hard-OOD label, decision table, firewall CIs, sentinel count 30+1 and scores 0.748/0.743, SOP sentences 1–4 rewritten (sentence 3's untrue "redirected my work" clause removed), §8.7 housekeeping removed | review items 1–7 | sections above | numbers unchanged except where marked |
 | r2-1 | SOP sentence 2 reworded: 0/38 on the original test set vs 0/145 on the extended set; hard OOD described as LLM-written and checked only by OCR keyword search (not "I constructed") | round-2 review item 1 | §2.0 (0/38), §2.2 (0/145), `make_ood.py` | numbers unchanged |
+| r2-2 | §2.1 footnote now states that the rule checks answer uniqueness, not whether the question picks out a page, and lists the over-restored items (mq-020; mq-041/mq-099; deictic mq-053/057/097/101/103/143); §4 range reworded | round-2 review item 2 | `data/ambiguity_labels.csv`, `results/retrieval_sensitivity.json` | numbers unchanged |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
