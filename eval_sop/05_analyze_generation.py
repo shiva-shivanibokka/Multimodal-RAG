@@ -133,6 +133,8 @@ def main(path):
     out["claim_flag_rate_pooled_cluster_ci"] = [float(flags.sum() / tots.sum()), float(np.percentile(boots, 2.5)),
                                                 float(np.percentile(boots, 97.5)), int(tots.sum()), len(qs)]
     print("pooled claim flag rate", out["claim_flag_rate_pooled_cluster_ci"])
+    out["decision_metrics"] = decision_metrics(rag, seeds)
+    print(json.dumps(out["decision_metrics"], indent=1))
     stem = Path(path).stem
     (RESULTS / f"{stem}_summary.json").write_text(json.dumps(out, indent=2, default=str))
     print(json.dumps(out["across_seeds_mean_std"], indent=1))
@@ -143,6 +145,118 @@ def main(path):
 
     if "--export-claims" in sys.argv:  # optional; no headline depends on it
         export_claims_for_labeling(rag, seeds[0])
+
+
+
+# ---------------------------------------------------------------------------
+# Review fixes (items 1 and 4): decision metrics that do not reward wrong answers,
+# balanced accuracy, a post-hoc "firewall off" counterfactual, and the firewall's
+# refusal rate on drafts that contain the gold answer -- all with cluster
+# bootstrap CIs over QUESTIONS (each question's 3 seed replies resampled together).
+# Computed only from the existing generation JSONL; no LLM calls.
+# ---------------------------------------------------------------------------
+def _is_sentinel(text):
+    return bool(text) and "not_in_documents" in text.lower()
+
+
+def _cluster_boot_ratio(num, den, groups_mask=None, n=10000, seed=0):
+    """Vectorised cluster bootstrap. num/den: per-question arrays (shape [Q] or [K, Q]
+    for K sub-statistics). Returns point/CI of sum(num)/sum(den) per row."""
+    num, den = np.atleast_2d(num).astype(float), np.atleast_2d(den).astype(float)
+    Q = num.shape[1]
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, Q, size=(n, Q))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        boots = num[:, idx].sum(-1) / den[:, idx].sum(-1)  # [K, n]
+        point = num.sum(-1) / den.sum(-1)
+    return point, boots
+
+
+def _ci(point, boots):
+    b = boots[~np.isnan(boots)]
+    return [float(point), float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]
+
+
+def decision_metrics(rag, seeds):
+    rs = [r for r in rag if r["seed"] in seeds]
+    by_q = defaultdict(list)
+    for r in rs:
+        by_q[r["id"]].append(r)
+    kind = {q: v[0]["kind"] for q, v in by_q.items()}
+
+    def outcome(r, policy):
+        """Return (decided_correctly_lenient, decided_correctly_strict) for one reply.
+        policy 'system': production behaviour as logged.
+        policy 'firewall_off': post-hoc counterfactual -- the LLM draft is shown unless
+          the gate refused, the reply is the exact sentinel, or the table path answered;
+          i.e. the NLI firewall never refuses. Uses raw_llm_output (no new calls)."""
+        if policy == "system":
+            refused = bool(r["refused"])
+            text = None if refused else (r["answer"] or "")
+        else:
+            refused = r["path"] in ("gate_refusal", "llm_not_in_documents")
+            text = None if refused else (r["raw_llm_output"] or r["answer"] or "")
+        if r["kind"] == "answerable":
+            lenient = not refused
+            strict = (not refused) and (not _is_sentinel(text)) and contains_match(text, r["gold_answers"]) == 1.0
+        else:
+            lenient = refused
+            strict = refused or _is_sentinel(text)  # a sentinel reply on OOD is a de-facto refusal
+            # keep 'lenient' = production refusal flag only, so literal sentinel replies count as answers there
+        return float(lenient), float(strict)
+
+    qids = sorted(by_q)
+    is_ans = np.array([kind[q] == "answerable" for q in qids])
+
+    def stats_for(policy, which):
+        idx = 0 if which == "lenient" else 1
+        corr = np.array([sum(outcome(r, policy)[idx] for r in by_q[q]) for q in qids], float)
+        cnt = np.array([len(by_q[q]) for q in qids], float)
+        # rows: plain, answerable-acc, ood-acc
+        num = np.vstack([corr, corr * is_ans, corr * ~is_ans])
+        den = np.vstack([cnt, cnt * is_ans, cnt * ~is_ans])
+        point, boots = _cluster_boot_ratio(num, den)
+        bal_point = 0.5 * (point[1] + point[2])
+        bal_boots = 0.5 * (boots[1] + boots[2])
+        return {"plain_acc": _ci(point[0], boots[0]), "balanced_acc": _ci(bal_point, bal_boots),
+                "answerable_acc": _ci(point[1], boots[1]), "ood_acc": _ci(point[2], boots[2])}
+
+    out = {"n_questions": len(by_q), "n_replies": len(rs),
+           "definitions": {
+               "lenient": "answerable counted correct iff not refused (any non-refusal, even a wrong answer or a literal sentinel reply); OOD correct iff refused flag set",
+               "strict": "answerable correct iff not refused AND reply is not a NOT_IN_DOCUMENTS variant AND gold answer contained in reply; OOD correct iff refused or reply is a sentinel variant",
+               "never_refuse_baseline": "lenient: plain = share answerable, balanced = 0.5"}}
+    for policy in ("system", "firewall_off"):
+        for which in ("lenient", "strict"):
+            out[f"{policy}_{which}"] = stats_for(policy, which)
+    n_ans = sum(1 for q in by_q if kind[q] == "answerable")
+    out["never_refuse_baseline_lenient"] = {"plain_acc": n_ans / len(by_q), "balanced_acc": 0.5}
+
+    # item 4: firewall refusal on answerable LLM drafts, split by whether the draft contains the gold answer
+    drafts = [r for r in rs if r["kind"] == "answerable" and r["path"] in ("answered", "nli_firewall_refusal")]
+    d_by_q = defaultdict(list)
+    for r in drafts:
+        d_by_q[r["id"]].append((contains_match(r["raw_llm_output"] or r["answer"] or "", r["gold_answers"]) == 1.0,
+                                r["path"] == "nli_firewall_refusal"))
+
+    dq = sorted(d_by_q)
+    nc = np.array([sum(1 for c, _ in d_by_q[q] if c) for q in dq], float)
+    rc = np.array([sum(1 for c, ref in d_by_q[q] if c and ref) for q in dq], float)
+    nw = np.array([sum(1 for c, _ in d_by_q[q] if not c) for q in dq], float)
+    rw = np.array([sum(1 for c, ref in d_by_q[q] if (not c) and ref) for q in dq], float)
+    point, boots = _cluster_boot_ratio(np.vstack([rc, rw]), np.vstack([nc, nw]))
+    out["firewall_refusal_on_drafts"] = {
+        "n_drafts": len(drafts), "n_questions": len(dq),
+        "n_drafts_containing_gold": int(nc.sum()), "n_drafts_lacking_gold": int(nw.sum()),
+        "refused_given_draft_contains_gold": _ci(point[0], boots[0]),
+        "refused_given_draft_lacks_gold": _ci(point[1], boots[1]),
+        "gap_lacks_minus_contains": _ci(point[1] - point[0], boots[1] - boots[0]),
+    }
+    # literal sentinel inventory (exact strings)
+    sent = [r["raw_llm_output"].strip() for r in rs if _is_sentinel(r.get("raw_llm_output")) and not r["refused"]]
+    out["sentinel_replies_not_refused"] = dict(Counter(sent))
+    out["nli_score_of_sentinel_claims"] = sorted({round(c["score"], 3) for r in rs if _is_sentinel(r.get("raw_llm_output")) and not r["refused"] for c in r["claims"]})
+    return out
 
 
 def export_claims_for_labeling(rag, seed, n_target=100):

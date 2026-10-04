@@ -293,5 +293,135 @@
     0.5815620929222752,
     613,
     145
-  ]
+  ],
+  "decision_metrics": {
+    "n_questions": 145,
+    "n_replies": 435,
+    "definitions": {
+      "lenient": "answerable counted correct iff not refused (any non-refusal, even a wrong answer or a literal sentinel reply); OOD correct iff refused flag set",
+      "strict": "answerable correct iff not refused AND reply is not a NOT_IN_DOCUMENTS variant AND gold answer contained in reply; OOD correct iff refused or reply is a sentinel variant",
+      "never_refuse_baseline": "lenient: plain = share answerable, balanced = 0.5"
+    },
+    "system_lenient": {
+      "plain_acc": [
+        0.6114942528735632,
+        0.5471264367816092,
+        0.6758620689655173
+      ],
+      "balanced_acc": [
+        0.6462534841777341,
+        0.5760758228002687,
+        0.7142867019595449
+      ],
+      "answerable_acc": [
+        0.573208722741433,
+        0.4984709480122324,
+        0.6474358974358975
+      ],
+      "ood_acc": [
+        0.7192982456140351,
+        0.5980392156862745,
+        0.8333333333333334
+      ]
+    },
+    "system_strict": {
+      "plain_acc": [
+        0.5310344827586206,
+        0.45977011494252873,
+        0.6
+      ],
+      "balanced_acc": [
+        0.6709296606000984,
+        0.6297135151206252,
+        0.7124108053007135
+      ],
+      "answerable_acc": [
+        0.37694704049844235,
+        0.30116959064327486,
+        0.45307443365695793
+      ],
+      "ood_acc": [
+        0.9649122807017544,
+        0.9285714285714286,
+        0.9920634920634921
+      ]
+    },
+    "firewall_off_lenient": {
+      "plain_acc": [
+        0.7517241379310344,
+        0.6804597701149425,
+        0.8161494252873555
+      ],
+      "balanced_acc": [
+        0.5263157894736842,
+        0.5050505050505051,
+        0.5509259259259259
+      ],
+      "answerable_acc": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "ood_acc": [
+        0.05263157894736842,
+        0.010101010101010102,
+        0.10185185185185185
+      ]
+    },
+    "firewall_off_strict": {
+      "plain_acc": [
+        0.5816091954022988,
+        0.5172413793103449,
+        0.6459770114942529
+      ],
+      "balanced_acc": [
+        0.5779226102639776,
+        0.5117722244343706,
+        0.6431365054078468
+      ],
+      "answerable_acc": [
+        0.5856697819314641,
+        0.5048520573277855,
+        0.6635220125786163
+      ],
+      "ood_acc": [
+        0.5701754385964912,
+        0.46296296296296297,
+        0.6756756756756757
+      ]
+    },
+    "never_refuse_baseline_lenient": {
+      "plain_acc": 0.7379310344827587,
+      "balanced_acc": 0.5
+    },
+    "firewall_refusal_on_drafts": {
+      "n_drafts": 321,
+      "n_questions": 107,
+      "n_drafts_containing_gold": 188,
+      "n_drafts_lacking_gold": 133,
+      "refused_given_draft_contains_gold": [
+        0.35638297872340424,
+        0.25998648648648653,
+        0.45405474351902925
+      ],
+      "refused_given_draft_lacks_gold": [
+        0.5263157894736842,
+        0.4153846153846154,
+        0.6328125
+      ],
+      "gap_lacks_minus_contains": [
+        0.16993281075027994,
+        0.027603088830361524,
+        0.3108711509820891
+      ]
+    },
+    "sentinel_replies_not_refused": {
+      "NOT_IN_DOCUMENTS.": 30,
+      "Not_IN_DOCUMENTS.": 1
+    },
+    "nli_score_of_sentinel_claims": [
+      0.743,
+      0.748
+    ]
+  }
 }
