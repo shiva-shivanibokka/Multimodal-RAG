@@ -31,11 +31,12 @@ No paid API was called. No headline depends on future human labels.
 - **44 questions are flagged as ambiguous**, with the reason for each in `ambiguity_labels.csv`:
   - 13 are flagged automatically because the identical question is asked of two or more different documents (for example "What is the name of the company?" is asked of 10 docs).
   - 31 are flagged manually by Claude because they are deictic ("this document", "the logo", "the first rectangle") and name nothing that picks out one of the 40 pages.
-  - The flags were assigned **before** any retrieval was run on the 151 questions. They are a single annotator's judgement (Claude) and have not been human-verified.
+  - The flags were assigned **before** any retrieval was run on the 151 questions. They are a single annotator's judgement (an LLM, Claude) and have not been human-verified.
+  - The independent review found that several dropped questions are in fact uniquely answerable in this corpus (it named mq-103, 104, 107, 109, 113, 137 and 007). The filter is therefore too aggressive. Section 2.1 reports all 151 questions alongside the filtered set, plus a sensitivity analysis.
   - The remaining 107 make up the "filtered" set.
 - `ood_questions.json` contains two kinds of out-of-corpus questions:
   - 8 *trivial* OOD questions from the original repo (Falcon 9, FIFA, ...).
-  - **30 *hard*, near-domain OOD questions, author-constructed by Claude.** Each names an entity that appears in the corpus (ITC, CIGFIL, Taco Bell, the Missouri Food Donation Program, ...) but asks for a fact that a keyword search over the docTR OCR suggests is absent. "Unanswerable" holds by construction plus that OCR check. It is not human-verified (OCR can miss text).
+  - **30 *hard*, near-domain OOD questions, constructed by the evaluator (Claude) to name corpus entities.** Each names an entity that appears in the corpus (ITC, CIGFIL, Taco Bell, the Missouri Food Donation Program, ...) but asks for a fact that a keyword search over the docTR OCR suggests is absent. "Unanswerable" holds by construction plus that OCR check. It is not human-verified (OCR can miss text).
 
 **Exact reproduction commands** (from the worktree root, with `C:\mrag\.venv`):
 ```
@@ -49,6 +50,7 @@ python eval_sop/repro_findings.py     # deterministic reproductions of code find
 # RAGTruth (MIT): download test parquet to eval_sop/cache/ragtruth/test.parquet (URL in script docstring)
 python eval_sop/06_nli_ragtruth.py --n 450 --seed 0
 python eval_sop/07_plot.py            # any python with matplotlib
+python eval_sop/08_sensitivity.py     # retrieval sensitivity to the ambiguity filter
 ```
 
 ## 2. Results
@@ -61,7 +63,13 @@ matches `backend/eval/report.json` **exactly** (every diff is 0.0; see
 - **Citation accuracy is recall@1. Confirmed.** In `run_eval.py`, `cited_pages = [retrieved_pages[0]]`, so the two columns are identical in every mode.
 - **Faithfulness was never measured. Confirmed** (`"faithfulness": null`).
 
-### 2.1 Retrieval (n = 107 unambiguous; strict = the DocVQA source page)
+### 2.1 Retrieval (strict = the DocVQA source page)
+
+**Headline, reported both ways.** Production hybrid+rerank R@1 is:
+- **0.623 [0.543, 0.702] on all 151 questions**;
+- **0.832 [0.757, 0.897] on the 107** kept by the single-annotator (LLM) ambiguity filter.
+
+The table below uses the filtered 107.
 Notes on the metrics:
 - "R@5" means at least one hit among the **top-5 chunks**. These are de-duplicated pages, so it covers 4.6 pages on average for the text modes and 5 for CLIP.
 - With 40 pages, random ranking gives R@1 = 0.025.
@@ -80,6 +88,20 @@ On the same 107 questions, the lenient criterion counts a retrieved page as rele
 
 The **unfiltered 151** questions score much lower. Hybrid+rerank gets R@1 **0.623 [0.543, 0.702]**, R@5 0.801 and MRR 0.689. BM25 gets R@1 0.603, caption_baseline 0.556 and CLIP 0.252. On the 44 ambiguous questions alone, hybrid+rerank gets R@1 0.114. The full tables are in `results/retrieval_summary.json`.
 
+**Sensitivity to the ambiguity filter** (`08_sensitivity.py` → `results/retrieval_sensitivity.json`). Each row is hybrid+rerank R@1.
+
+| subset | n | R@1 [95% CI] | Δ vs BM25 | Δ vs CLIP |
+|---|---|---|---|---|
+| all 151 (no filter) | 151 | 0.623 [0.543, 0.702] | +0.020 [−0.040, 0.079] | +0.371 [0.272, 0.470] |
+| filtered (Claude) | 107 | 0.832 [0.757, 0.897] | +0.037 [−0.028, 0.103] | +0.542 [0.430, 0.654] |
+| filtered + the 7 items the reviewer named | 114 | 0.825 [0.754, 0.895] | +0.061 [−0.009, 0.140] | +0.544 [0.430, 0.649] |
+| filtered + 22 items restored by an explicit rule\* | 129 | 0.721 [0.643, 0.798] | +0.039 [−0.023, 0.109] | +0.457 [0.349, 0.558] |
+| reviewer's 12-item restoration (*quoted, not reproduced*: the 12 ids were not provided) | 119 | 0.790 [0.714, 0.857] | +0.050 [−0.017, 0.126] | – |
+
+\*The rule restores a dropped item if a gold answer of 4+ normalised characters occurs in the OCR of exactly one corpus page and that page is the source page. Short generic answers ("bird", "1971") can pass it trivially, so it is an over-restoration bound. Two of the reviewer's items fail it: mq-007 and mq-109 have answers that appear on two pages.
+
+**Across every subset, hybrid+rerank vs BM25 is not significant (CI includes 0), and the gap to CLIP is 37–54 points.**
+
 **Paired differences (filtered, strict R@1):**
 
 | comparison | ΔR@1 [95% CI] | bootstrap p |
@@ -92,19 +114,24 @@ The **unfiltered 151** questions score much lower. Hybrid+rerank gets R@1 **0.62
 | hybrid+rerank − caption_baseline | +0.140 [0.047, 0.234] | 0.005 |
 | caption_baseline − CLIP | +0.402 [0.280, 0.523] | <0.001 |
 
-Answer ANLS/EM needs generation, so it is not reported yet (§5). The closest
-non-LLM proxy is answer-string coverage: a 4+ character gold answer appears in
-the top-5 retrieved pages for **0.972** of the filtered questions (hybrid+rerank, lenient R@5).
+Answer-string coverage is a non-LLM proxy for answer quality: a 4+ character gold
+answer appears in the top-5 retrieved pages for **0.972** of the filtered questions
+(hybrid+rerank, lenient R@5). Generated-answer ANLS/EM is in §2.5.
 
 ### 2.2 Refusal as selective prediction (no LLM)
+
+**Core finding:** the shipped 0.25 threshold refused **0 of 145** questions (107 answerable + 38 OOD) in the dense, hybrid and caption modes. The committed "refusal accuracy" is therefore the class prior.
+
+The gate does separate answerable questions from obviously off-topic ones: AUROC is **0.91** against the 8 trivial OOD questions. It does not separate them from the 30 hard OOD questions (AUROC **0.30**). Those were constructed by the evaluator (Claude) to name corpus entities, so this number depends on how the set was built.
+
 - Positives: 107 unambiguous answerable questions.
-- Negatives: 8 trivial OOD + 30 hard OOD (author-constructed).
+- Negatives: 8 trivial OOD (from the repo) + 30 hard OOD (constructed by the evaluator (Claude) to name corpus entities).
 - AUROC = P(answerable question scores higher than OOD question).
 - The production rule is "answer iff gate ≥ 0.25". The "CV threshold" row instead picks the cutoff on held-out folds by maximising balanced accuracy (5-fold stratified × seeds 0–4, mean ± std).
 
 | signal | AUROC vs trivial OOD | AUROC vs hard OOD | AUROC vs all OOD | acc @0.25 (always-answer baseline) | AURC (random-order AURC) |
 |---|---|---|---|---|---|
-| dense gate (bge cosine) | 0.911 [0.811, 0.981] | **0.302 [0.198, 0.404]** | 0.430 [0.321, 0.546] | 0.738 (0.738), refuses 0/145 | 0.412 (0.400) |
+| dense gate (bge cosine) | **0.911 [0.811, 0.981]** | **0.302 [0.198, 0.404]** | 0.430 [0.321, 0.546] | 0.738 (0.738), refuses 0/145 | 0.412 (0.400) |
 | hybrid gate (production default) | identical to dense (see note) | 0.302 | 0.430 | 0.738 (0.738) | 0.411 (0.386) |
 | caption_baseline gate | 0.916 | 0.281 [0.184, 0.378] | 0.414 | 0.738 (0.738) | 0.447 (0.490) |
 | CLIP gate | 0.831 | 0.294 [0.185, 0.415] | 0.407 | **0.621** (0.738): refuses 26% of answerable and 29% of OOD | 0.688 (0.786) |
@@ -183,38 +210,64 @@ How to read these numbers:
 - **No** question was refused by the retrieval gate.
 - The LLM's exact `NOT_IN_DOCUMENTS` reply caused 6 OOD refusals in total.
 - Every other refusal came from the NLI firewall.
-- End-to-end, the system's answer/refuse decision is **less accurate than always answering**.
+
+**Decision accuracy: plain vs balanced, lenient vs strict.** These come from `decision_metrics` in the summary JSON. Each cell is a point estimate with a cluster-bootstrap CI over the 145 questions (3 seeds each). Two definitions are used:
+- **Lenient:** an answerable question is "correct" if it was not refused, even when the answer is wrong or a literal sentinel reply. An OOD question is correct if refused.
+- **Strict:** an answerable question is correct only if it was answered, the reply is not a `NOT_IN_DOCUMENTS` variant, and the reply contains the gold answer. An OOD question is correct if refused or if the reply is a sentinel variant.
+
+"Firewall off" is a post-hoc counterfactual built from the logged raw drafts. It shows every LLM draft except the exact sentinel; no new calls were made.
+
+| policy | plain acc (lenient) | balanced acc (lenient) | plain acc (strict) | balanced acc (strict) |
+|---|---|---|---|---|
+| never refuse (baseline) | 0.738 | 0.500 | – | – |
+| **system as shipped** | 0.611 [0.547, 0.676] | **0.646 [0.576, 0.714]** | 0.531 [0.460, 0.600] | 0.671 [0.630, 0.712] |
+| firewall off (counterfactual) | 0.752 [0.680, 0.816] | 0.526 [0.505, 0.551] | 0.582 [0.517, 0.646] | 0.578 [0.512, 0.643] |
+
+How to read the table:
+- **The mix is 74% answerable.** Under plain accuracy, the shipped system (0.611) is below never refusing (0.738).
+- **Balanced accuracy reverses that.** The shipped system scores 0.646, against 0.500 for never refusing.
+- **Under the strict definition, the firewall trades answer coverage for abstention.**
+  - Answerable questions correct: 0.377 shipped vs 0.586 with the firewall off.
+  - OOD questions correct: 0.965 shipped vs 0.570 with the firewall off.
+  - Strict balanced accuracy is higher with the firewall (0.671 vs 0.578), but strict plain accuracy is lower (0.531 vs 0.582).
+- Neither metric alone is "the" answer, so both are reported.
 
 **The NLI firewall on this system's own answers**
 - Claim flag rate (unsupported): **0.507 [0.431, 0.582]**, pooled over 613 claims from 145 questions with a cluster CI. Per seed it is 0.482 ± 0.018 on answerable questions and 0.609 ± 0.075 on OOD.
 - The firewall fully refused 49.6% ± 2.8% of the LLM-drafted answers.
-- A label-free check against the DocVQA gold answers, pooled over 321 answerable drafts, shows that the firewall refused:
-  - **35.6%** of drafts that *contain the gold answer* (n = 188);
-  - 52.6% of drafts that do not (n = 133).
-- So it is only weakly selective, consistent with §2.3.
+- A label-free check against the DocVQA gold answers covers 321 answerable drafts from 107 questions. CIs come from a cluster bootstrap over questions. The firewall refused:
+  - **35.6% [26.0%, 45.4%]** of drafts *containing the gold answer* (n = 188);
+  - 52.6% [41.5%, 63.3%] of drafts lacking it (n = 133).
+  - The gap is **17.0 points [2.8, 31.1]**: selective, but weakly so, consistent with §2.3.
+- "Containing the gold answer" is the lenient contains-match, not human-judged correctness.
 
-**F1 has real impact.** The model replied `"NOT_IN_DOCUMENTS."` (with a period) in 31 of the 435 RAG replies: 3 on answerable questions and 28 on OOD questions.
-- `answer.py` does not treat that reply as a refusal.
-- The NLI gate then scores the single claim `"NOT_IN_DOCUMENTS."` as *entailed* (P = 0.748 every time).
+**F1 has real impact.** 31 of the 435 RAG replies were a sentinel variant that was not refused: 3 on answerable questions and 28 on OOD questions. Of these, 30 were exactly `"NOT_IN_DOCUMENTS."` (with a period) and 1 was `"Not_IN_DOCUMENTS."`.
+- `answer.py` does not treat these replies as refusals.
+- The NLI gate then scores the single claim as *entailed*, with P = 0.748 or 0.743.
 - So the reply is returned as a supported, cited answer.
 
 If the sentinel were matched leniently (post-hoc analysis only; the product is unchanged):
 - hard-OOD refusal would be 0.956 ± 0.063;
 - trivial-OOD refusal would be 1.0;
-- overall decision accuracy would be 0.669 ± 0.020, still below the 0.738 always-answer baseline.
+- overall plain decision accuracy would be 0.669 ± 0.020 (vs 0.738 for never refusing on plain accuracy). The strict columns above already count sentinel replies on OOD as refusals.
 
 The table shortcut fired 0 times.
 
 ## 3. What the numbers support, and what they don't
 
 **Supported**
-- On 107 unambiguous DocVQA questions over a 40-page / 50-chunk corpus, hybrid retrieval with cross-encoder reranking puts the source page first 83% of the time [76%, 90%].
+- Over a 40-page / 50-chunk corpus, hybrid retrieval with cross-encoder reranking puts the source page first:
+  - 62% [54%, 70%] of the time on all 151 DocVQA questions;
+  - 83% [76%, 90%] on the 107 an LLM annotator judged unambiguous;
+  - 72%–83% under the filter-sensitivity variants.
 - Reranking helps dense retrieval (+11 pts R@1, CI excludes 0).
 - Text-based retrieval beats CLIP page-image retrieval by a wide margin on these text-dense scans.
-- The committed refusal accuracy is the class prior. The retrieval gate cannot separate in-corpus questions from near-domain unanswerable ones.
+- The committed refusal accuracy is the class prior: the 0.25 threshold refused 0/145.
+- The retrieval gate separates trivial OOD questions well (AUROC 0.91). It does not separate near-domain questions that the evaluator constructed to name corpus entities (AUROC 0.30).
 - The production NLI gate, checked against human labels on 450 RAGTruth QA responses, has low precision (0.08 per claim).
 - With a local 3B model, retrieval-augmented answering beats the closed-book baseline by a wide margin: gold answer contained 0.377 vs 0.006.
-- End-to-end, the answer/refuse decision (0.611) is worse than always answering (0.738). The NLI firewall refuses 36% of drafts that contain the correct answer.
+- End-to-end, the answer/refuse decision has balanced accuracy 0.646 [0.576, 0.714] (never refusing: 0.50). Its plain accuracy, 0.611, is below never refusing (0.738) because the mix is 74% answerable.
+- The NLI firewall refuses 36% [26%, 45%] of drafts containing the gold answer, vs 53% of drafts lacking it.
 
 **Not supported**
 - Any claim that the system "refuses calibratedly" or "prevents hallucinations". The gate refuses nothing at 0.25, and the NLI firewall flags most faithful claims.
@@ -226,7 +279,7 @@ The table shortcut fired 0 times.
 
 ## 4. Threats to validity
 - **Tiny corpus**, one page per document and 50 chunks. Retrieval at this scale is easy, so R@1 will drop with realistic corpus sizes.
-- **Ambiguity filter.** A single annotator (Claude) assigned it before retrieval was run. Removing the 44 flagged questions raises R@1 from 0.62 to 0.83, so the unfiltered numbers should be reported alongside. The criterion is inspectable in `data/ambiguity_labels.csv`.
+- **Ambiguity filter.** A single LLM annotator (Claude) assigned it before retrieval was run, and the review found it over-aggressive. Removing the 44 flagged questions raises R@1 from 0.62 to 0.83, and plausible restorations give 0.72–0.83 (§2.1). Always quote the all-151 number alongside. The criterion is inspectable in `data/ambiguity_labels.csv`.
 - **Single gold page.** DocVQA gives one source page, but the same answer can appear on another page (e.g. ITC brands across annual-report pages). The lenient metric bounds this effect.
 - **Hard OOD questions** were written by the same party that evaluated them. They deliberately name corpus entities, so AUROC vs hard OOD depends on how the set was constructed. A keyword-over-OCR check suggests they are unanswerable, but this is not human-verified. Thirty items give wide CIs.
 - **Reranker score cache.** The eval-side sqlite cache can change a reranker float by ~1e-6 versus scoring in a different batch (padding), which could flip an exact tie only. The reproduction (§2.0) was run before the cache existed and matched exactly.
@@ -249,10 +302,10 @@ The table shortcut fired 0 times.
 - If a paid model is wanted later for more representative answer quality, the same run is about 145 × 3 calls × ~1.75k prompt tokens ≈ **0.76M input + ~25k output tokens**. That cost is on the order of $1 for a small-tier model and a few dollars for a frontier-tier model at typical list prices. Check the provider's current price sheet. Nothing was called.
 
 ## 6. SOP-ready sentences (strictly true given these numbers)
-1. "I built a multimodal document-QA system. On 107 unambiguous DocVQA questions over a 40-page corpus, its hybrid BM25+dense retrieval with cross-encoder reranking places the source page first 83% of the time (95% CI 76–90%). That is 54 points above CLIP page-image retrieval but not statistically distinguishable from a plain BM25 baseline (n=107)."
-2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline. On 30 near-domain unanswerable questions, its similarity-based abstention gate scored below chance (AUROC 0.30). A reranker-score signal did better (AUROC 0.63)."
-3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold. That result redirected my work toward calibrating verification rather than adding it."
-4. "In an end-to-end test with a local 3B model, retrieval raised the rate at which replies contained the gold answer from 0.6% (closed-book) to 38%. However, the verification layer refused 36% of correct drafts, and the system's overall answer/refuse decisions were less accurate than never refusing (0.61 vs 0.74)."
+1. "I built a multimodal document-QA system. Over a 40-page DocVQA corpus, its hybrid BM25+dense retrieval with cross-encoder reranking ranks the source page first for 62% of all 151 questions (95% CI 54–70%), and 83% (76–90%) of the 107 questions an LLM annotator judged unambiguous. That is 37–54 points above CLIP page-image retrieval, but not statistically distinguishable from a plain BM25 baseline in any subset."
+2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline: the shipped similarity threshold refused 0 of 145 questions. The underlying score separated obviously off-topic questions well (AUROC 0.91), but not 30 near-domain unanswerable questions that I constructed to name entities in the corpus (AUROC 0.30)."
+3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold."
+4. "In an end-to-end test with a local 3B model, retrieval raised the share of replies containing the gold answer from 0.6% (closed-book) to 38%. The NLI firewall refused 36% (95% CI 26–45%) of drafts containing the gold answer versus 53% of drafts lacking it. The system's answer/refuse decisions reached a balanced accuracy of 0.65, against 0.50 for never refusing."
 
 ## 7. Change log (this branch)
 Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged.
@@ -266,6 +319,12 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | 3edd16c, 23f63bb | RESULTS.md, plus a wording fix (CLIP gap is 54 pts, not 52) | deliverable | this file | — |
 | 78a18e3 | `05_analyze_generation.py`: e2e decision CIs, pooled claim flag rate with cluster bootstrap, post-hoc sentinel-normalised analysis, claims export made opt-in | needed for the CIs requested for §2.5 | `eval_sop/05_analyze_generation.py` | product unchanged; the original metrics are kept |
 | b92bc09 | generation raw results + §2.5 | coordinator granted the Ollama slot | `results/generation_*`, `04_generation.log` | — |
+| 6637983 | change-log hashes | bookkeeping | this file | — |
+| 02a3d4c | `05`: plain + balanced and strict decision accuracy, firewall-off counterfactual, firewall refusal by draft correctness, all with cluster bootstrap over questions | review items 1 and 4 | `decision_metrics` in `results/generation_..._summary.json`; reviewer's ≈0.65 balanced and 36% [26, 45] / gap [3, 31] reproduced | existing summary keys byte-identical (checked) |
+| 1b2b7d5 | `04`: `--num-ctx-check` default 8192 → 4096 and actually enforced (it was never read) | review item 6 | `04_generation.py` arg parser; recorded max prompt+completion 3,633 < 4096 | recorded results unchanged (no rerun) |
+| 86a936d | `08_sensitivity.py` + `results/retrieval_sensitivity.json` | review item 3 | §2.1 table | — |
+| b0cee09 | `eval_sop/data/LICENSES.md` | review item 7 | DocVQA / RAGTruth notes | nothing deleted |
+| this commit | RESULTS.md review fixes: all-151 R@1 next to 83%, sensitivity, refusal core finding + trivial AUROC, hard-OOD label, decision table, firewall CIs, sentinel count 30+1 and scores 0.748/0.743, SOP sentences 1–4 rewritten (sentence 3's untrue "redirected my work" clause removed), §8.7 housekeeping removed | review items 1–7 | sections above | numbers unchanged except where marked |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
@@ -280,6 +339,3 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
    - Replace "caption_baseline … recall@5 0.80" with the 107/151-question numbers above.
    - State that faithfulness has not been measured end to end, and give the RAGTruth gate numbers.
    - Remove "calibrated refusal" wording until there is evidence for it.
-7. Housekeeping for the user, which I could not do:
-   - A private `ollama serve` that I started on port 11435 (PID 104868, started 2026-10-01 18:34) is still running. My stop request was denied by the permission system, so please stop it yourself.
-   - The venv `C:\mrag\.venv` is outside the repo.
