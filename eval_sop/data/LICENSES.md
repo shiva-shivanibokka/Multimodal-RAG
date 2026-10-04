@@ -21,6 +21,8 @@ should decide whether each item may stay in a public repo.
     `backend/eval/corpus/manifest.json` on `main`.
   - `results/generation_llama3.2_latest_T0.7.jsonl`. It contains DocVQA questions
     and gold answers, plus model replies that can quote OCR text of DocVQA pages.
+  - `results/04_generation.log`. It contains question ids and 60-character
+    snippets of model replies, which can quote DocVQA page text.
 - **Not committed.** The page images and the OCR cache (`eval_sop/cache/`) are
   gitignored.
 - **No DocVQA text.** `results/retrieval_*.json`, `gate_scores.json` and

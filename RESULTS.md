@@ -29,7 +29,7 @@ No paid API was called. No headline depends on future human labels.
 **Gold sets** (`eval_sop/data/`)
 - `gold_all151.json` contains **all 151** DocVQA QA pairs in the manifest. The original gold set used only 38: 30 answerable plus 8 OOD.
 - **44 questions are flagged as ambiguous**, with the reason for each in `ambiguity_labels.csv`:
-  - 13 are flagged automatically because the identical question is asked of two or more different documents (for example "What is the name of the company?" is asked of 10 docs).
+  - 13 are flagged automatically because the identical question is asked of two or more different documents (for example "What is the name of the company?" is asked of 8 docs).
   - 31 are flagged manually by Claude because they are deictic ("this document", "the logo", "the first rectangle") and name nothing that picks out one of the 40 pages.
   - The flags were assigned **before** any retrieval was run on the 151 questions. They are a single annotator's judgement (an LLM, Claude) and have not been human-verified.
   - The independent review found that several dropped questions are in fact uniquely answerable in this corpus (it named mq-103, 104, 107, 109, 113, 137 and 007). The filter is therefore too aggressive. Section 2.1 reports all 151 questions alongside the filtered set, plus a sensitivity analysis.
@@ -267,7 +267,7 @@ The table shortcut fired 0 times.
 **Supported**
 - Over a 40-page / 50-chunk corpus, hybrid retrieval with cross-encoder reranking puts the source page first:
   - 62% [54%, 70%] of the time on all 151 DocVQA questions;
-  - 83% [76%, 90%] on the 107 an LLM annotator judged unambiguous;
+  - 83% [76%, 90%] on the 107 that passed an LLM-applied ambiguity filter (13 of the 44 exclusions came from an automatic duplicate-question rule);
   - 72%–83% under the filter-sensitivity variants.
 - Reranking helps dense retrieval (+11 pts R@1, CI excludes 0).
 - Text-based retrieval beats CLIP page-image retrieval by a wide margin on these text-dense scans.
@@ -311,7 +311,7 @@ The table shortcut fired 0 times.
 - If a paid model is wanted later for more representative answer quality, the same run is about 145 × 3 calls × ~1.75k prompt tokens ≈ **0.76M input + ~25k output tokens**. That cost is on the order of $1 for a small-tier model and a few dollars for a frontier-tier model at typical list prices. Check the provider's current price sheet. Nothing was called.
 
 ## 6. SOP-ready sentences (strictly true given these numbers)
-1. "I built a multimodal document-QA system. Over a 40-page DocVQA corpus, its hybrid BM25+dense retrieval with cross-encoder reranking ranks the source page first for 62% of all 151 questions (95% CI 54–70%), and 83% (76–90%) of the 107 questions an LLM annotator judged unambiguous. That is 37–54 points above CLIP page-image retrieval, but not statistically distinguishable from a plain BM25 baseline in any subset."
+1. "I built a multimodal document-QA system. Over a 40-page DocVQA corpus, its hybrid BM25+dense retrieval with cross-encoder reranking ranks the source page first for 62% of all 151 questions (95% CI 54–70%), and 83% (76–90%) of the 107 that passed an LLM-applied ambiguity filter. That is 37–54 points above CLIP page-image retrieval, but not statistically distinguishable from a plain BM25 baseline in any subset."
 2. "When I re-evaluated my own system, I found that its reported 0.79 refusal accuracy equalled the never-refuse baseline: the shipped similarity threshold refused none of its 38 test questions (and 0 of 145 in my extended set). The score separated 8 obviously off-topic questions well (AUROC 0.91), but not 30 near-domain questions written (with an LLM) to name corpus entities and checked as unanswerable only by OCR keyword search (AUROC 0.30)."
 3. "Validating my NLI faithfulness gate against human hallucination labels on 450 RAGTruth QA responses showed high recall (0.94) but very low precision (0.08) at the shipped threshold."
 4. "In an end-to-end test with a local 3B model, retrieval raised the share of replies containing the gold answer from 0.6% (closed-book) to 38%. The NLI firewall refused 36% (95% CI 26–45%) of drafts containing the gold answer versus 53% of drafts lacking it. The system's answer/refuse decisions reached a balanced accuracy of 0.65, against 0.50 for never refusing."
@@ -329,7 +329,7 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | 78a18e3 | `05_analyze_generation.py`: e2e decision CIs, pooled claim flag rate with cluster bootstrap, post-hoc sentinel-normalised analysis, claims export made opt-in | needed for the CIs requested for §2.5 | `eval_sop/05_analyze_generation.py` | product unchanged; the original metrics are kept |
 | b92bc09 | generation raw results + §2.5 | coordinator granted the Ollama slot | `results/generation_*`, `04_generation.log` | — |
 | 6637983 | change-log hashes | bookkeeping | this file | — |
-| 02a3d4c | `05`: plain + balanced and strict decision accuracy, firewall-off counterfactual, firewall refusal by draft correctness, all with cluster bootstrap over questions | review items 1 and 4 | `decision_metrics` in `results/generation_..._summary.json`; reviewer's ≈0.65 balanced and 36% [26, 45] / gap [3, 31] reproduced | existing summary keys byte-identical (checked) |
+| 02a3d4c | `05`: plain + balanced and strict decision accuracy, firewall-off counterfactual, firewall refusal by draft correctness, all with cluster bootstrap over questions | review items 1 and 4 | `decision_metrics` in `results/generation_..._summary.json`; reviewer's ≈0.65 balanced and 36% [26, 45] / gap [3, 31] reproduced | existing summary values identical (checked) |
 | 1b2b7d5 | `04`: `--num-ctx-check` default 8192 → 4096 and actually enforced (it was never read) | review item 6 | `04_generation.py` arg parser; recorded max prompt+completion 3,633 < 4096 | recorded results unchanged (no rerun) |
 | 86a936d | `08_sensitivity.py` + `results/retrieval_sensitivity.json` | review item 3 | §2.1 table | — |
 | b0cee09 | `eval_sop/data/LICENSES.md` | review item 7 | DocVQA / RAGTruth notes | nothing deleted |
@@ -337,6 +337,7 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | r2-1 | SOP sentence 2 reworded: 0/38 on the original test set vs 0/145 on the extended set; hard OOD described as LLM-written and checked only by OCR keyword search (not "I constructed") | round-2 review item 1 | §2.0 (0/38), §2.2 (0/145), `make_ood.py` | numbers unchanged |
 | r2-2 | §2.1 footnote now states that the rule checks answer uniqueness, not whether the question picks out a page, and lists the over-restored items (mq-020; mq-041/mq-099; deictic mq-053/057/097/101/103/143); §4 range reworded | round-2 review item 2 | `data/ambiguity_labels.csv`, `results/retrieval_sensitivity.json` | numbers unchanged |
 | r2-3 | Never-refuse baseline strict cells filled (= firewall-off row, with the reason) and the like-for-like strict comparison stated (0.671 vs 0.578 balanced; 0.531 vs 0.582 plain) | round-2 review item 3 | `decision_metrics.firewall_off_strict` in the summary JSON | numbers unchanged |
+| r2-4 | SOP 1 and §3: "passed an LLM-applied ambiguity filter" (13/44 exclusions are rule-based); §1 corrected "10 docs" → 8 docs; "byte-identical" → "values identical"; LICENSES.md lists `04_generation.log` | round-2 review item 4 | `data/ambiguity_labels.csv` (8 rows with that question) | numbers unchanged |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
