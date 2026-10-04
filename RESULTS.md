@@ -224,7 +224,7 @@ How to read these numbers:
 
 | policy | plain acc (lenient) | balanced acc (lenient) | plain acc (strict) | balanced acc (strict) |
 |---|---|---|---|---|
-| never refuse (baseline) | 0.738 | 0.500 | – | – |
+| never refuse (baseline) | 0.738 | 0.500 | 0.582 [0.517, 0.646]† | 0.578 [0.512, 0.643]† |
 | **system as shipped** | 0.611 [0.547, 0.676] | **0.646 [0.576, 0.714]** | 0.531 [0.460, 0.600] | 0.671 [0.630, 0.712] |
 | firewall off (counterfactual) | 0.752 [0.680, 0.816] | 0.526 [0.505, 0.551] | 0.582 [0.517, 0.646] | 0.578 [0.512, 0.643] |
 
@@ -236,6 +236,10 @@ How to read the table:
   - OOD questions correct: 0.965 shipped vs 0.570 with the firewall off.
   - Strict balanced accuracy is higher with the firewall (0.671 vs 0.578), but strict plain accuracy is lower (0.531 vs 0.582).
 - Neither metric alone is "the" answer, so both are reported.
+- † Under the strict definition, never refusing equals the firewall-off row:
+  - the retrieval gate refused nothing;
+  - an exact-sentinel reply scores the same under both policies (wrong on answerable questions, a de-facto refusal on OOD).
+- **The like-for-like comparison is shipped strict balanced accuracy 0.671 [0.630, 0.712] vs 0.578 [0.512, 0.643] for never refusing.** On strict plain accuracy, never refusing is higher: 0.582 vs 0.531.
 
 **The NLI firewall on this system's own answers**
 - Claim flag rate (unsupported): **0.507 [0.431, 0.582]**, pooled over 613 claims from 145 questions with a cluster CI. Per seed it is 0.482 ± 0.018 on answerable questions and 0.609 ± 0.075 on OOD.
@@ -332,6 +336,7 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 | this commit | RESULTS.md review fixes: all-151 R@1 next to 83%, sensitivity, refusal core finding + trivial AUROC, hard-OOD label, decision table, firewall CIs, sentinel count 30+1 and scores 0.748/0.743, SOP sentences 1–4 rewritten (sentence 3's untrue "redirected my work" clause removed), §8.7 housekeeping removed | review items 1–7 | sections above | numbers unchanged except where marked |
 | r2-1 | SOP sentence 2 reworded: 0/38 on the original test set vs 0/145 on the extended set; hard OOD described as LLM-written and checked only by OCR keyword search (not "I constructed") | round-2 review item 1 | §2.0 (0/38), §2.2 (0/145), `make_ood.py` | numbers unchanged |
 | r2-2 | §2.1 footnote now states that the rule checks answer uniqueness, not whether the question picks out a page, and lists the over-restored items (mq-020; mq-041/mq-099; deictic mq-053/057/097/101/103/143); §4 range reworded | round-2 review item 2 | `data/ambiguity_labels.csv`, `results/retrieval_sensitivity.json` | numbers unchanged |
+| r2-3 | Never-refuse baseline strict cells filled (= firewall-off row, with the reason) and the like-for-like strict comparison stated (0.671 vs 0.578 balanced; 0.531 vs 0.582 plain) | round-2 review item 3 | `decision_metrics.firewall_off_strict` in the summary JSON | numbers unchanged |
 
 `04_generation.py` monkeypatches `providers._OPENAI_COMPAT["openai"]` and `providers._post` **in-process only**, so a local model can be used without editing the product.
 
