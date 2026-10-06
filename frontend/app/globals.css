@@ -152,6 +152,21 @@ body {
 .live { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-mono); font-size: .78rem; color: var(--ink);
   border: 1px solid var(--line); border-radius: 999px; padding: .42rem .9rem; background: var(--panel); }
 .live .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grounded); box-shadow: 0 0 10px var(--grounded); }
+/* The badge is only green when there is something to be green about. When the
+   backend is gone the dot is amber and stops glowing, so it does not read as a
+   healthy service at a glance. */
+.live.offline { color: var(--dim); border-color: var(--line); }
+.live.offline .dot { background: #e0b341; box-shadow: none; }
+
+/* A standing notice in the hero: the demo cannot work, and here is what can. */
+.notice {
+  margin: 1.6rem 0 0; padding: 1rem 1.2rem; border-radius: 10px;
+  border: 1px solid var(--line); border-left: 3px solid #e0b341;
+  background: var(--panel); color: var(--dim);
+  font-size: .95rem; line-height: 1.65; max-width: 100%;
+}
+.notice b { color: var(--ink); font-weight: 600; }
+.notice a { color: var(--ink); text-underline-offset: 3px; }
 
 /* full-width hero: headline + lede span the whole content column */
 .hero { margin-bottom: 2.6rem; }

@@ -202,8 +202,11 @@ export default function Home() {
       <div className="topbar">
         <span className="eyebrow">Multimodal RAG · Trust Layer</span>
         <span className="topbar-right">
-          <span className="live">
-            <span className="dot" /> live
+          {/* This said "live" unconditionally, including after the Cloud Run
+              backend went away with its billing account. A badge that is always
+              green is not a status, so it says what is actually true instead. */}
+          <span className="live offline">
+            <span className="dot" /> backend offline
           </span>
           <Link className="navlink" href="/eval">
             benchmark →
@@ -220,6 +223,21 @@ export default function Home() {
           Ask questions across scanned PDFs, images, and tables. Every claim is checked against the source —{" "}
           <b>grounded ones turn green, unsupported ones get flagged</b> — and when the answer isn&apos;t in your
           documents, it says so instead of guessing.
+        </p>
+
+        {/* The upload and ask flow below needs the FastAPI service that used to
+            run on Cloud Run. Its billing account was closed, so every request
+            will fail. Say that before someone uploads a file and waits, and send
+            them to the recorded evaluation, which needs no backend. */}
+        <p className="notice">
+          <b>The backend for this demo is switched off.</b> It ran on Google Cloud Run under a
+          billing account that has since been closed, so uploading documents and asking questions
+          below will not work. Everything the demo measured is still available:{" "}
+          <a href="https://multimodal-rag-replay.vercel.app/" target="_blank" rel="noopener noreferrer">
+            replay the recorded evaluation
+          </a>{" "}
+          — 189 questions with the pages each retriever returned, the refusal gate&apos;s score, and
+          the model&apos;s answer on three seeds.
         </p>
       </header>
 
