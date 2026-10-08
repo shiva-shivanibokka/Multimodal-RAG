@@ -1,0 +1,13173 @@
+[
+ {
+  "id": "mq-000",
+  "ambiguous": false,
+  "source_page": 6,
+  "dense+rerank": {
+   "pages": [
+    4,
+    13,
+    10,
+    6
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.01220009010285139
+  },
+  "dense-norerank": {
+   "pages": [
+    4,
+    31,
+    10,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5986860394477844
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    7,
+    34,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.01220009010285139
+  },
+  "hybrid-norerank": {
+   "pages": [
+    6,
+    13,
+    4,
+    9,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.031024531024531024
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    6,
+    7
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 10.417510862593085
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    6,
+    4,
+    37,
+    34,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.28987282514572144
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    4,
+    30,
+    6,
+    10
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5945714712142944
+  }
+ },
+ {
+  "id": "mq-001",
+  "ambiguous": true,
+  "source_page": 32,
+  "dense+rerank": {
+   "pages": [
+    3,
+    31,
+    30,
+    35,
+    2
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.022504856809973717
+  },
+  "dense-norerank": {
+   "pages": [
+    32,
+    1,
+    2,
+    31,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.48545295000076294
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    31,
+    30,
+    35,
+    2
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.022504856809973717
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    31,
+    11,
+    29,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    7,
+    30,
+    31,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 7.261032001036458
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    1,
+    10,
+    27,
+    23,
+    38
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2376384437084198
+  },
+  "caption_baseline": {
+   "pages": [
+    32,
+    1,
+    2,
+    31,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.48545295000076294
+  }
+ },
+ {
+  "id": "mq-002",
+  "ambiguous": true,
+  "source_page": 8,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": 4,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-003",
+  "ambiguous": true,
+  "source_page": 32,
+  "dense+rerank": {
+   "pages": [
+    30,
+    11,
+    36,
+    39,
+    38
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.05872724577784538
+  },
+  "dense-norerank": {
+   "pages": [
+    32,
+    2,
+    15,
+    35,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5211922526359558
+  },
+  "hybrid+rerank": {
+   "pages": [
+    30,
+    11,
+    36,
+    39,
+    38
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.05872724577784538
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    31,
+    35,
+    39,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    31,
+    9,
+    13,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 7.045110103777546
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    1,
+    27,
+    2,
+    39,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2295677363872528
+  },
+  "caption_baseline": {
+   "pages": [
+    32,
+    2,
+    15,
+    35,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5211922526359558
+  }
+ },
+ {
+  "id": "mq-004",
+  "ambiguous": true,
+  "source_page": 32,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    31,
+    35,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.022069010883569717
+  },
+  "dense-norerank": {
+   "pages": [
+    28,
+    39,
+    29,
+    9,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5819793939590454
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    24,
+    7,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.022069010883569717
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    29,
+    39,
+    13,
+    3
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    9,
+    13,
+    29,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.92059799311874
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    39,
+    32,
+    28,
+    1,
+    30
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.2714608609676361
+  },
+  "caption_baseline": {
+   "pages": [
+    28,
+    39,
+    29,
+    15,
+    32
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.5819793939590454
+  }
+ },
+ {
+  "id": "mq-005",
+  "ambiguous": false,
+  "source_page": 0,
+  "dense+rerank": {
+   "pages": [
+    11,
+    36,
+    39,
+    1,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.018050136044621468
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    38,
+    35,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5204159021377563
+  },
+  "hybrid+rerank": {
+   "pages": [
+    0,
+    11,
+    36,
+    39,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.43769073486328125
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    7,
+    29,
+    39,
+    1
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.030798389007344232
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    0,
+    11,
+    13
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 7.048641332611572
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    26,
+    21,
+    28,
+    30,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.23888415098190308
+  },
+  "caption_baseline": {
+   "pages": [
+    38,
+    35,
+    39,
+    1,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.4967515170574188
+  }
+ },
+ {
+  "id": "mq-006",
+  "ambiguous": false,
+  "source_page": 8,
+  "dense+rerank": {
+   "pages": [
+    8,
+    17,
+    14,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9485438466072083
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    20
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.7211273908615112
+  },
+  "hybrid+rerank": {
+   "pages": [
+    8,
+    17,
+    14,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9485438466072083
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    11,
+    20
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    8,
+    14,
+    7,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 12.885975153410268
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    14,
+    11,
+    19,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.33936643600463867
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    20
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.7211273908615112
+  }
+ },
+ {
+  "id": "mq-007",
+  "ambiguous": true,
+  "source_page": 30,
+  "dense+rerank": {
+   "pages": [
+    31,
+    30,
+    19,
+    8,
+    2
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.005053966771811247
+  },
+  "dense-norerank": {
+   "pages": [
+    30,
+    35,
+    12,
+    39,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5151042938232422
+  },
+  "hybrid+rerank": {
+   "pages": [
+    31,
+    30,
+    19,
+    8,
+    2
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.005053966771811247
+  },
+  "hybrid-norerank": {
+   "pages": [
+    30,
+    29,
+    7,
+    35,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    30,
+    7,
+    29,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 10.492934611219782
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    19,
+    10,
+    17,
+    22,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2501917779445648
+  },
+  "caption_baseline": {
+   "pages": [
+    30,
+    35,
+    12,
+    39,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5151042938232422
+  }
+ },
+ {
+  "id": "mq-008",
+  "ambiguous": false,
+  "source_page": 3,
+  "dense+rerank": {
+   "pages": [
+    3,
+    27,
+    32,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.09696453809738159
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    32,
+    9,
+    39,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6778172850608826
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    27,
+    25,
+    24,
+    32
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.09696453809738159
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    32,
+    7,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    7,
+    25,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 9.773307909040053
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    16,
+    18,
+    3,
+    26,
+    10
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.23521648347377777
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    32,
+    39,
+    27,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6778172850608826
+  }
+ },
+ {
+  "id": "mq-009",
+  "ambiguous": false,
+  "source_page": 30,
+  "dense+rerank": {
+   "pages": [
+    30,
+    31,
+    4,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6515422463417053
+  },
+  "dense-norerank": {
+   "pages": [
+    31,
+    30,
+    4,
+    15
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.7022842764854431
+  },
+  "hybrid+rerank": {
+   "pages": [
+    30,
+    31,
+    4,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6515422463417053
+  },
+  "hybrid-norerank": {
+   "pages": [
+    31,
+    30,
+    4,
+    29
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    30,
+    31,
+    7,
+    4,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 20.98563921527989
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    36,
+    25,
+    4,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2847447693347931
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    30,
+    4,
+    15,
+    10
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.7022842764854431
+  }
+ },
+ {
+  "id": "mq-010",
+  "ambiguous": false,
+  "source_page": 3,
+  "dense+rerank": {
+   "pages": [
+    3,
+    39,
+    27,
+    31,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9968884587287903
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    39,
+    9,
+    13,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6441929340362549
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    39,
+    27,
+    31,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9968884587287903
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    2,
+    13,
+    39,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    11,
+    2,
+    33,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 16.435368887023444
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    3,
+    36,
+    28,
+    37,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.30524346232414246
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    39,
+    13,
+    2,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6441929340362549
+  }
+ },
+ {
+  "id": "mq-011",
+  "ambiguous": false,
+  "source_page": 8,
+  "dense+rerank": {
+   "pages": [
+    17,
+    34,
+    26,
+    16,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.5072082877159119
+  },
+  "dense-norerank": {
+   "pages": [
+    16,
+    17,
+    18,
+    23,
+    19
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.5931209921836853
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    34,
+    26,
+    16,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.5072082877159119
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    34,
+    19,
+    8,
+    3
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.03225806451612903
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    17,
+    29,
+    30,
+    28
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    16,
+    0,
+    20,
+    22
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.24584859609603882
+  },
+  "caption_baseline": {
+   "pages": [
+    16,
+    17,
+    18,
+    23,
+    19
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.5931209325790405
+  }
+ },
+ {
+  "id": "mq-012",
+  "ambiguous": false,
+  "source_page": 8,
+  "dense+rerank": {
+   "pages": [
+    14,
+    12,
+    8,
+    19,
+    26
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.3538875877857208
+  },
+  "dense-norerank": {
+   "pages": [
+    12,
+    26,
+    19,
+    17,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.542869508266449
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    12,
+    8,
+    19,
+    11
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.3538875877857208
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    29,
+    19,
+    3,
+    8
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.030117753623188408
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    29,
+    30,
+    28
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    0,
+    12,
+    8,
+    16,
+    10
+   ],
+   "rank": 3,
+   "lenient_rank": 2,
+   "top_score": 0.24252092838287354
+  },
+  "caption_baseline": {
+   "pages": [
+    12,
+    26,
+    19,
+    17,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.542869508266449
+  }
+ },
+ {
+  "id": "mq-013",
+  "ambiguous": false,
+  "source_page": 9,
+  "dense+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.988892138004303
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.659743070602417
+  },
+  "hybrid+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.988892138004303
+  },
+  "hybrid-norerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 15.282018886493937
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    26,
+    27,
+    28,
+    39,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2498149871826172
+  },
+  "caption_baseline": {
+   "pages": [
+    9,
+    39,
+    3,
+    35,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.631685733795166
+  }
+ },
+ {
+  "id": "mq-014",
+  "ambiguous": false,
+  "source_page": 3,
+  "dense+rerank": {
+   "pages": [
+    3,
+    32,
+    4,
+    13,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0028117422480136156
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    32,
+    9,
+    39,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.590631365776062
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    32,
+    24,
+    25,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0028117422480136156
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    32,
+    7,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    7,
+    25,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 9.059416190422375
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    3,
+    13,
+    21,
+    26
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.24486255645751953
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    32,
+    39,
+    7,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.590631365776062
+  }
+ },
+ {
+  "id": "mq-015",
+  "ambiguous": false,
+  "source_page": 9,
+  "dense+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8646021485328674
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6619404554367065
+  },
+  "hybrid+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8646021485328674
+  },
+  "hybrid-norerank": {
+   "pages": [
+    9,
+    13,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.032266458495966696
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 12.469003046181625
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    27,
+    26,
+    28,
+    39,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25709161162376404
+  },
+  "caption_baseline": {
+   "pages": [
+    9,
+    39,
+    31,
+    3,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6338012218475342
+  }
+ },
+ {
+  "id": "mq-016",
+  "ambiguous": false,
+  "source_page": 9,
+  "dense+rerank": {
+   "pages": [
+    9,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9821135401725769
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6786704659461975
+  },
+  "hybrid+rerank": {
+   "pages": [
+    9,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9821135401725769
+  },
+  "hybrid-norerank": {
+   "pages": [
+    9,
+    39,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    39,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 29.001907033941173
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    26,
+    28,
+    29,
+    22
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.28039029240608215
+  },
+  "caption_baseline": {
+   "pages": [
+    9,
+    39,
+    35,
+    25,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6786704659461975
+  }
+ },
+ {
+  "id": "mq-017",
+  "ambiguous": false,
+  "source_page": 9,
+  "dense+rerank": {
+   "pages": [
+    9,
+    13,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9560509324073792
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    39,
+    13,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6985607147216797
+  },
+  "hybrid+rerank": {
+   "pages": [
+    9,
+    13,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9560509324073792
+  },
+  "hybrid-norerank": {
+   "pages": [
+    9,
+    39,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    39,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 30.16005997885161
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    9,
+    29,
+    28,
+    26,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.26824846863746643
+  },
+  "caption_baseline": {
+   "pages": [
+    9,
+    39,
+    25,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6985607147216797
+  }
+ },
+ {
+  "id": "mq-018",
+  "ambiguous": false,
+  "source_page": 3,
+  "dense+rerank": {
+   "pages": [
+    3,
+    39,
+    32,
+    2,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.003201658371835947
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    9,
+    29,
+    32,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5798609852790833
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    39,
+    32,
+    2,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.003201658371835947
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    39,
+    13,
+    29,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    39,
+    30,
+    7,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 12.497738939992352
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    3,
+    26,
+    37,
+    30,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2566007971763611
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    29,
+    32,
+    13,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5798609852790833
+  }
+ },
+ {
+  "id": "mq-019",
+  "ambiguous": false,
+  "source_page": 9,
+  "dense+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9941778182983398
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7039658427238464
+  },
+  "hybrid+rerank": {
+   "pages": [
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9941778182983398
+  },
+  "hybrid-norerank": {
+   "pages": [
+    9,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 21.349199579753503
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    26,
+    3,
+    11,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2593591809272766
+  },
+  "caption_baseline": {
+   "pages": [
+    9,
+    39,
+    3,
+    35,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7039658427238464
+  }
+ },
+ {
+  "id": "mq-020",
+  "ambiguous": true,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-021",
+  "ambiguous": true,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    1,
+    11,
+    14,
+    8,
+    10
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.11856022477149963
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    11,
+    14,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5475213527679443
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    11,
+    30,
+    14,
+    8
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.11856022477149963
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    11,
+    8,
+    17,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    3,
+    1,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 6.725097080818692
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    3,
+    8,
+    26,
+    32,
+    18
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2429102212190628
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    11,
+    14,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5475213527679443
+  }
+ },
+ {
+  "id": "mq-022",
+  "ambiguous": false,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    10,
+    4,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.4256380796432495
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    23,
+    6,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6654659509658813
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    4,
+    25,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.4256380796432495
+  },
+  "hybrid-norerank": {
+   "pages": [
+    10,
+    7,
+    13,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    10,
+    7,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 21.171699949285035
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    24,
+    4,
+    13,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2829921841621399
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    23,
+    6,
+    4,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6654659509658813
+  }
+ },
+ {
+  "id": "mq-023",
+  "ambiguous": false,
+  "source_page": 3,
+  "dense+rerank": {
+   "pages": [
+    3,
+    32,
+    39,
+    29,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3980376422405243
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    32,
+    29,
+    9,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6229414939880371
+  },
+  "hybrid+rerank": {
+   "pages": [
+    3,
+    32,
+    39,
+    29,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3980376422405243
+  },
+  "hybrid-norerank": {
+   "pages": [
+    3,
+    32,
+    30,
+    29,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    3,
+    7,
+    30,
+    32,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 9.747176276557017
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    3,
+    16,
+    21,
+    18,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.25792598724365234
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    32,
+    29,
+    28,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6229414939880371
+  }
+ },
+ {
+  "id": "mq-024",
+  "ambiguous": false,
+  "source_page": 22,
+  "dense+rerank": {
+   "pages": [
+    22,
+    25,
+    7,
+    36,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9991241097450256
+  },
+  "dense-norerank": {
+   "pages": [
+    22,
+    25,
+    14,
+    34,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8254285454750061
+  },
+  "hybrid+rerank": {
+   "pages": [
+    22,
+    25,
+    27,
+    7,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9991241097450256
+  },
+  "hybrid-norerank": {
+   "pages": [
+    22,
+    25,
+    11,
+    14,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    22,
+    11,
+    25,
+    8,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 30.331718497461548
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    25,
+    14,
+    9,
+    4
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.22192448377609253
+  },
+  "caption_baseline": {
+   "pages": [
+    22,
+    25,
+    14,
+    34,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8254285454750061
+  }
+ },
+ {
+  "id": "mq-025",
+  "ambiguous": false,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    10,
+    25,
+    4,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.4782041907310486
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    23,
+    6,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6640446186065674
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    25,
+    24,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.4782041907310486
+  },
+  "hybrid-norerank": {
+   "pages": [
+    10,
+    7,
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    10,
+    7,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 22.262746846162532
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    24,
+    4,
+    36,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.28041791915893555
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    23,
+    6,
+    4,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6640446186065674
+  }
+ },
+ {
+  "id": "mq-026",
+  "ambiguous": false,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    10,
+    4,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.771973729133606
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    8,
+    4,
+    23,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5993775129318237
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    4,
+    25,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.771973729133606
+  },
+  "hybrid-norerank": {
+   "pages": [
+    10,
+    8,
+    7,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    10,
+    9,
+    7,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 22.533171627004556
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    24,
+    36,
+    4,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2792994976043701
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    8,
+    23,
+    6,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5993775129318237
+  }
+ },
+ {
+  "id": "mq-027",
+  "ambiguous": false,
+  "source_page": 10,
+  "dense+rerank": {
+   "pages": [
+    10,
+    25,
+    4,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7259148955345154
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    4,
+    8,
+    23,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6028768420219421
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    25,
+    4,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7259148955345154
+  },
+  "hybrid-norerank": {
+   "pages": [
+    10,
+    8,
+    7,
+    13,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    10,
+    9,
+    13,
+    7,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 23.624218523882053
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    36,
+    24,
+    4,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2834652364253998
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    8,
+    23,
+    6,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6028768420219421
+  }
+ },
+ {
+  "id": "mq-028",
+  "ambiguous": false,
+  "source_page": 23,
+  "dense+rerank": {
+   "pages": [
+    16,
+    23,
+    26,
+    22,
+    19
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.003117989283055067
+  },
+  "dense-norerank": {
+   "pages": [
+    23,
+    1,
+    19,
+    12,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5733641982078552
+  },
+  "hybrid+rerank": {
+   "pages": [
+    16,
+    23,
+    26,
+    22,
+    19
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.003117989283055067
+  },
+  "hybrid-norerank": {
+   "pages": [
+    23,
+    8,
+    17,
+    1,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    29,
+    30,
+    28,
+    23
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    32,
+    26,
+    16,
+    30,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2316092699766159
+  },
+  "caption_baseline": {
+   "pages": [
+    23,
+    1,
+    19,
+    12,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5733642578125
+  }
+ },
+ {
+  "id": "mq-029",
+  "ambiguous": true,
+  "source_page": 22,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "dense-norerank": {
+   "pages": [
+    15,
+    10,
+    27,
+    28,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    36
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    35,
+    7,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    37,
+    7,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 8.894510744336774
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    28,
+    34,
+    26,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.29790183901786804
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    27,
+    28,
+    31,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  }
+ },
+ {
+  "id": "mq-030",
+  "ambiguous": true,
+  "source_page": 11,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 5,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 5,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-031",
+  "ambiguous": false,
+  "source_page": 11,
+  "dense+rerank": {
+   "pages": [
+    11,
+    17,
+    8,
+    16,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9911373853683472
+  },
+  "dense-norerank": {
+   "pages": [
+    11,
+    14,
+    20,
+    8,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7063875794410706
+  },
+  "hybrid+rerank": {
+   "pages": [
+    11,
+    17,
+    39,
+    8,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9911373853683472
+  },
+  "hybrid-norerank": {
+   "pages": [
+    11,
+    14,
+    17,
+    8,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    11,
+    24,
+    17,
+    7,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 21.787742115793687
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    11,
+    14,
+    3,
+    8,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.28592318296432495
+  },
+  "caption_baseline": {
+   "pages": [
+    11,
+    14,
+    20,
+    8,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7063875794410706
+  }
+ },
+ {
+  "id": "mq-032",
+  "ambiguous": false,
+  "source_page": 23,
+  "dense+rerank": {
+   "pages": [
+    23,
+    10,
+    34,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9850291609764099
+  },
+  "dense-norerank": {
+   "pages": [
+    23,
+    31,
+    34,
+    35,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6268965005874634
+  },
+  "hybrid+rerank": {
+   "pages": [
+    23,
+    11,
+    19,
+    10,
+    34
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9850291609764099
+  },
+  "hybrid-norerank": {
+   "pages": [
+    23,
+    35,
+    33,
+    34,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    23,
+    35,
+    7,
+    11,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 35.189425657371494
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    13,
+    24,
+    10,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26144951581954956
+  },
+  "caption_baseline": {
+   "pages": [
+    23,
+    31,
+    34,
+    35,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6268965005874634
+  }
+ },
+ {
+  "id": "mq-033",
+  "ambiguous": false,
+  "source_page": 23,
+  "dense+rerank": {
+   "pages": [
+    23,
+    11,
+    34,
+    31,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9830576777458191
+  },
+  "dense-norerank": {
+   "pages": [
+    23,
+    31,
+    10,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6308892369270325
+  },
+  "hybrid+rerank": {
+   "pages": [
+    23,
+    11,
+    34,
+    31,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9830576777458191
+  },
+  "hybrid-norerank": {
+   "pages": [
+    23,
+    35,
+    33,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    23,
+    35,
+    7,
+    11,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 35.189425657371494
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    10,
+    13,
+    24,
+    21
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2536447048187256
+  },
+  "caption_baseline": {
+   "pages": [
+    23,
+    31,
+    10,
+    33,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.630889356136322
+  }
+ },
+ {
+  "id": "mq-034",
+  "ambiguous": false,
+  "source_page": 13,
+  "dense+rerank": {
+   "pages": [
+    13,
+    35,
+    4,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.07825200259685516
+  },
+  "dense-norerank": {
+   "pages": [
+    13,
+    9,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6226032376289368
+  },
+  "hybrid+rerank": {
+   "pages": [
+    13,
+    35,
+    4,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.07825200259685516
+  },
+  "hybrid-norerank": {
+   "pages": [
+    13,
+    35,
+    11,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    13,
+    28,
+    35,
+    34,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.795497933291351
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    10,
+    26,
+    24,
+    36
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25324204564094543
+  },
+  "caption_baseline": {
+   "pages": [
+    13,
+    1,
+    12,
+    11,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5174517631530762
+  }
+ },
+ {
+  "id": "mq-035",
+  "ambiguous": false,
+  "source_page": 13,
+  "dense+rerank": {
+   "pages": [
+    13,
+    9,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3549775183200836
+  },
+  "dense-norerank": {
+   "pages": [
+    13,
+    35,
+    9,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6485024690628052
+  },
+  "hybrid+rerank": {
+   "pages": [
+    13,
+    9,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3549775183200836
+  },
+  "hybrid-norerank": {
+   "pages": [
+    13,
+    9,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    13,
+    9,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 15.945507600843865
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    30,
+    24,
+    27,
+    33
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.23588471114635468
+  },
+  "caption_baseline": {
+   "pages": [
+    13,
+    35,
+    15,
+    31,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5656318664550781
+  }
+ },
+ {
+  "id": "mq-036",
+  "ambiguous": false,
+  "source_page": 13,
+  "dense+rerank": {
+   "pages": [
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9937453269958496
+  },
+  "dense-norerank": {
+   "pages": [
+    13,
+    10,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7230390310287476
+  },
+  "hybrid+rerank": {
+   "pages": [
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9937453269958496
+  },
+  "hybrid-norerank": {
+   "pages": [
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 17.667832207631715
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    26,
+    4,
+    30,
+    36,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25568193197250366
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    9,
+    8,
+    13,
+    15
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5785892605781555
+  }
+ },
+ {
+  "id": "mq-037",
+  "ambiguous": false,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    24,
+    25,
+    27,
+    10,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998329877853394
+  },
+  "dense-norerank": {
+   "pages": [
+    24,
+    25,
+    18,
+    27,
+    21
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7758787274360657
+  },
+  "hybrid+rerank": {
+   "pages": [
+    24,
+    25,
+    27,
+    10,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998329877853394
+  },
+  "hybrid-norerank": {
+   "pages": [
+    24,
+    25,
+    18,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    24,
+    25,
+    18,
+    11,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 44.40605711773793
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    25,
+    18,
+    16,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.23293554782867432
+  },
+  "caption_baseline": {
+   "pages": [
+    24,
+    25,
+    18,
+    21,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7758787274360657
+  }
+ },
+ {
+  "id": "mq-038",
+  "ambiguous": false,
+  "source_page": 13,
+  "dense+rerank": {
+   "pages": [
+    13,
+    9,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.95827716588974
+  },
+  "dense-norerank": {
+   "pages": [
+    13,
+    10,
+    8,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7337040305137634
+  },
+  "hybrid+rerank": {
+   "pages": [
+    13,
+    9,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.95827716588974
+  },
+  "hybrid-norerank": {
+   "pages": [
+    13,
+    9,
+    8,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    13,
+    9,
+    7,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 18.925466545878802
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    26,
+    30,
+    25,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26321548223495483
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    8,
+    9,
+    13,
+    17
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5439490079879761
+  }
+ },
+ {
+  "id": "mq-039",
+  "ambiguous": false,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    24,
+    25,
+    4,
+    23,
+    5
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998106360435486
+  },
+  "dense-norerank": {
+   "pages": [
+    24,
+    25,
+    27,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7559951543807983
+  },
+  "hybrid+rerank": {
+   "pages": [
+    24,
+    25,
+    4,
+    0,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998106360435486
+  },
+  "hybrid-norerank": {
+   "pages": [
+    24,
+    25,
+    29,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    24,
+    25,
+    29,
+    7,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 49.26031654180174
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    24,
+    6,
+    0,
+    35
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.23805861175060272
+  },
+  "caption_baseline": {
+   "pages": [
+    24,
+    25,
+    7,
+    27,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7559951543807983
+  }
+ },
+ {
+  "id": "mq-040",
+  "ambiguous": true,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": 5,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 3,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": 5,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": 3,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-041",
+  "ambiguous": true,
+  "source_page": 25,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    30,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.011927800253033638
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    15,
+    27,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5822128057479858
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    30,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.011927800253033638
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.031544957774465976
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    9,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.335234791608123
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    39,
+    1,
+    34,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.3036358058452606
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    15,
+    27,
+    31,
+    28
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5822128057479858
+  }
+ },
+ {
+  "id": "mq-042",
+  "ambiguous": true,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    4,
+    5,
+    13,
+    28
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.012337627820670605
+  },
+  "dense-norerank": {
+   "pages": [
+    4,
+    15,
+    13,
+    27,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5550334453582764
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    37,
+    5,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 4,
+   "top_score": 0.012337627820670605
+  },
+  "hybrid-norerank": {
+   "pages": [
+    7,
+    29,
+    28,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03125763125763126
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    9,
+    7,
+    13,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 11.494738339595571
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    35,
+    34,
+    38,
+    33,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2758859395980835
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    27,
+    31,
+    1,
+    6
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.5488829016685486
+  }
+ },
+ {
+  "id": "mq-043",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999305248260498
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    11,
+    17,
+    8,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7907650470733643
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999305248260498
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    11,
+    8,
+    17,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    8,
+    11,
+    35,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 18.531594782488426
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    18,
+    9,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3313705325126648
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    11,
+    17,
+    8,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7907650470733643
+  }
+ },
+ {
+  "id": "mq-044",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    19,
+    17,
+    8,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9799575209617615
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7200597524642944
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    19,
+    17,
+    8,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9799575209617615
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    11,
+    17,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    19,
+    11,
+    20,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 16.225463072700364
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    19,
+    20,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3317245841026306
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7200597524642944
+  }
+ },
+ {
+  "id": "mq-045",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    19,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9616602063179016
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6623582243919373
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    19,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9616602063179016
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    11,
+    8,
+    17,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    11,
+    8,
+    20,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 11.296214467639448
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    9,
+    3,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.35666269063949585
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6623582243919373
+  }
+ },
+ {
+  "id": "mq-046",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    19,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9705008864402771
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    8,
+    11,
+    17,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7397588491439819
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    19,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9705008864402771
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    8,
+    11,
+    20,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    8,
+    11,
+    20,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 16.440863917075156
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    9,
+    12,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3423781096935272
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    8,
+    11,
+    17,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7397588491439819
+  }
+ },
+ {
+  "id": "mq-047",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9635321497917175
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    11,
+    16
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6672199964523315
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9635321497917175
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    11,
+    8,
+    19
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    7,
+    14,
+    11,
+    19
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 9.743037932153698
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    14,
+    15,
+    20,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.29534202814102173
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    14,
+    8,
+    11,
+    16
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6672199964523315
+  }
+ },
+ {
+  "id": "mq-048",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9854936599731445
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7260031700134277
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    11,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9854936599731445
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    17,
+    11,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    17,
+    7,
+    19,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 9.741256194875735
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    3,
+    0,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2661428451538086
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7260031700134277
+  }
+ },
+ {
+  "id": "mq-049",
+  "ambiguous": false,
+  "source_page": 14,
+  "dense+rerank": {
+   "pages": [
+    14,
+    16,
+    17,
+    19,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8948050737380981
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    15,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6696876287460327
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    16,
+    17,
+    19,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8948050737380981
+  },
+  "hybrid-norerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    11,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    7,
+    11,
+    8,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 12.63886156543617
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    15,
+    11,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2906113266944885
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    17,
+    8,
+    15,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6696876287460327
+  }
+ },
+ {
+  "id": "mq-050",
+  "ambiguous": false,
+  "source_page": 31,
+  "dense+rerank": {
+   "pages": [
+    31,
+    10,
+    4,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.21502603590488434
+  },
+  "dense-norerank": {
+   "pages": [
+    31,
+    4,
+    30,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6548435688018799
+  },
+  "hybrid+rerank": {
+   "pages": [
+    31,
+    10,
+    4,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.21502603590488434
+  },
+  "hybrid-norerank": {
+   "pages": [
+    31,
+    30,
+    17,
+    7,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    31,
+    7,
+    17,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 7.767829749155289
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    30,
+    21,
+    16,
+    13,
+    25
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2513248920440674
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    4,
+    30,
+    10,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6548435688018799
+  }
+ },
+ {
+  "id": "mq-051",
+  "ambiguous": false,
+  "source_page": 31,
+  "dense+rerank": {
+   "pages": [
+    31,
+    10,
+    25,
+    30,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.19906455278396606
+  },
+  "dense-norerank": {
+   "pages": [
+    31,
+    30,
+    4,
+    7,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6393921375274658
+  },
+  "hybrid+rerank": {
+   "pages": [
+    31,
+    10,
+    25,
+    30,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.19906455278396606
+  },
+  "hybrid-norerank": {
+   "pages": [
+    31,
+    7,
+    35,
+    29,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    31,
+    7,
+    11,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 10.015434733575637
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    13,
+    25,
+    19,
+    27,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2621188163757324
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    30,
+    4,
+    10,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6393921375274658
+  }
+ },
+ {
+  "id": "mq-052",
+  "ambiguous": false,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    24,
+    25,
+    36,
+    4,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9979259967803955
+  },
+  "dense-norerank": {
+   "pages": [
+    24,
+    25,
+    10,
+    8,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7287187576293945
+  },
+  "hybrid+rerank": {
+   "pages": [
+    24,
+    25,
+    36,
+    4,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9979259967803955
+  },
+  "hybrid-norerank": {
+   "pages": [
+    24,
+    25,
+    7,
+    27,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    24,
+    25,
+    7,
+    28,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 42.85724335847657
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    25,
+    24,
+    36,
+    4,
+    6
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.24488511681556702
+  },
+  "caption_baseline": {
+   "pages": [
+    24,
+    25,
+    8,
+    7,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7287187576293945
+  }
+ },
+ {
+  "id": "mq-053",
+  "ambiguous": true,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    31,
+    4
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0031181967351585627
+  },
+  "dense-norerank": {
+   "pages": [
+    27,
+    29,
+    15,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6034752130508423
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    24,
+    7,
+    31
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.0031181967351585627
+  },
+  "hybrid-norerank": {
+   "pages": [
+    7,
+    35,
+    29,
+    28,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0304147465437788
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    11,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.221062375468579
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    35,
+    39,
+    34,
+    1
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.317986398935318
+  },
+  "caption_baseline": {
+   "pages": [
+    27,
+    29,
+    15,
+    31,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6034752130508423
+  }
+ },
+ {
+  "id": "mq-054",
+  "ambiguous": true,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "dense-norerank": {
+   "pages": [
+    15,
+    10,
+    27,
+    28,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    36
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    35,
+    7,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    37,
+    7,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 8.894510744336774
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    28,
+    34,
+    26,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.29790183901786804
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    27,
+    28,
+    31,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  }
+ },
+ {
+  "id": "mq-055",
+  "ambiguous": true,
+  "source_page": 2,
+  "dense+rerank": {
+   "pages": [
+    32,
+    3,
+    10,
+    2,
+    19
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.0016473241848871112
+  },
+  "dense-norerank": {
+   "pages": [
+    11,
+    14,
+    1,
+    2,
+    8
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5211824178695679
+  },
+  "hybrid+rerank": {
+   "pages": [
+    32,
+    3,
+    10,
+    2,
+    19
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.0016473241848871112
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    2,
+    3,
+    1,
+    14
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.031544957774465976
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    3,
+    2,
+    28,
+    16
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 7.001640900945901
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    2,
+    23,
+    0,
+    26,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.23657914996147156
+  },
+  "caption_baseline": {
+   "pages": [
+    11,
+    14,
+    1,
+    2,
+    8
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5211824178695679
+  }
+ },
+ {
+  "id": "mq-056",
+  "ambiguous": false,
+  "source_page": 12,
+  "dense+rerank": {
+   "pages": [
+    12,
+    17,
+    11,
+    8,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9960162043571472
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    12,
+    17,
+    8,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5673726201057434
+  },
+  "hybrid+rerank": {
+   "pages": [
+    12,
+    34,
+    17,
+    11,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9960162043571472
+  },
+  "hybrid-norerank": {
+   "pages": [
+    12,
+    17,
+    18,
+    14,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    12,
+    28,
+    17,
+    1,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 32.085839035962834
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    11,
+    8,
+    27,
+    14,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.23533566296100616
+  },
+  "caption_baseline": {
+   "pages": [
+    10,
+    12,
+    17,
+    8,
+    11
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5673726201057434
+  }
+ },
+ {
+  "id": "mq-057",
+  "ambiguous": true,
+  "source_page": 31,
+  "dense+rerank": {
+   "pages": [
+    23,
+    4,
+    34,
+    32
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.005347768776118755
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    27,
+    4,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5607343912124634
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    23,
+    4,
+    30,
+    31
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.007009199354797602
+  },
+  "hybrid-norerank": {
+   "pages": [
+    7,
+    9,
+    27,
+    4
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.031754032258064516
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    13,
+    28,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 5.5900709134694235
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    6,
+    30,
+    23,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2226683646440506
+  },
+  "caption_baseline": {
+   "pages": [
+    27,
+    7,
+    3,
+    6,
+    22
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5059240460395813
+  }
+ },
+ {
+  "id": "mq-058",
+  "ambiguous": false,
+  "source_page": 24,
+  "dense+rerank": {
+   "pages": [
+    24,
+    25,
+    27,
+    18,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998548030853271
+  },
+  "dense-norerank": {
+   "pages": [
+    24,
+    25,
+    18,
+    27,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7887869477272034
+  },
+  "hybrid+rerank": {
+   "pages": [
+    24,
+    25,
+    27,
+    18,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998548030853271
+  },
+  "hybrid-norerank": {
+   "pages": [
+    24,
+    25,
+    18,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    24,
+    25,
+    18,
+    29,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 47.900069151889205
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    25,
+    6,
+    22,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.24573472142219543
+  },
+  "caption_baseline": {
+   "pages": [
+    24,
+    25,
+    18,
+    7,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7887869477272034
+  }
+ },
+ {
+  "id": "mq-059",
+  "ambiguous": false,
+  "source_page": 12,
+  "dense+rerank": {
+   "pages": [
+    12,
+    10,
+    24,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.06751331686973572
+  },
+  "dense-norerank": {
+   "pages": [
+    32,
+    12,
+    1,
+    29,
+    10
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.4652014970779419
+  },
+  "hybrid+rerank": {
+   "pages": [
+    12,
+    10,
+    24,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.06751331686973572
+  },
+  "hybrid-norerank": {
+   "pages": [
+    12,
+    29,
+    28,
+    39,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    12,
+    7,
+    29,
+    28,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 11.259288937068238
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    12,
+    11,
+    8,
+    38,
+    22
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.24727439880371094
+  },
+  "caption_baseline": {
+   "pages": [
+    32,
+    12,
+    1,
+    29,
+    39
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.4652014970779419
+  }
+ },
+ {
+  "id": "mq-060",
+  "ambiguous": true,
+  "source_page": 26,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "dense-norerank": {
+   "pages": [
+    15,
+    10,
+    27,
+    28,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    27,
+    36
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.001353142666630447
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    35,
+    7,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    37,
+    7,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 8.894510744336774
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    28,
+    34,
+    26,
+    35
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.29790183901786804
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    27,
+    28,
+    31,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5760689377784729
+  }
+ },
+ {
+  "id": "mq-061",
+  "ambiguous": false,
+  "source_page": 2,
+  "dense+rerank": {
+   "pages": [
+    2,
+    35,
+    4,
+    36,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.015909414738416672
+  },
+  "dense-norerank": {
+   "pages": [
+    39,
+    2,
+    9,
+    35,
+    29
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6131927967071533
+  },
+  "hybrid+rerank": {
+   "pages": [
+    2,
+    11,
+    35,
+    8,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.015909414738416672
+  },
+  "hybrid-norerank": {
+   "pages": [
+    2,
+    35,
+    39,
+    29,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    2,
+    11,
+    33,
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 10.549141288340262
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    16,
+    12,
+    8,
+    17,
+    2
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.24038806557655334
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    2,
+    35,
+    29,
+    3
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6131927967071533
+  }
+ },
+ {
+  "id": "mq-062",
+  "ambiguous": false,
+  "source_page": 12,
+  "dense+rerank": {
+   "pages": [
+    12,
+    28,
+    29,
+    27,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.37845975160598755
+  },
+  "dense-norerank": {
+   "pages": [
+    12,
+    27,
+    10,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5070090293884277
+  },
+  "hybrid+rerank": {
+   "pages": [
+    12,
+    14,
+    28,
+    29,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.37845975160598755
+  },
+  "hybrid-norerank": {
+   "pages": [
+    12,
+    29,
+    28,
+    24,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    12,
+    14,
+    7,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 15.90076641953479
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    0,
+    35,
+    34,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.24701842665672302
+  },
+  "caption_baseline": {
+   "pages": [
+    12,
+    29,
+    27,
+    24,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5070090293884277
+  }
+ },
+ {
+  "id": "mq-063",
+  "ambiguous": false,
+  "source_page": 12,
+  "dense+rerank": {
+   "pages": [
+    12,
+    17,
+    11,
+    1,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9679279923439026
+  },
+  "dense-norerank": {
+   "pages": [
+    12,
+    14,
+    26,
+    8,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6403079628944397
+  },
+  "hybrid+rerank": {
+   "pages": [
+    12,
+    17,
+    11,
+    1,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9679279923439026
+  },
+  "hybrid-norerank": {
+   "pages": [
+    12,
+    14,
+    17,
+    26,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    12,
+    1,
+    17,
+    28,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 29.887977015272707
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    8,
+    17,
+    20,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2756546139717102
+  },
+  "caption_baseline": {
+   "pages": [
+    12,
+    14,
+    26,
+    8,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6403079628944397
+  }
+ },
+ {
+  "id": "mq-064",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    7,
+    4,
+    27,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9979127049446106
+  },
+  "dense-norerank": {
+   "pages": [
+    33,
+    37,
+    35,
+    23,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5400000810623169
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    7,
+    4,
+    27,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9979127049446106
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    35,
+    27,
+    23,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    27,
+    35,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 23.29911675863532
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    33,
+    24,
+    36,
+    34,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.27181023359298706
+  },
+  "caption_baseline": {
+   "pages": [
+    33,
+    37,
+    35,
+    23,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5400000810623169
+  }
+ },
+ {
+  "id": "mq-065",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    36,
+    34,
+    10,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7828206419944763
+  },
+  "dense-norerank": {
+   "pages": [
+    33,
+    9,
+    2,
+    35,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5465522408485413
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    36,
+    34,
+    10,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7828206419944763
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    35,
+    23,
+    34,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    35,
+    34,
+    7,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 26.52536573253662
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    21,
+    33,
+    10,
+    30,
+    34
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.28305989503860474
+  },
+  "caption_baseline": {
+   "pages": [
+    33,
+    2,
+    35,
+    36,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5465522408485413
+  }
+ },
+ {
+  "id": "mq-066",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    34,
+    27,
+    25,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.31964269280433655
+  },
+  "dense-norerank": {
+   "pages": [
+    33,
+    29,
+    34,
+    27,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5850056409835815
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    34,
+    27,
+    25,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.31964269280433655
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    34,
+    27,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    34,
+    35,
+    0,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 23.33889522141197
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    34,
+    33,
+    6,
+    2,
+    4
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.2867322266101837
+  },
+  "caption_baseline": {
+   "pages": [
+    33,
+    29,
+    34,
+    39,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5850056409835815
+  }
+ },
+ {
+  "id": "mq-067",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    34,
+    27,
+    7,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3055291473865509
+  },
+  "dense-norerank": {
+   "pages": [
+    33,
+    31,
+    29,
+    30,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6086050868034363
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    34,
+    27,
+    24,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.3055291473865509
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    35,
+    27,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    35,
+    27,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 22.901331936851793
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    6,
+    34,
+    33,
+    4,
+    37
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.27222830057144165
+  },
+  "caption_baseline": {
+   "pages": [
+    33,
+    31,
+    29,
+    30,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6086050868034363
+  }
+ },
+ {
+  "id": "mq-068",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    24,
+    10,
+    27,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.004163586068898439
+  },
+  "dense-norerank": {
+   "pages": [
+    32,
+    29,
+    6,
+    27,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5204919576644897
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    24,
+    10,
+    27,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.004163586068898439
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    7,
+    29,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.031099324975891997
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    7,
+    39,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 11.494799861472798
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    33,
+    1,
+    10,
+    34,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2804100513458252
+  },
+  "caption_baseline": {
+   "pages": [
+    32,
+    29,
+    6,
+    28,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5204919576644897
+  }
+ },
+ {
+  "id": "mq-069",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    6,
+    27,
+    7,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03765391185879707
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    35,
+    9,
+    31,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.533749520778656
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    6,
+    27,
+    34,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03765391185879707
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    7,
+    33,
+    29,
+    3
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.0315136476426799
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    34,
+    7,
+    39,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 16.009423422559646
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    34,
+    1,
+    30,
+    3
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.28284159302711487
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    35,
+    31,
+    30,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.533749520778656
+  }
+ },
+ {
+  "id": "mq-070",
+  "ambiguous": false,
+  "source_page": 33,
+  "dense+rerank": {
+   "pages": [
+    33,
+    27,
+    4,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.021131373941898346
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    31,
+    32,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5770480632781982
+  },
+  "hybrid+rerank": {
+   "pages": [
+    33,
+    27,
+    34,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.021131373941898346
+  },
+  "hybrid-norerank": {
+   "pages": [
+    33,
+    31,
+    39,
+    29,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.02921395544346364
+  },
+  "bm25-only": {
+   "pages": [
+    33,
+    7,
+    34,
+    35,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.553059352311424
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    34,
+    1,
+    38,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2707589566707611
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    32,
+    15,
+    3,
+    4
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5452405214309692
+  }
+ },
+ {
+  "id": "mq-071",
+  "ambiguous": false,
+  "source_page": 34,
+  "dense+rerank": {
+   "pages": [
+    34,
+    25,
+    36,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9977231621742249
+  },
+  "dense-norerank": {
+   "pages": [
+    34,
+    23,
+    33,
+    35,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6679409742355347
+  },
+  "hybrid+rerank": {
+   "pages": [
+    34,
+    25,
+    36,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9977231621742249
+  },
+  "hybrid-norerank": {
+   "pages": [
+    34,
+    33,
+    35,
+    39,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    34,
+    33,
+    35,
+    0,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 29.92284719602637
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    2,
+    25,
+    6,
+    34,
+    37
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.26969167590141296
+  },
+  "caption_baseline": {
+   "pages": [
+    34,
+    23,
+    33,
+    35,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6679409742355347
+  }
+ },
+ {
+  "id": "mq-072",
+  "ambiguous": false,
+  "source_page": 34,
+  "dense+rerank": {
+   "pages": [
+    34,
+    25,
+    33,
+    27,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.996502161026001
+  },
+  "dense-norerank": {
+   "pages": [
+    34,
+    33,
+    23,
+    27,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6579059362411499
+  },
+  "hybrid+rerank": {
+   "pages": [
+    34,
+    25,
+    13,
+    33,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.996502161026001
+  },
+  "hybrid-norerank": {
+   "pages": [
+    34,
+    33,
+    35,
+    29,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    34,
+    33,
+    7,
+    35,
+    0
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 22.614800025781562
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    2,
+    25,
+    6,
+    0,
+    34
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.2590734362602234
+  },
+  "caption_baseline": {
+   "pages": [
+    34,
+    33,
+    23,
+    25,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6579059362411499
+  }
+ },
+ {
+  "id": "mq-073",
+  "ambiguous": false,
+  "source_page": 34,
+  "dense+rerank": {
+   "pages": [
+    34,
+    27,
+    10,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9993782043457031
+  },
+  "dense-norerank": {
+   "pages": [
+    34,
+    27,
+    23,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.674876868724823
+  },
+  "hybrid+rerank": {
+   "pages": [
+    34,
+    27,
+    10,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9993782043457031
+  },
+  "hybrid-norerank": {
+   "pages": [
+    34,
+    35,
+    29,
+    17,
+    21
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    34,
+    13,
+    35,
+    1,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 40.56048441369064
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    22,
+    21,
+    10,
+    6,
+    34
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.24601542949676514
+  },
+  "caption_baseline": {
+   "pages": [
+    34,
+    23,
+    29,
+    27,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.674876868724823
+  }
+ },
+ {
+  "id": "mq-074",
+  "ambiguous": true,
+  "source_page": 15,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-075",
+  "ambiguous": false,
+  "source_page": 34,
+  "dense+rerank": {
+   "pages": [
+    34,
+    27,
+    0,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1387430727481842
+  },
+  "dense-norerank": {
+   "pages": [
+    34,
+    39,
+    2,
+    35,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6457018852233887
+  },
+  "hybrid+rerank": {
+   "pages": [
+    34,
+    27,
+    0,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1387430727481842
+  },
+  "hybrid-norerank": {
+   "pages": [
+    34,
+    35,
+    33,
+    39,
+    0
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    34,
+    21,
+    0,
+    7,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 23.83861061011641
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    2,
+    6,
+    25,
+    34,
+    22
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.24975697696208954
+  },
+  "caption_baseline": {
+   "pages": [
+    34,
+    39,
+    2,
+    35,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6457018852233887
+  }
+ },
+ {
+  "id": "mq-076",
+  "ambiguous": false,
+  "source_page": 34,
+  "dense+rerank": {
+   "pages": [
+    34,
+    27,
+    2,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7051716446876526
+  },
+  "dense-norerank": {
+   "pages": [
+    34,
+    27,
+    23,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7113885879516602
+  },
+  "hybrid+rerank": {
+   "pages": [
+    34,
+    27,
+    2,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7051716446876526
+  },
+  "hybrid-norerank": {
+   "pages": [
+    34,
+    35,
+    29,
+    28,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    34,
+    7,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 25.148356397020574
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    6,
+    22,
+    21,
+    10,
+    25
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25246891379356384
+  },
+  "caption_baseline": {
+   "pages": [
+    34,
+    23,
+    29,
+    27,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7113885879516602
+  }
+ },
+ {
+  "id": "mq-077",
+  "ambiguous": false,
+  "source_page": 38,
+  "dense+rerank": {
+   "pages": [
+    38,
+    2,
+    1,
+    30,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.07736752182245255
+  },
+  "dense-norerank": {
+   "pages": [
+    38,
+    1,
+    39,
+    9,
+    37
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.644629955291748
+  },
+  "hybrid+rerank": {
+   "pages": [
+    38,
+    2,
+    1,
+    30,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.07736752182245255
+  },
+  "hybrid-norerank": {
+   "pages": [
+    38,
+    1,
+    13,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    38,
+    13,
+    1,
+    33,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 14.956324475072998
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    1,
+    27,
+    23,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2518637478351593
+  },
+  "caption_baseline": {
+   "pages": [
+    38,
+    1,
+    39,
+    37,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.644629955291748
+  }
+ },
+ {
+  "id": "mq-078",
+  "ambiguous": true,
+  "source_page": 15,
+  "dense+rerank": {
+   "pages": [
+    30,
+    1,
+    5,
+    32,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.003031262895092368
+  },
+  "dense-norerank": {
+   "pages": [
+    3,
+    9,
+    32,
+    1,
+    12
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.49321407079696655
+  },
+  "hybrid+rerank": {
+   "pages": [
+    30,
+    39,
+    1,
+    5,
+    32
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.003031262895092368
+  },
+  "hybrid-norerank": {
+   "pages": [
+    30,
+    17,
+    29,
+    7,
+    5
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.02964254577157803
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    30,
+    7,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 11.280842936100417
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    15,
+    16,
+    10,
+    38,
+    0
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2628040909767151
+  },
+  "caption_baseline": {
+   "pages": [
+    3,
+    32,
+    1,
+    12,
+    5
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.49321407079696655
+  }
+ },
+ {
+  "id": "mq-079",
+  "ambiguous": false,
+  "source_page": 36,
+  "dense+rerank": {
+   "pages": [
+    10,
+    36,
+    4,
+    37
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.13037225604057312
+  },
+  "dense-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    6,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5530365109443665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    36,
+    4,
+    37
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.13037225604057312
+  },
+  "hybrid-norerank": {
+   "pages": [
+    36,
+    37,
+    7,
+    38,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    36,
+    7,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 10.275340996497103
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    36,
+    33,
+    30,
+    34
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.24876545369625092
+  },
+  "caption_baseline": {
+   "pages": [
+    36,
+    37,
+    38,
+    6,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5530365109443665
+  }
+ },
+ {
+  "id": "mq-080",
+  "ambiguous": false,
+  "source_page": 36,
+  "dense+rerank": {
+   "pages": [
+    36,
+    37,
+    10,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.17082121968269348
+  },
+  "dense-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    4,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6222376227378845
+  },
+  "hybrid+rerank": {
+   "pages": [
+    36,
+    37,
+    10,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.17082121968269348
+  },
+  "hybrid-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    39,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    36,
+    35,
+    14,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 15.72538984485791
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    36,
+    30,
+    33,
+    37
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.273223340511322
+  },
+  "caption_baseline": {
+   "pages": [
+    36,
+    37,
+    38,
+    6,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6222376227378845
+  }
+ },
+ {
+  "id": "mq-081",
+  "ambiguous": true,
+  "source_page": 15,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    13,
+    17,
+    15
+   ],
+   "rank": 5,
+   "lenient_rank": 1,
+   "top_score": 0.034660279750823975
+  },
+  "dense-norerank": {
+   "pages": [
+    8,
+    15,
+    17,
+    14,
+    20
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.687004566192627
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    13,
+    17,
+    15
+   ],
+   "rank": 5,
+   "lenient_rank": 1,
+   "top_score": 0.034660279750823975
+  },
+  "hybrid-norerank": {
+   "pages": [
+    11,
+    17,
+    8,
+    20,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.031544957774465976
+  },
+  "bm25-only": {
+   "pages": [
+    11,
+    9,
+    7,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 9.200671765973828
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    26,
+    30,
+    21
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2951242923736572
+  },
+  "caption_baseline": {
+   "pages": [
+    8,
+    15,
+    17,
+    14,
+    20
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.687004566192627
+  }
+ },
+ {
+  "id": "mq-082",
+  "ambiguous": false,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    1,
+    20,
+    31,
+    16,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998273253440857
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    17,
+    20,
+    7,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6195553541183472
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    20,
+    31,
+    16,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9998273253440857
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    7,
+    38,
+    39,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    1,
+    13,
+    29,
+    39,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 28.51612358792016
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    21,
+    27,
+    30,
+    26,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25169458985328674
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    17,
+    20,
+    16,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6195553541183472
+  }
+ },
+ {
+  "id": "mq-083",
+  "ambiguous": false,
+  "source_page": 36,
+  "dense+rerank": {
+   "pages": [
+    36,
+    37,
+    4,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6010043025016785
+  },
+  "dense-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    4
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6268380880355835
+  },
+  "hybrid+rerank": {
+   "pages": [
+    36,
+    37,
+    4,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6010043025016785
+  },
+  "hybrid-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    35
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    36,
+    35,
+    7,
+    38
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 14.655897425891904
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    36,
+    13,
+    30,
+    31,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.26478490233421326
+  },
+  "caption_baseline": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    1
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6268380880355835
+  }
+ },
+ {
+  "id": "mq-084",
+  "ambiguous": false,
+  "source_page": 36,
+  "dense+rerank": {
+   "pages": [
+    10,
+    36,
+    4,
+    37
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.611232340335846
+  },
+  "dense-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    39,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6116530895233154
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    36,
+    4,
+    37
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.611232340335846
+  },
+  "hybrid-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    39,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    36,
+    7,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 10.275340996497103
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    36,
+    33,
+    37,
+    30
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.2597658932209015
+  },
+  "caption_baseline": {
+   "pages": [
+    36,
+    37,
+    38,
+    39,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6116530895233154
+  }
+ },
+ {
+  "id": "mq-085",
+  "ambiguous": false,
+  "source_page": 35,
+  "dense+rerank": {
+   "pages": [
+    35,
+    27,
+    7,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999882698059082
+  },
+  "dense-norerank": {
+   "pages": [
+    35,
+    7,
+    27,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7038071751594543
+  },
+  "hybrid+rerank": {
+   "pages": [
+    35,
+    27,
+    7,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999882698059082
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    7,
+    31,
+    30,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    35,
+    17,
+    7,
+    30,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 30.3370798180483
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    25,
+    7,
+    21,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.2815816402435303
+  },
+  "caption_baseline": {
+   "pages": [
+    35,
+    7,
+    27,
+    31,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7038071751594543
+  }
+ },
+ {
+  "id": "mq-086",
+  "ambiguous": false,
+  "source_page": 35,
+  "dense+rerank": {
+   "pages": [
+    35,
+    4,
+    31,
+    7,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9932538866996765
+  },
+  "dense-norerank": {
+   "pages": [
+    35,
+    31,
+    30,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6124362945556641
+  },
+  "hybrid+rerank": {
+   "pages": [
+    35,
+    4,
+    31,
+    7,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9932538866996765
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    30,
+    31,
+    9,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    35,
+    33,
+    34,
+    13,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 22.276882105661798
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    1,
+    34,
+    39,
+    37
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26745012402534485
+  },
+  "caption_baseline": {
+   "pages": [
+    35,
+    31,
+    30,
+    27,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6124362945556641
+  }
+ },
+ {
+  "id": "mq-087",
+  "ambiguous": false,
+  "source_page": 35,
+  "dense+rerank": {
+   "pages": [
+    35,
+    15,
+    4,
+    31,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9989919066429138
+  },
+  "dense-norerank": {
+   "pages": [
+    35,
+    9,
+    30,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5492607355117798
+  },
+  "hybrid+rerank": {
+   "pages": [
+    35,
+    15,
+    4,
+    31,
+    37
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9989919066429138
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    30,
+    11,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    35,
+    34,
+    13,
+    30,
+    33
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 25.074786131649432
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    1,
+    25,
+    26,
+    39
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.275458961725235
+  },
+  "caption_baseline": {
+   "pages": [
+    35,
+    30,
+    29,
+    15,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5492607355117798
+  }
+ },
+ {
+  "id": "mq-088",
+  "ambiguous": false,
+  "source_page": 35,
+  "dense+rerank": {
+   "pages": [
+    35,
+    27,
+    4,
+    9,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999643087387085
+  },
+  "dense-norerank": {
+   "pages": [
+    13,
+    9,
+    35
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.5577958822250366
+  },
+  "hybrid+rerank": {
+   "pages": [
+    35,
+    13,
+    27,
+    4,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.999643087387085
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    9,
+    39,
+    7,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    35,
+    33,
+    7,
+    34,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 25.387475352172782
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    6,
+    2,
+    34,
+    4,
+    37
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.28429266810417175
+  },
+  "caption_baseline": {
+   "pages": [
+    35,
+    3,
+    9,
+    39,
+    5
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5276362895965576
+  }
+ },
+ {
+  "id": "mq-089",
+  "ambiguous": false,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    1,
+    13,
+    15,
+    3,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9987019300460815
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    3,
+    26,
+    39,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6997271776199341
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    13,
+    15,
+    3,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9987019300460815
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    8,
+    7,
+    12,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    1,
+    28,
+    8,
+    14,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 29.097794581557128
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    20,
+    32,
+    29,
+    21,
+    26
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2534908652305603
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    3,
+    26,
+    39,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6997271776199341
+  }
+ },
+ {
+  "id": "mq-090",
+  "ambiguous": false,
+  "source_page": 39,
+  "dense+rerank": {
+   "pages": [
+    7,
+    4,
+    28,
+    30,
+    38
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.00036141875898465514
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    9,
+    3,
+    31,
+    28
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.555274486541748
+  },
+  "hybrid+rerank": {
+   "pages": [
+    24,
+    7,
+    4,
+    28,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.00042020532418973744
+  },
+  "hybrid-norerank": {
+   "pages": [
+    39,
+    7,
+    29,
+    28,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03128054740957967
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    39,
+    33,
+    9
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    39,
+    28,
+    29,
+    26,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2792299687862396
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    3,
+    31,
+    28,
+    39
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.555274486541748
+  }
+ },
+ {
+  "id": "mq-091",
+  "ambiguous": false,
+  "source_page": 39,
+  "dense+rerank": {
+   "pages": [
+    36,
+    39,
+    31,
+    28,
+    29
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 6.103742634877563e-05
+  },
+  "dense-norerank": {
+   "pages": [
+    39,
+    9,
+    1,
+    3,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6013150811195374
+  },
+  "hybrid+rerank": {
+   "pages": [
+    36,
+    39,
+    31,
+    25,
+    28
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 6.103742634877563e-05
+  },
+  "hybrid-norerank": {
+   "pages": [
+    39,
+    29,
+    28,
+    13,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    29,
+    7,
+    39
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 5.81751172124923
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    39,
+    28,
+    26,
+    29,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2700140178203583
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    1,
+    3,
+    28,
+    32
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6013150811195374
+  }
+ },
+ {
+  "id": "mq-092",
+  "ambiguous": false,
+  "source_page": 39,
+  "dense+rerank": {
+   "pages": [
+    36,
+    28,
+    37,
+    39,
+    15
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.00011770428682211787
+  },
+  "dense-norerank": {
+   "pages": [
+    9,
+    39,
+    1,
+    28,
+    32
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5838124752044678
+  },
+  "hybrid+rerank": {
+   "pages": [
+    25,
+    36,
+    28,
+    24,
+    37
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.00025855802232399583
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    1,
+    13,
+    39,
+    29
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    33,
+    1,
+    13,
+    12
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 5.552844736968234
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    39,
+    23,
+    29,
+    28,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.26785826683044434
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    1,
+    28,
+    32,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5763614773750305
+  }
+ },
+ {
+  "id": "mq-093",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    18,
+    16
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.4834786057472229
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.6954171657562256
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    8,
+    17,
+    18,
+    16
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.4834786057472229
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    18,
+    11,
+    8
+   ],
+   "rank": 3,
+   "lenient_rank": 2,
+   "top_score": 0.032266458495966696
+  },
+  "bm25-only": {
+   "pages": [
+    18,
+    14,
+    17,
+    11,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.39877015343505
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    14,
+    8,
+    11,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.31041568517684937
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.6954171657562256
+  }
+ },
+ {
+  "id": "mq-094",
+  "ambiguous": false,
+  "source_page": 39,
+  "dense+rerank": {
+   "pages": [
+    39,
+    38,
+    4,
+    3,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9808057546615601
+  },
+  "dense-norerank": {
+   "pages": [
+    39,
+    3,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6356187462806702
+  },
+  "hybrid+rerank": {
+   "pages": [
+    39,
+    38,
+    4,
+    3,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9808057546615601
+  },
+  "hybrid-norerank": {
+   "pages": [
+    39,
+    9,
+    3,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    39,
+    9,
+    13,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 20.223904160512383
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    29,
+    26,
+    39,
+    28,
+    3
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.2430124580860138
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    3,
+    9,
+    35,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6356187462806702
+  }
+ },
+ {
+  "id": "mq-095",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    14,
+    17,
+    18,
+    8,
+    19
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.8373808860778809
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.6900002360343933
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    17,
+    18,
+    8,
+    19
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.8373808860778809
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    11,
+    8,
+    19
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    17,
+    11,
+    7,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 11.319371904613261
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    18,
+    15,
+    20
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.2960681617259979
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.6900002360343933
+  }
+ },
+ {
+  "id": "mq-096",
+  "ambiguous": true,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    10,
+    28,
+    16,
+    29,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0012501885648816824
+  },
+  "dense-norerank": {
+   "pages": [
+    5,
+    10,
+    23,
+    27,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5359368324279785
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    28,
+    24,
+    16,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0012501885648816824
+  },
+  "hybrid-norerank": {
+   "pages": [
+    5,
+    7,
+    28,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.03009207275993712
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    28,
+    17,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 8.189779648726825
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    38,
+    35,
+    22,
+    26
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25971028208732605
+  },
+  "caption_baseline": {
+   "pages": [
+    5,
+    23,
+    27,
+    29,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5359368324279785
+  }
+ },
+ {
+  "id": "mq-097",
+  "ambiguous": true,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    10,
+    28,
+    29,
+    16,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.002914836397394538
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    23,
+    29,
+    35,
+    5
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5536934733390808
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    28,
+    24,
+    29,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.002914836397394538
+  },
+  "hybrid-norerank": {
+   "pages": [
+    29,
+    28,
+    35,
+    17,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03125763125763126
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    2,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.192983567702735
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    38,
+    35,
+    22,
+    26
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2540833652019501
+  },
+  "caption_baseline": {
+   "pages": [
+    23,
+    29,
+    35,
+    5,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5251524448394775
+  }
+ },
+ {
+  "id": "mq-098",
+  "ambiguous": false,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    1,
+    26,
+    8,
+    7,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.02215365320444107
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    13,
+    7,
+    8,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5739249587059021
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    26,
+    8,
+    7,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.02215365320444107
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    13,
+    8,
+    12,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    1,
+    3,
+    28,
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 24.165188383590785
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    9,
+    27,
+    1,
+    10,
+    3
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.2722083330154419
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    13,
+    8,
+    15,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5739249587059021
+  }
+ },
+ {
+  "id": "mq-099",
+  "ambiguous": true,
+  "source_page": 27,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    30,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.011927800253033638
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    15,
+    27,
+    31
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5822128057479858
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    30,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.011927800253033638
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    29,
+    7,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.031544957774465976
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    9,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.335234791608123
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    39,
+    1,
+    34,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.3036358058452606
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    15,
+    27,
+    31,
+    28
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5822128057479858
+  }
+ },
+ {
+  "id": "mq-100",
+  "ambiguous": false,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    1,
+    3,
+    25,
+    13,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9978079199790955
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    13,
+    20,
+    3,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6437002420425415
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    7,
+    3,
+    25,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9978079199790955
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    13,
+    39,
+    3,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    1,
+    7,
+    39,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 17.20795777267559
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    20,
+    25,
+    32,
+    30,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25493428111076355
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    13,
+    20,
+    3,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6437002420425415
+  }
+ },
+ {
+  "id": "mq-101",
+  "ambiguous": true,
+  "source_page": 27,
+  "dense+rerank": {
+   "pages": [
+    29,
+    28,
+    7,
+    15,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0011761558707803488
+  },
+  "dense-norerank": {
+   "pages": [
+    15,
+    29,
+    3,
+    27
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.6173539161682129
+  },
+  "hybrid+rerank": {
+   "pages": [
+    29,
+    28,
+    7,
+    15,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0011761558707803488
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    28,
+    29,
+    17,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.029877369007803793
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    17,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.008683160476318
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    28,
+    26,
+    39,
+    29,
+    34
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.3000118136405945
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    29,
+    3,
+    27,
+    31
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.6173539161682129
+  }
+ },
+ {
+  "id": "mq-102",
+  "ambiguous": false,
+  "source_page": 1,
+  "dense+rerank": {
+   "pages": [
+    1,
+    31,
+    13,
+    39,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9951903820037842
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    3,
+    39,
+    13,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6491245627403259
+  },
+  "hybrid+rerank": {
+   "pages": [
+    1,
+    31,
+    13,
+    39,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9951903820037842
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    3,
+    13,
+    9,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    1,
+    9,
+    13,
+    3,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.603021296225027
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    29,
+    20,
+    39,
+    9,
+    3
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.23315057158470154
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    3,
+    39,
+    13,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6491245627403259
+  }
+ },
+ {
+  "id": "mq-103",
+  "ambiguous": true,
+  "source_page": 27,
+  "dense+rerank": {
+   "pages": [
+    10,
+    28,
+    29,
+    32
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.036230143159627914
+  },
+  "dense-norerank": {
+   "pages": [
+    28,
+    15,
+    10,
+    4,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5834411382675171
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    28,
+    29,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.036230143159627914
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    35,
+    27,
+    9,
+    16
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    9,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 13.564715601549828
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    30,
+    26,
+    28,
+    39,
+    34
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.28390830755233765
+  },
+  "caption_baseline": {
+   "pages": [
+    28,
+    15,
+    31,
+    6,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5834411382675171
+  }
+ },
+ {
+  "id": "mq-104",
+  "ambiguous": true,
+  "source_page": 28,
+  "dense+rerank": {
+   "pages": [
+    28,
+    23,
+    4,
+    31,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.04255934804677963
+  },
+  "dense-norerank": {
+   "pages": [
+    28,
+    9,
+    29,
+    13,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6101275086402893
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    23,
+    4,
+    31,
+    34
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.04255934804677963
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    13,
+    29,
+    30,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    13,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 14.039446643828324
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    39,
+    30,
+    34,
+    28,
+    26
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.28892430663108826
+  },
+  "caption_baseline": {
+   "pages": [
+    28,
+    29,
+    13,
+    27,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6101275086402893
+  }
+ },
+ {
+  "id": "mq-105",
+  "ambiguous": true,
+  "source_page": 4,
+  "dense+rerank": {
+   "pages": [
+    35,
+    30,
+    8,
+    11,
+    2
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.008677318692207336
+  },
+  "dense-norerank": {
+   "pages": [
+    35,
+    2,
+    15,
+    3,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5208954215049744
+  },
+  "hybrid+rerank": {
+   "pages": [
+    35,
+    30,
+    8,
+    11,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.008677318692207336
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    29,
+    11,
+    17,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.031544957774465976
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    28,
+    29,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.515657736121787
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    2,
+    38,
+    39,
+    1,
+    3
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26263588666915894
+  },
+  "caption_baseline": {
+   "pages": [
+    35,
+    2,
+    15,
+    3,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5208954215049744
+  }
+ },
+ {
+  "id": "mq-106",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    18,
+    19
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.4537492096424103
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.7470064163208008
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    17,
+    8,
+    18,
+    19
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.4537492096424103
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    11,
+    19,
+    8
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    14,
+    17,
+    7,
+    11,
+    19
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 9.69370293487283
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    22,
+    15,
+    20,
+    8
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.29832711815834045
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.7470064163208008
+  }
+ },
+ {
+  "id": "mq-107",
+  "ambiguous": true,
+  "source_page": 4,
+  "dense+rerank": {
+   "pages": [
+    4,
+    30,
+    13,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0669899433851242
+  },
+  "dense-norerank": {
+   "pages": [
+    4,
+    31,
+    30,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6842475533485413
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    30,
+    13,
+    31
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0669899433851242
+  },
+  "hybrid-norerank": {
+   "pages": [
+    30,
+    7,
+    9,
+    31,
+    4
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    30,
+    7,
+    9,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.9132944669532
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    13,
+    36,
+    37,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.24531036615371704
+  },
+  "caption_baseline": {
+   "pages": [
+    4,
+    31,
+    30,
+    15,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6381843686103821
+  }
+ },
+ {
+  "id": "mq-108",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    18,
+    22,
+    26,
+    19,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.06380870193243027
+  },
+  "dense-norerank": {
+   "pages": [
+    14,
+    18,
+    12,
+    23,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.5407067537307739
+  },
+  "hybrid+rerank": {
+   "pages": [
+    18,
+    22,
+    26,
+    25,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.06380870193243027
+  },
+  "hybrid-norerank": {
+   "pages": [
+    18,
+    17,
+    14,
+    26,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    18,
+    17,
+    26,
+    28,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 7.349393257857445
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    10,
+    8,
+    16,
+    0
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.25963661074638367
+  },
+  "caption_baseline": {
+   "pages": [
+    14,
+    18,
+    12,
+    23,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.5407067537307739
+  }
+ },
+ {
+  "id": "mq-109",
+  "ambiguous": true,
+  "source_page": 4,
+  "dense+rerank": {
+   "pages": [
+    4,
+    30,
+    31,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.41362887620925903
+  },
+  "dense-norerank": {
+   "pages": [
+    4,
+    31,
+    9,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6142974495887756
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    30,
+    31,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.41362887620925903
+  },
+  "hybrid-norerank": {
+   "pages": [
+    4,
+    30,
+    31,
+    13,
+    5
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0315136476426799
+  },
+  "bm25-only": {
+   "pages": [
+    0,
+    34,
+    17,
+    35,
+    4
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 7.593534751660889
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    4,
+    6,
+    36,
+    27
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.25426599383354187
+  },
+  "caption_baseline": {
+   "pages": [
+    4,
+    31,
+    30,
+    6,
+    27
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5965519547462463
+  }
+ },
+ {
+  "id": "mq-110",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    22,
+    26,
+    8,
+    16,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.0032145583536475897
+  },
+  "dense-norerank": {
+   "pages": [
+    16,
+    19,
+    18,
+    12,
+    17
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5070937275886536
+  },
+  "hybrid+rerank": {
+   "pages": [
+    22,
+    26,
+    8,
+    16,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.0032145583536475897
+  },
+  "hybrid-norerank": {
+   "pages": [
+    16,
+    17,
+    19,
+    26,
+    18
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.03177805800756621
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    26,
+    28,
+    29,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 6.117246614846777
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    16,
+    0,
+    20,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2992379069328308
+  },
+  "caption_baseline": {
+   "pages": [
+    16,
+    19,
+    18,
+    12,
+    17
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5070936679840088
+  }
+ },
+ {
+  "id": "mq-111",
+  "ambiguous": false,
+  "source_page": 4,
+  "dense+rerank": {
+   "pages": [
+    4,
+    10,
+    13,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.012856573797762394
+  },
+  "dense-norerank": {
+   "pages": [
+    4,
+    10,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.668053150177002
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    10,
+    24,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.012856573797762394
+  },
+  "hybrid-norerank": {
+   "pages": [
+    4,
+    28,
+    37,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.032266458495966696
+  },
+  "bm25-only": {
+   "pages": [
+    4,
+    7,
+    37,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 8.683951646284763
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    30,
+    31,
+    13,
+    26,
+    4
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.2538759410381317
+  },
+  "caption_baseline": {
+   "pages": [
+    28,
+    4,
+    10,
+    15,
+    31
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5576114654541016
+  }
+ },
+ {
+  "id": "mq-112",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    18,
+    16,
+    22,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8851146697998047
+  },
+  "dense-norerank": {
+   "pages": [
+    19,
+    26,
+    12,
+    18,
+    14
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5201525092124939
+  },
+  "hybrid+rerank": {
+   "pages": [
+    18,
+    16,
+    22,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8851146697998047
+  },
+  "hybrid-norerank": {
+   "pages": [
+    18,
+    26,
+    19,
+    17,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.032018442622950824
+  },
+  "bm25-only": {
+   "pages": [
+    18,
+    17,
+    26,
+    28,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 7.349393257857445
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    14,
+    16,
+    26,
+    21
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.2522422671318054
+  },
+  "caption_baseline": {
+   "pages": [
+    19,
+    26,
+    12,
+    18,
+    14
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.5201525092124939
+  }
+ },
+ {
+  "id": "mq-113",
+  "ambiguous": true,
+  "source_page": 4,
+  "dense+rerank": {
+   "pages": [
+    4,
+    28,
+    25,
+    31,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03728153929114342
+  },
+  "dense-norerank": {
+   "pages": [
+    31,
+    4,
+    35,
+    10
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6024741530418396
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    24,
+    34,
+    28,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03728153929114342
+  },
+  "hybrid-norerank": {
+   "pages": [
+    4,
+    7,
+    28,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.030158730158730156
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    13,
+    29
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.129239609798596
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    24,
+    4,
+    25,
+    37,
+    31
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.2834310233592987
+  },
+  "caption_baseline": {
+   "pages": [
+    31,
+    4,
+    35,
+    10,
+    30
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6024741530418396
+  }
+ },
+ {
+  "id": "mq-114",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    18,
+    26,
+    19,
+    12,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.021323777735233307
+  },
+  "dense-norerank": {
+   "pages": [
+    26,
+    23,
+    17,
+    19,
+    12
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.5938925743103027
+  },
+  "hybrid+rerank": {
+   "pages": [
+    18,
+    26,
+    19,
+    12,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.021323777735233307
+  },
+  "hybrid-norerank": {
+   "pages": [
+    26,
+    17,
+    19,
+    12,
+    18
+   ],
+   "rank": 5,
+   "lenient_rank": 2,
+   "top_score": 0.032266458495966696
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    18,
+    26,
+    19,
+    12
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 10.248509543978225
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    0,
+    18,
+    22,
+    20,
+    25
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.2617235779762268
+  },
+  "caption_baseline": {
+   "pages": [
+    26,
+    23,
+    17,
+    19,
+    12
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.5938925743103027
+  }
+ },
+ {
+  "id": "mq-115",
+  "ambiguous": false,
+  "source_page": 18,
+  "dense+rerank": {
+   "pages": [
+    18,
+    26,
+    16,
+    8,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6526259183883667
+  },
+  "dense-norerank": {
+   "pages": [
+    26,
+    12,
+    16,
+    17,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 4,
+   "top_score": 0.5334116220474243
+  },
+  "hybrid+rerank": {
+   "pages": [
+    18,
+    26,
+    25,
+    16,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6526259183883667
+  },
+  "hybrid-norerank": {
+   "pages": [
+    26,
+    17,
+    19,
+    16,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    26,
+    18,
+    19,
+    28
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 10.248509543978225
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    0,
+    18,
+    16,
+    12,
+    20
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.24755185842514038
+  },
+  "caption_baseline": {
+   "pages": [
+    26,
+    12,
+    16,
+    17,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 4,
+   "top_score": 0.5334116220474243
+  }
+ },
+ {
+  "id": "mq-116",
+  "ambiguous": false,
+  "source_page": 17,
+  "dense+rerank": {
+   "pages": [
+    17,
+    8,
+    19,
+    14,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.956801176071167
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    12,
+    19,
+    23,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6327176094055176
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    8,
+    19,
+    14,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.956801176071167
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    8,
+    14,
+    19,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    8,
+    14,
+    28,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 19.346265565914894
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    16,
+    0,
+    22,
+    15,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25557082891464233
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    12,
+    19,
+    23,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6327176094055176
+  }
+ },
+ {
+  "id": "mq-117",
+  "ambiguous": true,
+  "source_page": 17,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-118",
+  "ambiguous": false,
+  "source_page": 17,
+  "dense+rerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    16,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9577322006225586
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7395968437194824
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    16,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9577322006225586
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    11,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    14,
+    11,
+    7,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.43512271184509
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    18,
+    22,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.262502521276474
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    14,
+    16,
+    8,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7395968437194824
+  }
+ },
+ {
+  "id": "mq-119",
+  "ambiguous": false,
+  "source_page": 17,
+  "dense+rerank": {
+   "pages": [
+    17,
+    14,
+    18,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9988148212432861
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    18,
+    8,
+    13,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6358585357666016
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    14,
+    18,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9988148212432861
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    8,
+    18,
+    14,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    8,
+    11,
+    35,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 17.85406474227908
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    20,
+    11,
+    12,
+    16
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.27975767850875854
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    18,
+    8,
+    14,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6358585357666016
+  }
+ },
+ {
+  "id": "mq-120",
+  "ambiguous": false,
+  "source_page": 17,
+  "dense+rerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    19,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9981064796447754
+  },
+  "dense-norerank": {
+   "pages": [
+    17,
+    8,
+    11,
+    14,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7387490272521973
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    14,
+    8,
+    19,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9981064796447754
+  },
+  "hybrid-norerank": {
+   "pages": [
+    17,
+    14,
+    11,
+    8,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    17,
+    14,
+    11,
+    12,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 15.27172055663119
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    11,
+    17,
+    19
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.3255273401737213
+  },
+  "caption_baseline": {
+   "pages": [
+    17,
+    8,
+    11,
+    14,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7387490272521973
+  }
+ },
+ {
+  "id": "mq-121",
+  "ambiguous": true,
+  "source_page": 16,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": 4,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-122",
+  "ambiguous": false,
+  "source_page": 16,
+  "dense+rerank": {
+   "pages": [
+    16,
+    17,
+    14,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9424922466278076
+  },
+  "dense-norerank": {
+   "pages": [
+    16,
+    17,
+    14,
+    8,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7853043079376221
+  },
+  "hybrid+rerank": {
+   "pages": [
+    16,
+    17,
+    14,
+    8,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9424922466278076
+  },
+  "hybrid-norerank": {
+   "pages": [
+    16,
+    17,
+    14,
+    8,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    16,
+    17,
+    7,
+    14,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 12.453808539177631
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    14,
+    8,
+    18,
+    3,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.3232711851596832
+  },
+  "caption_baseline": {
+   "pages": [
+    16,
+    17,
+    14,
+    8,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7853043079376221
+  }
+ },
+ {
+  "id": "mq-123",
+  "ambiguous": false,
+  "source_page": 16,
+  "dense+rerank": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    18
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6131497025489807
+  },
+  "dense-norerank": {
+   "pages": [
+    16,
+    17,
+    12,
+    8,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7358517050743103
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    16,
+    14,
+    8,
+    18
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.6131497025489807
+  },
+  "hybrid-norerank": {
+   "pages": [
+    16,
+    17,
+    8,
+    14,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    16,
+    17,
+    28,
+    13,
+    29
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 13.231631146810772
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    0,
+    16,
+    15,
+    22
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.26038044691085815
+  },
+  "caption_baseline": {
+   "pages": [
+    16,
+    17,
+    12,
+    8,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7358516454696655
+  }
+ },
+ {
+  "id": "mq-124",
+  "ambiguous": false,
+  "source_page": 16,
+  "dense+rerank": {
+   "pages": [
+    17,
+    14,
+    16,
+    19,
+    18
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.4137045741081238
+  },
+  "dense-norerank": {
+   "pages": [
+    16,
+    17,
+    26,
+    12,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7321282625198364
+  },
+  "hybrid+rerank": {
+   "pages": [
+    17,
+    14,
+    16,
+    19,
+    18
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.4137045741081238
+  },
+  "hybrid-norerank": {
+   "pages": [
+    16,
+    17,
+    14,
+    26,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    16,
+    17,
+    28,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 14.641618797630644
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    0,
+    16,
+    22,
+    26
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.2551127076148987
+  },
+  "caption_baseline": {
+   "pages": [
+    16,
+    17,
+    26,
+    12,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7321282625198364
+  }
+ },
+ {
+  "id": "mq-125",
+  "ambiguous": false,
+  "source_page": 28,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    1,
+    30,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1865624338388443
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    28,
+    39,
+    9,
+    35
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.622302770614624
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    24,
+    29,
+    1,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1865624338388443
+  },
+  "hybrid-norerank": {
+   "pages": [
+    29,
+    28,
+    35,
+    13,
+    39
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    29,
+    33,
+    1,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 7.526618129060115
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    10,
+    24,
+    30,
+    9,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.23178599774837494
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    28,
+    39,
+    35,
+    9
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.622302770614624
+  }
+ },
+ {
+  "id": "mq-126",
+  "ambiguous": false,
+  "source_page": 28,
+  "dense+rerank": {
+   "pages": [
+    28,
+    4,
+    29,
+    36,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0027449436020106077
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    28,
+    27,
+    35,
+    30
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5510299801826477
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    4,
+    29,
+    36,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0027449436020106077
+  },
+  "hybrid-norerank": {
+   "pages": [
+    29,
+    28,
+    35,
+    32,
+    39
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    29,
+    0,
+    32,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 18.58028248733459
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    21,
+    22,
+    28,
+    32,
+    1
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.27770859003067017
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    28,
+    27,
+    35,
+    30
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5510299801826477
+  }
+ },
+ {
+  "id": "mq-127",
+  "ambiguous": true,
+  "source_page": 19,
+  "dense+rerank": {
+   "pages": [
+    14,
+    19,
+    17,
+    26,
+    8
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.3453211486339569
+  },
+  "dense-norerank": {
+   "pages": [
+    19,
+    17,
+    12,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6357616186141968
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    19,
+    17,
+    26,
+    25
+   ],
+   "rank": 2,
+   "lenient_rank": 1,
+   "top_score": 0.3453211486339569
+  },
+  "hybrid-norerank": {
+   "pages": [
+    19,
+    17,
+    14,
+    11,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    19,
+    17,
+    14,
+    28,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 19.554990519422194
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    19,
+    0,
+    8,
+    17,
+    1
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.2923959493637085
+  },
+  "caption_baseline": {
+   "pages": [
+    19,
+    17,
+    12,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6357616186141968
+  }
+ },
+ {
+  "id": "mq-128",
+  "ambiguous": true,
+  "source_page": 19,
+  "dense+rerank": {
+   "pages": [
+    14,
+    17,
+    19,
+    8,
+    26
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.4042677581310272
+  },
+  "dense-norerank": {
+   "pages": [
+    19,
+    17,
+    26,
+    12,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6252515912055969
+  },
+  "hybrid+rerank": {
+   "pages": [
+    14,
+    17,
+    19,
+    8,
+    26
+   ],
+   "rank": 3,
+   "lenient_rank": 1,
+   "top_score": 0.4042677581310272
+  },
+  "hybrid-norerank": {
+   "pages": [
+    19,
+    17,
+    14,
+    11,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    19,
+    17,
+    14,
+    11,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 19.554990519422194
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    19,
+    8,
+    17,
+    0,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.29423975944519043
+  },
+  "caption_baseline": {
+   "pages": [
+    19,
+    17,
+    26,
+    12,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6252515912055969
+  }
+ },
+ {
+  "id": "mq-129",
+  "ambiguous": false,
+  "source_page": 19,
+  "dense+rerank": {
+   "pages": [
+    19,
+    18,
+    17,
+    16,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9990190267562866
+  },
+  "dense-norerank": {
+   "pages": [
+    19,
+    8,
+    17,
+    14,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5829285979270935
+  },
+  "hybrid+rerank": {
+   "pages": [
+    19,
+    18,
+    17,
+    16,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9990190267562866
+  },
+  "hybrid-norerank": {
+   "pages": [
+    19,
+    17,
+    18,
+    14,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    19,
+    17,
+    18,
+    24,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 30.906373502402
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    19,
+    17,
+    18,
+    8,
+    20
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.28065750002861023
+  },
+  "caption_baseline": {
+   "pages": [
+    19,
+    8,
+    17,
+    14,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5829285979270935
+  }
+ },
+ {
+  "id": "mq-130",
+  "ambiguous": false,
+  "source_page": 19,
+  "dense+rerank": {
+   "pages": [
+    19,
+    17,
+    18,
+    16,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9448289275169373
+  },
+  "dense-norerank": {
+   "pages": [
+    19,
+    12,
+    16,
+    23,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6308598518371582
+  },
+  "hybrid+rerank": {
+   "pages": [
+    19,
+    17,
+    18,
+    16,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9448289275169373
+  },
+  "hybrid-norerank": {
+   "pages": [
+    19,
+    17,
+    16,
+    18,
+    14
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    19,
+    17,
+    18,
+    16,
+    25
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 18.11900221393862
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    19,
+    17,
+    18,
+    25,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.28073838353157043
+  },
+  "caption_baseline": {
+   "pages": [
+    19,
+    12,
+    16,
+    23,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6308598518371582
+  }
+ },
+ {
+  "id": "mq-131",
+  "ambiguous": true,
+  "source_page": 21,
+  "dense+rerank": {
+   "pages": [
+    10,
+    4,
+    24
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03843572735786438
+  },
+  "dense-norerank": {
+   "pages": [
+    28,
+    29,
+    4,
+    10,
+    6
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5659836530685425
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    4,
+    36,
+    24
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03843572735786438
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    29,
+    27,
+    7,
+    24
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    29,
+    37
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 7.044949508873339
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    35,
+    34,
+    5,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2834579348564148
+  },
+  "caption_baseline": {
+   "pages": [
+    28,
+    29,
+    6,
+    15,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5659836530685425
+  }
+ },
+ {
+  "id": "mq-132",
+  "ambiguous": false,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    5,
+    1,
+    36,
+    7,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7104310393333435
+  },
+  "dense-norerank": {
+   "pages": [
+    5,
+    7,
+    23,
+    32
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7421217560768127
+  },
+  "hybrid+rerank": {
+   "pages": [
+    5,
+    1,
+    25,
+    36,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7104310393333435
+  },
+  "hybrid-norerank": {
+   "pages": [
+    5,
+    7,
+    1,
+    35,
+    16
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    5,
+    17,
+    7,
+    16,
+    18
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 26.369916717821294
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    5,
+    33,
+    6,
+    10,
+    34
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.31679344177246094
+  },
+  "caption_baseline": {
+   "pages": [
+    5,
+    7,
+    23,
+    32,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7421217560768127
+  }
+ },
+ {
+  "id": "mq-133",
+  "ambiguous": false,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    5,
+    39,
+    36,
+    37,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.044589877128601074
+  },
+  "dense-norerank": {
+   "pages": [
+    5,
+    7,
+    32,
+    23
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7760207056999207
+  },
+  "hybrid+rerank": {
+   "pages": [
+    5,
+    25,
+    39,
+    36,
+    37
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.044589877128601074
+  },
+  "hybrid-norerank": {
+   "pages": [
+    5,
+    7,
+    35,
+    1,
+    30
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    5,
+    29,
+    28,
+    7,
+    9
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 19.154452498473248
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    5,
+    6,
+    33,
+    10,
+    37
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.31063899397850037
+  },
+  "caption_baseline": {
+   "pages": [
+    5,
+    7,
+    32,
+    23,
+    6
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7760207056999207
+  }
+ },
+ {
+  "id": "mq-134",
+  "ambiguous": false,
+  "source_page": 21,
+  "dense+rerank": {
+   "pages": [
+    21,
+    27,
+    29,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9974435567855835
+  },
+  "dense-norerank": {
+   "pages": [
+    21,
+    27,
+    29,
+    34
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8004038333892822
+  },
+  "hybrid+rerank": {
+   "pages": [
+    21,
+    27,
+    29,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9974435567855835
+  },
+  "hybrid-norerank": {
+   "pages": [
+    21,
+    27,
+    24,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    21,
+    27,
+    9,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 36.50367745078262
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    21,
+    24,
+    29,
+    28,
+    7
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.25532132387161255
+  },
+  "caption_baseline": {
+   "pages": [
+    21,
+    27,
+    29,
+    34,
+    24
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.8004039525985718
+  }
+ },
+ {
+  "id": "mq-135",
+  "ambiguous": false,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    7,
+    3,
+    8,
+    31,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.007458563894033432
+  },
+  "dense-norerank": {
+   "pages": [
+    27,
+    39,
+    9,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5772595405578613
+  },
+  "hybrid+rerank": {
+   "pages": [
+    7,
+    5,
+    3,
+    8,
+    31
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.007458563894033432
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    7,
+    39,
+    35,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03128054740957967
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    28,
+    29,
+    8,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 13.985893464174227
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    35,
+    9,
+    8,
+    34
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2606581151485443
+  },
+  "caption_baseline": {
+   "pages": [
+    27,
+    39,
+    15,
+    28,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5772595405578613
+  }
+ },
+ {
+  "id": "mq-136",
+  "ambiguous": false,
+  "source_page": 37,
+  "dense+rerank": {
+   "pages": [
+    10,
+    37,
+    4,
+    36
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.020427828654646873
+  },
+  "dense-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5605124235153198
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    37,
+    4,
+    36
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.020427828654646873
+  },
+  "hybrid-norerank": {
+   "pages": [
+    37,
+    36,
+    39,
+    38,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    7,
+    36,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 17.437598668063735
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    4,
+    36,
+    30,
+    33,
+    2
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25817129015922546
+  },
+  "caption_baseline": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5605124235153198
+  }
+ },
+ {
+  "id": "mq-137",
+  "ambiguous": true,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    5,
+    30,
+    4,
+    13,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.00336909806355834
+  },
+  "dense-norerank": {
+   "pages": [
+    27,
+    4,
+    28,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6224699020385742
+  },
+  "hybrid+rerank": {
+   "pages": [
+    5,
+    30,
+    4,
+    13,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.00336909806355834
+  },
+  "hybrid-norerank": {
+   "pages": [
+    27,
+    28,
+    31,
+    7,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.031099324975891997
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    9,
+    13,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 8.052864324795605
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    35,
+    6,
+    38,
+    4,
+    37
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26718670129776
+  },
+  "caption_baseline": {
+   "pages": [
+    27,
+    28,
+    31,
+    29,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6224699020385742
+  }
+ },
+ {
+  "id": "mq-138",
+  "ambiguous": true,
+  "source_page": 20,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "dense-norerank": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.1203560158610344
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    9,
+    11,
+    8,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": 3,
+   "top_score": 0.030886196246139225
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    7,
+    29,
+    30
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 10.3105620312779
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    8,
+    3,
+    38,
+    16,
+    0
+   ],
+   "rank": null,
+   "lenient_rank": 1,
+   "top_score": 0.2531111240386963
+  },
+  "caption_baseline": {
+   "pages": [
+    1,
+    8,
+    14,
+    26,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": 2,
+   "top_score": 0.5654836893081665
+  }
+ },
+ {
+  "id": "mq-139",
+  "ambiguous": false,
+  "source_page": 37,
+  "dense+rerank": {
+   "pages": [
+    10,
+    37,
+    4,
+    36
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.042797867208719254
+  },
+  "dense-norerank": {
+   "pages": [
+    36,
+    37,
+    38,
+    6,
+    39
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5731000304222107
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    37,
+    4,
+    36
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.042797867208719254
+  },
+  "hybrid-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03252247488101534
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    7,
+    36,
+    9,
+    13
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 17.437598668063735
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    36,
+    4,
+    23,
+    30,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2496998906135559
+  },
+  "caption_baseline": {
+   "pages": [
+    36,
+    37,
+    38,
+    6,
+    39
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.5731000304222107
+  }
+ },
+ {
+  "id": "mq-140",
+  "ambiguous": false,
+  "source_page": 20,
+  "dense+rerank": {
+   "pages": [
+    20,
+    26,
+    38,
+    1,
+    36
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1258087009191513
+  },
+  "dense-norerank": {
+   "pages": [
+    26,
+    16,
+    20,
+    10
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5475008487701416
+  },
+  "hybrid+rerank": {
+   "pages": [
+    20,
+    26,
+    24,
+    38,
+    2
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.1258087009191513
+  },
+  "hybrid-norerank": {
+   "pages": [
+    26,
+    17,
+    39,
+    19,
+    8
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03131881575727918
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    17,
+    9,
+    11
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 5.5900709134694235
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    10,
+    38,
+    0,
+    35
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2273988276720047
+  },
+  "caption_baseline": {
+   "pages": [
+    26,
+    16,
+    20,
+    10,
+    15
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.5475008487701416
+  }
+ },
+ {
+  "id": "mq-141",
+  "ambiguous": true,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    10,
+    5,
+    35,
+    7
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 5.470815085573122e-05
+  },
+  "dense-norerank": {
+   "pages": [
+    5,
+    10,
+    23,
+    18,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5737752318382263
+  },
+  "hybrid+rerank": {
+   "pages": [
+    10,
+    5,
+    35,
+    0
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 5.470815085573122e-05
+  },
+  "hybrid-norerank": {
+   "pages": [
+    35,
+    7,
+    5,
+    24,
+    34
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.03125763125763126
+  },
+  "bm25-only": {
+   "pages": [
+    28,
+    7,
+    35,
+    8,
+    17
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 15.288130876393112
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    5,
+    0,
+    38,
+    22,
+    10
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.26201343536376953
+  },
+  "caption_baseline": {
+   "pages": [
+    5,
+    23,
+    18,
+    35,
+    34
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5737752318382263
+  }
+ },
+ {
+  "id": "mq-142",
+  "ambiguous": true,
+  "source_page": 29,
+  "dense+rerank": {
+   "pages": [
+    28,
+    29,
+    35,
+    16,
+    15
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.014314278960227966
+  },
+  "dense-norerank": {
+   "pages": [
+    29,
+    28,
+    27,
+    31,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5670173764228821
+  },
+  "hybrid+rerank": {
+   "pages": [
+    28,
+    29,
+    35,
+    7,
+    16
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.014314278960227966
+  },
+  "hybrid-norerank": {
+   "pages": [
+    29,
+    28,
+    23,
+    13,
+    35
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.032266458495966696
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    28,
+    29,
+    23
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 8.052864324795603
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    30,
+    1,
+    39,
+    33,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.30425527691841125
+  },
+  "caption_baseline": {
+   "pages": [
+    29,
+    28,
+    27,
+    31,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.5670173764228821
+  }
+ },
+ {
+  "id": "mq-143",
+  "ambiguous": true,
+  "source_page": 7,
+  "dense+rerank": {
+   "pages": [
+    4,
+    6,
+    22,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.006214954424649477
+  },
+  "dense-norerank": {
+   "pages": [
+    15,
+    27,
+    6,
+    4,
+    10
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5600107312202454
+  },
+  "hybrid+rerank": {
+   "pages": [
+    4,
+    6,
+    24,
+    19
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.006214954424649477
+  },
+  "hybrid-norerank": {
+   "pages": [
+    7,
+    29,
+    8,
+    3
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03128054740957967
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    9,
+    13,
+    11
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    6,
+    10,
+    4,
+    7,
+    27
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.28160300850868225
+  },
+  "caption_baseline": {
+   "pages": [
+    15,
+    27,
+    6,
+    10,
+    7
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.5600107312202454
+  }
+ },
+ {
+  "id": "mq-144",
+  "ambiguous": true,
+  "source_page": 7,
+  "dense+rerank": {
+   "pages": [
+    26,
+    22,
+    7,
+    8,
+    14
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.007622682023793459
+  },
+  "dense-norerank": {
+   "pages": [
+    26,
+    1,
+    8,
+    15,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6295682191848755
+  },
+  "hybrid+rerank": {
+   "pages": [
+    26,
+    22,
+    7,
+    8,
+    14
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.007622682023793459
+  },
+  "hybrid-norerank": {
+   "pages": [
+    1,
+    17,
+    16,
+    13,
+    8
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03128054740957967
+  },
+  "bm25-only": {
+   "pages": [
+    9,
+    13,
+    28,
+    17,
+    3
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.908311597734421
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    3,
+    26,
+    9,
+    27,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.26071733236312866
+  },
+  "caption_baseline": {
+   "pages": [
+    26,
+    1,
+    8,
+    15,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.6295682191848755
+  }
+ },
+ {
+  "id": "mq-145",
+  "ambiguous": true,
+  "source_page": 29,
+  "dense+rerank": {
+   "pages": [
+    36,
+    24,
+    1,
+    29,
+    12
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.00397728756070137
+  },
+  "dense-norerank": {
+   "pages": [
+    39,
+    1,
+    32,
+    19,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.495205819606781
+  },
+  "hybrid+rerank": {
+   "pages": [
+    36,
+    24,
+    1,
+    34,
+    29
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.00397728756070137
+  },
+  "hybrid-norerank": {
+   "pages": [
+    39,
+    29,
+    1,
+    13,
+    17
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 0.030679156908665108
+  },
+  "bm25-only": {
+   "pages": [
+    29,
+    13,
+    7,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 12.145830422606721
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    38,
+    32,
+    35,
+    34,
+    1
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2399202585220337
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    1,
+    32,
+    19,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.495205819606781
+  }
+ },
+ {
+  "id": "mq-146",
+  "ambiguous": false,
+  "source_page": 20,
+  "dense+rerank": {
+   "pages": [
+    20,
+    17,
+    19,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9887803792953491
+  },
+  "dense-norerank": {
+   "pages": [
+    20,
+    17,
+    16,
+    12,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7220074534416199
+  },
+  "hybrid+rerank": {
+   "pages": [
+    20,
+    17,
+    19,
+    26,
+    8
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.9887803792953491
+  },
+  "hybrid-norerank": {
+   "pages": [
+    20,
+    17,
+    16,
+    14,
+    12
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    20,
+    17,
+    1,
+    14,
+    28
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 16.652588683106206
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    18,
+    17,
+    20,
+    16,
+    19
+   ],
+   "rank": 3,
+   "lenient_rank": 2,
+   "top_score": 0.2428189367055893
+  },
+  "caption_baseline": {
+   "pages": [
+    20,
+    17,
+    16,
+    12,
+    19
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.7220074534416199
+  }
+ },
+ {
+  "id": "mq-147",
+  "ambiguous": false,
+  "source_page": 29,
+  "dense+rerank": {
+   "pages": [
+    39,
+    4,
+    24,
+    31,
+    32
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.00011524043657118455
+  },
+  "dense-norerank": {
+   "pages": [
+    10,
+    12,
+    9,
+    23,
+    32
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.46819639205932617
+  },
+  "hybrid+rerank": {
+   "pages": [
+    29,
+    39,
+    4,
+    24,
+    26
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.0006075971177779138
+  },
+  "hybrid-norerank": {
+   "pages": [
+    12,
+    9,
+    23,
+    39,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0315136476426799
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    29,
+    30,
+    39,
+    12
+   ],
+   "rank": 2,
+   "lenient_rank": 2,
+   "top_score": 5.5900709134694235
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    28,
+    39,
+    32,
+    1,
+    23
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2460232973098755
+  },
+  "caption_baseline": {
+   "pages": [
+    12,
+    23,
+    32,
+    18,
+    24
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.4594288766384125
+  }
+ },
+ {
+  "id": "mq-148",
+  "ambiguous": true,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    37,
+    8,
+    16,
+    19,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0008669333765283227
+  },
+  "dense-norerank": {
+   "pages": [
+    39,
+    1,
+    15,
+    16,
+    27
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5889642238616943
+  },
+  "hybrid+rerank": {
+   "pages": [
+    37,
+    8,
+    16,
+    19,
+    14
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.0008669333765283227
+  },
+  "hybrid-norerank": {
+   "pages": [
+    28,
+    39,
+    29,
+    35,
+    1
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.030621785881252923
+  },
+  "bm25-only": {
+   "pages": [
+    29,
+    28,
+    7,
+    9
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 12.358749977233186
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    1,
+    2,
+    5,
+    38,
+    39
+   ],
+   "rank": 3,
+   "lenient_rank": 3,
+   "top_score": 0.2616051435470581
+  },
+  "caption_baseline": {
+   "pages": [
+    39,
+    1,
+    15,
+    16,
+    38
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5889642238616943
+  }
+ },
+ {
+  "id": "mq-149",
+  "ambiguous": true,
+  "source_page": 5,
+  "dense+rerank": {
+   "pages": [
+    27,
+    4,
+    9,
+    5,
+    10
+   ],
+   "rank": 4,
+   "lenient_rank": 4,
+   "top_score": 0.0010938904015347362
+  },
+  "dense-norerank": {
+   "pages": [
+    27,
+    28,
+    10,
+    31
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5612185001373291
+  },
+  "hybrid+rerank": {
+   "pages": [
+    27,
+    4,
+    9,
+    24,
+    5
+   ],
+   "rank": 5,
+   "lenient_rank": 5,
+   "top_score": 0.0010938904015347362
+  },
+  "hybrid-norerank": {
+   "pages": [
+    27,
+    35,
+    31,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.03131881575727918
+  },
+  "bm25-only": {
+   "pages": [
+    7,
+    35,
+    9,
+    13
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 9.284261030458696
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    35,
+    38,
+    24,
+    25,
+    7
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.25909003615379333
+  },
+  "caption_baseline": {
+   "pages": [
+    27,
+    28,
+    31,
+    35,
+    15
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.5612185001373291
+  }
+ },
+ {
+  "id": "mq-150",
+  "ambiguous": false,
+  "source_page": 37,
+  "dense+rerank": {
+   "pages": [
+    37,
+    10,
+    36,
+    25,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.024888578802347183
+  },
+  "dense-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    10,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6945450305938721
+  },
+  "hybrid+rerank": {
+   "pages": [
+    37,
+    10,
+    36,
+    25,
+    4
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.024888578802347183
+  },
+  "hybrid-norerank": {
+   "pages": [
+    37,
+    36,
+    38,
+    35,
+    39
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.03278688524590164
+  },
+  "bm25-only": {
+   "pages": [
+    37,
+    36,
+    7,
+    10,
+    17
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 19.056564711875613
+  },
+  "cross_modal(CLIP)": {
+   "pages": [
+    36,
+    13,
+    30,
+    4,
+    33
+   ],
+   "rank": null,
+   "lenient_rank": null,
+   "top_score": 0.2501278519630432
+  },
+  "caption_baseline": {
+   "pages": [
+    37,
+    36,
+    38,
+    39,
+    15
+   ],
+   "rank": 1,
+   "lenient_rank": 1,
+   "top_score": 0.6945450305938721
+  }
+ }
+]

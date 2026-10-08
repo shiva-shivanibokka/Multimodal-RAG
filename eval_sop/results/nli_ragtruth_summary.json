@@ -1,0 +1,142 @@
+{
+  "dataset": "wandb/RAGTruth-processed test split, task_type=QA",
+  "parquet_sha256": "2fc4fb703ea47ee0d4ab6110b86312f94fdf0bda157bc6ee67c7e61fb90d3bbd",
+  "sample": {
+    "n_responses": 450,
+    "n_claims": 2924,
+    "seed": 0
+  },
+  "gate": {
+    "model": "cross-encoder/nli-deberta-v3-base",
+    "threshold": 0.5
+  },
+  "prevalence": {
+    "claims_hallucinated": 0.06976744186046512,
+    "responses_hallucinated": 0.15777777777777777
+  },
+  "claim_level(any-span-overlap)": {
+    "precision": 0.08376963350785341,
+    "recall": 0.9411764705882353,
+    "specificity": 0.22794117647058823,
+    "balanced_acc": 0.5845588235294118,
+    "f1": 0.15384615384615383,
+    "flag_rate": 0.7838577291381669,
+    "tp": 192,
+    "fp": 2100,
+    "fn": 12,
+    "tn": 620,
+    "auroc": 0.7370629685697808,
+    "precision_ci95": [
+      0.05428337173845085,
+      0.11851645630239968
+    ],
+    "recall_ci95": [
+      0.8741552301922924,
+      0.9850018656716417
+    ],
+    "balanced_acc_ci95": [
+      0.5484187687167699,
+      0.6112317490182201
+    ],
+    "auroc_ci95": [
+      0.6511338397879413,
+      0.8054676079876095
+    ]
+  },
+  "response_level_any_claim_flagged": {
+    "precision": 0.1686746987951807,
+    "recall": 0.9859154929577465,
+    "specificity": 0.08970976253298153,
+    "balanced_acc": 0.537812627745364,
+    "f1": 0.2880658436213992,
+    "flag_rate": 0.9222222222222223,
+    "tp": 70,
+    "fp": 345,
+    "fn": 1,
+    "tn": 34,
+    "auroc": 0.6706863874540117,
+    "precision_ci95": [
+      0.1325256909992913,
+      0.20476190476190476
+    ],
+    "recall_ci95": [
+      0.953828125,
+      1.0
+    ],
+    "balanced_acc_ci95": [
+      0.5173201337160713,
+      0.556282722513089
+    ],
+    "auroc_ci95": [
+      0.6069605375373509,
+      0.7323511238738738
+    ]
+  },
+  "response_level_all_claims_flagged(=/answer firewall refusal)": {
+    "precision": 0.20673076923076922,
+    "recall": 0.6056338028169014,
+    "specificity": 0.5646437994722955,
+    "balanced_acc": 0.5851388011445984,
+    "f1": 0.3082437275985663,
+    "flag_rate": 0.4622222222222222,
+    "tp": 43,
+    "fp": 165,
+    "fn": 28,
+    "tn": 214,
+    "auroc": 0.6706863874540117,
+    "precision_ci95": [
+      0.15382775119617226,
+      0.26291697553743515
+    ],
+    "recall_ci95": [
+      0.4917963323145318,
+      0.7213166632081345
+    ],
+    "balanced_acc_ci95": [
+      0.5222513075215143,
+      0.650425039577996
+    ],
+    "auroc_ci95": [
+      0.6069605375373509,
+      0.7323511238738738
+    ]
+  },
+  "baselines": {
+    "always_flag_claims": {
+      "precision": 0.06976744186046512,
+      "recall": 1.0,
+      "specificity": 0.0,
+      "balanced_acc": 0.5,
+      "f1": 0.13043478260869565,
+      "flag_rate": 1.0,
+      "tp": 204,
+      "fp": 2720,
+      "fn": 0,
+      "tn": 0
+    },
+    "never_flag_claims": {
+      "precision": NaN,
+      "recall": 0.0,
+      "specificity": 1.0,
+      "balanced_acc": 0.5,
+      "f1": NaN,
+      "flag_rate": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 204,
+      "tn": 2720
+    },
+    "always_flag_responses": {
+      "precision": 0.15777777777777777,
+      "recall": 1.0,
+      "specificity": 0.0,
+      "balanced_acc": 0.5,
+      "f1": 0.27255278310940495,
+      "flag_rate": 1.0,
+      "tp": 71,
+      "fp": 379,
+      "fn": 0,
+      "tn": 0
+    }
+  }
+}

@@ -1,0 +1,871 @@
+signal,coverage,risk
+gate_dense (bge cosine),0.0069,1.0
+gate_dense (bge cosine),0.0138,0.5
+gate_dense (bge cosine),0.0207,0.6667
+gate_dense (bge cosine),0.0276,0.5
+gate_dense (bge cosine),0.0345,0.6
+gate_dense (bge cosine),0.0414,0.6667
+gate_dense (bge cosine),0.0483,0.5714
+gate_dense (bge cosine),0.0552,0.5
+gate_dense (bge cosine),0.0621,0.4444
+gate_dense (bge cosine),0.069,0.5
+gate_dense (bge cosine),0.0759,0.4545
+gate_dense (bge cosine),0.0828,0.4167
+gate_dense (bge cosine),0.0897,0.4615
+gate_dense (bge cosine),0.0966,0.4286
+gate_dense (bge cosine),0.1034,0.4667
+gate_dense (bge cosine),0.1103,0.5
+gate_dense (bge cosine),0.1172,0.5294
+gate_dense (bge cosine),0.1241,0.5
+gate_dense (bge cosine),0.131,0.4737
+gate_dense (bge cosine),0.1379,0.45
+gate_dense (bge cosine),0.1448,0.4286
+gate_dense (bge cosine),0.1517,0.4545
+gate_dense (bge cosine),0.1586,0.4348
+gate_dense (bge cosine),0.1655,0.4583
+gate_dense (bge cosine),0.1724,0.44
+gate_dense (bge cosine),0.1793,0.4615
+gate_dense (bge cosine),0.1862,0.4444
+gate_dense (bge cosine),0.1931,0.4286
+gate_dense (bge cosine),0.2,0.4138
+gate_dense (bge cosine),0.2069,0.4
+gate_dense (bge cosine),0.2138,0.3871
+gate_dense (bge cosine),0.2207,0.4062
+gate_dense (bge cosine),0.2276,0.4242
+gate_dense (bge cosine),0.2345,0.4118
+gate_dense (bge cosine),0.2414,0.4286
+gate_dense (bge cosine),0.2483,0.4444
+gate_dense (bge cosine),0.2552,0.4595
+gate_dense (bge cosine),0.2621,0.4737
+gate_dense (bge cosine),0.269,0.4615
+gate_dense (bge cosine),0.2759,0.475
+gate_dense (bge cosine),0.2828,0.4634
+gate_dense (bge cosine),0.2897,0.4524
+gate_dense (bge cosine),0.2966,0.4419
+gate_dense (bge cosine),0.3034,0.4318
+gate_dense (bge cosine),0.3103,0.4444
+gate_dense (bge cosine),0.3172,0.4348
+gate_dense (bge cosine),0.3241,0.4468
+gate_dense (bge cosine),0.331,0.4375
+gate_dense (bge cosine),0.3379,0.449
+gate_dense (bge cosine),0.3448,0.46
+gate_dense (bge cosine),0.3517,0.4706
+gate_dense (bge cosine),0.3586,0.4615
+gate_dense (bge cosine),0.3655,0.4528
+gate_dense (bge cosine),0.3724,0.463
+gate_dense (bge cosine),0.3793,0.4545
+gate_dense (bge cosine),0.3862,0.4464
+gate_dense (bge cosine),0.3931,0.4386
+gate_dense (bge cosine),0.4,0.431
+gate_dense (bge cosine),0.4069,0.4237
+gate_dense (bge cosine),0.4138,0.4167
+gate_dense (bge cosine),0.4207,0.4098
+gate_dense (bge cosine),0.4276,0.4032
+gate_dense (bge cosine),0.4345,0.3968
+gate_dense (bge cosine),0.4414,0.4062
+gate_dense (bge cosine),0.4483,0.4154
+gate_dense (bge cosine),0.4552,0.4091
+gate_dense (bge cosine),0.4621,0.403
+gate_dense (bge cosine),0.469,0.4118
+gate_dense (bge cosine),0.4759,0.4058
+gate_dense (bge cosine),0.4828,0.4
+gate_dense (bge cosine),0.4897,0.3944
+gate_dense (bge cosine),0.4966,0.3889
+gate_dense (bge cosine),0.5034,0.3836
+gate_dense (bge cosine),0.5103,0.3784
+gate_dense (bge cosine),0.5172,0.3733
+gate_dense (bge cosine),0.5241,0.3684
+gate_dense (bge cosine),0.531,0.3636
+gate_dense (bge cosine),0.5379,0.359
+gate_dense (bge cosine),0.5448,0.3544
+gate_dense (bge cosine),0.5517,0.3625
+gate_dense (bge cosine),0.5586,0.358
+gate_dense (bge cosine),0.5655,0.3537
+gate_dense (bge cosine),0.5724,0.3494
+gate_dense (bge cosine),0.5793,0.3452
+gate_dense (bge cosine),0.5862,0.3412
+gate_dense (bge cosine),0.5931,0.3488
+gate_dense (bge cosine),0.6,0.3448
+gate_dense (bge cosine),0.6069,0.3409
+gate_dense (bge cosine),0.6138,0.3371
+gate_dense (bge cosine),0.6207,0.3333
+gate_dense (bge cosine),0.6276,0.3407
+gate_dense (bge cosine),0.6345,0.337
+gate_dense (bge cosine),0.6414,0.3333
+gate_dense (bge cosine),0.6483,0.3298
+gate_dense (bge cosine),0.6552,0.3368
+gate_dense (bge cosine),0.6621,0.3438
+gate_dense (bge cosine),0.669,0.3402
+gate_dense (bge cosine),0.6759,0.3367
+gate_dense (bge cosine),0.6828,0.3434
+gate_dense (bge cosine),0.6897,0.35
+gate_dense (bge cosine),0.6966,0.3465
+gate_dense (bge cosine),0.7034,0.3529
+gate_dense (bge cosine),0.7103,0.3592
+gate_dense (bge cosine),0.7172,0.3558
+gate_dense (bge cosine),0.7241,0.3619
+gate_dense (bge cosine),0.731,0.3585
+gate_dense (bge cosine),0.7379,0.3551
+gate_dense (bge cosine),0.7448,0.3611
+gate_dense (bge cosine),0.7517,0.3578
+gate_dense (bge cosine),0.7586,0.3545
+gate_dense (bge cosine),0.7655,0.3604
+gate_dense (bge cosine),0.7724,0.3571
+gate_dense (bge cosine),0.7793,0.354
+gate_dense (bge cosine),0.7862,0.3596
+gate_dense (bge cosine),0.7931,0.3652
+gate_dense (bge cosine),0.8,0.3707
+gate_dense (bge cosine),0.8069,0.3675
+gate_dense (bge cosine),0.8138,0.3729
+gate_dense (bge cosine),0.8207,0.3782
+gate_dense (bge cosine),0.8276,0.3833
+gate_dense (bge cosine),0.8345,0.3802
+gate_dense (bge cosine),0.8414,0.3852
+gate_dense (bge cosine),0.8483,0.3902
+gate_dense (bge cosine),0.8552,0.3871
+gate_dense (bge cosine),0.8621,0.384
+gate_dense (bge cosine),0.869,0.381
+gate_dense (bge cosine),0.8759,0.378
+gate_dense (bge cosine),0.8828,0.3828
+gate_dense (bge cosine),0.8897,0.3798
+gate_dense (bge cosine),0.8966,0.3769
+gate_dense (bge cosine),0.9034,0.374
+gate_dense (bge cosine),0.9103,0.3712
+gate_dense (bge cosine),0.9172,0.3759
+gate_dense (bge cosine),0.9241,0.3806
+gate_dense (bge cosine),0.931,0.3778
+gate_dense (bge cosine),0.9379,0.3824
+gate_dense (bge cosine),0.9448,0.3796
+gate_dense (bge cosine),0.9517,0.3841
+gate_dense (bge cosine),0.9586,0.3813
+gate_dense (bge cosine),0.9655,0.3857
+gate_dense (bge cosine),0.9724,0.3901
+gate_dense (bge cosine),0.9793,0.3944
+gate_dense (bge cosine),0.9862,0.3916
+gate_dense (bge cosine),0.9931,0.3958
+gate_dense (bge cosine),1.0,0.4
+"gate_hybrid (max(bge, bm25_norm))",0.0069,1.0
+"gate_hybrid (max(bge, bm25_norm))",0.0138,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.0207,0.6667
+"gate_hybrid (max(bge, bm25_norm))",0.0276,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.0345,0.6
+"gate_hybrid (max(bge, bm25_norm))",0.0414,0.6667
+"gate_hybrid (max(bge, bm25_norm))",0.0483,0.5714
+"gate_hybrid (max(bge, bm25_norm))",0.0552,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.0621,0.4444
+"gate_hybrid (max(bge, bm25_norm))",0.069,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.0759,0.4545
+"gate_hybrid (max(bge, bm25_norm))",0.0828,0.4167
+"gate_hybrid (max(bge, bm25_norm))",0.0897,0.4615
+"gate_hybrid (max(bge, bm25_norm))",0.0966,0.4286
+"gate_hybrid (max(bge, bm25_norm))",0.1034,0.4667
+"gate_hybrid (max(bge, bm25_norm))",0.1103,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.1172,0.5294
+"gate_hybrid (max(bge, bm25_norm))",0.1241,0.5
+"gate_hybrid (max(bge, bm25_norm))",0.131,0.4737
+"gate_hybrid (max(bge, bm25_norm))",0.1379,0.45
+"gate_hybrid (max(bge, bm25_norm))",0.1448,0.4286
+"gate_hybrid (max(bge, bm25_norm))",0.1517,0.4545
+"gate_hybrid (max(bge, bm25_norm))",0.1586,0.4348
+"gate_hybrid (max(bge, bm25_norm))",0.1655,0.4583
+"gate_hybrid (max(bge, bm25_norm))",0.1724,0.44
+"gate_hybrid (max(bge, bm25_norm))",0.1793,0.4615
+"gate_hybrid (max(bge, bm25_norm))",0.1862,0.4444
+"gate_hybrid (max(bge, bm25_norm))",0.1931,0.4286
+"gate_hybrid (max(bge, bm25_norm))",0.2,0.4138
+"gate_hybrid (max(bge, bm25_norm))",0.2069,0.4
+"gate_hybrid (max(bge, bm25_norm))",0.2138,0.3871
+"gate_hybrid (max(bge, bm25_norm))",0.2207,0.4062
+"gate_hybrid (max(bge, bm25_norm))",0.2276,0.4242
+"gate_hybrid (max(bge, bm25_norm))",0.2345,0.4118
+"gate_hybrid (max(bge, bm25_norm))",0.2414,0.4286
+"gate_hybrid (max(bge, bm25_norm))",0.2483,0.4444
+"gate_hybrid (max(bge, bm25_norm))",0.2552,0.4595
+"gate_hybrid (max(bge, bm25_norm))",0.2621,0.4737
+"gate_hybrid (max(bge, bm25_norm))",0.269,0.4615
+"gate_hybrid (max(bge, bm25_norm))",0.2759,0.475
+"gate_hybrid (max(bge, bm25_norm))",0.2828,0.4634
+"gate_hybrid (max(bge, bm25_norm))",0.2897,0.4524
+"gate_hybrid (max(bge, bm25_norm))",0.2966,0.4419
+"gate_hybrid (max(bge, bm25_norm))",0.3034,0.4318
+"gate_hybrid (max(bge, bm25_norm))",0.3103,0.4444
+"gate_hybrid (max(bge, bm25_norm))",0.3172,0.4348
+"gate_hybrid (max(bge, bm25_norm))",0.3241,0.4468
+"gate_hybrid (max(bge, bm25_norm))",0.331,0.4375
+"gate_hybrid (max(bge, bm25_norm))",0.3379,0.449
+"gate_hybrid (max(bge, bm25_norm))",0.3448,0.46
+"gate_hybrid (max(bge, bm25_norm))",0.3517,0.4706
+"gate_hybrid (max(bge, bm25_norm))",0.3586,0.4615
+"gate_hybrid (max(bge, bm25_norm))",0.3655,0.4528
+"gate_hybrid (max(bge, bm25_norm))",0.3724,0.463
+"gate_hybrid (max(bge, bm25_norm))",0.3793,0.4545
+"gate_hybrid (max(bge, bm25_norm))",0.3862,0.4464
+"gate_hybrid (max(bge, bm25_norm))",0.3931,0.4386
+"gate_hybrid (max(bge, bm25_norm))",0.4,0.431
+"gate_hybrid (max(bge, bm25_norm))",0.4069,0.4237
+"gate_hybrid (max(bge, bm25_norm))",0.4138,0.4167
+"gate_hybrid (max(bge, bm25_norm))",0.4207,0.4098
+"gate_hybrid (max(bge, bm25_norm))",0.4276,0.4032
+"gate_hybrid (max(bge, bm25_norm))",0.4345,0.3968
+"gate_hybrid (max(bge, bm25_norm))",0.4414,0.4062
+"gate_hybrid (max(bge, bm25_norm))",0.4483,0.4154
+"gate_hybrid (max(bge, bm25_norm))",0.4552,0.4091
+"gate_hybrid (max(bge, bm25_norm))",0.4621,0.403
+"gate_hybrid (max(bge, bm25_norm))",0.469,0.4118
+"gate_hybrid (max(bge, bm25_norm))",0.4759,0.4058
+"gate_hybrid (max(bge, bm25_norm))",0.4828,0.4
+"gate_hybrid (max(bge, bm25_norm))",0.4897,0.3944
+"gate_hybrid (max(bge, bm25_norm))",0.4966,0.3889
+"gate_hybrid (max(bge, bm25_norm))",0.5034,0.3836
+"gate_hybrid (max(bge, bm25_norm))",0.5103,0.3784
+"gate_hybrid (max(bge, bm25_norm))",0.5172,0.3733
+"gate_hybrid (max(bge, bm25_norm))",0.5241,0.3684
+"gate_hybrid (max(bge, bm25_norm))",0.531,0.3636
+"gate_hybrid (max(bge, bm25_norm))",0.5379,0.359
+"gate_hybrid (max(bge, bm25_norm))",0.5448,0.3544
+"gate_hybrid (max(bge, bm25_norm))",0.5517,0.3625
+"gate_hybrid (max(bge, bm25_norm))",0.5586,0.358
+"gate_hybrid (max(bge, bm25_norm))",0.5655,0.3537
+"gate_hybrid (max(bge, bm25_norm))",0.5724,0.3494
+"gate_hybrid (max(bge, bm25_norm))",0.5793,0.3452
+"gate_hybrid (max(bge, bm25_norm))",0.5862,0.3412
+"gate_hybrid (max(bge, bm25_norm))",0.5931,0.3488
+"gate_hybrid (max(bge, bm25_norm))",0.6,0.3448
+"gate_hybrid (max(bge, bm25_norm))",0.6069,0.3409
+"gate_hybrid (max(bge, bm25_norm))",0.6138,0.3371
+"gate_hybrid (max(bge, bm25_norm))",0.6207,0.3333
+"gate_hybrid (max(bge, bm25_norm))",0.6276,0.3407
+"gate_hybrid (max(bge, bm25_norm))",0.6345,0.337
+"gate_hybrid (max(bge, bm25_norm))",0.6414,0.3333
+"gate_hybrid (max(bge, bm25_norm))",0.6483,0.3298
+"gate_hybrid (max(bge, bm25_norm))",0.6552,0.3368
+"gate_hybrid (max(bge, bm25_norm))",0.6621,0.3438
+"gate_hybrid (max(bge, bm25_norm))",0.669,0.3402
+"gate_hybrid (max(bge, bm25_norm))",0.6759,0.3367
+"gate_hybrid (max(bge, bm25_norm))",0.6828,0.3434
+"gate_hybrid (max(bge, bm25_norm))",0.6897,0.35
+"gate_hybrid (max(bge, bm25_norm))",0.6966,0.3465
+"gate_hybrid (max(bge, bm25_norm))",0.7034,0.3529
+"gate_hybrid (max(bge, bm25_norm))",0.7103,0.3592
+"gate_hybrid (max(bge, bm25_norm))",0.7172,0.3558
+"gate_hybrid (max(bge, bm25_norm))",0.7241,0.3619
+"gate_hybrid (max(bge, bm25_norm))",0.731,0.3585
+"gate_hybrid (max(bge, bm25_norm))",0.7379,0.3551
+"gate_hybrid (max(bge, bm25_norm))",0.7448,0.3611
+"gate_hybrid (max(bge, bm25_norm))",0.7517,0.3578
+"gate_hybrid (max(bge, bm25_norm))",0.7586,0.3545
+"gate_hybrid (max(bge, bm25_norm))",0.7655,0.3604
+"gate_hybrid (max(bge, bm25_norm))",0.7724,0.3571
+"gate_hybrid (max(bge, bm25_norm))",0.7793,0.354
+"gate_hybrid (max(bge, bm25_norm))",0.7862,0.3596
+"gate_hybrid (max(bge, bm25_norm))",0.7931,0.3652
+"gate_hybrid (max(bge, bm25_norm))",0.8,0.3707
+"gate_hybrid (max(bge, bm25_norm))",0.8069,0.3675
+"gate_hybrid (max(bge, bm25_norm))",0.8138,0.3729
+"gate_hybrid (max(bge, bm25_norm))",0.8207,0.3782
+"gate_hybrid (max(bge, bm25_norm))",0.8276,0.3833
+"gate_hybrid (max(bge, bm25_norm))",0.8345,0.3802
+"gate_hybrid (max(bge, bm25_norm))",0.8414,0.3852
+"gate_hybrid (max(bge, bm25_norm))",0.8483,0.3902
+"gate_hybrid (max(bge, bm25_norm))",0.8552,0.3871
+"gate_hybrid (max(bge, bm25_norm))",0.8621,0.384
+"gate_hybrid (max(bge, bm25_norm))",0.869,0.381
+"gate_hybrid (max(bge, bm25_norm))",0.8759,0.378
+"gate_hybrid (max(bge, bm25_norm))",0.8828,0.3828
+"gate_hybrid (max(bge, bm25_norm))",0.8897,0.3798
+"gate_hybrid (max(bge, bm25_norm))",0.8966,0.3769
+"gate_hybrid (max(bge, bm25_norm))",0.9034,0.374
+"gate_hybrid (max(bge, bm25_norm))",0.9103,0.3712
+"gate_hybrid (max(bge, bm25_norm))",0.9172,0.3759
+"gate_hybrid (max(bge, bm25_norm))",0.9241,0.3806
+"gate_hybrid (max(bge, bm25_norm))",0.931,0.3778
+"gate_hybrid (max(bge, bm25_norm))",0.9379,0.375
+"gate_hybrid (max(bge, bm25_norm))",0.9448,0.3723
+"gate_hybrid (max(bge, bm25_norm))",0.9517,0.3768
+"gate_hybrid (max(bge, bm25_norm))",0.9586,0.3741
+"gate_hybrid (max(bge, bm25_norm))",0.9655,0.3786
+"gate_hybrid (max(bge, bm25_norm))",0.9724,0.383
+"gate_hybrid (max(bge, bm25_norm))",0.9793,0.3803
+"gate_hybrid (max(bge, bm25_norm))",0.9862,0.3776
+"gate_hybrid (max(bge, bm25_norm))",0.9931,0.3819
+"gate_hybrid (max(bge, bm25_norm))",1.0,0.3862
+gate_cross_modal (CLIP cosine),0.0069,1.0
+gate_cross_modal (CLIP cosine),0.0138,1.0
+gate_cross_modal (CLIP cosine),0.0207,0.6667
+gate_cross_modal (CLIP cosine),0.0276,0.75
+gate_cross_modal (CLIP cosine),0.0345,0.6
+gate_cross_modal (CLIP cosine),0.0414,0.5
+gate_cross_modal (CLIP cosine),0.0483,0.4286
+gate_cross_modal (CLIP cosine),0.0552,0.375
+gate_cross_modal (CLIP cosine),0.0621,0.4444
+gate_cross_modal (CLIP cosine),0.069,0.5
+gate_cross_modal (CLIP cosine),0.0759,0.4545
+gate_cross_modal (CLIP cosine),0.0828,0.5
+gate_cross_modal (CLIP cosine),0.0897,0.4615
+gate_cross_modal (CLIP cosine),0.0966,0.4286
+gate_cross_modal (CLIP cosine),0.1034,0.4667
+gate_cross_modal (CLIP cosine),0.1103,0.5
+gate_cross_modal (CLIP cosine),0.1172,0.4706
+gate_cross_modal (CLIP cosine),0.1241,0.5
+gate_cross_modal (CLIP cosine),0.131,0.4737
+gate_cross_modal (CLIP cosine),0.1379,0.5
+gate_cross_modal (CLIP cosine),0.1448,0.5238
+gate_cross_modal (CLIP cosine),0.1517,0.5455
+gate_cross_modal (CLIP cosine),0.1586,0.5652
+gate_cross_modal (CLIP cosine),0.1655,0.5833
+gate_cross_modal (CLIP cosine),0.1724,0.6
+gate_cross_modal (CLIP cosine),0.1793,0.6154
+gate_cross_modal (CLIP cosine),0.1862,0.5926
+gate_cross_modal (CLIP cosine),0.1931,0.5714
+gate_cross_modal (CLIP cosine),0.2,0.5862
+gate_cross_modal (CLIP cosine),0.2069,0.6
+gate_cross_modal (CLIP cosine),0.2138,0.6129
+gate_cross_modal (CLIP cosine),0.2207,0.625
+gate_cross_modal (CLIP cosine),0.2276,0.6364
+gate_cross_modal (CLIP cosine),0.2345,0.6471
+gate_cross_modal (CLIP cosine),0.2414,0.6286
+gate_cross_modal (CLIP cosine),0.2483,0.6389
+gate_cross_modal (CLIP cosine),0.2552,0.6486
+gate_cross_modal (CLIP cosine),0.2621,0.6579
+gate_cross_modal (CLIP cosine),0.269,0.6667
+gate_cross_modal (CLIP cosine),0.2759,0.675
+gate_cross_modal (CLIP cosine),0.2828,0.6829
+gate_cross_modal (CLIP cosine),0.2897,0.6905
+gate_cross_modal (CLIP cosine),0.2966,0.6977
+gate_cross_modal (CLIP cosine),0.3034,0.7045
+gate_cross_modal (CLIP cosine),0.3103,0.7111
+gate_cross_modal (CLIP cosine),0.3172,0.7174
+gate_cross_modal (CLIP cosine),0.3241,0.7021
+gate_cross_modal (CLIP cosine),0.331,0.6875
+gate_cross_modal (CLIP cosine),0.3379,0.6939
+gate_cross_modal (CLIP cosine),0.3448,0.68
+gate_cross_modal (CLIP cosine),0.3517,0.6863
+gate_cross_modal (CLIP cosine),0.3586,0.6923
+gate_cross_modal (CLIP cosine),0.3655,0.6981
+gate_cross_modal (CLIP cosine),0.3724,0.6852
+gate_cross_modal (CLIP cosine),0.3793,0.6909
+gate_cross_modal (CLIP cosine),0.3862,0.6964
+gate_cross_modal (CLIP cosine),0.3931,0.7018
+gate_cross_modal (CLIP cosine),0.4,0.7069
+gate_cross_modal (CLIP cosine),0.4069,0.7119
+gate_cross_modal (CLIP cosine),0.4138,0.7167
+gate_cross_modal (CLIP cosine),0.4207,0.7213
+gate_cross_modal (CLIP cosine),0.4276,0.7258
+gate_cross_modal (CLIP cosine),0.4345,0.7302
+gate_cross_modal (CLIP cosine),0.4414,0.7188
+gate_cross_modal (CLIP cosine),0.4483,0.7231
+gate_cross_modal (CLIP cosine),0.4552,0.7121
+gate_cross_modal (CLIP cosine),0.4621,0.7164
+gate_cross_modal (CLIP cosine),0.469,0.7059
+gate_cross_modal (CLIP cosine),0.4759,0.6957
+gate_cross_modal (CLIP cosine),0.4828,0.7
+gate_cross_modal (CLIP cosine),0.4897,0.6901
+gate_cross_modal (CLIP cosine),0.4966,0.6806
+gate_cross_modal (CLIP cosine),0.5034,0.6849
+gate_cross_modal (CLIP cosine),0.5103,0.6892
+gate_cross_modal (CLIP cosine),0.5172,0.6933
+gate_cross_modal (CLIP cosine),0.5241,0.6974
+gate_cross_modal (CLIP cosine),0.531,0.7013
+gate_cross_modal (CLIP cosine),0.5379,0.7051
+gate_cross_modal (CLIP cosine),0.5448,0.7089
+gate_cross_modal (CLIP cosine),0.5517,0.7125
+gate_cross_modal (CLIP cosine),0.5586,0.716
+gate_cross_modal (CLIP cosine),0.5655,0.7073
+gate_cross_modal (CLIP cosine),0.5724,0.7108
+gate_cross_modal (CLIP cosine),0.5793,0.7143
+gate_cross_modal (CLIP cosine),0.5862,0.7176
+gate_cross_modal (CLIP cosine),0.5931,0.7093
+gate_cross_modal (CLIP cosine),0.6,0.7126
+gate_cross_modal (CLIP cosine),0.6069,0.7159
+gate_cross_modal (CLIP cosine),0.6138,0.7079
+gate_cross_modal (CLIP cosine),0.6207,0.7111
+gate_cross_modal (CLIP cosine),0.6276,0.7143
+gate_cross_modal (CLIP cosine),0.6345,0.7065
+gate_cross_modal (CLIP cosine),0.6414,0.7097
+gate_cross_modal (CLIP cosine),0.6483,0.7128
+gate_cross_modal (CLIP cosine),0.6552,0.7158
+gate_cross_modal (CLIP cosine),0.6621,0.7188
+gate_cross_modal (CLIP cosine),0.669,0.7216
+gate_cross_modal (CLIP cosine),0.6759,0.7245
+gate_cross_modal (CLIP cosine),0.6828,0.7273
+gate_cross_modal (CLIP cosine),0.6897,0.73
+gate_cross_modal (CLIP cosine),0.6966,0.7327
+gate_cross_modal (CLIP cosine),0.7034,0.7353
+gate_cross_modal (CLIP cosine),0.7103,0.7282
+gate_cross_modal (CLIP cosine),0.7172,0.7308
+gate_cross_modal (CLIP cosine),0.7241,0.7333
+gate_cross_modal (CLIP cosine),0.731,0.7358
+gate_cross_modal (CLIP cosine),0.7379,0.7383
+gate_cross_modal (CLIP cosine),0.7448,0.7407
+gate_cross_modal (CLIP cosine),0.7517,0.7431
+gate_cross_modal (CLIP cosine),0.7586,0.7455
+gate_cross_modal (CLIP cosine),0.7655,0.7477
+gate_cross_modal (CLIP cosine),0.7724,0.75
+gate_cross_modal (CLIP cosine),0.7793,0.7522
+gate_cross_modal (CLIP cosine),0.7862,0.7544
+gate_cross_modal (CLIP cosine),0.7931,0.7478
+gate_cross_modal (CLIP cosine),0.8,0.75
+gate_cross_modal (CLIP cosine),0.8069,0.7521
+gate_cross_modal (CLIP cosine),0.8138,0.7542
+gate_cross_modal (CLIP cosine),0.8207,0.7563
+gate_cross_modal (CLIP cosine),0.8276,0.75
+gate_cross_modal (CLIP cosine),0.8345,0.7521
+gate_cross_modal (CLIP cosine),0.8414,0.7541
+gate_cross_modal (CLIP cosine),0.8483,0.7561
+gate_cross_modal (CLIP cosine),0.8552,0.7581
+gate_cross_modal (CLIP cosine),0.8621,0.76
+gate_cross_modal (CLIP cosine),0.869,0.7619
+gate_cross_modal (CLIP cosine),0.8759,0.7638
+gate_cross_modal (CLIP cosine),0.8828,0.7656
+gate_cross_modal (CLIP cosine),0.8897,0.7674
+gate_cross_modal (CLIP cosine),0.8966,0.7692
+gate_cross_modal (CLIP cosine),0.9034,0.771
+gate_cross_modal (CLIP cosine),0.9103,0.7727
+gate_cross_modal (CLIP cosine),0.9172,0.7744
+gate_cross_modal (CLIP cosine),0.9241,0.7761
+gate_cross_modal (CLIP cosine),0.931,0.7778
+gate_cross_modal (CLIP cosine),0.9379,0.7794
+gate_cross_modal (CLIP cosine),0.9448,0.781
+gate_cross_modal (CLIP cosine),0.9517,0.7826
+gate_cross_modal (CLIP cosine),0.9586,0.777
+gate_cross_modal (CLIP cosine),0.9655,0.7786
+gate_cross_modal (CLIP cosine),0.9724,0.7801
+gate_cross_modal (CLIP cosine),0.9793,0.7817
+gate_cross_modal (CLIP cosine),0.9862,0.7832
+gate_cross_modal (CLIP cosine),0.9931,0.7847
+gate_cross_modal (CLIP cosine),1.0,0.7862
+gate_caption_baseline (bge cosine),0.0069,1.0
+gate_caption_baseline (bge cosine),0.0138,0.5
+gate_caption_baseline (bge cosine),0.0207,0.6667
+gate_caption_baseline (bge cosine),0.0276,0.5
+gate_caption_baseline (bge cosine),0.0345,0.6
+gate_caption_baseline (bge cosine),0.0414,0.6667
+gate_caption_baseline (bge cosine),0.0483,0.5714
+gate_caption_baseline (bge cosine),0.0552,0.5
+gate_caption_baseline (bge cosine),0.0621,0.4444
+gate_caption_baseline (bge cosine),0.069,0.5
+gate_caption_baseline (bge cosine),0.0759,0.4545
+gate_caption_baseline (bge cosine),0.0828,0.4167
+gate_caption_baseline (bge cosine),0.0897,0.4615
+gate_caption_baseline (bge cosine),0.0966,0.4286
+gate_caption_baseline (bge cosine),0.1034,0.4667
+gate_caption_baseline (bge cosine),0.1103,0.5
+gate_caption_baseline (bge cosine),0.1172,0.5294
+gate_caption_baseline (bge cosine),0.1241,0.5
+gate_caption_baseline (bge cosine),0.131,0.4737
+gate_caption_baseline (bge cosine),0.1379,0.45
+gate_caption_baseline (bge cosine),0.1448,0.4286
+gate_caption_baseline (bge cosine),0.1517,0.4091
+gate_caption_baseline (bge cosine),0.1586,0.3913
+gate_caption_baseline (bge cosine),0.1655,0.375
+gate_caption_baseline (bge cosine),0.1724,0.4
+gate_caption_baseline (bge cosine),0.1793,0.3846
+gate_caption_baseline (bge cosine),0.1862,0.3704
+gate_caption_baseline (bge cosine),0.1931,0.3929
+gate_caption_baseline (bge cosine),0.2,0.3793
+gate_caption_baseline (bge cosine),0.2069,0.4
+gate_caption_baseline (bge cosine),0.2138,0.4194
+gate_caption_baseline (bge cosine),0.2207,0.4062
+gate_caption_baseline (bge cosine),0.2276,0.4242
+gate_caption_baseline (bge cosine),0.2345,0.4412
+gate_caption_baseline (bge cosine),0.2414,0.4571
+gate_caption_baseline (bge cosine),0.2483,0.4722
+gate_caption_baseline (bge cosine),0.2552,0.4595
+gate_caption_baseline (bge cosine),0.2621,0.4737
+gate_caption_baseline (bge cosine),0.269,0.4615
+gate_caption_baseline (bge cosine),0.2759,0.45
+gate_caption_baseline (bge cosine),0.2828,0.4634
+gate_caption_baseline (bge cosine),0.2897,0.4524
+gate_caption_baseline (bge cosine),0.2966,0.4651
+gate_caption_baseline (bge cosine),0.3034,0.4545
+gate_caption_baseline (bge cosine),0.3103,0.4667
+gate_caption_baseline (bge cosine),0.3172,0.4565
+gate_caption_baseline (bge cosine),0.3241,0.4681
+gate_caption_baseline (bge cosine),0.331,0.4792
+gate_caption_baseline (bge cosine),0.3379,0.4898
+gate_caption_baseline (bge cosine),0.3448,0.48
+gate_caption_baseline (bge cosine),0.3517,0.4706
+gate_caption_baseline (bge cosine),0.3586,0.4808
+gate_caption_baseline (bge cosine),0.3655,0.4717
+gate_caption_baseline (bge cosine),0.3724,0.463
+gate_caption_baseline (bge cosine),0.3793,0.4545
+gate_caption_baseline (bge cosine),0.3862,0.4643
+gate_caption_baseline (bge cosine),0.3931,0.4561
+gate_caption_baseline (bge cosine),0.4,0.4483
+gate_caption_baseline (bge cosine),0.4069,0.4576
+gate_caption_baseline (bge cosine),0.4138,0.4667
+gate_caption_baseline (bge cosine),0.4207,0.4754
+gate_caption_baseline (bge cosine),0.4276,0.4677
+gate_caption_baseline (bge cosine),0.4345,0.4762
+gate_caption_baseline (bge cosine),0.4414,0.4688
+gate_caption_baseline (bge cosine),0.4483,0.4615
+gate_caption_baseline (bge cosine),0.4552,0.4545
+gate_caption_baseline (bge cosine),0.4621,0.4478
+gate_caption_baseline (bge cosine),0.469,0.4412
+gate_caption_baseline (bge cosine),0.4759,0.4348
+gate_caption_baseline (bge cosine),0.4828,0.4286
+gate_caption_baseline (bge cosine),0.4897,0.4225
+gate_caption_baseline (bge cosine),0.4966,0.4167
+gate_caption_baseline (bge cosine),0.5034,0.411
+gate_caption_baseline (bge cosine),0.5103,0.4189
+gate_caption_baseline (bge cosine),0.5172,0.4133
+gate_caption_baseline (bge cosine),0.5241,0.4079
+gate_caption_baseline (bge cosine),0.531,0.4026
+gate_caption_baseline (bge cosine),0.5379,0.3974
+gate_caption_baseline (bge cosine),0.5448,0.3924
+gate_caption_baseline (bge cosine),0.5517,0.3875
+gate_caption_baseline (bge cosine),0.5586,0.3951
+gate_caption_baseline (bge cosine),0.5655,0.4024
+gate_caption_baseline (bge cosine),0.5724,0.3976
+gate_caption_baseline (bge cosine),0.5793,0.4048
+gate_caption_baseline (bge cosine),0.5862,0.4
+gate_caption_baseline (bge cosine),0.5931,0.407
+gate_caption_baseline (bge cosine),0.6,0.4023
+gate_caption_baseline (bge cosine),0.6069,0.4091
+gate_caption_baseline (bge cosine),0.6138,0.4045
+gate_caption_baseline (bge cosine),0.6207,0.4
+gate_caption_baseline (bge cosine),0.6276,0.3956
+gate_caption_baseline (bge cosine),0.6345,0.4022
+gate_caption_baseline (bge cosine),0.6414,0.3978
+gate_caption_baseline (bge cosine),0.6483,0.3936
+gate_caption_baseline (bge cosine),0.6552,0.4
+gate_caption_baseline (bge cosine),0.6621,0.3958
+gate_caption_baseline (bge cosine),0.669,0.4021
+gate_caption_baseline (bge cosine),0.6759,0.4082
+gate_caption_baseline (bge cosine),0.6828,0.4141
+gate_caption_baseline (bge cosine),0.6897,0.42
+gate_caption_baseline (bge cosine),0.6966,0.4158
+gate_caption_baseline (bge cosine),0.7034,0.4118
+gate_caption_baseline (bge cosine),0.7103,0.4078
+gate_caption_baseline (bge cosine),0.7172,0.4038
+gate_caption_baseline (bge cosine),0.7241,0.4095
+gate_caption_baseline (bge cosine),0.731,0.4151
+gate_caption_baseline (bge cosine),0.7379,0.4112
+gate_caption_baseline (bge cosine),0.7448,0.4074
+gate_caption_baseline (bge cosine),0.7517,0.4037
+gate_caption_baseline (bge cosine),0.7586,0.4091
+gate_caption_baseline (bge cosine),0.7655,0.4144
+gate_caption_baseline (bge cosine),0.7724,0.4196
+gate_caption_baseline (bge cosine),0.7793,0.4159
+gate_caption_baseline (bge cosine),0.7862,0.4211
+gate_caption_baseline (bge cosine),0.7931,0.4174
+gate_caption_baseline (bge cosine),0.8,0.4224
+gate_caption_baseline (bge cosine),0.8069,0.4274
+gate_caption_baseline (bge cosine),0.8138,0.4237
+gate_caption_baseline (bge cosine),0.8207,0.4286
+gate_caption_baseline (bge cosine),0.8276,0.425
+gate_caption_baseline (bge cosine),0.8345,0.4298
+gate_caption_baseline (bge cosine),0.8414,0.4262
+gate_caption_baseline (bge cosine),0.8483,0.4309
+gate_caption_baseline (bge cosine),0.8552,0.4355
+gate_caption_baseline (bge cosine),0.8621,0.44
+gate_caption_baseline (bge cosine),0.869,0.4444
+gate_caption_baseline (bge cosine),0.8759,0.4409
+gate_caption_baseline (bge cosine),0.8828,0.4453
+gate_caption_baseline (bge cosine),0.8897,0.4496
+gate_caption_baseline (bge cosine),0.8966,0.4538
+gate_caption_baseline (bge cosine),0.9034,0.458
+gate_caption_baseline (bge cosine),0.9103,0.4545
+gate_caption_baseline (bge cosine),0.9172,0.4586
+gate_caption_baseline (bge cosine),0.9241,0.4627
+gate_caption_baseline (bge cosine),0.931,0.4667
+gate_caption_baseline (bge cosine),0.9379,0.4632
+gate_caption_baseline (bge cosine),0.9448,0.4672
+gate_caption_baseline (bge cosine),0.9517,0.4638
+gate_caption_baseline (bge cosine),0.9586,0.4676
+gate_caption_baseline (bge cosine),0.9655,0.4714
+gate_caption_baseline (bge cosine),0.9724,0.4752
+gate_caption_baseline (bge cosine),0.9793,0.4789
+gate_caption_baseline (bge cosine),0.9862,0.4825
+gate_caption_baseline (bge cosine),0.9931,0.4861
+gate_caption_baseline (bge cosine),1.0,0.4897
+bm25_norm only,0.0069,0.0
+bm25_norm only,0.0138,0.0
+bm25_norm only,0.0207,0.0
+bm25_norm only,0.0276,0.0
+bm25_norm only,0.0345,0.0
+bm25_norm only,0.0414,0.1667
+bm25_norm only,0.0483,0.2857
+bm25_norm only,0.0552,0.375
+bm25_norm only,0.0621,0.4444
+bm25_norm only,0.069,0.4
+bm25_norm only,0.0759,0.3636
+bm25_norm only,0.0828,0.3333
+bm25_norm only,0.0897,0.3077
+bm25_norm only,0.0966,0.3571
+bm25_norm only,0.1034,0.3333
+bm25_norm only,0.1103,0.3125
+bm25_norm only,0.1172,0.2941
+bm25_norm only,0.1241,0.2778
+bm25_norm only,0.131,0.2632
+bm25_norm only,0.1379,0.25
+bm25_norm only,0.1448,0.2381
+bm25_norm only,0.1517,0.2273
+bm25_norm only,0.1586,0.2609
+bm25_norm only,0.1655,0.25
+bm25_norm only,0.1724,0.28
+bm25_norm only,0.1793,0.3077
+bm25_norm only,0.1862,0.3333
+bm25_norm only,0.1931,0.3214
+bm25_norm only,0.2,0.3103
+bm25_norm only,0.2069,0.3333
+bm25_norm only,0.2138,0.3226
+bm25_norm only,0.2207,0.3125
+bm25_norm only,0.2276,0.303
+bm25_norm only,0.2345,0.2941
+bm25_norm only,0.2414,0.2857
+bm25_norm only,0.2483,0.2778
+bm25_norm only,0.2552,0.2703
+bm25_norm only,0.2621,0.2632
+bm25_norm only,0.269,0.2564
+bm25_norm only,0.2759,0.25
+bm25_norm only,0.2828,0.2439
+bm25_norm only,0.2897,0.2381
+bm25_norm only,0.2966,0.2326
+bm25_norm only,0.3034,0.2273
+bm25_norm only,0.3103,0.2222
+bm25_norm only,0.3172,0.2174
+bm25_norm only,0.3241,0.2128
+bm25_norm only,0.331,0.2083
+bm25_norm only,0.3379,0.2041
+bm25_norm only,0.3448,0.2
+bm25_norm only,0.3517,0.1961
+bm25_norm only,0.3586,0.2115
+bm25_norm only,0.3655,0.2264
+bm25_norm only,0.3724,0.2222
+bm25_norm only,0.3793,0.2182
+bm25_norm only,0.3862,0.2143
+bm25_norm only,0.3931,0.2105
+bm25_norm only,0.4,0.2241
+bm25_norm only,0.4069,0.2373
+bm25_norm only,0.4138,0.2333
+bm25_norm only,0.4207,0.2459
+bm25_norm only,0.4276,0.2419
+bm25_norm only,0.4345,0.254
+bm25_norm only,0.4414,0.2656
+bm25_norm only,0.4483,0.2615
+bm25_norm only,0.4552,0.2576
+bm25_norm only,0.4621,0.2537
+bm25_norm only,0.469,0.25
+bm25_norm only,0.4759,0.2464
+bm25_norm only,0.4828,0.2429
+bm25_norm only,0.4897,0.2394
+bm25_norm only,0.4966,0.2361
+bm25_norm only,0.5034,0.2329
+bm25_norm only,0.5103,0.2432
+bm25_norm only,0.5172,0.2533
+bm25_norm only,0.5241,0.2632
+bm25_norm only,0.531,0.2597
+bm25_norm only,0.5379,0.2564
+bm25_norm only,0.5448,0.2658
+bm25_norm only,0.5517,0.2625
+bm25_norm only,0.5586,0.2593
+bm25_norm only,0.5655,0.2683
+bm25_norm only,0.5724,0.2771
+bm25_norm only,0.5793,0.2857
+bm25_norm only,0.5862,0.2941
+bm25_norm only,0.5931,0.2907
+bm25_norm only,0.6,0.2989
+bm25_norm only,0.6069,0.2955
+bm25_norm only,0.6138,0.2921
+bm25_norm only,0.6207,0.3
+bm25_norm only,0.6276,0.2967
+bm25_norm only,0.6345,0.3043
+bm25_norm only,0.6414,0.3118
+bm25_norm only,0.6483,0.3085
+bm25_norm only,0.6552,0.3053
+bm25_norm only,0.6621,0.3021
+bm25_norm only,0.669,0.299
+bm25_norm only,0.6759,0.2959
+bm25_norm only,0.6828,0.303
+bm25_norm only,0.6897,0.31
+bm25_norm only,0.6966,0.3069
+bm25_norm only,0.7034,0.3137
+bm25_norm only,0.7103,0.3107
+bm25_norm only,0.7172,0.3077
+bm25_norm only,0.7241,0.3143
+bm25_norm only,0.731,0.3208
+bm25_norm only,0.7379,0.3178
+bm25_norm only,0.7448,0.3241
+bm25_norm only,0.7517,0.3303
+bm25_norm only,0.7586,0.3364
+bm25_norm only,0.7655,0.3333
+bm25_norm only,0.7724,0.3304
+bm25_norm only,0.7793,0.3363
+bm25_norm only,0.7862,0.3333
+bm25_norm only,0.7931,0.3304
+bm25_norm only,0.8,0.3276
+bm25_norm only,0.8069,0.3248
+bm25_norm only,0.8138,0.322
+bm25_norm only,0.8207,0.3277
+bm25_norm only,0.8276,0.3333
+bm25_norm only,0.8345,0.3388
+bm25_norm only,0.8414,0.3443
+bm25_norm only,0.8483,0.3496
+bm25_norm only,0.8552,0.3548
+bm25_norm only,0.8621,0.352
+bm25_norm only,0.869,0.3492
+bm25_norm only,0.8759,0.3543
+bm25_norm only,0.8828,0.3594
+bm25_norm only,0.8897,0.3643
+bm25_norm only,0.8966,0.3692
+bm25_norm only,0.9034,0.3664
+bm25_norm only,0.9103,0.3636
+bm25_norm only,0.9172,0.3609
+bm25_norm only,0.9241,0.3582
+bm25_norm only,0.931,0.363
+bm25_norm only,0.9379,0.3676
+bm25_norm only,0.9448,0.365
+bm25_norm only,0.9517,0.3696
+bm25_norm only,0.9586,0.3741
+bm25_norm only,0.9655,0.3786
+bm25_norm only,0.9724,0.383
+bm25_norm only,0.9793,0.3873
+bm25_norm only,0.9862,0.3846
+bm25_norm only,0.9931,0.3819
+bm25_norm only,1.0,0.3862
+reranker top-1 logit (not shipped),0.0069,0.0
+reranker top-1 logit (not shipped),0.0138,0.0
+reranker top-1 logit (not shipped),0.0207,0.0
+reranker top-1 logit (not shipped),0.0276,0.0
+reranker top-1 logit (not shipped),0.0345,0.0
+reranker top-1 logit (not shipped),0.0414,0.0
+reranker top-1 logit (not shipped),0.0483,0.0
+reranker top-1 logit (not shipped),0.0552,0.0
+reranker top-1 logit (not shipped),0.0621,0.0
+reranker top-1 logit (not shipped),0.069,0.0
+reranker top-1 logit (not shipped),0.0759,0.0
+reranker top-1 logit (not shipped),0.0828,0.0
+reranker top-1 logit (not shipped),0.0897,0.0
+reranker top-1 logit (not shipped),0.0966,0.0
+reranker top-1 logit (not shipped),0.1034,0.0
+reranker top-1 logit (not shipped),0.1103,0.0
+reranker top-1 logit (not shipped),0.1172,0.0
+reranker top-1 logit (not shipped),0.1241,0.0
+reranker top-1 logit (not shipped),0.131,0.0
+reranker top-1 logit (not shipped),0.1379,0.0
+reranker top-1 logit (not shipped),0.1448,0.0
+reranker top-1 logit (not shipped),0.1517,0.0
+reranker top-1 logit (not shipped),0.1586,0.0
+reranker top-1 logit (not shipped),0.1655,0.0
+reranker top-1 logit (not shipped),0.1724,0.0
+reranker top-1 logit (not shipped),0.1793,0.0
+reranker top-1 logit (not shipped),0.1862,0.0
+reranker top-1 logit (not shipped),0.1931,0.0
+reranker top-1 logit (not shipped),0.2,0.0
+reranker top-1 logit (not shipped),0.2069,0.0333
+reranker top-1 logit (not shipped),0.2138,0.0323
+reranker top-1 logit (not shipped),0.2207,0.0312
+reranker top-1 logit (not shipped),0.2276,0.0606
+reranker top-1 logit (not shipped),0.2345,0.0588
+reranker top-1 logit (not shipped),0.2414,0.0571
+reranker top-1 logit (not shipped),0.2483,0.0556
+reranker top-1 logit (not shipped),0.2552,0.0541
+reranker top-1 logit (not shipped),0.2621,0.0526
+reranker top-1 logit (not shipped),0.269,0.0513
+reranker top-1 logit (not shipped),0.2759,0.05
+reranker top-1 logit (not shipped),0.2828,0.0488
+reranker top-1 logit (not shipped),0.2897,0.0476
+reranker top-1 logit (not shipped),0.2966,0.0465
+reranker top-1 logit (not shipped),0.3034,0.0455
+reranker top-1 logit (not shipped),0.3103,0.0444
+reranker top-1 logit (not shipped),0.3172,0.0435
+reranker top-1 logit (not shipped),0.3241,0.0426
+reranker top-1 logit (not shipped),0.331,0.0417
+reranker top-1 logit (not shipped),0.3379,0.0612
+reranker top-1 logit (not shipped),0.3448,0.06
+reranker top-1 logit (not shipped),0.3517,0.0588
+reranker top-1 logit (not shipped),0.3586,0.0769
+reranker top-1 logit (not shipped),0.3655,0.0943
+reranker top-1 logit (not shipped),0.3724,0.1111
+reranker top-1 logit (not shipped),0.3793,0.1091
+reranker top-1 logit (not shipped),0.3862,0.125
+reranker top-1 logit (not shipped),0.3931,0.1404
+reranker top-1 logit (not shipped),0.4,0.1379
+reranker top-1 logit (not shipped),0.4069,0.1356
+reranker top-1 logit (not shipped),0.4138,0.15
+reranker top-1 logit (not shipped),0.4207,0.1639
+reranker top-1 logit (not shipped),0.4276,0.1613
+reranker top-1 logit (not shipped),0.4345,0.1746
+reranker top-1 logit (not shipped),0.4414,0.1719
+reranker top-1 logit (not shipped),0.4483,0.1692
+reranker top-1 logit (not shipped),0.4552,0.1667
+reranker top-1 logit (not shipped),0.4621,0.1642
+reranker top-1 logit (not shipped),0.469,0.1765
+reranker top-1 logit (not shipped),0.4759,0.1884
+reranker top-1 logit (not shipped),0.4828,0.2
+reranker top-1 logit (not shipped),0.4897,0.1972
+reranker top-1 logit (not shipped),0.4966,0.2083
+reranker top-1 logit (not shipped),0.5034,0.2192
+reranker top-1 logit (not shipped),0.5103,0.2297
+reranker top-1 logit (not shipped),0.5172,0.24
+reranker top-1 logit (not shipped),0.5241,0.2368
+reranker top-1 logit (not shipped),0.531,0.2468
+reranker top-1 logit (not shipped),0.5379,0.2436
+reranker top-1 logit (not shipped),0.5448,0.2405
+reranker top-1 logit (not shipped),0.5517,0.25
+reranker top-1 logit (not shipped),0.5586,0.2593
+reranker top-1 logit (not shipped),0.5655,0.2561
+reranker top-1 logit (not shipped),0.5724,0.253
+reranker top-1 logit (not shipped),0.5793,0.2619
+reranker top-1 logit (not shipped),0.5862,0.2588
+reranker top-1 logit (not shipped),0.5931,0.2674
+reranker top-1 logit (not shipped),0.6,0.2644
+reranker top-1 logit (not shipped),0.6069,0.2614
+reranker top-1 logit (not shipped),0.6138,0.2697
+reranker top-1 logit (not shipped),0.6207,0.2667
+reranker top-1 logit (not shipped),0.6276,0.2637
+reranker top-1 logit (not shipped),0.6345,0.2609
+reranker top-1 logit (not shipped),0.6414,0.2581
+reranker top-1 logit (not shipped),0.6483,0.266
+reranker top-1 logit (not shipped),0.6552,0.2632
+reranker top-1 logit (not shipped),0.6621,0.2708
+reranker top-1 logit (not shipped),0.669,0.2784
+reranker top-1 logit (not shipped),0.6759,0.2857
+reranker top-1 logit (not shipped),0.6828,0.2828
+reranker top-1 logit (not shipped),0.6897,0.29
+reranker top-1 logit (not shipped),0.6966,0.2871
+reranker top-1 logit (not shipped),0.7034,0.2941
+reranker top-1 logit (not shipped),0.7103,0.301
+reranker top-1 logit (not shipped),0.7172,0.3077
+reranker top-1 logit (not shipped),0.7241,0.3048
+reranker top-1 logit (not shipped),0.731,0.3019
+reranker top-1 logit (not shipped),0.7379,0.2991
+reranker top-1 logit (not shipped),0.7448,0.2963
+reranker top-1 logit (not shipped),0.7517,0.3028
+reranker top-1 logit (not shipped),0.7586,0.3091
+reranker top-1 logit (not shipped),0.7655,0.3153
+reranker top-1 logit (not shipped),0.7724,0.3125
+reranker top-1 logit (not shipped),0.7793,0.3186
+reranker top-1 logit (not shipped),0.7862,0.3246
+reranker top-1 logit (not shipped),0.7931,0.3217
+reranker top-1 logit (not shipped),0.8,0.3276
+reranker top-1 logit (not shipped),0.8069,0.3333
+reranker top-1 logit (not shipped),0.8138,0.3305
+reranker top-1 logit (not shipped),0.8207,0.3361
+reranker top-1 logit (not shipped),0.8276,0.3333
+reranker top-1 logit (not shipped),0.8345,0.3306
+reranker top-1 logit (not shipped),0.8414,0.3279
+reranker top-1 logit (not shipped),0.8483,0.3333
+reranker top-1 logit (not shipped),0.8552,0.3306
+reranker top-1 logit (not shipped),0.8621,0.336
+reranker top-1 logit (not shipped),0.869,0.3333
+reranker top-1 logit (not shipped),0.8759,0.3386
+reranker top-1 logit (not shipped),0.8828,0.3438
+reranker top-1 logit (not shipped),0.8897,0.3488
+reranker top-1 logit (not shipped),0.8966,0.3538
+reranker top-1 logit (not shipped),0.9034,0.3588
+reranker top-1 logit (not shipped),0.9103,0.3561
+reranker top-1 logit (not shipped),0.9172,0.3609
+reranker top-1 logit (not shipped),0.9241,0.3657
+reranker top-1 logit (not shipped),0.931,0.3704
+reranker top-1 logit (not shipped),0.9379,0.3676
+reranker top-1 logit (not shipped),0.9448,0.3723
+reranker top-1 logit (not shipped),0.9517,0.3696
+reranker top-1 logit (not shipped),0.9586,0.3669
+reranker top-1 logit (not shipped),0.9655,0.3714
+reranker top-1 logit (not shipped),0.9724,0.3688
+reranker top-1 logit (not shipped),0.9793,0.3732
+reranker top-1 logit (not shipped),0.9862,0.3776
+reranker top-1 logit (not shipped),0.9931,0.3819
+reranker top-1 logit (not shipped),1.0,0.3862

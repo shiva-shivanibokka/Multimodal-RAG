@@ -1,0 +1,34 @@
+{
+  "F1_sentinel_exact_match": {
+    "NOT_IN_DOCUMENTS": {
+      "treated_as_refusal_by_answer.py": true
+    },
+    "NOT_IN_DOCUMENTS.": {
+      "treated_as_refusal_by_answer.py": false
+    },
+    "NOT_IN_DOCUMENTS\n": {
+      "treated_as_refusal_by_answer.py": true
+    },
+    "not_in_documents": {
+      "treated_as_refusal_by_answer.py": false
+    },
+    "The answer is NOT_IN_DOCUMENTS.": {
+      "treated_as_refusal_by_answer.py": false
+    }
+  },
+  "F2_table_shortcut": {
+    "n_questions_checked": 189,
+    "n_fired": 0,
+    "n_fired_on_answerable": 0,
+    "n_fired_on_ood": 0,
+    "n_correct_contains": 0,
+    "fired": []
+  },
+  "F2b_table_shortcut_synthetic": {
+    "question": "How many meetings has Y.C. Deveshwar attended?",
+    "true_answer": "2",
+    "shortcut_answer": "The count of the No. of meetings attended column is 3.",
+    "claim_supported": true,
+    "claim_score": 1.0
+  }
+}

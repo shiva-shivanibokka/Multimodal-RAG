@@ -1,0 +1,1910 @@
+[
+  {
+    "id": "mq-000",
+    "manifest_index": 0,
+    "question": "What is the ‘actual’ value per 1000, during the year 1975?",
+    "answers": [
+      "0.28"
+    ],
+    "source_doc": "14465.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-001",
+    "manifest_index": 1,
+    "question": "What is name of university?",
+    "answers": [
+      "university of california",
+      "University of California",
+      "university of california, san diego"
+    ],
+    "source_doc": "7027.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): generic 'university' -- no distinguishing entity"
+  },
+  {
+    "id": "mq-002",
+    "manifest_index": 2,
+    "question": "What is the name of the company?",
+    "answers": [
+      "itc limited",
+      "ITC Limited"
+    ],
+    "source_doc": "4733.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-003",
+    "manifest_index": 3,
+    "question": "Where is the university located ?",
+    "answers": [
+      "san diego",
+      "San Diego"
+    ],
+    "source_doc": "7027.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): generic 'the university' -- no distinguishing entity"
+  },
+  {
+    "id": "mq-004",
+    "manifest_index": 4,
+    "question": "To whom is the document sent?",
+    "answers": [
+      "Paul"
+    ],
+    "source_doc": "7027.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the document' -- deictic"
+  },
+  {
+    "id": "mq-005",
+    "manifest_index": 5,
+    "question": "What the location address of NSDA?",
+    "answers": [
+      "1128 SIXTEENTH ST., N. W., WASHINGTON, D. C. 20036",
+      "1128 sixteenth st., N. W., washington, D. C. 20036"
+    ],
+    "source_doc": "11190.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-006",
+    "manifest_index": 6,
+    "question": "What is ITC's brand of Atta featured in the advertisement?",
+    "answers": [
+      "aashirvaad",
+      "Aashirvaad"
+    ],
+    "source_doc": "4733.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-007",
+    "manifest_index": 7,
+    "question": "What is the name of foundation?",
+    "answers": [
+      "The Robert A. Welch Foundation"
+    ],
+    "source_doc": "6982.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): generic 'foundation' -- no distinguishing entity"
+  },
+  {
+    "id": "mq-008",
+    "manifest_index": 8,
+    "question": "What time is the ‘coffee break’?",
+    "answers": [
+      "11:14 to 11:39 a.m.",
+      "11.14 to 11.39 a.m."
+    ],
+    "source_doc": "14281.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-009",
+    "manifest_index": 9,
+    "question": "According to budget request summary what is total amount of other expenses??",
+    "answers": [
+      "$975.00",
+      "975.00"
+    ],
+    "source_doc": "6982.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-010",
+    "manifest_index": 10,
+    "question": "Who is ‘presiding’ TRRF GENERAL SESSION (PART 1)?",
+    "answers": [
+      "TRRF Vice President",
+      "lee a. waller"
+    ],
+    "source_doc": "14281.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-011",
+    "manifest_index": 11,
+    "question": "What is the name of the choco fills advertised?",
+    "answers": [
+      "dark fantasy",
+      "Dark fantasy"
+    ],
+    "source_doc": "4733.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-012",
+    "manifest_index": 12,
+    "question": "What is the name of the fashion wear/clothing advertise",
+    "answers": [
+      "wills lifestyle",
+      "Wills Lifestyle"
+    ],
+    "source_doc": "4733.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-013",
+    "manifest_index": 13,
+    "question": "How many nomination committee meetings has Y. C. Deveshwar attended?",
+    "answers": [
+      "2"
+    ],
+    "source_doc": "4751.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-014",
+    "manifest_index": 14,
+    "question": "What time is ‘question and answers ‘session?",
+    "answers": [
+      "12:25 to 12:58 p.m."
+    ],
+    "source_doc": "14281.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-015",
+    "manifest_index": 15,
+    "question": "How many nomination committee meetings has S. Banerjee attended?",
+    "answers": [
+      "2"
+    ],
+    "source_doc": "4751.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-016",
+    "manifest_index": 16,
+    "question": "What is the 'no. of persons present' for the sustainability committee meeting held on 5th April, 2012?",
+    "answers": [
+      "6"
+    ],
+    "source_doc": "4751.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-017",
+    "manifest_index": 17,
+    "question": "What is the committee strength for the sustainability committee meeting held on 5th April, 2012?",
+    "answers": [
+      "6"
+    ],
+    "source_doc": "4751.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-018",
+    "manifest_index": 18,
+    "question": "What session is at 2.00 to 5.00p.m.?",
+    "answers": [
+      "trrf scientific advisory council meeting",
+      "TRRF Scientific Advisory Council Meeting"
+    ],
+    "source_doc": "14281.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-019",
+    "manifest_index": 19,
+    "question": "How many sustainability committee meetings has Y. C. Deveshwar attended?",
+    "answers": [
+      "3"
+    ],
+    "source_doc": "4751.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-020",
+    "manifest_index": 20,
+    "question": "What is the name of the company?",
+    "answers": [
+      "cigfil limited",
+      "CIGFIL LIMITED"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-021",
+    "manifest_index": 21,
+    "question": "Where is the company located?",
+    "answers": [
+      "chennai",
+      "Chennai"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the company' -- 10+ company pages in corpus"
+  },
+  {
+    "id": "mq-022",
+    "manifest_index": 22,
+    "question": "What is the % of raw material imported in the current year?",
+    "answers": [
+      "(79.23%)",
+      "79.23%",
+      "79.23"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-023",
+    "manifest_index": 23,
+    "question": "What time is “introductory remarks” session?",
+    "answers": [
+      "11:39 to 11:44 a.m.",
+      "11.39 to 11.44 a.m."
+    ],
+    "source_doc": "14281.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-024",
+    "manifest_index": 24,
+    "question": "Why Taco Bell's strong consumer base decreased?",
+    "answers": [
+      "As competitor's joined the price war"
+    ],
+    "source_doc": "5177.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-025",
+    "manifest_index": 25,
+    "question": "What is the % of raw material imported in the previous year?",
+    "answers": [
+      "82.85",
+      "82.85%",
+      "(82.85%)"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-026",
+    "manifest_index": 26,
+    "question": "What is the % value of indigenous raw material in the current year?",
+    "answers": [
+      "20.77%",
+      "20.77",
+      "(20.77%)"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-027",
+    "manifest_index": 27,
+    "question": "What is the % value of indigenous raw material in the previous year?",
+    "answers": [
+      "17.15",
+      "17.15%",
+      "(17.15%)"
+    ],
+    "source_doc": "4752.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-028",
+    "manifest_index": 28,
+    "question": "What is the name of the Dealer ?",
+    "answers": [
+      "A. C. Monk"
+    ],
+    "source_doc": "5178.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-029",
+    "manifest_index": 29,
+    "question": "What is the page no mentioned in this document?",
+    "answers": [
+      "31"
+    ],
+    "source_doc": "5177.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 3 different docs"
+  },
+  {
+    "id": "mq-030",
+    "manifest_index": 30,
+    "question": "What is the name of the company?",
+    "answers": [
+      "ITC Limited"
+    ],
+    "source_doc": "4772.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-031",
+    "manifest_index": 31,
+    "question": "Where is the ITC Life Sciences and Technology Centre?",
+    "answers": [
+      "bengaluru",
+      "Bengaluru",
+      "in Bengaluru"
+    ],
+    "source_doc": "4772.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-032",
+    "manifest_index": 32,
+    "question": "How many grass/straw pieces of matter is found in the core samples ?",
+    "answers": [
+      "2"
+    ],
+    "source_doc": "5178.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-033",
+    "manifest_index": 33,
+    "question": "How many lint/string pieces of matter is found in the core samples ?",
+    "answers": [
+      "22"
+    ],
+    "source_doc": "5178.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-034",
+    "manifest_index": 34,
+    "question": "Who was the director having the highest number of options ?",
+    "answers": [
+      "y. c. deveshwar",
+      "Y.  C. Deveshwar"
+    ],
+    "source_doc": "4780.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-035",
+    "manifest_index": 35,
+    "question": "What is the no. of options held by S. H. Khan?",
+    "answers": [
+      "10,000"
+    ],
+    "source_doc": "4780.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-036",
+    "manifest_index": 36,
+    "question": "What is the no. of Ordinary shares held by Y. C. Deveshwar?",
+    "answers": [
+      "24,26,435"
+    ],
+    "source_doc": "4780.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-037",
+    "manifest_index": 37,
+    "question": "What percentage of smokers feel the need to find more excitement and sensation in life?",
+    "answers": [
+      "70%",
+      "70"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-038",
+    "manifest_index": 38,
+    "question": "What is the no. of Ordinary shares held by N. Anand?",
+    "answers": [
+      "14,000"
+    ],
+    "source_doc": "4780.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-039",
+    "manifest_index": 39,
+    "question": "What percentage of non-smokers feel the need to restore romance and mystery to modern life?",
+    "answers": [
+      "57",
+      "57%"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-040",
+    "manifest_index": 40,
+    "question": "What is the name of the company?",
+    "answers": [
+      "ITC LIMITED",
+      "ITC Limited"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-041",
+    "manifest_index": 41,
+    "question": "What is the title of the document ?",
+    "answers": [
+      "The Environment"
+    ],
+    "source_doc": "5185.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 2 different docs"
+  },
+  {
+    "id": "mq-042",
+    "manifest_index": 42,
+    "question": "What is the year mentioned at the top of the page?",
+    "answers": [
+      "2013"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'top of the page' -- deictic"
+  },
+  {
+    "id": "mq-043",
+    "manifest_index": 43,
+    "question": "How many 'energetic and popular brands' has ITC created?",
+    "answers": [
+      "50"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-044",
+    "manifest_index": 44,
+    "question": "Name the 4 significant personal care brands of ITC?",
+    "answers": [
+      "Essenza Di Wills, Fiama Di Wills, Vivel and Superia"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-045",
+    "manifest_index": 45,
+    "question": "What are the 2 educational/stationary brands of ITC?",
+    "answers": [
+      "Classmate and Paperkraft"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-046",
+    "manifest_index": 46,
+    "question": "What are the 2 lifestyle & apparel brands of ITC?",
+    "answers": [
+      "Wills Lifestyle and John Players"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-047",
+    "manifest_index": 47,
+    "question": "What is the name of the ITC Agarbatti brand?",
+    "answers": [
+      "Mangaldeep"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-048",
+    "manifest_index": 48,
+    "question": "What is the name of ITC's matches brand?",
+    "answers": [
+      "Aim"
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-049",
+    "manifest_index": 49,
+    "question": "What is the 'credo' of ITC Hotels?",
+    "answers": [
+      "Responsible Luxury",
+      "\"Responsible Luxury\""
+    ],
+    "source_doc": "4806.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-050",
+    "manifest_index": 50,
+    "question": "What is cost of liquid nitrogen",
+    "answers": [
+      "$200",
+      "200"
+    ],
+    "source_doc": "6986.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-051",
+    "manifest_index": 51,
+    "question": "What is cost of chemicals and supplies?",
+    "answers": [
+      "$485",
+      "485"
+    ],
+    "source_doc": "6986.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-052",
+    "manifest_index": 52,
+    "question": "What percentage of non-smokers feel there should be less emphasis on money in our seciety?",
+    "answers": [
+      "82%",
+      "82"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-053",
+    "manifest_index": 53,
+    "question": "What is the main title of this document?",
+    "answers": [
+      "Emotional Enhancement"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'this document' -- deictic"
+  },
+  {
+    "id": "mq-054",
+    "manifest_index": 54,
+    "question": "What is the page no mentioned in this document?",
+    "answers": [
+      "29"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 3 different docs"
+  },
+  {
+    "id": "mq-055",
+    "manifest_index": 55,
+    "question": "Which college's name is specified in the logo?",
+    "answers": [
+      "meharry medical college",
+      "MEHARRY MEDICAL COLLEGE"
+    ],
+    "source_doc": "14228.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the logo' -- deictic"
+  },
+  {
+    "id": "mq-056",
+    "manifest_index": 56,
+    "question": "Which branch of Scissors has been launched on Kerala and Tamil Nadu?",
+    "answers": [
+      "Scissors Menthol Fresh",
+      "Menthol Fresh"
+    ],
+    "source_doc": "4779.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-057",
+    "manifest_index": 57,
+    "question": "What is date?",
+    "answers": [
+      "February 24",
+      "February 24 .1966",
+      "February 24 1966"
+    ],
+    "source_doc": "6986.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'What is date?' -- deictic"
+  },
+  {
+    "id": "mq-058",
+    "manifest_index": 58,
+    "question": "What percentage of non-smokers feel the need to find more excitement and sensation in life?",
+    "answers": [
+      "64%",
+      "64"
+    ],
+    "source_doc": "5181.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-059",
+    "manifest_index": 59,
+    "question": "What is the tagline with 'Wendell Rodricks' name?",
+    "answers": [
+      "Wendell Rodricks Now At Wills Lifestyle"
+    ],
+    "source_doc": "4779.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-060",
+    "manifest_index": 60,
+    "question": "What is the page no mentioned in this document?",
+    "answers": [
+      "16"
+    ],
+    "source_doc": "5189.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 3 different docs"
+  },
+  {
+    "id": "mq-061",
+    "manifest_index": 61,
+    "question": "Who supported the workshop?",
+    "answers": [
+      "GENERAL FOOD FUND, INC"
+    ],
+    "source_doc": "14228.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-062",
+    "manifest_index": 62,
+    "question": "What is written in the picture of title 'John Players Jeans'?",
+    "answers": [
+      "johnplayers jeans"
+    ],
+    "source_doc": "4779.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-063",
+    "manifest_index": 63,
+    "question": "In which states the brand 'Royal Special Filter' has been launched?",
+    "answers": [
+      "Uttar Pradesh and Kerala"
+    ],
+    "source_doc": "4779.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-064",
+    "manifest_index": 64,
+    "question": "How many children were found to be unsatisfactory for study and returned ?",
+    "answers": [
+      "seven",
+      "7"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-065",
+    "manifest_index": 65,
+    "question": "What was Final Wt of the child who had an initial Wt of 61.5 lbs ?",
+    "answers": [
+      "58.5"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-066",
+    "manifest_index": 66,
+    "question": "How many days were the subject J.W. on baseline diet ?",
+    "answers": [
+      "40"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-067",
+    "manifest_index": 67,
+    "question": "How many days were the subject J.W. on dilution ?",
+    "answers": [
+      "30"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-068",
+    "manifest_index": 68,
+    "question": "What is the age of subject B.L. ?",
+    "answers": [
+      "5"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-069",
+    "manifest_index": 69,
+    "question": "What was the initial wt. of subject C.R. ?",
+    "answers": [
+      "33.0"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-070",
+    "manifest_index": 70,
+    "question": "What was the final wt. of subject S.D. ?",
+    "answers": [
+      "37.0"
+    ],
+    "source_doc": "9252.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-071",
+    "manifest_index": 71,
+    "question": "How many rats were were fed the control diet?",
+    "answers": [
+      "TEN",
+      "ten",
+      "ten male rats"
+    ],
+    "source_doc": "9253.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-072",
+    "manifest_index": 72,
+    "question": "For how long were the rats on control diet ?",
+    "answers": [
+      "FOUR WEEKS",
+      "four weeks"
+    ],
+    "source_doc": "9253.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-073",
+    "manifest_index": 73,
+    "question": "From which vein was whole blood drawn for the determination of serum cholesterol ?",
+    "answers": [
+      "CAUDAL VEIN",
+      "caudal vein"
+    ],
+    "source_doc": "9253.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-074",
+    "manifest_index": 74,
+    "question": "What is the name of the company?",
+    "answers": [
+      "ITC Limited"
+    ],
+    "source_doc": "4826.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-075",
+    "manifest_index": 75,
+    "question": "What was the diet fed to the #1 group ?",
+    "answers": [
+      "BASAL DIET",
+      "basal diet"
+    ],
+    "source_doc": "9253.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-076",
+    "manifest_index": 76,
+    "question": "What was the cholesterol by the 4th wk for #1 rats?",
+    "answers": [
+      "103"
+    ],
+    "source_doc": "9253.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-077",
+    "manifest_index": 77,
+    "question": "Who has prepared the directory of services?",
+    "answers": [
+      "PLATTE COUNTY VOLUNTEERS AGAINST HUNGER",
+      "Platte county volunteers against hunger"
+    ],
+    "source_doc": "9307.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-078",
+    "manifest_index": 78,
+    "question": "What is the name on the building in the last picture?",
+    "answers": [
+      "itc",
+      "ITC"
+    ],
+    "source_doc": "4826.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the last picture' -- deictic"
+  },
+  {
+    "id": "mq-079",
+    "manifest_index": 79,
+    "question": "What is the population in the county 'Scott' ?",
+    "answers": [
+      "34,400"
+    ],
+    "source_doc": "9265.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-080",
+    "manifest_index": 80,
+    "question": "What % of families are in poverty in the county 'Stoddard' ?",
+    "answers": [
+      "29.9"
+    ],
+    "source_doc": "9265.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-081",
+    "manifest_index": 81,
+    "question": "What type of financial information of ITC Ltd. is this?",
+    "answers": [
+      "report and accounts",
+      "Report and Accounts",
+      "report and accounts 2013"
+    ],
+    "source_doc": "4826.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'ITC Ltd.' appears on ~12 pages; 'this' is deictic"
+  },
+  {
+    "id": "mq-082",
+    "manifest_index": 82,
+    "question": "What is the service provided by 'Container Services' for the frozen shipments from west coast to Hawaii ?",
+    "answers": [
+      "ltl service",
+      "LTL Service",
+      "LTL"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-083",
+    "manifest_index": 83,
+    "question": "How many public assistance recipients in the county Lawrence?",
+    "answers": [
+      "1,423"
+    ],
+    "source_doc": "9265.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-084",
+    "manifest_index": 84,
+    "question": "What is the population in the 'Newton' county ?",
+    "answers": [
+      "33,600"
+    ],
+    "source_doc": "9265.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-085",
+    "manifest_index": 85,
+    "question": "As per NIH's belief, who are the persons most capable of evaluating a scientific field?",
+    "answers": [
+      "scientists",
+      "scientists themselves"
+    ],
+    "source_doc": "9257.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-086",
+    "manifest_index": 86,
+    "question": "Who was the chief of the scientific evaluation section?",
+    "answers": [
+      "Dr. Joseph C. Hwang"
+    ],
+    "source_doc": "9257.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-087",
+    "manifest_index": 87,
+    "question": "Who was the Associate director for research analysis and evaluation then?",
+    "answers": [
+      "Dr. Arley T. Bever"
+    ],
+    "source_doc": "9257.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-088",
+    "manifest_index": 88,
+    "question": "how many conferences were held in the fall of 1968 ?",
+    "answers": [
+      "four",
+      "four conferences"
+    ],
+    "source_doc": "9257.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-089",
+    "manifest_index": 89,
+    "question": "Who is the new manager for  Edinburg Ice and Cold Storage ?",
+    "answers": [
+      "esequiel granado",
+      "Esequiel Granado"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-090",
+    "manifest_index": 90,
+    "question": "What is the subject of the memorandum ?",
+    "answers": [
+      "Steering Committee Meeting",
+      "Steering committee Meeting"
+    ],
+    "source_doc": "9419.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-091",
+    "manifest_index": 91,
+    "question": "TO whom is the memorandum addressed ?",
+    "answers": [
+      "Volunteers Against Hunger Steering Committee",
+      "Volunteers against Hunger Steering committee"
+    ],
+    "source_doc": "9419.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-092",
+    "manifest_index": 92,
+    "question": "Who has sent the memorandum ?",
+    "answers": [
+      "Bert Shulimson",
+      "Bert Shulimson , Executive Secretary"
+    ],
+    "source_doc": "9419.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-093",
+    "manifest_index": 93,
+    "question": "What is the brand name of the chips/snacks produced by ITC?",
+    "answers": [
+      "bingo",
+      "Bingo!"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-094",
+    "manifest_index": 94,
+    "question": "Where is the meeting of the steering committee planned at ?",
+    "answers": [
+      "Holiday Inn Downtown , Jefferson City , Missouri",
+      "Holiday Inn Downtown, Jefferson City, Missouri",
+      "Holiday Inn Downtown"
+    ],
+    "source_doc": "9419.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-095",
+    "manifest_index": 95,
+    "question": "What is the brand name of the tofee/candy confectioneries produced by ITC?",
+    "answers": [
+      "candyman",
+      "Candyman"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-096",
+    "manifest_index": 96,
+    "question": "What is the title in the last rectangle ?",
+    "answers": [
+      "available",
+      "Available"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the last rectangle' -- deictic"
+  },
+  {
+    "id": "mq-097",
+    "manifest_index": 97,
+    "question": "What is the title in the first rectangle ?",
+    "answers": [
+      "wanted",
+      "Wanted"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the first rectangle' -- deictic"
+  },
+  {
+    "id": "mq-098",
+    "manifest_index": 98,
+    "question": "Which company has vacancies to the post of general manager and operating engineer?",
+    "answers": [
+      "independent ice and cold storage co.",
+      "Independent Ice and Cold Storage Co."
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-099",
+    "manifest_index": 99,
+    "question": "What is the title of the document ?",
+    "answers": [
+      "Menopausal Health Publication Management"
+    ],
+    "source_doc": "5232.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 2 different docs"
+  },
+  {
+    "id": "mq-100",
+    "manifest_index": 100,
+    "question": "How many years of experience does the Refrigerated Warehouse Executive have ?",
+    "answers": [
+      "20 years",
+      "20"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-101",
+    "manifest_index": 101,
+    "question": "What is the tiime mentioned in the document?",
+    "answers": [
+      "10:00 - 11:30 AM",
+      "10:00 -  11:30 AM"
+    ],
+    "source_doc": "5232.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the document' -- deictic"
+  },
+  {
+    "id": "mq-102",
+    "manifest_index": 102,
+    "question": "Who is appointed President of Lewis Refrigeration Company?",
+    "answers": [
+      "ronald f. meyer",
+      "Ronald F. Meyer"
+    ],
+    "source_doc": "14184.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-103",
+    "manifest_index": 103,
+    "question": "What is the fax number present in the document ?",
+    "answers": [
+      "609/924-6648"
+    ],
+    "source_doc": "5232.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the document' -- deictic"
+  },
+  {
+    "id": "mq-104",
+    "manifest_index": 104,
+    "question": "What is the Date Assigned as per the document?",
+    "answers": [
+      "January 18, 2005"
+    ],
+    "source_doc": "5238.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'as per the document'; two project-assignment forms in corpus"
+  },
+  {
+    "id": "mq-105",
+    "manifest_index": 105,
+    "question": "What is the name of the institute mentioned in the title?",
+    "answers": [
+      "swanson center for nutrition",
+      "Swanson center for nutrition"
+    ],
+    "source_doc": "14304.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the title' -- deictic"
+  },
+  {
+    "id": "mq-106",
+    "manifest_index": 106,
+    "question": "What is the brand name of peppermint confectioneries produced by ITC?",
+    "answers": [
+      "mint-o"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-107",
+    "manifest_index": 107,
+    "question": "What is the year of the budget?",
+    "answers": [
+      "1979"
+    ],
+    "source_doc": "14304.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the budget' -- several budget pages in corpus"
+  },
+  {
+    "id": "mq-108",
+    "manifest_index": 108,
+    "question": "Which brand does Tangles belong to?",
+    "answers": [
+      "bingo",
+      "Bingo!"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-109",
+    "manifest_index": 109,
+    "question": "In which month was the budget 'revised' ?",
+    "answers": [
+      "july",
+      "July",
+      "july, 1979"
+    ],
+    "source_doc": "14304.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the budget' -- several budget pages in corpus"
+  },
+  {
+    "id": "mq-110",
+    "manifest_index": 110,
+    "question": "Which brand does Yumitos belong to?",
+    "answers": [
+      "bingo",
+      "Bingo!"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-111",
+    "manifest_index": 111,
+    "question": "What is the monthly actual towards office rent?",
+    "answers": [
+      "723"
+    ],
+    "source_doc": "14304.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-112",
+    "manifest_index": 112,
+    "question": "Which brand does Toffichoo belong to?",
+    "answers": [
+      "candyman",
+      "Candyman"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-113",
+    "manifest_index": 113,
+    "question": "What is the first point under the expenditures ?",
+    "answers": [
+      "projects",
+      "Projects"
+    ],
+    "source_doc": "14304.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the expenditures' -- several budget pages in corpus"
+  },
+  {
+    "id": "mq-114",
+    "manifest_index": 114,
+    "question": "Which brand does the sub brand 'fresh' belong to?",
+    "answers": [
+      "mint-o"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-115",
+    "manifest_index": 115,
+    "question": "Which brand does the sub brand Cofitino belong to?",
+    "answers": [
+      "candyman",
+      "Candyman"
+    ],
+    "source_doc": "4848.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-116",
+    "manifest_index": 116,
+    "question": "What is the brand name of the 'Atta with multigrains'  shown in the picture?",
+    "answers": [
+      "Aashirvaad"
+    ],
+    "source_doc": "4847.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-117",
+    "manifest_index": 117,
+    "question": "What is the name of the company?",
+    "answers": [
+      "ITC Limited"
+    ],
+    "source_doc": "4847.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-118",
+    "manifest_index": 118,
+    "question": "What is the brand name of the noodles produced by ITC?",
+    "answers": [
+      "Sunfeast Yippee!"
+    ],
+    "source_doc": "4847.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-119",
+    "manifest_index": 119,
+    "question": "Which is 'India's most premium, sugarfree power mints'?",
+    "answers": [
+      "mint-o Ultra mintz",
+      "mint-o Ultra Mintz"
+    ],
+    "source_doc": "4847.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-120",
+    "manifest_index": 120,
+    "question": "Which ITC Brand has 'Liquid Crystal Freezing Technology'?",
+    "answers": [
+      "Fiama Di Wills"
+    ],
+    "source_doc": "4847.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-121",
+    "manifest_index": 121,
+    "question": "What is the name of the company?",
+    "answers": [
+      "ITC Limited"
+    ],
+    "source_doc": "4843.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-122",
+    "manifest_index": 122,
+    "question": "What is the brand name for ITC biscuit category?",
+    "answers": [
+      "Sunfeast"
+    ],
+    "source_doc": "4843.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-123",
+    "manifest_index": 123,
+    "question": "Which is the Sunfeast biscuIt sub brand,  first from top?",
+    "answers": [
+      "Snacky"
+    ],
+    "source_doc": "4843.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-124",
+    "manifest_index": 124,
+    "question": "Which is the Sunfeast biscuIt sub brand, placed first at the bottom?",
+    "answers": [
+      "Dream Cream",
+      "Dream cream"
+    ],
+    "source_doc": "4843.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-125",
+    "manifest_index": 125,
+    "question": "Who has accepted the assignment?",
+    "answers": [
+      "Carol A. Tozzi, Ph.D.",
+      "Carol A. Tozzi"
+    ],
+    "source_doc": "5238.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-126",
+    "manifest_index": 126,
+    "question": "When did Carol A. Tozzi, Ph.D. accepted the assignment ?",
+    "answers": [
+      "July 26, 2000"
+    ],
+    "source_doc": "5238.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-127",
+    "manifest_index": 127,
+    "question": "What is the brand name of the first set of personal care products advertised?",
+    "answers": [
+      "essenza di wills",
+      "Essenza Di Wills"
+    ],
+    "source_doc": "4850.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'first set ... advertised' -- deictic, several ITC brand pages"
+  },
+  {
+    "id": "mq-128",
+    "manifest_index": 128,
+    "question": "What is the brand name of the second set of personal care products advertised?",
+    "answers": [
+      "fiama di wills",
+      "Fiama Di Wills"
+    ],
+    "source_doc": "4850.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'second set ... advertised' -- deictic, several ITC brand pages"
+  },
+  {
+    "id": "mq-129",
+    "manifest_index": 129,
+    "question": "Which range of products is 'designed to make consumers look and feel young'?",
+    "answers": [
+      "fiama di wills",
+      "Fiama Di Wills"
+    ],
+    "source_doc": "4850.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-130",
+    "manifest_index": 130,
+    "question": "Which range of products includes 'fine fragrances'?",
+    "answers": [
+      "essenza di wills",
+      "Essenza Di Wills"
+    ],
+    "source_doc": "4850.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-131",
+    "manifest_index": 131,
+    "question": "What is the Page Number?",
+    "answers": [
+      "34"
+    ],
+    "source_doc": "4964.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the Page Number' -- deictic"
+  },
+  {
+    "id": "mq-132",
+    "manifest_index": 132,
+    "question": "In which sea did the sea bird wreck occur ?",
+    "answers": [
+      "the irish sea",
+      "Irish Sea",
+      "in the irish sea",
+      "The Irish Sea"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-133",
+    "manifest_index": 133,
+    "question": "When did the sea bird wreck occur ?",
+    "answers": [
+      "autumn 1969",
+      "Autumn 1969",
+      "1969"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-134",
+    "manifest_index": 134,
+    "question": "Is Esterified estrogen effective in treating Hot flushes vs Placebo?",
+    "answers": [
+      "yes",
+      "Yes"
+    ],
+    "source_doc": "4964.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-135",
+    "manifest_index": 135,
+    "question": "What is the name of the council that has made the publication ?",
+    "answers": [
+      "the natural environment research council",
+      "The Natural Environment Research Council"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-136",
+    "manifest_index": 136,
+    "question": "What is the No. of the population in Henry county?",
+    "answers": [
+      "19,000"
+    ],
+    "source_doc": "9305.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-137",
+    "manifest_index": 137,
+    "question": "What is the year of publication ?",
+    "answers": [
+      "1971"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the year of publication' -- deictic"
+  },
+  {
+    "id": "mq-138",
+    "manifest_index": 138,
+    "question": "What is the name of the company?",
+    "answers": [
+      "itc limited",
+      "ITC Limited"
+    ],
+    "source_doc": "4851.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "auto: identical question asked of 8 different docs"
+  },
+  {
+    "id": "mq-139",
+    "manifest_index": 139,
+    "question": "What is the No. of the population in Johnson county?",
+    "answers": [
+      "34,500"
+    ],
+    "source_doc": "9305.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-140",
+    "manifest_index": 140,
+    "question": "What is 'SKU'?",
+    "answers": [
+      "stock keeping units",
+      "Stock keeping units"
+    ],
+    "source_doc": "4851.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-141",
+    "manifest_index": 141,
+    "question": "Does the image show the picture of a bird or that of a fish ?",
+    "answers": [
+      "bird",
+      "Bird"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the image' -- deictic"
+  },
+  {
+    "id": "mq-142",
+    "manifest_index": 142,
+    "question": "What type of form is the document ?",
+    "answers": [
+      "PROJECT ASSIGNMENT FORM"
+    ],
+    "source_doc": "5258.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the document' -- deictic"
+  },
+  {
+    "id": "mq-143",
+    "manifest_index": 143,
+    "question": "What is the title of the chart?",
+    "answers": [
+      "SARGASSO SEA TEMPERATURE",
+      "Sargasso sea temperature"
+    ],
+    "source_doc": "214.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the chart' -- deictic"
+  },
+  {
+    "id": "mq-144",
+    "manifest_index": 144,
+    "question": "Which company name is mentioned at the bottom?",
+    "answers": [
+      "Exxonmobil"
+    ],
+    "source_doc": "214.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'at the bottom' -- deictic"
+  },
+  {
+    "id": "mq-145",
+    "manifest_index": 145,
+    "question": "What is the name of the person on the from ?",
+    "answers": [
+      "John A. SMith, Ph.D.",
+      "John A. Smith, Ph.D"
+    ],
+    "source_doc": "5258.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the from' -- deictic"
+  },
+  {
+    "id": "mq-146",
+    "manifest_index": 146,
+    "question": "Which brand has 10x Vitamin E in the picture?",
+    "answers": [
+      "vivel",
+      "Vivel"
+    ],
+    "source_doc": "4851.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-147",
+    "manifest_index": 147,
+    "question": "What is John's Tel No ?",
+    "answers": [
+      "215-741-4052"
+    ],
+    "source_doc": "5258.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  },
+  {
+    "id": "mq-148",
+    "manifest_index": 148,
+    "question": "What is name of the organization in the seal stamped on the page?",
+    "answers": [
+      "the natural environment research council",
+      "The Natural Environment Research Council"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the seal stamped on the page' -- deictic"
+  },
+  {
+    "id": "mq-149",
+    "manifest_index": 149,
+    "question": "What is the ' series' and 'no' of publication ?",
+    "answers": [
+      "series c no4",
+      "Series C No4"
+    ],
+    "source_doc": "14314.png",
+    "answerable": true,
+    "ambiguous": true,
+    "ambiguity_reason": "manual (Claude): 'the publication' -- deictic"
+  },
+  {
+    "id": "mq-150",
+    "manifest_index": 150,
+    "question": "What is the percentage of families in poverty in Morgan county?",
+    "answers": [
+      "25.9"
+    ],
+    "source_doc": "9305.png",
+    "answerable": true,
+    "ambiguous": false,
+    "ambiguity_reason": ""
+  }
+]

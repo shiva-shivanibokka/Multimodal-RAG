@@ -1,0 +1,386 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+retrieval 1
+retrieval 2
+retrieval 3
+retrieval 4
+retrieval 5
+retrieval 6
+retrieval 7
+retrieval 8
+retrieval 9
+retrieval 10
+retrieval 11
+retrieval 12
+retrieval 13
+retrieval 14
+retrieval 15
+retrieval 16
+retrieval 17
+retrieval 18
+retrieval 19
+retrieval 20
+retrieval 21
+retrieval 22
+retrieval 23
+retrieval 24
+retrieval 25
+retrieval 26
+retrieval 27
+retrieval 28
+retrieval 29
+retrieval 30
+retrieval 31
+retrieval 32
+retrieval 33
+retrieval 34
+retrieval 35
+retrieval 36
+retrieval 37
+retrieval 38
+retrieval 39
+retrieval 40
+retrieval 41
+retrieval 42
+retrieval 43
+retrieval 44
+retrieval 45
+retrieval 46
+retrieval 47
+retrieval 48
+retrieval 49
+retrieval 50
+retrieval 51
+retrieval 52
+retrieval 53
+retrieval 54
+retrieval 55
+retrieval 56
+retrieval 57
+retrieval 58
+retrieval 59
+retrieval 60
+retrieval 61
+retrieval 62
+retrieval 63
+retrieval 64
+retrieval 65
+retrieval 66
+retrieval 67
+retrieval 68
+retrieval 69
+retrieval 70
+retrieval 71
+retrieval 72
+retrieval 73
+retrieval 74
+retrieval 75
+retrieval 76
+retrieval 77
+retrieval 78
+retrieval 79
+retrieval 80
+retrieval 81
+retrieval 82
+retrieval 83
+retrieval 84
+retrieval 85
+retrieval 86
+retrieval 87
+retrieval 88
+retrieval 89
+retrieval 90
+retrieval 91
+retrieval 92
+retrieval 93
+retrieval 94
+retrieval 95
+retrieval 96
+retrieval 97
+retrieval 98
+retrieval 99
+retrieval 100
+retrieval 101
+retrieval 102
+retrieval 103
+retrieval 104
+retrieval 105
+retrieval 106
+retrieval 107
+retrieval 108
+retrieval 109
+retrieval 110
+retrieval 111
+retrieval 112
+retrieval 113
+retrieval 114
+retrieval 115
+retrieval 116
+retrieval 117
+retrieval 118
+retrieval 119
+retrieval 120
+retrieval 121
+retrieval 122
+retrieval 123
+retrieval 124
+retrieval 125
+retrieval 126
+retrieval 127
+retrieval 128
+retrieval 129
+retrieval 130
+retrieval 131
+retrieval 132
+retrieval 133
+retrieval 134
+retrieval 135
+retrieval 136
+retrieval 137
+retrieval 138
+retrieval 139
+retrieval 140
+retrieval 141
+retrieval 142
+retrieval 143
+retrieval 144
+retrieval 145
+retrieval 146
+retrieval 147
+retrieval 148
+retrieval 149
+retrieval 150
+retrieval 151
+
+== filtered_unambiguous (strict_gold_page) ==
+dense+rerank         n=107 R@1=0.813 [0.738,0.888] R@5=0.944 MRR=0.864
+dense-norerank       n=107 R@1=0.701 [0.607,0.785] R@5=0.860 MRR=0.772
+hybrid+rerank        n=107 R@1=0.832 [0.757,0.897] R@5=0.953 MRR=0.883
+hybrid-norerank      n=107 R@1=0.813 [0.738,0.879] R@5=0.935 MRR=0.856
+bm25-only            n=107 R@1=0.794 [0.720,0.869] R@5=0.925 MRR=0.850
+cross_modal(CLIP)    n=107 R@1=0.290 [0.206,0.374] R@5=0.551 MRR=0.387
+caption_baseline     n=107 R@1=0.692 [0.598,0.776] R@5=0.879 MRR=0.768
+
+== filtered_unambiguous (lenient_answer_in_page) ==
+dense+rerank         n=107 R@1=0.869 [0.804,0.925] R@5=0.963 MRR=0.910
+dense-norerank       n=107 R@1=0.766 [0.682,0.841] R@5=0.925 MRR=0.835
+hybrid+rerank        n=107 R@1=0.888 [0.822,0.944] R@5=0.972 MRR=0.928
+hybrid-norerank      n=107 R@1=0.850 [0.785,0.916] R@5=0.963 MRR=0.897
+bm25-only            n=107 R@1=0.841 [0.776,0.907] R@5=0.953 MRR=0.888
+cross_modal(CLIP)    n=107 R@1=0.327 [0.243,0.421] R@5=0.607 MRR=0.437
+caption_baseline     n=107 R@1=0.748 [0.664,0.822] R@5=0.944 MRR=0.825
+
+== all151 (strict_gold_page) ==
+dense+rerank         n=151 R@1=0.609 [0.530,0.689] R@5=0.788 MRR=0.675
+dense-norerank       n=151 R@1=0.563 [0.483,0.642] R@5=0.728 MRR=0.632
+hybrid+rerank        n=151 R@1=0.623 [0.543,0.702] R@5=0.801 MRR=0.689
+hybrid-norerank      n=151 R@1=0.629 [0.550,0.702] R@5=0.762 MRR=0.676
+bm25-only            n=151 R@1=0.603 [0.523,0.682] R@5=0.715 MRR=0.647
+cross_modal(CLIP)    n=151 R@1=0.252 [0.185,0.318] R@5=0.490 MRR=0.339
+caption_baseline     n=151 R@1=0.556 [0.477,0.636] R@5=0.755 MRR=0.632
+
+== all151 (lenient_answer_in_page) ==
+dense+rerank         n=151 R@1=0.675 [0.596,0.748] R@5=0.841 MRR=0.737
+dense-norerank       n=151 R@1=0.616 [0.536,0.689] R@5=0.808 MRR=0.700
+hybrid+rerank        n=151 R@1=0.689 [0.616,0.762] R@5=0.854 MRR=0.751
+hybrid-norerank      n=151 R@1=0.662 [0.583,0.735] R@5=0.828 MRR=0.726
+bm25-only            n=151 R@1=0.649 [0.570,0.722] R@5=0.755 MRR=0.692
+cross_modal(CLIP)    n=151 R@1=0.325 [0.252,0.397] R@5=0.570 MRR=0.420
+caption_baseline     n=151 R@1=0.609 [0.530,0.682] R@5=0.834 MRR=0.699
+dense+rerank - dense-norerank dR@1=0.112 [0.028,0.206] p=0.015
+hybrid+rerank - hybrid-norerank dR@1=0.019 [-0.065,0.103] p=0.730
+hybrid+rerank - dense+rerank dR@1=0.019 [0.000,0.047] p=0.262
+hybrid-norerank - dense-norerank dR@1=0.112 [0.056,0.178] p=0.000
+caption_baseline - cross_modal(CLIP) dR@1=0.402 [0.280,0.523] p=0.000
+hybrid+rerank - caption_baseline dR@1=0.140 [0.047,0.234] p=0.005
+hybrid+rerank - bm25-only dR@1=0.037 [-0.028,0.103] p=0.325
+dense+rerank - cross_modal(CLIP) dR@1=0.523 [0.411,0.636] p=0.000
+gate 1
+gate 2
+gate 3
+gate 4
+gate 5
+gate 6
+gate 7
+gate 8
+gate 9
+gate 10
+gate 11
+gate 12
+gate 13
+gate 14
+gate 15
+gate 16
+gate 17
+gate 18
+gate 19
+gate 20
+gate 21
+gate 22
+gate 23
+gate 24
+gate 25
+gate 26
+gate 27
+gate 28
+gate 29
+gate 30
+gate 31
+gate 32
+gate 33
+gate 34
+gate 35
+gate 36
+gate 37
+gate 38
+gate 39
+gate 40
+gate 41
+gate 42
+gate 43
+gate 44
+gate 45
+gate 46
+gate 47
+gate 48
+gate 49
+gate 50
+gate 51
+gate 52
+gate 53
+gate 54
+gate 55
+gate 56
+gate 57
+gate 58
+gate 59
+gate 60
+gate 61
+gate 62
+gate 63
+gate 64
+gate 65
+gate 66
+gate 67
+gate 68
+gate 69
+gate 70
+gate 71
+gate 72
+gate 73
+gate 74
+gate 75
+gate 76
+gate 77
+gate 78
+gate 79
+gate 80
+gate 81
+gate 82
+gate 83
+gate 84
+gate 85
+gate 86
+gate 87
+gate 88
+gate 89
+gate 90
+gate 91
+gate 92
+gate 93
+gate 94
+gate 95
+gate 96
+gate 97
+gate 98
+gate 99
+gate 100
+gate 101
+gate 102
+gate 103
+gate 104
+gate 105
+gate 106
+gate 107
+gate 108
+gate 109
+gate 110
+gate 111
+gate 112
+gate 113
+gate 114
+gate 115
+gate 116
+gate 117
+gate 118
+gate 119
+gate 120
+gate 121
+gate 122
+gate 123
+gate 124
+gate 125
+gate 126
+gate 127
+gate 128
+gate 129
+gate 130
+gate 131
+gate 132
+gate 133
+gate 134
+gate 135
+gate 136
+gate 137
+gate 138
+gate 139
+gate 140
+gate 141
+gate 142
+gate 143
+gate 144
+gate 145
+gate 146
+gate 147
+gate 148
+gate 149
+gate 150
+gate 151
+gate 152
+gate 153
+gate 154
+gate 155
+gate 156
+gate 157
+gate 158
+gate 159
+gate 160
+gate 161
+gate 162
+gate 163
+gate 164
+gate 165
+gate 166
+gate 167
+gate 168
+gate 169
+gate 170
+gate 171
+gate 172
+gate 173
+gate 174
+gate 175
+gate 176
+gate 177
+gate 178
+gate 179
+gate 180
+gate 181
+gate 182
+gate 183
+gate 184
+gate 185
+gate 186
+gate 187
+gate 188
+gate 189
+wrote gate scores for 189 questions

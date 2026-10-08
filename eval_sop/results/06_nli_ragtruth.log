@@ -1,0 +1,33 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+0
+25
+50
+75
+100
+125
+150
+175
+200
+225
+250
+275
+300
+325
+350
+375
+400
+425
+{
+ "sample": {
+  "n_responses": 450,
+  "n_claims": 2924,
+  "seed": 0
+ },
+ "prevalence": {
+  "claims_hallucinated": 0.06976744186046512,
+  "responses_hallucinated": 0.15777777777777777
+ }
+}
+claim_level(any-span-overlap) {'precision': 0.084, 'recall': 0.941, 'balanced_acc': 0.585, 'auroc': 0.737, 'flag_rate': 0.784} CI P [0.05428337173845085, 0.11851645630239968] R [0.8741552301922924, 0.9850018656716417] BA [0.5484187687167699, 0.6112317490182201] AUC [0.6511338397879413, 0.8054676079876095]
+response_level_any_claim_flagged {'precision': 0.169, 'recall': 0.986, 'balanced_acc': 0.538, 'auroc': 0.671, 'flag_rate': 0.922} CI P [0.1325256909992913, 0.20476190476190476] R [0.953828125, 1.0] BA [0.5173201337160713, 0.556282722513089] AUC [0.6069605375373509, 0.7323511238738738]
+response_level_all_claims_flagged(=/answer firewall refusal) {'precision': 0.207, 'recall': 0.606, 'balanced_acc': 0.585, 'auroc': 0.671, 'flag_rate': 0.462} CI P [0.15382775119617226, 0.26291697553743515] R [0.4917963323145318, 0.7213166632081345] BA [0.5222513075215143, 0.650425039577996] AUC [0.6069605375373509, 0.7323511238738738]
