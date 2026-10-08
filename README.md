@@ -41,8 +41,24 @@ exact pixel region on the source page.
   measures rather than assumes. Numbers are reproducible via
   [`BENCHMARK.md`](BENCHMARK.md) and live on the `/eval` dashboard.
 
-**Live demo:** frontend — [multimodal-rag-plum.vercel.app](https://multimodal-rag-plum.vercel.app) ·
-backend — [multimodal-rag-backend-1061434430143.us-central1.run.app](https://multimodal-rag-backend-1061434430143.us-central1.run.app)
+**Demo status**, as of 8 October 2026:
+
+| Component | URL | State |
+|---|---|---|
+| Frontend (Next.js on **Vercel**) | [multimodal-rag-plum.vercel.app](https://multimodal-rag-plum.vercel.app) | **up** — loads, and reports the dead backend rather than hanging |
+| Backend (FastAPI on **Google Cloud Run**) | `multimodal-rag-backend-…us-central1.run.app` | **gone** — the Google Cloud free trial behind it closed |
+| Recorded evaluation | [multimodal-rag-replay.vercel.app](https://multimodal-rag-replay.vercel.app) | **up** — needs no backend |
+
+Uploading a document and asking a question needs the backend, so those cannot
+work. Everything the demo *measured* survives, served from `eval_sop/results/`
+with no server at all: retrieval over **151** queries
+(`retrieval_per_query.json`), the refusal gate scored on **189** items
+(`gate_scores.json`), and generation across **three seeds** (0, 1, 2 — 252
+records each, `generation_…T0.7.jsonl`). Those are three different counts
+because they are three different evaluations, not one set of 189.
+
+This line used to read "**Live demo:** frontend — … · backend — …", listing the
+backend as a live link while every request to it returned 503.
 
 ---
 
