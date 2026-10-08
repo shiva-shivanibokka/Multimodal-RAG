@@ -347,8 +347,10 @@ Product code (`backend/`, `frontend/`) is **unchanged**. The README is unchanged
 3. Table shortcut, `table_answer.py` (F2): do not map "how many …" to a column count when the question names a row entity. Alternatively, route the shortcut answer through NLI instead of hard-coding `score=1.0`.
 4. NLI gate: recalibrate the threshold, and handle the 512-token truncation by windowing evidence at the model's token limit rather than at 500 words.
 5. `run_eval.py`: report citation accuracy from the generated answer's citations, not `retrieved_pages[0]`, and add ANLS/EM.
-6. **Proposed README corrections** (not applied):
-   - Replace "~0.79 refusal accuracy" with "refusal accuracy equals the never-refuse baseline (0.79 = 30/38); the 0.25 gate does not refuse any question".
-   - Replace "caption_baseline … recall@5 0.80" with the 107/151-question numbers above.
-   - State that faithfulness has not been measured end to end, and give the RAGTruth gate numbers.
-   - Remove "calibrated refusal" wording until there is evidence for it.
+6. **README corrections — APPLIED 2026-10-08.** All four are now in `README.md`:
+   - "~0.79 refusal accuracy" is gone. The README states that the 0.25 gate refuses 0 of 145 questions because the threshold sits below the entire observed score range, that any accuracy it reports is the class prior (0.738 here; the committed benchmark's 0.789 was the same thing on its own 38 questions, 30/38), and that the hard-OOD AUROC of 0.302 is *below chance* because hard OOD questions score higher than real ones.
+   - The headline table no longer shows the 38-question run in which `caption_baseline` appeared best at recall@5 0.80. It now carries the 107-question numbers with 95% CIs, quotes the all-151 figures beside them, and says in the text that caption_baseline's apparent win does not survive the larger evaluation. The BM25 margin (+0.037 [−0.028, 0.103]) is stated as including zero.
+   - The README says end-to-end faithfulness has never been measured and that the committed report's fields are `null`, and gives the RAGTruth numbers: as production uses the gate it would refuse 46% of answers, 79% of those refusals on answers humans found faithful, while missing 39% of hallucinated ones (AUROC 0.74, threshold misplaced).
+   - "Calibrated refusal" is gone from the prose, the architecture bullet and the mermaid diagram, replaced by "score-gated" with an explicit note that the threshold is not calibrated — including that a cutoff learned on held-out folds still lands below the always-answer baseline (0.717 ± 0.004 vs 0.738).
+
+   Also surfaced in the README while applying these: the "citation accuracy" field is recall@1 under another name, and the hybrid gate's BM25 term is inert (`max(dense, bm25_norm)` equals dense on 189/189 questions).

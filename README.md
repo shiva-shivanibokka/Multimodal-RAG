@@ -32,26 +32,50 @@ exact pixel region on the source page.
   just plausible — a post-hoc NLI faithfulness gate verifies every generated
   claim against retrieved evidence and forces a refusal when nothing is
   actually grounded, and numeric table questions bypass the LLM entirely in
-  favor of exact pandas arithmetic.
-- Impact: on a 40-document DocVQA-derived corpus (30 answerable + 8
-  deliberately out-of-corpus), the committed benchmark measures **recall@5 up
-  to 0.80**, **MRR 0.62**, and **~0.79 refusal accuracy** across retrieval
-  modes — and shows true CLIP cross-modal retrieval *losing* to an OCR-caption
-  baseline on text-dense scans (recall@5 0.43 vs 0.80), a tradeoff this repo
-  measures rather than assumes. Numbers are reproducible via
-  [`BENCHMARK.md`](BENCHMARK.md) and live on the `/eval` dashboard.
+  favor of exact pandas arithmetic. **How well that gate actually works is
+  measured, and the answer is unflattering — see the next section.**
+- Impact, as re-measured in [`RESULTS.md`](RESULTS.md) on 151 DocVQA-derived
+  questions over a 40-page corpus: the production hybrid+rerank retrieval gets
+  **R@1 0.623 [0.543, 0.702] on all 151 questions**, or **0.832 [0.757, 0.897]
+  on the 107** that survive an ambiguity filter. Retrieval is the part that
+  holds up. Its margin over a plain **BM25** baseline does not: **+0.037
+  [−0.028, 0.103]** on the filtered set, an interval that includes zero. CLIP
+  cross-modal retrieval does lose badly to text on these scans (R@1 0.290 vs
+  0.832), a tradeoff this repo measures rather than assumes.
+- The trust layer is the weak part. The shipped refusal gate **refuses
+  nothing**, and the faithfulness gate was **never measured end to end**.
+  Both are quantified below and in `RESULTS.md`.
 
 > **Measured evaluation: [`RESULTS.md`](RESULTS.md)** — an independent re-measurement
 > of every claim above, and the one that matters most is negative. **The shipped
-> refusal gate does not refuse.** On dense, hybrid and caption modes it refused
-> **0 of 38** questions, including all 8 trivial out-of-corpus ones, so the
-> reported 0.789 "refusal accuracy" is exactly the never-refuse baseline, 30/38.
+> refusal gate does not refuse.** At the shipped `retrieval_min_score = 0.25` it
+> refused **0 of 145** questions (107 answerable + 38 out-of-corpus) in the
+> dense, hybrid and caption modes, because the threshold sits *below the entire
+> observed score range* — answerable questions score 0.465–0.825 and trivial
+> out-of-corpus ones 0.42–0.61. Any "refusal accuracy" it reports is therefore
+> just the class prior: 0.738 on these 145, and the committed benchmark's 0.789
+> was the same thing on its own 38 questions (30/38).
+>
 > The gate separates answerable questions from *trivially* off-topic ones
-> (AUROC **0.91**) and not from hard ones (AUROC **0.30**) — though that second
-> set was built by an LLM to name corpus entities, so the number depends on how
-> it was constructed, and `RESULTS.md` says so. It also confirms that the
-> reported "citation accuracy" was recall@1 under another name, and that
-> faithfulness was never measured at all (`"faithfulness": null`).
+> (AUROC **0.91**) and not from hard ones (AUROC **0.30** — *below chance*,
+> because hard out-of-corpus questions score **higher** than real ones, median
+> 0.706 vs 0.639). That shows the gate measures topical similarity rather than
+> answerability. The hard set was built by an LLM to name corpus entities, so
+> that number depends on how it was constructed, and `RESULTS.md` says so.
+>
+> Two further corrections: the reported "citation accuracy" was recall@1 under
+> another name, and **end-to-end faithfulness was never measured** — the
+> committed report carries `"faithfulness": null`. The gate *has* since been
+> validated against human labels on RAGTruth, and that result is also negative:
+> used as production uses it, it would **refuse 46% of answers, 79% of those
+> refusals landing on answers human annotators found fully faithful**, while
+> still missing 39% of hallucinated ones. It ranks claims better than chance
+> (AUROC 0.74); the 0.5 threshold is simply in the wrong place.
+>
+> Also measured: **the hybrid gate never uses its BM25 term.**
+> `bm25_normalized_top1` peaks at 0.046 while dense is always ≥ 0.42, so
+> `max(dense, bm25_norm)` equals dense on 189/189 questions — the lexical
+> rescue is inert at this corpus scale.
 
 **Demo status**, as of 8 October 2026:
 
@@ -106,14 +130,21 @@ a faster or prettier version of the same architecture.
    to `refused=True` — a hallucinated answer never reaches the user framed
    as fact. (`backend/app/verify/nli.py`, wired into
    `backend/app/generate/answer.py`.)
-2. **Calibrated refusal.** Refusal isn't just an LLM prompt instruction
-   ("say you don't know") — it's gated on the retrieval score itself.
-   Before any generation call, the top-1 retrieval score for the active
-   mode is checked against `retrieval_min_score`; below threshold, the
-   system refuses without spending an LLM call at all. Refusal happens at
-   two independent points: pre-generation (no grounding found) and
-   post-generation (grounding found, but the model's answer wasn't
-   actually entailed by it).
+2. **Score-gated refusal — architecturally, but not calibrated.** Refusal
+   isn't just an LLM prompt instruction ("say you don't know"): before any
+   generation call, the top-1 retrieval score for the active mode is checked
+   against `retrieval_min_score`, and below threshold the system refuses
+   without spending an LLM call. Refusal happens at two independent points:
+   pre-generation (no grounding found) and post-generation (grounding found,
+   but the model's answer wasn't entailed by it).
+   **The threshold is not calibrated, and the word is deliberately avoided
+   here.** At the shipped 0.25 it sits below every observed score, so the
+   pre-generation gate fires on 0 of 145 questions — see
+   [`RESULTS.md`](RESULTS.md) §2.2. Even a cutoff *learned* on held-out folds
+   reaches only 0.518 ± 0.010 balanced accuracy against all out-of-corpus
+   questions, and its plain accuracy (0.717 ± 0.004) is **below** the
+   always-answer baseline of 0.738. The reranker score, which is not shipped
+   as the gate, separates them far better (AUROC 0.632 vs 0.302).
 3. **Deterministic table math.** If the top retrieved chunk is a table and
    the question is a numeric aggregate (sum/avg/count/min/max over a
    column), the answer is computed directly from the table's parsed
@@ -156,7 +187,7 @@ flowchart LR
         Ingest["Ingest\nPyMuPDF -> docTR OCR -> img2table -> chunker"]
         Index["Index\nFAISS text + FAISS image (CLIP) + BM25"]
         Retrieve["Retrieve\nhybrid RRF fusion, cross-modal, caption-baseline, reranker"]
-        Verify["Verify\nNLI faithfulness gate + calibrated refusal"]
+        Verify["Verify\nNLI faithfulness gate + score-gated refusal"]
         Session["In-process session store\n(chunks + page images, per session id)"]
     end
     Provider["LLM provider (BYOK)\nOpenAI / Groq / Gemini / Anthropic"]
@@ -183,8 +214,9 @@ flowchart LR
   reciprocal-rank fusion, optionally reranked by a bge cross-encoder;
   figures retrieve either via CLIP cross-modal search or an OCR-caption
   text-index fallback, selectable per query.
-- **Verify** (Phase 4): the NLI faithfulness gate and the calibrated
-  refusal checks described above.
+- **Verify** (Phase 4): the NLI faithfulness gate and the score-gated
+  refusal checks described above. Neither threshold is calibrated; both are
+  measured in [`RESULTS.md`](RESULTS.md).
 - **Cite**: every surviving claim points back at a `(page, bbox)`, served
   as an image crop-able region via `GET /page/{session}/{page}`.
 
@@ -272,37 +304,66 @@ runbook (with your own accounts, no shared infra).
 DocVQA-derived corpus, runs a ~40-question gold set (including deliberately
 out-of-corpus questions to score refusal) through all four retrieval modes,
 and writes `backend/eval/report.json`, which the `/eval` dashboard
-visualizes — retrieval quality (recall@1, recall@5, MRR, citation accuracy)
-per mode, refusal accuracy, and (with a BYOK key) the faithfulness rate of
-the NLI-verified generation path. It measures, head-to-head:
+visualizes. Read that dashboard with three caveats, all established in
+[`RESULTS.md`](RESULTS.md):
+
+- its **"citation accuracy" is recall@1 under another name** — it is computed
+  from `retrieved_pages[0]`, not from the citations the generated answer
+  actually emits;
+- its **"refusal accuracy" is the class prior**, because the gate refuses
+  nothing at the shipped threshold;
+- its **faithfulness fields are `null`** in the committed run and have never
+  been populated, so no end-to-end faithfulness rate for this pipeline exists.
+  The gate's quality is known only from the RAGTruth validation above, which
+  is a different corpus.
+
+What the harness genuinely measures head-to-head:
 
 - **Cross-modal retrieval vs. the OCR-caption baseline** — does embedding
   the image directly with CLIP actually beat embedding its OCR'd caption
-  text?
-- **Hybrid (dense + BM25 fusion) vs. dense-only** retrieval.
-- **Verified vs. raw generation** — how often the faithfulness gate
-  actually catches an unsupported claim, and how accurately the system
-  refuses on genuinely unanswerable questions.
+  text? (It does not, clearly.)
+- **Hybrid (dense + BM25 fusion) vs. dense-only** retrieval — and, added in
+  `RESULTS.md`, both against a BM25-only baseline, which is the comparison
+  that matters and the one the margin fails to clear.
 
-### Latest committed run
+### Latest measured run
 
-Real numbers from `backend/eval/report.json` — a 40-document corpus, 30
-answerable + 8 out-of-corpus questions, no BYOK key (retrieval + refusal
-only):
+From [`RESULTS.md`](RESULTS.md) — 151 DocVQA-derived questions over a 40-page
+corpus, with 95% bootstrap confidence intervals. The table reports the **107
+questions** kept by an ambiguity filter; `RESULTS.md` reports every number on
+all 151 as well, and the unfiltered figures are substantially lower.
 
-| retrieval mode | recall@1 | recall@5 | MRR | refusal acc |
-|---|---|---|---|---|
-| **caption_baseline** (OCR text) | 0.53 | **0.80** | **0.62** | 0.79 |
-| hybrid (dense + BM25) | 0.47 | 0.67 | 0.54 | 0.79 |
-| dense | 0.43 | 0.67 | 0.52 | 0.79 |
-| cross_modal (CLIP) | 0.27 | 0.43 | 0.32 | 0.71 |
+| retrieval mode | R@1 [95% CI] | R@5 [95% CI] | MRR [95% CI] |
+|---|---|---|---|
+| **hybrid + rerank** (production default) | **0.832 [0.757, 0.897]** | 0.953 [0.907, 0.991] | 0.883 [0.829, 0.932] |
+| dense + rerank | 0.813 [0.738, 0.888] | 0.944 [0.897, 0.981] | 0.864 [0.807, 0.918] |
+| hybrid, no rerank | 0.813 [0.738, 0.879] | 0.935 [0.888, 0.972] | 0.856 [0.795, 0.912] |
+| **BM25 only** (simple baseline) | 0.794 [0.720, 0.869] | 0.925 [0.869, 0.972] | 0.850 [0.787, 0.905] |
+| dense, no rerank | 0.701 [0.607, 0.785] | 0.860 [0.794, 0.925] | 0.772 [0.700, 0.839] |
+| caption_baseline (bge on page OCR) | 0.692 [0.598, 0.776] | 0.879 [0.813, 0.935] | 0.768 [0.698, 0.836] |
+| cross_modal (CLIP text → page image) | 0.290 [0.206, 0.374] | 0.551 [0.458, 0.645] | 0.387 [0.307, 0.469] |
 
-The headline finding is honest and slightly counter-intuitive: on
-**text-dense scanned pages**, embedding a page's OCR'd text beats embedding
-the page image with CLIP — worth knowing before reaching for a heavier
-vision model. The faithfulness columns (generation faithfulness rate, NLI
-catch rate) require a BYOK key and are `null` in this retrieval-only run;
-**run [`BENCHMARK.md`](BENCHMARK.md) with `--api-key`** to populate them.
+On all 151 questions, hybrid+rerank gets R@1 **0.623 [0.543, 0.702]**, BM25
+0.603, caption_baseline 0.556 and CLIP 0.252. On the 44 ambiguous questions
+alone, hybrid+rerank gets R@1 0.114.
+
+Two honest readings of this table:
+
+- **CLIP loses badly to text on text-dense scans** (R@1 0.290 vs 0.832) — worth
+  knowing before reaching for a heavier vision model. This finding survives
+  re-measurement.
+- **The full pipeline's margin over plain BM25 does not clear its own error
+  bars**: +0.037 [−0.028, 0.103] on the filtered set, +0.020 [−0.040, 0.079]
+  on all 151. A single lexical baseline gets most of the way there, and the
+  interval includes zero. That is reported here because it is true, not
+  because it flatters the architecture.
+
+An earlier version of this section showed a 38-question run from
+`backend/eval/report.json` in which `caption_baseline` appeared *best* at
+recall@5 0.80. That run was retrieval-only, had no confidence intervals, and
+its ranking does not survive the larger evaluation — caption_baseline is
+mid-table above. Its faithfulness columns were `null`, and the
+`refusal acc` column was the never-refuse class prior, as explained above.
 
 ## Skills demonstrated
 
