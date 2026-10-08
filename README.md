@@ -41,6 +41,18 @@ exact pixel region on the source page.
   measures rather than assumes. Numbers are reproducible via
   [`BENCHMARK.md`](BENCHMARK.md) and live on the `/eval` dashboard.
 
+> **Measured evaluation: [`RESULTS.md`](RESULTS.md)** — an independent re-measurement
+> of every claim above, and the one that matters most is negative. **The shipped
+> refusal gate does not refuse.** On dense, hybrid and caption modes it refused
+> **0 of 38** questions, including all 8 trivial out-of-corpus ones, so the
+> reported 0.789 "refusal accuracy" is exactly the never-refuse baseline, 30/38.
+> The gate separates answerable questions from *trivially* off-topic ones
+> (AUROC **0.91**) and not from hard ones (AUROC **0.30**) — though that second
+> set was built by an LLM to name corpus entities, so the number depends on how
+> it was constructed, and `RESULTS.md` says so. It also confirms that the
+> reported "citation accuracy" was recall@1 under another name, and that
+> faithfulness was never measured at all (`"faithfulness": null`).
+
 **Demo status**, as of 8 October 2026:
 
 | Component | URL | State |
