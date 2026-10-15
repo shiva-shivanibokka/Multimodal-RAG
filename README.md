@@ -22,6 +22,52 @@ outright when the grounding isn't there, table math is computed from the
 parsed data instead of guessed by the LLM, and every citation points at an
 exact pixel region on the source page.
 
+## Correction
+
+**The refusal accuracy of 0.79 that this project reported is the class prior,
+not a measurement of the refusal gate.** It is the accuracy of never refusing
+anything, on a question set that was 79% answerable. The committed benchmark
+artifact still records it — `backend/eval/report.json` has
+`refusal_accuracy: 0.789` for the dense, hybrid and caption modes — and it is
+left there on purpose, so the record shows what was claimed and what replaced
+it.
+
+Re-measurement shows the gate does not refuse at all. At the shipped
+`retrieval_min_score = 0.25`:
+
+| | measured |
+|---|---|
+| questions refused at the shipped threshold | **0 of 145** (107 answerable + 38 out-of-corpus) |
+| lowest gate score on *any* of the 189 scored questions | **0.420**, against a threshold of **0.25** |
+| gate AUROC vs 30 hard out-of-corpus questions | **0.302**, 95% CI **[0.198, 0.404]** |
+| a signal the system computes and discards (bge-reranker top-1) | **0.632**, 95% CI **[0.538, 0.724]** |
+
+The threshold sits below the entire observed score range, so nothing can ever
+fall under it and any accuracy the gate reports is fixed by the class balance
+alone.
+
+**The gate is worse than a coin flip at the job it exists to do, and the whole
+interval says so.** Its AUROC against the 30 hard out-of-corpus questions —
+questions that name real corpus entities but ask for facts the corpus does not
+contain — is 0.302, and the **entire 95% interval [0.198, 0.404] lies below
+0.5**. This is not an inconclusive result near chance: the gate reliably scores
+unanswerable questions *higher* than answerable ones (median 0.707 vs 0.639),
+because what it measures is topical similarity, not answerability. Naming a real
+entity raises the score whether or not the answer is present.
+
+The system already computes a better signal and throws it away. The
+bge-reranker cross-encoder runs in production (`backend/app/generate/answer.py:132`)
+but refusal is gated on the dense cosine instead
+(`answer.py:129`); the reranker's own top-1 score reaches AUROC 0.632
+[0.538, 0.724] on the identical inputs — the only signal measured here whose
+interval sits clear of chance.
+
+Reproduce with `python eval_sop/03_refusal.py`; the figures above are read from
+`eval_sop/results/refusal_selective_prediction.json` and
+`eval_sop/results/gate_scores.json`. Full analysis, including the AUROC of 0.91
+against *trivially* off-topic questions — the gate's one real success — is in
+[`RESULTS.md`](RESULTS.md) §2.2.
+
 ### Recruiter TL;DR
 
 - Full-stack multimodal RAG system (Next.js/Vercel + FastAPI/ML on Google
@@ -364,6 +410,9 @@ recall@5 0.80. That run was retrieval-only, had no confidence intervals, and
 its ranking does not survive the larger evaluation — caption_baseline is
 mid-table above. Its faithfulness columns were `null`, and the
 `refusal acc` column was the never-refuse class prior, as explained above.
+
+> **The `refusal acc` 0.789 in that artifact is retracted, not reproduced** —
+> it is the class prior. See [Correction](#correction).
 
 ## Skills demonstrated
 
